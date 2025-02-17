@@ -4,8 +4,8 @@ export default function ExamDateForm() {
   const { patientData, updatePatientData } = usePatient();
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-full text-white">
-      <h2 className="text-lg font-bold mb-4">🩺 Exame Físico</h2>
+    <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-1/4 text-white">
+      <h2 className="text-lg font-bold mb-4">Data dos exames</h2>
 
       {/* Data dos Exames Complementares */}
       <label className="block text-sm font-medium">
