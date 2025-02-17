@@ -13,8 +13,8 @@ export class CardiovascularRiskMapper {
       onHypertensionMed: patientData.lifeHabits.isTreatingHAS ? 1 : 0,
       smoking: patientData.lifeHabits.isSmoker ? 1 : 0,
       diabetes: patientData.lifeHabits.hasDiabetes ? 1 : 0,
-      totalCholesterol: getExamValue("Colesterol Total"),
-      hdlCholesterol: getExamValue("HDL"),
+      totalCholesterol: getExamValue("Colesterol Total") || 0,
+      hdlCholesterol: getExamValue("HDL")|| 1,
     };
   }
 }

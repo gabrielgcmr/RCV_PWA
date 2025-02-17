@@ -12,6 +12,13 @@ export class CardiovascularRiskIndex {
     realRiskCategory: string;
     idealRisk: number;
   } {
+    // 1. Verifica se os dados do paciente são válidos
+    const isValid = CardiovascularRiskValidator.validatePatientForRiskCalculation(patientData);
+    
+    if (!isValid) {
+      return { realRisk: 0, realRiskCategory: "Desconhecido", idealRisk: 0 };
+    }
+    
     // 1. Validação dos dados do paciente
     CardiovascularRiskValidator.validatePatientForRiskCalculation(patientData);
 
