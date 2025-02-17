@@ -1,4 +1,4 @@
-import { usePatient } from "../context/usePatient";
+import { usePatient } from "../hooks/usePatient";
 
 export default function LipidProfileForm() {
   const { patientData, updatePatientData } = usePatient();

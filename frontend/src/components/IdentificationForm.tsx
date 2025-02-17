@@ -1,4 +1,4 @@
-import { usePatient } from "../context/usePatient";
+import { usePatient } from "../hooks/usePatient";
 
 export default function IdentificationForm() {
   const { patientData, updatePatientData} = usePatient();
@@ -60,8 +60,6 @@ export default function IdentificationForm() {
         <option value="">Selecione...</option>
         <option value="Branco">Branco</option>
         <option value="Preto">Preto</option>
-        <option value="Indígena">Indígena</option>
-        <option value="Asiático">Asiático</option>
         <option value="Outro">Outro</option>
       </select>
     </div>
