@@ -28,10 +28,10 @@ export default function ClipboadComponent() {
         <li>
             <strong>Bioquimica:</strong>
             <p>LAB ({formatDate(patientData.complementaryExams.examsDate)}):
-            <> CT: </> {findExam("totalCholesterol") || ""} 
-            <> LDL: </> {findExam("ldlCholesterol") || ""}
-            <> HDL: </> {findExam("hdlCholesterol") || ""} 
-            <> Trig: </> {findExam("triglycerides") || ""} </p>
+            <> CT: </> {findExam("totalCholesterol") || ""}; 
+            <> LDL: </> {findExam("ldlCholesterol") || ""};
+            <> HDL: </> {findExam("hdlCholesterol") || ""};
+            <> Trig: </> {findExam("triglycerides") || ""}; </p>
         </li>
       </ul>
       
