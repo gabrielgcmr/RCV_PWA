@@ -8,6 +8,23 @@ export default function ClipboadComponent() {
     return `${day}/${month}/${year}`;
   };
 
+  // Buscar exames
+  const totalCholesterol = findExam("totalCholesterol");
+  const ldlCholesterol = findExam("ldlCholesterol");
+  const hdlCholesterol = findExam("hdlCholesterol");
+  const triglycerides = findExam("triglycerides");
+
+  // Criar string dinâmica com exames disponíveis
+  const bioquimicaExams = [
+    totalCholesterol !== undefined ? `CT: ${totalCholesterol}` : "",
+    hdlCholesterol !== undefined ? `HDL: ${hdlCholesterol}` : "",
+    ldlCholesterol !== undefined ? `LDL: ${ldlCholesterol}` : "",
+    triglycerides !== undefined ? `Trig: ${triglycerides}` : "",
+  ]
+    .filter(Boolean) // Remove os itens vazios
+    .join("; "); // Junta os exames existentes em uma única string
+
+
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
       <h2 className="text-lg font-bold mb-4">🟢PREVENÇÕES E SEGMENTOS</h2>
@@ -24,11 +41,7 @@ export default function ClipboadComponent() {
       <ul>
         <li>
             <strong>Bioquimica:</strong>
-            <p>LAB ({formatDate(patientData.complementaryExams.examsDate)}):
-            <> CT: </> {findExam("totalCholesterol") || ""}; 
-            <> LDL: </> {findExam("ldlCholesterol") || ""};
-            <> HDL: </> {findExam("hdlCholesterol") || ""};
-            <> Trig: </> {findExam("triglycerides") || ""}; </p>
+            <p>LAB ({formatDate(patientData.complementaryExams.examsDate)}):{bioquimicaExams} </p>
         </li>
       </ul>
       

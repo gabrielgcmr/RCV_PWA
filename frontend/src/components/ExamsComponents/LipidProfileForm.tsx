@@ -1,27 +1,11 @@
-import { usePatient } from "../hooks/usePatient";
+import { usePatient } from "../../hooks/usePatient";
 
 export default function LipidProfileForm() {
-  const { patientData, updatePatientData } = usePatient();
+  const { patientData, handleExamChange } = usePatient();
 
    // Função para encontrar um exame no array pelo nome
    const findExamValue = (examName: string) => {
     return patientData.complementaryExams.exams.find(exam => exam.name === examName)?.value || "";
-  };
-
-   // Função para atualizar um exame no array
-   const handleExamChange = (examName: string, value: string) => {
-    const updatedExams = [...patientData.complementaryExams.exams];
-    const examIndex = updatedExams.findIndex(exam => exam.name === examName);
-
-    if (examIndex !== -1) {
-      updatedExams[examIndex].value = value; // Atualiza exame existente
-    } else {
-      updatedExams.push({ name: examName, value }); // Adiciona novo exame se não existir
-    }
-
-    updatePatientData("complementaryExams", { 
-      examsDate: patientData.complementaryExams.examsDate,
-      exams: updatedExams });
   };
 
   return (
@@ -29,7 +13,7 @@ export default function LipidProfileForm() {
       <h2 className="text-lg font-bold mb-4">Lipidograma</h2>
 
       {/* Colesterol Total */}
-      <label className="block text-sm font-medium mb-1">CT:</label>
+      <label className="block text-sm font-medium mb-1">CT:
       <input
         type="number"
         value={findExamValue("totalCholesterol")}
@@ -37,9 +21,10 @@ export default function LipidProfileForm() {
         className="w-full p-2 border rounded mb-2 text-white"
         placeholder="CT"
       />
+      </label>
 
       {/* Colesterol LDL */}
-      <label className="block text-sm font-medium mb-1">LDL:</label>
+      <label className="block text-sm font-medium mb-1">LDL:
       <input
         type="number"
         value={findExamValue("ldlCholesterol")}
@@ -47,9 +32,9 @@ export default function LipidProfileForm() {
         className="w-full p-2 border rounded mb-2 text-white"
         placeholder="LDL"
       />
-
+      </label>
       {/* Colesterol HDL */}
-      <label className="block text-sm font-medium mb-1">HDL:</label>
+      <label className="block text-sm font-medium mb-1">HDL:
       <input
         type="number"
         value={findExamValue("hdlCholesterol")}
@@ -57,9 +42,9 @@ export default function LipidProfileForm() {
         className="w-full p-2 border rounded mb-2 text-white"
         placeholder="HDL"
       />
-
+      </label>
       {/* Triglicerídeos */}
-      <label className="block text-sm font-medium mb-1">Trig.:</label>
+      <label className="block text-sm font-medium mb-1">Trig.:
       <input
         type="number"
         value={findExamValue("triglycerides")}
@@ -67,6 +52,7 @@ export default function LipidProfileForm() {
         className="w-full p-2 border rounded mb-2 text-white"
         placeholder="Trig."
       />
+      </label>
     </div>
   );
 }
