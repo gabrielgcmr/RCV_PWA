@@ -19,8 +19,8 @@ export class CardiovascularRiskCalculator {
    */
   static equationForGetLogit(data: ICardiovascularRiskData, idealValues = false): number {
     const raceValue = this.getRaceValue(data.race);
-    let { age, gender, onHypertensionMed, diabetes, smoking } = data;
-    
+    const { age, gender, onHypertensionMed, diabetes,  } = data;
+    let smoking = data.smoking;
     let systolicBloodPressure, totalCholesterol, hdlCholesterol;
 
     if (idealValues) {
@@ -36,7 +36,7 @@ export class CardiovascularRiskCalculator {
 
     const systolicBloodPressure2 = systolicBloodPressure ** 2;
     const cholesterolRatio = totalCholesterol / hdlCholesterol;
-    
+
     let logit;
     if (gender.toLowerCase() === "feminino") {
       logit = (

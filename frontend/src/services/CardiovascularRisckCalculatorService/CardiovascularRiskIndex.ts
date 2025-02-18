@@ -7,7 +7,7 @@ export class CardiovascularRiskIndex {
   /**
    * Processa o cálculo do risco cardiovascular do paciente.
    */
-  static processRiskCalculation(patientData: IPatientData): {
+  static processRiskCalculation(patientData: IPatientData, getExamValue:(name:string)=>number): {
     realRisk: number;
     realRiskCategory: string;
     idealRisk: number;
@@ -23,7 +23,7 @@ export class CardiovascularRiskIndex {
     CardiovascularRiskValidator.validatePatientForRiskCalculation(patientData);
 
     // 2. Mapeamento dos dados para o formato correto
-    const mappedData = CardiovascularRiskMapper.mapPatientData(patientData);
+    const mappedData = CardiovascularRiskMapper.mapPatientData(patientData,getExamValue);
 
     // 3. Cálculo do risco real
     const { risk: realRisk, category: realRiskCategory } = CardiovascularRiskCalculator.realRiskResult(mappedData);

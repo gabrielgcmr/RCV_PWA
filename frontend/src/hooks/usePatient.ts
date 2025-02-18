@@ -6,5 +6,17 @@ export function usePatient() {
   if (!context) {
     throw new Error("usePatient deve ser usado dentro de um PatientProvider");
   }
-  return context;
+
+  const { patientData } = context;
+
+  const findExam = (name: string) => {
+    return patientData?.complementaryExams?.exams.find(exam => exam.name === name)?.value || "Não informado";
+  };
+
+  const getExamValue = (name: string) => {
+    return patientData?.complementaryExams?.exams.find(exam => exam.name === name)?.value;
+  };
+
+  return { ...context, findExam, getExamValue };
 }
+

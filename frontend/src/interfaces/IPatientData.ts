@@ -16,6 +16,6 @@ export interface IPatientData {
   };
   complementaryExams:{  
     examsDate: string;  
-    exams: { name: string; value: string }[]
+    exams: { name: string; value: string | number }[]
   } 
 }

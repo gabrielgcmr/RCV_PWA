@@ -2,19 +2,23 @@ import { usePatient } from "../hooks/usePatient";
 import { CardiovascularRiskIndex } from "../services/CardiovascularRisckCalculatorService/CardiovascularRiskIndex";
 
 export default function SummaryComponent() {
-  const { patientData } = usePatient();
-  
-  const isPatientDataValid =
-    patientData &&
-    patientData.identification?.age &&
-    patientData.physicalExam?.systolicBP &&
-    patientData.complementaryExams?.exams.find((exam) => exam.name === "Colesterol Total")?.value &&
-    patientData.complementaryExams?.exams.find((exam) => exam.name === "HDL")?.value &&
-    ["Masculino", "Feminino"].includes(patientData.identification?.gender) &&
-    patientData.identification?.race;
+  const { patientData, getExamValue } = usePatient();
+  const getExamValueAsNumber = (name: string): number => {
+    const value = getExamValue(name);
+    
+    if (typeof value === "number") {
+      return value; // Já é um número, retorna direto
+    }
+    
+    if (typeof value === "string") {
+      const parsed = parseFloat(value);
+      return isNaN(parsed) ? 0 : parsed; // Se for um número válido, retorna, senão retorna 0
+    }
+    
+    return 0; // Se for undefined, retorna um valor padrão
+  };
 
-
-  const { realRisk, realRiskCategory, idealRisk } = CardiovascularRiskIndex.processRiskCalculation(patientData);
+  const { realRisk, realRiskCategory, idealRisk } = CardiovascularRiskIndex.processRiskCalculation(patientData,getExamValueAsNumber);
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
       <h2 className="text-lg font-bold mb-4">📋 Resumo do Paciente</h2>
