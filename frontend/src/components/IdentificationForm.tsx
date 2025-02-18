@@ -1,4 +1,4 @@
-import { usePatient } from "../context/usePatient";
+import { usePatient } from "../hooks/usePatient";
 
 export default function IdentificationForm() {
   const { patientData, updatePatientData} = usePatient();
@@ -8,7 +8,7 @@ export default function IdentificationForm() {
       <h2 className="text-lg font-bold mb-4">🏷️ Identificação</h2>
 
       {/* Nome */}
-      <label className="block text-sm font-medium">Nome:</label>
+      <label className="block text-sm font-medium">Nome:
       <input
         type="text"
         value={patientData.identification.name}
@@ -16,9 +16,10 @@ export default function IdentificationForm() {
         className="w-full p-2 border rounded mb-2 bg-zinc-700 text-white"
         placeholder="Digite o nome do paciente"
       />
+      </label>
 
       {/* Idade */}
-      <label className="block text-sm font-medium">Idade:</label>
+      <label className="block text-sm font-medium">Idade:
       <input
         type="number"
         value={patientData.identification.age}
@@ -26,6 +27,7 @@ export default function IdentificationForm() {
         className="w-full p-2 border rounded mb-2"
         placeholder="Digite a idade"
       />
+      </label>
 
       {/* Gênero */}
       <label className="block text-sm font-medium">Gênero:</label>
@@ -51,7 +53,7 @@ export default function IdentificationForm() {
       </div>
 
       {/* Raça */}
-      <label className="block text-sm font-medium">Raça:</label>
+      <label className="block text-sm font-medium">Raça:
       <select
         value={patientData.identification.race}
         onChange={(e) => updatePatientData("identification", {race: e.target.value})}
@@ -60,10 +62,9 @@ export default function IdentificationForm() {
         <option value="">Selecione...</option>
         <option value="Branco">Branco</option>
         <option value="Preto">Preto</option>
-        <option value="Indígena">Indígena</option>
-        <option value="Asiático">Asiático</option>
         <option value="Outro">Outro</option>
       </select>
+      </label>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { usePatient } from "../context/usePatient";
+import { usePatient } from "../hooks/usePatient";
 
 export default function PhysicalExamForm() {
   const { patientData, updatePatientData } = usePatient();
@@ -11,7 +11,6 @@ export default function PhysicalExamForm() {
       {/* Pressão Arterial Sistólica */}
       <label className="block text-sm font-medium">
         Pressão Arterial Sistólica (mmHg):
-      </label>
       <input
         type="number"
         value={patientData.physicalExam.systolicBP}
@@ -19,11 +18,11 @@ export default function PhysicalExamForm() {
         className="w-full p-2 border rounded mb-2 bg-zinc-600 text-white"
         placeholder="Digite a pressão sistólica"
       />
+      </label>
 
       {/* Pressão Arterial Diastólica */}
       <label className="block text-sm font-medium">
         Pressão Arterial Diastólica (mmHg):
-      </label>
       <input
         type="number"
         value={patientData.physicalExam.diastolicBP}
@@ -31,6 +30,7 @@ export default function PhysicalExamForm() {
         className="w-full p-2 border rounded mb-2 bg-zinc-600 text-white"
         placeholder="Digite a pressão diastólica"
       />
+      </label>
     </div>
   );
 }

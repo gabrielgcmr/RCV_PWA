@@ -1,10 +1,7 @@
-import { usePatient } from "../context/usePatient";
+import { usePatient } from "../hooks/usePatient";
 
 export default function ClipboadComponent() {
-  const { patientData } = usePatient();
-  const findExam = (name: string) => {
-    return patientData.complementaryExams.exams.find(exam => exam.name === name)?.value || "Não informado";
-  };
+  const { patientData, findExam } = usePatient();
   const formatDate = (dateString: string) => {
     if (!dateString) return "Não informado"; // Caso a data esteja vazia
     const [year, month, day] = dateString.split("-");
