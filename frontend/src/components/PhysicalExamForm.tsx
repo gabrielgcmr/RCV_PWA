@@ -15,7 +15,7 @@ export default function PhysicalExamForm() {
         type="number"
         value={patientData.physicalExam.systolicBP}
         onChange={(e) => updatePatientData("physicalExam", {systolicBP:e.target.value})}
-        className="w-full p-2 border rounded mb-2 bg-zinc-600 text-white"
+        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Digite a pressão sistólica"
       />
       </label>
@@ -27,7 +27,7 @@ export default function PhysicalExamForm() {
         type="number"
         value={patientData.physicalExam.diastolicBP}
         onChange={(e) => updatePatientData("physicalExam", {diastolicBP:e.target.value})}
-        className="w-full p-2 border rounded mb-2 bg-zinc-600 text-white"
+        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Digite a pressão diastólica"
       />
       </label>

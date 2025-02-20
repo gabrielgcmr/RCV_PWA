@@ -4,7 +4,7 @@ import HabitsForm from "../components/HabitsForm";
 import LipidProfileForm from "../components/ExamsComponents/LipidProfileForm";
 import SummaryComponent from "../components/SummaryComponent";
 import ClipboadComponent from "../components/CopyboardComponent";
-import ExamDateForm from "../components/ExamDateForm";
+import ExamDateForm from "../components/ExamsComponents/ExamDateForm";
 
 export default function MainPage() {
   return (

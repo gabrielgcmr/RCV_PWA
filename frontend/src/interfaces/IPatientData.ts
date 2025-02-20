@@ -1,3 +1,12 @@
+interface Exam {
+  name: string;
+  value: string | number;
+}
+
+interface ComplementaryExams {
+  examsDate: string;
+  exams: Exam[];
+}
 export interface IPatientData {
   identification:{
     name: string;
@@ -14,8 +23,5 @@ export interface IPatientData {
     hasDiabetes: boolean;
     isSmoker: boolean;
   };
-  complementaryExams:{  
-    examsDate: string;  
-    exams: { name: string; value: string | number }[]
-  } 
-}
+  complementaryExams: ComplementaryExams
+} 

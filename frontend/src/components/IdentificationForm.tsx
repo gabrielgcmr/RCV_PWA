@@ -13,7 +13,7 @@ export default function IdentificationForm() {
         type="text"
         value={patientData.identification.name}
         onChange={(e) => updatePatientData("identification", {name: e.target.value})}
-        className="w-full p-2 border rounded mb-2 bg-zinc-700 text-white"
+        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Digite o nome do paciente"
       />
       </label>
@@ -24,14 +24,14 @@ export default function IdentificationForm() {
         type="number"
         value={patientData.identification.age}
         onChange={(e) => updatePatientData("identification", {age: e.target.value})}
-        className="w-full p-2 border rounded mb-2"
+        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Digite a idade"
       />
       </label>
 
       {/* Gênero */}
       <label className="block text-sm font-medium">Gênero:</label>
-      <div className="flex gap-4 mb-2">
+      <div className="flex gap-4 mb-2  ">
         <label>
           <input
             type="radio"
@@ -53,11 +53,11 @@ export default function IdentificationForm() {
       </div>
 
       {/* Raça */}
-      <label className="block text-sm font-medium">Raça:
+      <label className="block text-sm font-medium ">Raça:
       <select
         value={patientData.identification.race}
         onChange={(e) => updatePatientData("identification", {race: e.target.value})}
-        className="w-full p-2 border rounded bg-zinc-700"
+        className="w-full p-2 border rounded bg-zinc-800"
       >
         <option value="">Selecione...</option>
         <option value="Branco">Branco</option>

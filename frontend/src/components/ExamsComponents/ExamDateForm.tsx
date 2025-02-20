@@ -1,4 +1,4 @@
-import { usePatient } from "../hooks/usePatient";
+import { usePatient } from "../../hooks/usePatient";
 
 export default function ExamDateForm() {
   const { patientData, updatePatientData } = usePatient();
@@ -15,7 +15,7 @@ export default function ExamDateForm() {
         type="date"
         value={patientData.complementaryExams.examsDate}
         onChange={(e) => updatePatientData("complementaryExams", {examsDate:e.target.value})}
-        className="w-full p-2 border rounded mb-2 bg-zinc-600 text-white"
+        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Data dos exames"
       />
       </label>    

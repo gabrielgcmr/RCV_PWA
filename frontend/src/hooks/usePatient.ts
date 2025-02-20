@@ -14,23 +14,38 @@ export function usePatient() {
   };
 
   const getExamValue = (name: string) => {
-    return patientData?.complementaryExams?.exams.find(exam => exam.name === name)?.value;
+    if (!patientData?.complementaryExams?.exams) return undefined;
+    return patientData.complementaryExams.exams.find(exam => exam.name === name)?.value;
   };
 
-   // Função para atualizar um exame no array
-   const handleExamChange = (examName: string, value: string | number) => {
-    const updatedExams = [...patientData.complementaryExams.exams];
-    const examIndex = updatedExams.findIndex(exam => exam.name === examName);
-
-    if (examIndex !== -1) {
-      updatedExams[examIndex].value = value; // Atualiza exame existente
-    } else {
-      updatedExams.push({ name: examName, value }); // Adiciona novo exame se não existir
-    }
-
-    updatePatientData("complementaryExams", { 
+  const updateExam = (examName: string, value: string | number) => {
+    const updatedExams = patientData.complementaryExams.exams.map(exam =>
+      exam.name === examName ? { ...exam, value } : exam
+    );
+  
+    updatePatientData("complementaryExams", {
       examsDate: patientData.complementaryExams.examsDate,
-      exams: updatedExams });
+      exams: updatedExams,
+    });
+  };
+  
+  const addExam = (examName: string, value: string | number) => {
+    const updatedExams = [...patientData.complementaryExams.exams, { name: examName, value }];
+  
+    updatePatientData("complementaryExams", {
+      examsDate: patientData.complementaryExams.examsDate,
+      exams: updatedExams,
+    });
+  };
+  
+  const handleExamChange = (examName: string, value: string | number) => {
+    const examExists = patientData.complementaryExams.exams.some(exam => exam.name === examName);
+  
+    if (examExists) {
+      updateExam(examName, value);
+    } else {
+      addExam(examName, value);
+    }
   };
 
   return { ...context, findExam, getExamValue,handleExamChange };

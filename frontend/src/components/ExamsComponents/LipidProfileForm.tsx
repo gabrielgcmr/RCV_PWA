@@ -1,58 +1,41 @@
 import { usePatient } from "../../hooks/usePatient";
+import { ExamInput } from "./ExamInput";
 
 export default function LipidProfileForm() {
-  const { patientData, handleExamChange } = usePatient();
-
-   // Função para encontrar um exame no array pelo nome
-   const findExamValue = (examName: string) => {
-    return patientData.complementaryExams.exams.find(exam => exam.name === examName)?.value || "";
-  };
+  const { handleExamChange, getExamValue } = usePatient();
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-1/4 text-white">
       <h2 className="text-lg font-bold mb-4">Lipidograma</h2>
 
-      {/* Colesterol Total */}
-      <label className="block text-sm font-medium mb-1">CT:
-      <input
-        type="number"
-        value={findExamValue("totalCholesterol")}
-        onChange={(e) => handleExamChange("totalCholesterol",e.target.value)}
-        className="w-full p-2 border rounded mb-2 text-white"
+      <ExamInput
+        examName="totalCholesterol"
+        label="CT:"
         placeholder="CT"
+        value={getExamValue("totalCholesterol") || ""}
+        onChange={handleExamChange}
       />
-      </label>
-
-      {/* Colesterol LDL */}
-      <label className="block text-sm font-medium mb-1">LDL:
-      <input
-        type="number"
-        value={findExamValue("ldlCholesterol")}
-        onChange={(e) => handleExamChange("ldlCholesterol",e.target.value)}
-        className="w-full p-2 border rounded mb-2 text-white"
+      <ExamInput
+        examName="ldlCholesterol"
+        label="LDL:"
         placeholder="LDL"
+        value={getExamValue("ldlCholesterol") || ""}
+        onChange={handleExamChange}
       />
-      </label>
-      {/* Colesterol HDL */}
-      <label className="block text-sm font-medium mb-1">HDL:
-      <input
-        type="number"
-        value={findExamValue("hdlCholesterol")}
-        onChange={(e) => handleExamChange("hdlCholesterol",e.target.value)}
-        className="w-full p-2 border rounded mb-2 text-white"
+      <ExamInput
+        examName="hdlCholesterol"
+        label="HDL:"
         placeholder="HDL"
+        value={getExamValue("hdlCholesterol") || ""}
+        onChange={handleExamChange}
       />
-      </label>
-      {/* Triglicerídeos */}
-      <label className="block text-sm font-medium mb-1">Trig.:
-      <input
-        type="number"
-        value={findExamValue("triglycerides")}
-        onChange={(e) => handleExamChange("triglycerides",e.target.value)}
-        className="w-full p-2 border rounded mb-2 text-white"
+      <ExamInput
+        examName="triglycerides"
+        label="Trig.:"
         placeholder="Trig."
+        value={getExamValue("triglycerides") || ""}
+        onChange={handleExamChange}
       />
-      </label>
     </div>
   );
 }
