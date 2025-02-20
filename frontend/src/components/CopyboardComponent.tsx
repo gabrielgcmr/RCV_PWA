@@ -13,6 +13,9 @@ export default function ClipboadComponent() {
   const ldlCholesterol = findExam("ldlCholesterol");
   const hdlCholesterol = findExam("hdlCholesterol");
   const triglycerides = findExam("triglycerides");
+  const creatinine = findExam("creatinine");
+  const urea = findExam("urea"); 
+  const uricAcid = findExam("uricAcid");
 
   // Criar string dinâmica com exames disponíveis
   const bioquimicaExams = [
@@ -20,10 +23,12 @@ export default function ClipboadComponent() {
     hdlCholesterol !== undefined ? `HDL: ${hdlCholesterol}` : "",
     ldlCholesterol !== undefined ? `LDL: ${ldlCholesterol}` : "",
     triglycerides !== undefined ? `Trig: ${triglycerides}` : "",
+    creatinine !== undefined ? `Cr: ${creatinine}` : "",
+    urea !== undefined ? `Ur: ${urea}` : "",
+    uricAcid !== undefined ? `Ac. Úrico: ${uricAcid}` : ""
   ]
     .filter(Boolean) // Remove os itens vazios
     .join("; "); // Junta os exames existentes em uma única string
-
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
@@ -41,7 +46,7 @@ export default function ClipboadComponent() {
       <ul>
         <li>
             <strong>Bioquimica:</strong>
-            <p>LAB ({formatDate(patientData.complementaryExams.examsDate)}):{bioquimicaExams} </p>
+            <p>LAB ({formatDate(patientData.complementaryExams.examsDate)}):{bioquimicaExams}</p>
         </li>
       </ul>
       

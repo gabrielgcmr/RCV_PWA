@@ -5,6 +5,7 @@ import LipidProfileForm from "../components/ExamsComponents/LipidProfileForm";
 import SummaryComponent from "../components/SummaryComponent";
 import ClipboadComponent from "../components/CopyboardComponent";
 import ExamDateForm from "../components/ExamsComponents/ExamDateForm";
+import RenalProfileForm from "../components/ExamsComponents/RenalProfileForm";
 
 export default function MainPage() {
   return (
@@ -23,6 +24,7 @@ export default function MainPage() {
         <h2 className="text-lg font-bold mb-4 text-center">🧪 Exames Complementares</h2>
         <ExamDateForm />
         <LipidProfileForm />
+        <RenalProfileForm />
       </div>
 
       {/* Terceira Coluna - Cálculo de Risco e Resumo */}
