@@ -1,8 +1,7 @@
-import { usePatient } from "../hooks/usePatient";
+import { usePatient } from "../../../../hooks/usePatient";
 
 export default function HabitsForm() {
   const { patientData, updatePatientData } = usePatient();
-
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-full text-white">

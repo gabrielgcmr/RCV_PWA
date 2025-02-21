@@ -1,5 +1,5 @@
-import { usePatient } from "../../hooks/usePatient";
-import { ExamInput } from "./ExamInput";
+import { usePatient } from "../../../../hooks/usePatient";
+import { ExamInput } from "../../../common/ExamInput";
 
 export default function LipidProfileForm() {
   const { handleExamChange, getExamValue } = usePatient();

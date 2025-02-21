@@ -1,5 +1,5 @@
-import { usePatient } from "../hooks/usePatient";
-import { CardiovascularRiskIndex } from "../services/CardiovascularRisckCalculatorService/CardiovascularRiskIndex";
+import { usePatient } from "../../../../hooks/usePatient";
+import { CardiovascularRiskIndex } from "../../../../services/CardiovascularRisckCalculatorService/CardiovascularRiskIndex";
 
 export default function SummaryComponent() {
   const { patientData, getExamValue } = usePatient();
