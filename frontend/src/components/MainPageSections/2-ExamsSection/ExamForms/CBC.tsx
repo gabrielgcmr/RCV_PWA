@@ -5,11 +5,12 @@ export default function CBCForm() {
   const { handleExamChange, getExamValue } = usePatient();
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-1/4 text-white">
+    <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white">
       <h2 className="text-lg font-bold mb-4">Hemograma</h2>
 
       <ExamInput
         examName="CBC"
+        abbreviation="HMG"
         label="Hemograma :"
         placeholder="Hemograma"
         value={getExamValue("CBC") || ""}

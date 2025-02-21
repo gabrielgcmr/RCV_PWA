@@ -1,5 +1,6 @@
 interface Exam {
   name: string;
+  abbreviation: string;
   value: string | number;
 }
 

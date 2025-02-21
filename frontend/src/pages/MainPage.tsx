@@ -1,6 +1,6 @@
-import { ExamSection } from "../components/MainPage/ExamsSection";
-import { IdentificationSection } from "../components/MainPage/IdentificationSection";
-import { OverviewSection } from "../components/MainPage/OverviewSection";
+import { ExamSection } from "../components/MainPageSections/2-ExamsSection";
+import { IdentificationSection } from "../components/MainPageSections/1-IdentificationSection";
+import { OverviewSection } from "../components/MainPageSections/3-OverviewSection";
 
 export default function MainPage() {
   return (
