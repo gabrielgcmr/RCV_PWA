@@ -5,7 +5,7 @@ export default function LipidProfileForm() {
   const { handleExamChange, getExamValue } = usePatient();
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white">
+    <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white flex-shrink-0 min-w-[100px] max-w-[150px]">
       <h2 className="text-lg font-bold mb-2">Lipidograma</h2>
 
       <ExamInput

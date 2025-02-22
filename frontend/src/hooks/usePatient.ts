@@ -9,6 +9,7 @@ export function usePatient() {
 
   const { patientData, updatePatientData } = context;
 
+   // ====== FUNÇÕES DE EXAMES ======
   const findExam = (name: string) => {
     return patientData?.complementaryExams?.exams.find(exam => exam.name === name)?.value;
   };
@@ -50,6 +51,11 @@ export function usePatient() {
     }
   };
   
-  return { ...context, findExam, getExamValue,handleExamChange };
+  // ====== FUNÇÕES DE PROBLEMAS ======
+  const hasProblem = (problemName: string) => {
+  return patientData.problemList?.problems?.some((p) => p.name === problemName) || false;
+  };
+
+  return { ...context, findExam, getExamValue,handleExamChange,hasProblem };
 }
 

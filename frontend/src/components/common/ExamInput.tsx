@@ -1,8 +1,8 @@
 interface ExamInputProps {
     examName: string;
-    abbreviation: string;
     label: string;
     placeholder: string;
+    abbreviation: string;
     value: string | number;
     onChange: (examName: string, abbreviation:string, value: string) => void;
   }

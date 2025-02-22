@@ -8,6 +8,14 @@ interface ComplementaryExams {
   examsDate: string;
   exams: Exam[];
 }
+export interface Problem {
+  name: string; // Descrição do problema (ex.: "Diabetes Mellitus tipo 2")
+  description?: string;
+}
+
+export interface ProblemList {
+  problems: Problem[]; // Lista de problemas
+}
 export interface IPatientData {
   identification:{
     name: string;
@@ -15,6 +23,7 @@ export interface IPatientData {
     gender: string;
     race: string;
   };
+  problemList: ProblemList;
   physicalExam:{ 
     systolicBP: string;
     diastolicBP: string;

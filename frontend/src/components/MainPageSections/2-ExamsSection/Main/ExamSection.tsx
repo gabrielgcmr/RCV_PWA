@@ -4,11 +4,12 @@ import {
   RenalProfileForm,
   CBCForm,
   UrinalysisForm,
+  GlucoseProfileForm,
 } from '../ExamForms';
 
 export default function ExamsSection() {
   return (
-    <div className="bg-zinc-800 p-4 rounded-lg shadow h-full">
+    <div className=" p-2 ">
       <h2 className="text-lg font-bold mb-4 text-center">
       🧪 Exames Complementares
       </h2>
@@ -21,11 +22,14 @@ export default function ExamsSection() {
         </div>
         {/* Exames e outros componentes ocupam os 3/4 restantes */}   
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="flex flex-wrap gap-2">
         <LipidProfileForm />
         <RenalProfileForm />
-        <CBCForm />
-        <UrinalysisForm />
+        <div className="flex flex-col gap-2 min-w-[200px] max-w-[250px]">
+          <CBCForm  />
+          <UrinalysisForm  />
+        </div>
+        <GlucoseProfileForm />
         {/* Outro componente pode ser adicionado aqui */}
       </div>
     </div>

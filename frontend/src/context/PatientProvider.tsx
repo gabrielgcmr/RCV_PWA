@@ -11,6 +11,9 @@ export function PatientProvider({ children }: { children: ReactNode }) {
       gender: "",
       race: "",
     },
+    problemList: {
+      problems: [],
+    },
     physicalExam: {
       systolicBP: "",
       diastolicBP: "",
