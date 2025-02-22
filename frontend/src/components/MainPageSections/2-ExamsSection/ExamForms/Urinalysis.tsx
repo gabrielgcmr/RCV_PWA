@@ -1,5 +1,5 @@
 import { usePatient } from "../../../../hooks/usePatient";
-import { ExamSelectInput } from "../../../common/ExamSelectInput";
+import { ExamSelectInput } from "../../../common/ExamInput/ExamSelectInput";
 
 export default function UrinalysisForm() {
   const { handleExamChange, getExamValue } = usePatient();

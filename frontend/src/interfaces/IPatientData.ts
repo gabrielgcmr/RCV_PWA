@@ -1,13 +1,5 @@
-interface Exam {
-  name: string;
-  abbreviation: string;
-  value: string | number;
-}
+import { IComplementaryExams } from "./IExam";
 
-interface ComplementaryExams {
-  examsDate: string;
-  exams: Exam[];
-}
 export interface Problem {
   name: string; // Descrição do problema (ex.: "Diabetes Mellitus tipo 2")
   description?: string;
@@ -33,5 +25,5 @@ export interface IPatientData {
     hasDiabetes: boolean;
     isSmoker: boolean;
   };
-  complementaryExams: ComplementaryExams
+  complementaryExams: IComplementaryExams
 } 

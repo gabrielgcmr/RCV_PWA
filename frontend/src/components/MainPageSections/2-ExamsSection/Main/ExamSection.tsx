@@ -9,8 +9,8 @@ import {
 
 export default function ExamsSection() {
   return (
-    <div className=" p-2 ">
-      <h2 className="text-lg font-bold mb-4 text-center">
+    <div className=" p-2 m-2 bg-zinc-700 rounded-lg shadow-md ">
+      <h2 className="text-lg font-bold p-2 text-center">
       🧪 Exames Complementares
       </h2>
 

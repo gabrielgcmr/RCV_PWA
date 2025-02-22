@@ -24,7 +24,7 @@ export function PatientProvider({ children }: { children: ReactNode }) {
       isSmoker: false,
     },
     complementaryExams: {
-      examsDate: "",
+      date: "",
       exams: [], // Inicializamos com um array vazio para armazenar exames dinamicamente
     },
   });

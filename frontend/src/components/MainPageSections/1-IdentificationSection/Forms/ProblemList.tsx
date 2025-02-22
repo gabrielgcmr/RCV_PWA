@@ -33,6 +33,14 @@ export default function ProblemListForm() {
   const isProblemChecked = (problemName: string) =>
     patientData.problemList.problems.some((p) => p.name === problemName);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, problemName: string, checked: boolean) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault(); // Previne o comportamento padrão
+      handleProblemToggle(problemName, !checked); // Inverte o estado do checkbox
+    }
+  };
+  
+
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white">
       <h2 className="text-lg font-bold mb-4"> 📝 Lista de Problemas</h2>
@@ -44,6 +52,7 @@ export default function ProblemListForm() {
           id="HAS"
           checked={isProblemChecked("HAS")}
           onChange={(e) => handleProblemToggle("HAS", e.target.checked)}
+          onKeyDown={(e) => handleKeyDown(e, "HAS", isProblemChecked("HAS"))}
           className="mr-2"
         />
         <label htmlFor="HAS" className="text-sm font-medium">
@@ -58,10 +67,11 @@ export default function ProblemListForm() {
           id="diabetes"
           checked={isProblemChecked("Diabetes")}
           onChange={(e) => handleProblemToggle("Diabetes", e.target.checked)}
+          onKeyDown={(e) => handleKeyDown(e, "Diabetes", isProblemChecked("Diabetes"))}
           className="mr-2"
         />
         <label htmlFor="diabetes" className="text-sm font-medium">
-          Diabetes Mellitus
+          DM
         </label>
       </div>
 
@@ -72,6 +82,7 @@ export default function ProblemListForm() {
           id="smoker"
           checked={isProblemChecked("Tabagismo")}
           onChange={(e) => handleProblemToggle("Tabagismo", e.target.checked)}
+          onKeyDown={(e) => handleKeyDown(e, "Tabagismo", isProblemChecked("Tabagismo"))}
           className="mr-2"
         />
         <label htmlFor="smoker" className="text-sm font-medium">

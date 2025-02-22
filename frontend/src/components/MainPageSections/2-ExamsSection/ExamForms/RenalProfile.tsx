@@ -1,37 +1,13 @@
-import { usePatient } from "../../../../hooks/usePatient";
-import { ExamInput } from "../../../common/ExamInput";
+import ExamProfileForm from "../../../common/ExamForm/ExamForm";
+import { createExamInput } from "../../../common/ExamInput/ExamUtils";
+import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
 
 export default function RenalProfileForm() {
-  const { handleExamChange, getExamValue } = usePatient();
+  const renalProfileExams: IExamInputProps[] = [
+    createExamInput("urea", "Ur", "Ureia", "Ureia"),
+    createExamInput("creatinine", "Cr", "Creatinina", "Creatinina"),
+    createExamInput("uricAcid", "Ac. Úrico", "Ácido Úrico", "Ácido Úrico"),
+  ];
 
-  return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white flex-shrink-0 min-w-[50px] max-w-[150px]">
-      <h2 className="text-lg font-bold mb-4">Excretas Renais</h2>
-
-      <ExamInput
-        examName="creatinine"
-        abbreviation="Cr"
-        label="Creatinina :"
-        placeholder="Creatinina"
-        value={getExamValue("creatinine") || ""}
-        onChange={handleExamChange}
-      />
-      <ExamInput
-        examName="urea"
-        abbreviation="UR"
-        label="Ureia:"
-        placeholder="Ureia"
-        value={getExamValue("urea") || ""}
-        onChange={handleExamChange}
-      />
-      <ExamInput
-        examName="uricAcid"
-        abbreviation="Ac. Úrico"
-        label="Ácido Úrico:"
-        placeholder="Ácido Úrico"
-        value={getExamValue("uricAcid") || ""}
-        onChange={handleExamChange}
-      />
-    </div>
-  );
+  return <ExamProfileForm title="Perfil Renal" exams={renalProfileExams} />;
 }

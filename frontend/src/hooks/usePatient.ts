@@ -19,35 +19,35 @@ export function usePatient() {
     return patientData.complementaryExams.exams.find(exam => exam.name === name)?.value;
   };
 
-  const updateExam = (examName: string, value: string | number) => {
+  const updateExam = (name: string, value: string | number,) => {
     const updatedExams = patientData.complementaryExams.exams.map((exam) =>
-      exam.name === examName ? { ...exam, value } : exam
+      exam.name === name ? { ...exam, value } : exam
     );
   
     updatePatientData("complementaryExams", {
-      examsDate: patientData.complementaryExams.examsDate,
+      date: patientData.complementaryExams.date,
       exams: updatedExams,
     });
   };
   
-  const addExam = (examName: string, abbreviation:string, value: string | number) => {
-    const updatedExams = [...patientData.complementaryExams.exams, { name: examName, abbreviation, value }];
+  const addExam = (name: string, value: string | number, abbreviation:string = "") => {
+    const updatedExams = [...patientData.complementaryExams.exams, { name, value,abbreviation }];
   
     updatePatientData("complementaryExams", {
-      examsDate: patientData.complementaryExams.examsDate,
+      date: patientData.complementaryExams.date,
       exams: updatedExams,
     });
   };
   
-  const handleExamChange = (examName: string, abbreviation: string, value: string | number) => {
+  const handleExamChange = (name: string, value: string | number, abbreviation?:string) => {
     const examExists = patientData.complementaryExams.exams.some(
-      (exam) => exam.name === examName
+      (exam) => exam.name === name
     );
   
     if (examExists) {
-      updateExam(examName, value);
+      updateExam(name, value);
     } else {
-      addExam(examName, abbreviation, value);
+      addExam(name,  value, abbreviation || "" );
     }
   };
   

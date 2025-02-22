@@ -1,15 +1,14 @@
 interface ExamSelectInputProps {
     examName: string;
-    abbreviation: string;
-    label: string;
-    value: string | number;
+    abbreviation?: string;
+    label?: string;
+    value?: string | number;
     options: { label: string; value: string }[];
-    onChange: (examName: string, abbreviation: string, value: string) => void;
+    onChange: (examName: string, value: string) => void;
   }
   
   export function ExamSelectInput({
     examName,
-    abbreviation,
     label,
     value,
     options,
@@ -21,7 +20,7 @@ interface ExamSelectInputProps {
         <select
           id={examName}
           value={value}
-          onChange={(e) => onChange(examName, abbreviation, e.target.value)}
+          onChange={(e) => onChange(examName, e.target.value)}
           className={`w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-800 `}
         >
           <option value="">Selecione</option>

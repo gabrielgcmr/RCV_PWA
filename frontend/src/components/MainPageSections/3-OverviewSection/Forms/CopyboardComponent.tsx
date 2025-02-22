@@ -3,12 +3,6 @@ import { usePatient } from "../../../../hooks/usePatient";
 export default function CopyboadComponent() {
   const { patientData, hasProblem } = usePatient();
 
-  const formatDate = (dateString: string) => {
-    if (!dateString) return "";
-    const [year, month, day] = dateString.split("-");
-    return `${day}/${month}/${year}`;
-  };
-
   const findExamWithAbbreviation = () => {
     if (!patientData?.complementaryExams?.exams) return "";
 
@@ -21,19 +15,35 @@ export default function CopyboadComponent() {
   const bioquimicaExams = findExamWithAbbreviation();
   const shouldShowLabData = bioquimicaExams;
 
+    // Verifica se a data é uma instância válida de Date
+    const examDate = patientData.complementaryExams.date instanceof Date
+    ? patientData.complementaryExams.date.toLocaleDateString("pt-BR")
+    : "?";
+
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
       <h2 className="text-lg font-bold mb-4">🟢 PREVENÇÕES E SEGMENTOS</h2>
 
-      <p>
-        <strong>HAS:</strong> {hasProblem("HAS") ? "Presente" : "Ausente"}
-      </p>
-      <p>
-        <strong>Diabetes:</strong> {hasProblem("Diabetes") ? "Presente" : "Ausente"}
-      </p>
-      <p>
-        <strong>Tabagismo:</strong> {hasProblem("Tabagismo") ? "Presente" : "Ausente"}
-      </p>
+      {/* HAS */}
+      {hasProblem("HAS") && (
+          <p>
+            <strong>HAS:</strong> Presente
+          </p>
+        )}
+
+      {/* Diabetes */}
+        {hasProblem("Diabetes") && (
+        <p>
+          <strong>Diabetes:</strong> Presente
+        </p>
+        )}
+
+      {/* Tabagismo */}
+      {hasProblem("Tabagismo") && (
+        <p>
+          <strong>Tabagismo:</strong> Presente
+        </p>
+      )}
 
       <h3 className="font-bold mt-4">🧪 EXAMES COMPLEMENTARES</h3>
       <ul>
@@ -46,7 +56,7 @@ export default function CopyboadComponent() {
           <strong>Bioquímica:</strong>
           {shouldShowLabData && (
             <p>
-              LAB ({formatDate(patientData.complementaryExams.examsDate)}):{" "}
+              LAB ({examDate}):{" "}
               {bioquimicaExams}
             </p>
           )}

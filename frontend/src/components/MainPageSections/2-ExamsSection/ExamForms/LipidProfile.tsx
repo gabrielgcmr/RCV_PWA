@@ -1,45 +1,14 @@
-import { usePatient } from "../../../../hooks/usePatient";
-import { ExamInput } from "../../../common/ExamInput";
+import ExamProfileForm from "../../../common/ExamForm/ExamForm";
+import { createExamInput } from "../../../common/ExamInput/ExamUtils";
+import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
 
 export default function LipidProfileForm() {
-  const { handleExamChange, getExamValue } = usePatient();
+  const lipidExams: IExamInputProps[] = [
+    createExamInput("totalCholesterol", "CT", "CT", "Colesterol Total"),
+    createExamInput("ldlCholesterol", "LDL", "LDL", "LDL"),
+    createExamInput("hdlCholesterol", "HDL", "HDL", "HDL"),
+    createExamInput("triglycerides", "Trig", "Trig", "Triglicerídeos"),
+  ];
 
-  return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white flex-shrink-0 min-w-[100px] max-w-[150px]">
-      <h2 className="text-lg font-bold mb-2">Lipidograma</h2>
-
-      <ExamInput
-        examName="totalCholesterol"
-        abbreviation="CT"
-        label="CT:"
-        placeholder="CT"
-        value={getExamValue("totalCholesterol") || ""}
-        onChange={handleExamChange}
-      />
-      <ExamInput
-        examName="ldlCholesterol"
-        label="LDL:"
-        placeholder="LDL"
-        abbreviation="LDL"
-        value={getExamValue("ldlCholesterol") || ""}
-        onChange={handleExamChange}
-      />
-      <ExamInput
-        examName="hdlCholesterol"
-        abbreviation="HDL"
-        label="HDL:"
-        placeholder="HDL"
-        value={getExamValue("hdlCholesterol") || ""}
-        onChange={handleExamChange}
-      />
-      <ExamInput
-        examName="triglycerides"
-        abbreviation="Trig."
-        label="Trig.:"
-        placeholder="Trig."
-        value={getExamValue("triglycerides") || ""}
-        onChange={handleExamChange}
-      />
-    </div>
-  );
+  return <ExamProfileForm title="Lipidograma" exams={lipidExams} />;
 }
