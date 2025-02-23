@@ -25,7 +25,7 @@ export default function ExamsSection() {
       <div className="flex flex-wrap gap-2">
         <LipidProfileForm />
         <RenalProfileForm />
-        <div className="flex flex-col gap-2 min-w-[200px] max-w-[250px]">
+        <div className="flex flex-col gap-2 min-w-[100px] max-w-[140px]">
           <CBCForm  />
           <UrinalysisForm  />
         </div>

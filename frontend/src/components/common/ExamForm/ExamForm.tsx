@@ -12,8 +12,8 @@ export default function ExamProfileForm({ title = "Exame", exams }: IExamFormPro
   const { handleExamChange, getExamValue } = usePatient();
 
   return (
-    <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white flex-shrink-0 min-w-[100px] max-w-[200px]">
-      <h2 className="text-lg font-bold mb-2">{title}</h2>
+    <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white flex-shrink-0 min-w-[80px] max-w-[140px]">
+      <h2 className="text-base text-center font-bold mb-2">{title}</h2>
 
       {/* Renderização dinâmica dos exames */}
       {exams.map((exam) => (

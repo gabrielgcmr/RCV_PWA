@@ -1,5 +1,5 @@
-import CopyboadComponent from "../Forms/CopyboardComponent";
-import SummaryComponent from "../Forms/SummaryComponent";
+import CopyboadComponent from "../components/CopyboardComponent";
+import SummaryComponent from "../components/SummaryComponent";
 
 export default function OverviewSection() {
       return(
