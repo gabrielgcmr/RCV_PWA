@@ -1,36 +1,38 @@
-interface ExamSelectInputProps {
-    examName: string;
-    abbreviation?: string;
-    label?: string;
-    value?: string | number;
+import { IExamInputProps } from "./IExamInputProps";
+
+interface ExamSelectInputProps extends  IExamInputProps {
     options: { label: string; value: string }[];
-    onChange: (examName: string, value: string) => void;
-  }
-  
-  export function ExamSelectInput({
-    examName,
-    label,
-    value,
-    options,
-    onChange,
-  }: ExamSelectInputProps) {
-    return (
-      <label className="block text-sm font-medium mb-1" htmlFor={examName}>
-        {label}
-        <select
-          id={examName}
-          value={value}
-          onChange={(e) => onChange(examName, e.target.value)}
-          className={`w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-800 `}
-        >
-          <option value="">Selecione</option>
-          {options.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </label>
-    );
-  }
-  
+}
+
+const baseInputClasses = "w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-800";
+
+export function ExamSelectInput({
+  name,
+  abbreviation,
+  value,
+  label,
+  disabled = false,
+  onChange,
+  options,
+}: ExamSelectInputProps) {
+  return (
+    <label className="block text-sm font-medium mb-1" htmlFor={name}>
+      {label}
+      <select
+        id={name}
+        value={value}
+        aria-label={label}
+        disabled={disabled}
+        onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
+        className={`${baseInputClasses} ${disabled ? "opacity-50" : ""}`}
+      >
+        <option value="">Selecione</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}

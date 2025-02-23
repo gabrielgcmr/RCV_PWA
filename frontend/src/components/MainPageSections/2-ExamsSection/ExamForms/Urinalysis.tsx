@@ -10,7 +10,7 @@ export default function UrinalysisForm() {
 
       {/* Select com opções pré-definidas */}
       <ExamSelectInput
-        examName="urinalysis-result"
+        name="urinalysis-result"
         abbreviation="EAS"
         label="EAS"
         value={getExamValue("urinalysis_result") || ""}

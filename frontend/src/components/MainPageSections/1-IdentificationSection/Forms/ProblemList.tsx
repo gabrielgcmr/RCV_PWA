@@ -33,10 +33,10 @@ export default function ProblemListForm() {
   const isProblemChecked = (problemName: string) =>
     patientData.problemList.problems.some((p) => p.name === problemName);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, problemName: string, checked: boolean) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, name: string, checked: boolean) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault(); // Previne o comportamento padrão
-      handleProblemToggle(problemName, !checked); // Inverte o estado do checkbox
+      handleProblemToggle(name, !checked); // Inverte o estado do checkbox
     }
   };
   

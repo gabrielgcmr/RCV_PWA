@@ -1,22 +1,11 @@
 import ExamProfileForm from "../../../common/ExamForm/ExamForm";
-import { IExamInputProps } from "../../../common/ExamInput/ExamInput";
+import { createExamInput } from "../../../common/ExamInput/ExamUtils";
+import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
 
 export default function GlucoseProfileForm() {
   const glucoseExams: IExamInputProps[] = [
-    {
-      name: "fastingGlucose",
-      abbreviation: "GJ",
-      label: "Glicemia de Jejum",
-      placeholder: "Insira o valor",
-      value: "",
-    },
-    {
-      name: "hba1c",
-      abbreviation: "HbA1c",
-      label: "Hemoglobina Glicada",
-      placeholder: "Insira o valor",
-      value: "",
-    },
+    createExamInput("fastingGlucose", "GJ", "Glicemia Jejum", "Glicemia de Jejum"),
+    createExamInput("hba1c", "HbA1c", "HbA1c", "Hemoglobina Glicada"),
   ];
 
   return <ExamProfileForm title="Perfil Glicêmico" exams={glucoseExams} />;

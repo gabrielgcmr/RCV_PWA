@@ -23,7 +23,7 @@ export function ExamInput({
       aria-label={label}
       disabled={disabled}
       onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
-      className={`w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-800 ${
+      className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200 ${
         errorMessage ? "border-red-500" : "border-gray-300"
       }`}
     />
