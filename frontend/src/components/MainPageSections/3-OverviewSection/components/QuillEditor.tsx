@@ -21,7 +21,6 @@ export default function QuillEditor({ value, onChange }: QuillEditorProps) {
             [{ header: [1, 2, false] }],
             ["bold", "italic", "underline", "strike"],
             [{ list: "ordered" }, { list: "bullet" }],
-            ["emoji"], // Suporte para emojis (requer módulo personalizado)
             ["clean"], // Remove formatação
           ],
         },
@@ -47,9 +46,14 @@ export default function QuillEditor({ value, onChange }: QuillEditorProps) {
   // Atualiza o valor do editor externo
   useEffect(() => {
     if (quillRef.current && value !== quillRef.current.root.innerHTML) {
+      // Atualiza o conteúdo do editor sempre que `value` mudar
+      const currentSelection = quillRef.current.getSelection();
       quillRef.current.root.innerHTML = value;
+  
+      // Mantém o cursor na posição anterior
+      if (currentSelection) {
+        quillRef.current.setSelection(currentSelection);
+      }
     }
   }, [value]);
-
-  return <div ref={editorRef} style={{ height: "300px", background: "white" }} />;
 }
