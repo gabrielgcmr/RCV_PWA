@@ -2,12 +2,12 @@ import { useEffect, useRef, JSX } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 
-interface ControlledQuillEditorProps {
+interface QuillEditorProps {
   value: string;
   onChange: (content: string) => void;
 }
 
-export default function ControlledQuillEditor({ value, onChange }: ControlledQuillEditorProps): JSX.Element {
+export default function QuillEditor({ value, onChange }: QuillEditorProps): JSX.Element {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const quillRef = useRef<Quill | null>(null);
 
@@ -37,14 +37,12 @@ export default function ControlledQuillEditor({ value, onChange }: ControlledQui
   // Atualiza o conteúdo externo no editor quando necessário
   useEffect(() => {
     const quill = quillRef.current;
-    if (quill && value !== quill.root.innerHTML) {
-      const currentSelection = quill.getSelection();
-      quill.root.innerHTML = value;
-      if (currentSelection) {
-        quill.setSelection(currentSelection);
-      }
+    if (quill) {
+      const delta = quill.clipboard.convert({ html: value });
+      quill.setContents(delta, "silent"); // "silent" evita disparar eventos de mudança
     }
   }, [value]);
+  
 
   return <div ref={editorRef} style={{ height: "300px", background: "white" }} />;
 }

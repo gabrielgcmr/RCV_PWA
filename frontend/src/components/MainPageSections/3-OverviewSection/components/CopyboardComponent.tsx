@@ -1,6 +1,6 @@
 import { usePatient } from "../../../../hooks/usePatient";
 import { useMemo, useState } from "react";
-import ControlledQuillEditor from "./ControledQuillEditor";
+import QuillEditor from "./ControledQuillEditor";
 
 
 export default function CopyboardComponent() {
@@ -45,7 +45,6 @@ export default function CopyboardComponent() {
   return (
     <div className="p-4 bg-zinc-100 text-black rounded-lg shadow-md">
       <h2 className="text-lg font-bold mb-4">🟢 PREVENÇÕES E SEGMENTOS</h2>
-      <p>{labDataHtml}</p>
 
       {problems.map((problem) => (
         hasProblem(problem.id) && (
@@ -57,10 +56,7 @@ export default function CopyboardComponent() {
 
       <h3 className="font-bold mt-4">🧪 EXAMES COMPLEMENTARES</h3>
 
-      <ControlledQuillEditor value={labDataHtml} onChange={setNotes} />
-
-      <h3 className="font-bold mt-4">📝 NOTAS</h3>
-      <ControlledQuillEditor value={notes} onChange={setNotes} />
+      <QuillEditor value={labDataHtml} onChange={setNotes} />
     </div>
   );
 }
