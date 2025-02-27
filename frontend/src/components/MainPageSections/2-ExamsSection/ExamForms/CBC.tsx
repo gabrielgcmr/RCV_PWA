@@ -9,7 +9,7 @@ export default function CBCForm() {
       <h2 className="text-lg font-bold mb-4">Hemograma</h2>
 
       <ExamSelectInput
-        examName="CBC"
+        name="CBC"
         label="Hemograma :"
         abbreviation="HMG"
         value={getExamValue("CBC") || ""}

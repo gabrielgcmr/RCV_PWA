@@ -20,7 +20,7 @@ export const SelectInput: React.FC<SelectInputProps> = ({
       value={value}
       disabled={disabled}
       onChange={handleChange}
-      className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 ${inputClassName} ${className}`}
+      className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200 ${inputClassName} ${className}`}
     >
       <option value="">Selecione</option>
       {options.map((option) => (

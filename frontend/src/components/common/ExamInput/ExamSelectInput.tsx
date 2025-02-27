@@ -4,7 +4,7 @@ interface ExamSelectInputProps extends  IExamInputProps {
     options: { label: string; value: string }[];
 }
 
-const baseInputClasses = "w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-800";
+const baseInputClasses = "w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200";
 
 export function ExamSelectInput({
   name,
