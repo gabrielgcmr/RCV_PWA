@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface ErrorPopupProps {
   errors: string[];
   onClose: () => void;

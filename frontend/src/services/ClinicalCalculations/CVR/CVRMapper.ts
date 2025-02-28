@@ -1,6 +1,6 @@
-import { IPatientData } from "../../interfaces/IPatientData";
+import { IPatientData } from "../../../interfaces/IPatientData";
 
-export class CardiovascularRiskMapper {
+export class CVRMapper {
   static mapPatientData(patientData: IPatientData, getExamValue: (name: string) => number) {
     const totalCholesterol = getExamValue("totalCholesterol");
     const hdlCholesterol = getExamValue("hdlCholesterol");

@@ -1,4 +1,4 @@
-import { IPatientData } from "../../interfaces/IPatientData";
+import { IPatientData } from "../../../interfaces/IPatientData";
 
 export class CKDEPIMapper {
   static mapPatientData(patientData: IPatientData, getExamValue: (name: string) => number) {

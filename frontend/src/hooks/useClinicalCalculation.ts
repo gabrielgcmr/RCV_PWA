@@ -1,32 +1,36 @@
 import { useState } from "react";
 import { usePatient } from "./usePatient";
 import { getExamValueAsNumber } from "../utils/examUtils";
-import { CKDEPIIndex } from "../services/CKD-EPI/CKDEPIIndex";
-import { CardiovascularRiskIndex } from "../services/CardiovascularRisckCalculatorService/CardiovascularRiskIndex";
+import { CKDEPIIndex } from "../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
+import { FIB4Index } from "../services/ClinicalCalculations/FIB-4/FIB4Index";
+import { CVRIndex } from "../services/ClinicalCalculations/CVR/CVRIndex";
 
 export function useClinicalCalculations() {
   const { patientData, getExamValue } = usePatient();
   const getExamValueNumber = (name: string) => getExamValueAsNumber(getExamValue, name);
 
-  const [tfg, setTfg] = useState<string>("");
-  const [cvRisk, setCvRisk] = useState<string>("");
-  const [errors, setErrors] = useState<{ tfg?: string[]; cvRisk?: string[] }>({});
+  const [data, setData] = useState<{
+    results: { TFG?: string; RCV?: string; FIB4?: string };
+    errors: { TFG?: string[]; RCV?: string[]; FIB4?: string[] };
+  }>({
+    results: {},
+    errors: {},
+  });
 
-  const calculateTFG = () => {
-    const { tfg, errors } = CKDEPIIndex.calculateTFG(patientData, getExamValueNumber);
-    setTfg(tfg !== null ? `${tfg} mL/min/1.73m²` : "Não avaliado");
-    setErrors((prev) => ({ ...prev, tfg: errors }));
+  const runCalculation = (name: "TFG" | "RCV" | "FIB4", 
+    calculateFn: Function) => {
+      const { [name]: result, errors } = calculateFn(patientData, getExamValueNumber);
+    setData((prev) => ({
+      results: { ...prev.results, [name]: result !== null ? `${result}` : "Não avaliado" },
+      errors: { ...prev.errors, [name]: errors },
+    }));
   };
 
-  const calculateRisk = () => {
-    const { realRisk, realRiskCategory, idealRisk } =
-      CardiovascularRiskIndex.processRiskCalculation(patientData, getExamValueNumber);
-
-    setCvRisk(realRisk
-      ? `RCV: ${realRisk.toFixed(2)}% (${realRiskCategory}) | Ideal: ${idealRisk.toFixed(2)}%`
-      : "Não avaliado"
-    );
+  return {
+    results: data.results,
+    errors: data.errors,
+    calculateTFG: () => runCalculation("TFG", CKDEPIIndex.calculateTFG),
+    calculateRCV: () => runCalculation("RCV", CVRIndex.calculateRCV),
+    calculateFIB4: () => runCalculation("FIB4", FIB4Index.calculateFIB4),
   };
-
-  return { tfg, cvRisk, errors, calculateTFG, calculateRisk };
 }

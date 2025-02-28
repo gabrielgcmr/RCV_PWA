@@ -41,7 +41,7 @@ export default function IdentificationForm() {
           name="gender"
           value="Male"
           label="Masculino"
-          checked={patientData.identification.gender === "Masculino"}
+          checked={patientData.identification.gender === "Male"}
           onChange={handleChange}
           className="mb-2"
         />
@@ -49,7 +49,7 @@ export default function IdentificationForm() {
           name="gender"
           value="Female"
           label="Feminino"
-          checked={patientData.identification.gender === "Feminino"}
+          checked={patientData.identification.gender === "Female"}
           onChange={handleChange}
           className="mb-2"
         />

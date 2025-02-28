@@ -1,4 +1,4 @@
-import { IPatientData } from "../../interfaces/IPatientData";
+import { IPatientData } from "../../../interfaces/IPatientData";
 import { CKDEPICalculator } from "./CKDEPICalculator";
 import { CKDEPIMapper } from "./CKDEPIMapper";
 import { CKDEPIValidator } from "./CKDEPIValidator";

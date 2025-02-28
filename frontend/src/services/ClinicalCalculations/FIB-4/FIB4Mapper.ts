@@ -1,0 +1,13 @@
+import { IPatientData } from "../../../interfaces/IPatientData";
+import { IFIB4Data } from "./IFIB4Data";
+
+export class FIB4Mapper {
+  static mapPatientData(patientData: IPatientData, getExamValue: (name: string) => number): IFIB4Data {
+    return {
+      age: Number(patientData.identification.age),
+      ast: getExamValue("AST"),
+      alt: getExamValue("ALT"),
+      platelets: getExamValue("platelets"),
+    };
+  }
+}

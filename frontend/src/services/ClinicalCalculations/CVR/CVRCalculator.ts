@@ -1,25 +1,21 @@
-import { ICardiovascularRiskData } from "./ICardiovascularRiskData";
+import { ICVRData } from "./ICVRData";
 
-export class CardiovascularRiskCalculator {
-  /**
-   * Valores de referência para a raça no cálculo do risco cardiovascular.
-   */
+export class CVRCalculator {
+  /*  Valores de referência para a raça no cálculo do risco cardiovascular. */
   private static raceValues: Record<string, number> = {
-    "branco": 0,
-    "preto": 1,
-    "outro": 0.00001,
+    "white": 0,
+    "black": 1,
+    "other": 0.00001,
   };
 
   public static getRaceValue(race: string): number {
     return this.raceValues[race.trim().toLowerCase()] ?? 0;
   }
 
-  /**
-   * Calcula o logit baseado nos dados do paciente e em valores ideais opcionais.
-   */
-  static equationForGetLogit(data: ICardiovascularRiskData, idealValues = false): number {
+  /* Calcula o logit baseado nos dados do paciente e em valores ideais opcionais. */
+  static equationForGetLogit(data: ICVRData, idealValues = false): number {
     const raceValue = this.getRaceValue(data.race);
-    const { age, gender, onHypertensionMed, diabetes,  } = data;
+    const { age, gender, onHypertensionMed, diabetes } = data;
     let smoking = data.smoking;
     let systolicBloodPressure, totalCholesterol, hdlCholesterol;
 
@@ -38,7 +34,7 @@ export class CardiovascularRiskCalculator {
     const cholesterolRatio = totalCholesterol / hdlCholesterol;
 
     let logit;
-    if (gender.toLowerCase() === "feminino") {
+    if (gender.toLowerCase() === "female") {
       logit = (
         -12.823110 + (0.106501 * age) + (0.432440 * raceValue) +
         (0.000056 * systolicBloodPressure2) + (0.017666 * systolicBloodPressure) +
@@ -69,27 +65,20 @@ export class CardiovascularRiskCalculator {
 
     return 100 / (1 + Math.exp(-logit));
   }
-  /**
-   * Classifica o risco cardiovascular em categorias.
-   */
+  /* Classifica o risco cardiovascular em categorias. */
   static classifyRisk(riskScore: number): string {
     if (riskScore < 5) return "Baixo risco";
     if (riskScore < 7.5) return "Risco limítrofe";
     if (riskScore < 20) return "Risco intermediário";
     return "Alto risco";
   }
-  /**
-   * Calcula o risco real do paciente com os valores informados.
-   */
-  static realRiskResult(data: ICardiovascularRiskData): { risk: number; category: string } {
+  /* Calcula o risco real do paciente com os valores informados. */
+  static realRiskResult(data: ICVRData): { risk: number; category: string } {
     const risk = this.equationForGetLogit(data, false);
-    return { risk, category: CardiovascularRiskCalculator.classifyRisk(risk) };
+    return { risk, category: CVRCalculator.classifyRisk(risk) };
   }
-  /**
-   * Calcula o risco ideal, assumindo valores padronizados para pressão, colesterol e tabagismo.
-   */
-  static idealRiskResult(data: ICardiovascularRiskData): number {
+  /* Calcula o risco ideal, assumindo valores padronizados para pressão, colesterol e tabagismo.  */
+  static idealRiskResult(data: ICVRData): number {
     return this.equationForGetLogit(data, true);
   }
 }
-

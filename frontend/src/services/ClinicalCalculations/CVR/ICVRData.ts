@@ -1,4 +1,4 @@
-export interface ICardiovascularRiskData {
+export interface ICVRData {
   age: number;
   gender: string;
   race: string;

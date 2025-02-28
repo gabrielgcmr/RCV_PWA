@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { CardiovascularRiskCalculator } from "../CardiovascularRiskCalculator";
-import { ICardiovascularRiskData } from "../ICardiovascularRiskData";
+import { CVRCalculator } from "../CVRCalculator";
+import { ICVRData } from "../ICVRData";
 
 describe("CardiovascularRiskCalculator", () => {
-  const mockData: ICardiovascularRiskData = {
+  const mockData: ICVRData = {
     age: 50,
     gender: "Masculino",
     race: "Branco",
@@ -16,23 +16,23 @@ describe("CardiovascularRiskCalculator", () => {
   };
 
   it("deve calcular corretamente o risco real", () => {
-    const result = CardiovascularRiskCalculator.realRiskResult(mockData);
+    const result = CVRCalculator.realRiskResult(mockData);
     expect(result.risk).toBeGreaterThan(0);
     expect(result.risk).toBeLessThanOrEqual(100);
   });
 
   it("deve calcular corretamente o risco ideal", () => {
-    const result = CardiovascularRiskCalculator.idealRiskResult(mockData);
+    const result = CVRCalculator.idealRiskResult(mockData);
     expect(result).toBeGreaterThan(0);
     expect(result).toBeLessThanOrEqual(100);
   });
 
   it("não deve quebrar se os valores forem indefinidos", () => {
-    const incompleteData: ICardiovascularRiskData = {
+    const incompleteData: ICVRData = {
       ...mockData,
       age: 0, // Define um valor seguro
     };
-    expect(() => CardiovascularRiskCalculator.realRiskResult(incompleteData)).not.toThrow();
+    expect(() => CVRCalculator.realRiskResult(incompleteData)).not.toThrow();
   });
   
 });
