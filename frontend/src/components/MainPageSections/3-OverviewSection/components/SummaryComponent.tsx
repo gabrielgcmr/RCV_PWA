@@ -13,7 +13,7 @@ export default function SummaryComponent() {
     );
 
   // Cálculo da TFG usando o getExamValueAsNumber para garantir números
-  const { tfg: TGF, errors } =
+  const { tfg: TGF } =
     CKDEPIIndex.calculateTFG(patientData, (name) => getExamValueAsNumber(getExamValue, name));
 
   return (
@@ -26,22 +26,9 @@ export default function SummaryComponent() {
       {hasProblem("Tabagismo") && <p><strong>Tabagismo:</strong> Presente</p>}
 
       {/* Exibe o risco cardiovascular */}
-      <p>
-        <strong>RCV: </strong>
-        {realRisk
-          ? `Risco Real ${realRisk.toFixed(2)}% - (${realRiskCategory} || Risco Ideal ${idealRisk.toFixed(2)}%)`
-          : "Não avaliado"}
-      </p>
-
-      {/* Exibe a TFG e erros, se houver */}
-      <p><strong>TFG: </strong>{TGF !== null ? `${TGF} mL/min/1.73m²` : "Não avaliada"}</p>
-
-      {errors.length > 0 && (
-        <div className="mt-4 p-2 bg-red-200 text-red-700 rounded">
-          <p><strong>Erros ao calcular TFG:</strong></p>
-          <ul>{errors.map((error, index) => <li key={index}>{error}</li>)}</ul>
-        </div>
-      )}
+      {realRisk ? <p><strong>RCV:</strong> Risco Atual: {realRisk.toFixed(2)}% - ({realRiskCategory}) || Risco Ideal: {idealRisk.toFixed(2)}%</p>: ""}
+      {/* Exibe a TFG se houver */}
+      {TGF !== null? <p><strong>TFG: </strong> {TGF} mL/min/1.73m² </p> : "" }
     </div>
   );
 }

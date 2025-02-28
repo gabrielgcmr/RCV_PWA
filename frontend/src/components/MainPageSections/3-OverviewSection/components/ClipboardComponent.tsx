@@ -24,26 +24,10 @@ export default function CopyboadComponent() {
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
       <h2 className="text-lg font-bold mb-4">🟢 PREVENÇÕES E SEGMENTOS</h2>
 
-      {/* HAS */}
-      {hasProblem("HAS") && (
-          <p>
-            <strong>HAS:</strong> Presente
-          </p>
-        )}
-
-      {/* Diabetes */}
-        {hasProblem("Diabetes") && (
-        <p>
-          <strong>Diabetes:</strong> Presente
-        </p>
-        )}
-
-      {/* Tabagismo */}
-      {hasProblem("Tabagismo") && (
-        <p>
-          <strong>Tabagismo:</strong> Presente
-        </p>
-      )}
+      {/* Lista de Problemas */}
+      {hasProblem("HAS") && (<p><strong>HAS:</strong> Presente</p>)}
+      {hasProblem("Diabetes") && (<p><strong>Diabetes:</strong> Presente</p>)}
+      {hasProblem("Tabagismo") && (<p><strong>Tabagismo:</strong> Presente</p>)}
 
       <h3 className="font-bold mt-4">🧪 EXAMES COMPLEMENTARES</h3>
       <ul>
