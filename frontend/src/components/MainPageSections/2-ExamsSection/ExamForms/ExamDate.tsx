@@ -13,8 +13,8 @@ export default function ExamDateForm() {
   
 
   return (
-    <div className="p-4 bg-zinc-600 rounded-lg shadow-md text-white">
-      <label htmlFor="exam-date" className="block text-base font-bold mb-2">
+    <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white">
+      <label htmlFor="exam-date" className="block text-sm font-bold mb-2">
         Data dos exames:
       </label>
 

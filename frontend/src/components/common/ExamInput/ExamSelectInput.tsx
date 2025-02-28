@@ -1,10 +1,12 @@
 import { IExamInputProps } from "./IExamInputProps";
 
-interface ExamSelectInputProps extends  IExamInputProps {
-    options: { label: string; value: string }[];
+interface ExamSelectInputProps extends IExamInputProps {
+  options: { label: string; value: string }[];
+  errorMessage?: string;
 }
 
-const baseInputClasses = "w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200";
+const baseInputClasses =
+  "w-28 p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200";
 
 export function ExamSelectInput({
   name,
@@ -12,19 +14,24 @@ export function ExamSelectInput({
   value,
   label,
   disabled = false,
+  errorMessage,
   onChange,
   options,
 }: ExamSelectInputProps) {
   return (
-    <label className="block text-sm font-medium mb-1" htmlFor={name}>
-      {label}
+    <div className="mb-2">
+      <label className="block text-sm font-medium mb-1" htmlFor={name}>
+        {label}
+      </label>
       <select
         id={name}
         value={value}
         aria-label={label}
         disabled={disabled}
-        onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
-        className={`${baseInputClasses} ${disabled ? "opacity-50" : ""}`}
+        onChange={(e) => onChange?.(name, e.target.value, abbreviation)}
+        className={`${baseInputClasses} ${disabled ? "opacity-50" : ""} ${
+          errorMessage ? "border-red-500" : "border-gray-300"
+        }`}
       >
         <option value="">Selecione</option>
         {options.map((option) => (
@@ -33,6 +40,7 @@ export function ExamSelectInput({
           </option>
         ))}
       </select>
-    </label>
+      {errorMessage && <span className="text-red-500 text-sm">{errorMessage}</span>}
+    </div>
   );
 }

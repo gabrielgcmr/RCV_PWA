@@ -1,4 +1,5 @@
 import { usePatient } from "../../../../hooks/usePatient";
+import { ExamInput } from "../../../common/ExamInput/ExamInput";
 import { ExamSelectInput } from "../../../common/ExamInput/ExamSelectInput";
 
 export default function CBCForm() {
@@ -10,7 +11,7 @@ export default function CBCForm() {
 
       <ExamSelectInput
         name="CBC"
-        label="Hemograma :"
+        label="Hemograma :"  
         abbreviation="HMG"
         value={getExamValue("CBC") || ""}
         options={[
@@ -18,6 +19,12 @@ export default function CBCForm() {
           { label: "Alterado", value: "Alterado" },
         ]}
         onChange={handleExamChange}
+      />
+      <ExamInput
+        name= "platelets"
+        label="Plaquetas"
+        abbreviation="plaq."
+        value={getExamValue("platelets") || ""}
       />
     </div>
   );
