@@ -5,12 +5,12 @@ export default function ExamDateForm() {
 
   // Função para formatar a data no formato YYYY-MM-DD no horário local (Brasília - UTC-3)
   const formatDate = (date: Date | null | undefined): string => {
-    if (!date) return ""; // Se a data for indefinida, retorna string vazia
-
-    // Ajustando para o fuso horário local (Brasil)
+    if (!date || isNaN(date.getTime())) return ""; // Check for invalid Date
+    // Adjusting for local timezone (Brazil)
     const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-    return localDate.toISOString().split("T")[0]; // Formato YYYY-MM-DD
+    return localDate.toISOString().split("T")[0]; // Format YYYY-MM-DD
   };
+  
 
   return (
     <div className="p-4 bg-zinc-600 rounded-lg shadow-md text-white">

@@ -11,8 +11,8 @@ export function ExamInput({
   onChange,
   }: IExamInputProps) {
   return (
-    <div className="mb-4">
-    <label className="block font-medium mb-1" htmlFor={name}>
+    <div className="mb-2">
+    <label className="block text-sm font-medium mb-1" htmlFor={name}>
       {label}
     </label>
     <input
@@ -23,7 +23,7 @@ export function ExamInput({
       aria-label={label}
       disabled={disabled}
       onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
-      className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200 ${
+      className={`w-28 p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200 ${
         errorMessage ? "border-red-500" : "border-gray-300"
       }`}
     />

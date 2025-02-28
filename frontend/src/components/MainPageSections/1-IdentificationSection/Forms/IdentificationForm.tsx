@@ -39,7 +39,7 @@ export default function IdentificationForm() {
       <div className="flex gap-4 mb-2">
         <RadioInput
           name="gender"
-          value="Masculino"
+          value="Male"
           label="Masculino"
           checked={patientData.identification.gender === "Masculino"}
           onChange={handleChange}
@@ -47,7 +47,7 @@ export default function IdentificationForm() {
         />
         <RadioInput
           name="gender"
-          value="Feminino"
+          value="Female"
           label="Feminino"
           checked={patientData.identification.gender === "Feminino"}
           onChange={handleChange}
@@ -61,9 +61,9 @@ export default function IdentificationForm() {
         value={patientData.identification.race || ""}
         onChange={handleChange}
         options={[
-          { label: "Branco", value: "Branco" },
-          { label: "Preto", value: "Preto" },
-          { label: "Outro", value: "Outro" },
+          { label: "Branco", value: "white" },
+          { label: "Preto", value: "black" },
+          { label: "Outro", value: "other" },
         ]}
         className="mb-2"
       />

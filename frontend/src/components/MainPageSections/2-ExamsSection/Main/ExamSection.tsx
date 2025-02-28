@@ -6,6 +6,7 @@ import {
   UrinalysisForm,
   GlucoseProfileForm,
 } from '../ExamForms';
+import LiverProfileForm from '../ExamForms/LiverProfile';
 
 export default function ExamsSection() {
   return (
@@ -25,11 +26,12 @@ export default function ExamsSection() {
       <div className="flex flex-wrap gap-2">
         <LipidProfileForm />
         <RenalProfileForm />
+        <GlucoseProfileForm />
+        <LiverProfileForm />
         <div className="flex flex-col gap-2 min-w-[200px] max-w-[250px]">
           <CBCForm  />
           <UrinalysisForm  />
         </div>
-        <GlucoseProfileForm />
         {/* Outro componente pode ser adicionado aqui */}
       </div>
     </div>
