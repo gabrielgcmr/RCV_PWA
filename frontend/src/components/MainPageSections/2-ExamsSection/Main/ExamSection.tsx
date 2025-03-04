@@ -16,22 +16,19 @@ export default function ExamsSection() {
       </h2>
 
       {/* Layout principal com Grid */}
-      <div className="grid grid-cols-4 grid-rows-1 gap-4 mb-4">
+      <div className="grid grid-cols-4 grid-rows-1 gap-1 mb-1">
         {/* ExamDate ocupa 1/4 à esquerda */}
-        <div className="col-span-1">
         <ExamDate />
-        </div>
+
         {/* Exames e outros componentes ocupam os 3/4 restantes */}   
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1">
         <LipidProfileForm />
         <RenalProfileForm />
         <GlucoseProfileForm />
         <LiverProfileForm />
-        <div className="flex flex-col gap-2 min-w-[200px] max-w-[250px]">
-          <CBCForm  />
-          <UrinalysisForm  />
-        </div>
+        <CBCForm  />
+        <UrinalysisForm  />
         {/* Outro componente pode ser adicionado aqui */}
       </div>
     </div>

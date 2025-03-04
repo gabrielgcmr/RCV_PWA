@@ -1,14 +1,15 @@
 import React from "react";
-import { SelectInputProps } from "./types";
+import { InputProps } from "./types";
+
+interface SelectInputProps extends InputProps {
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export const SelectInput: React.FC<SelectInputProps> = ({
   name,
-  value,
-  disabled = false,
-  options,
   onChange,
-  className = "",
-  inputClassName = "",
+  errorMessage,
+  ...rest
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(name, e.target.value); // Passa o nome e o valor para a função onChange
@@ -16,11 +17,10 @@ export const SelectInput: React.FC<SelectInputProps> = ({
 
   return (
     <select
-      id={name}
-      value={value}
-      disabled={disabled}
+      {...rest}
+      name={name}
       onChange={handleChange}
-      className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200 ${inputClassName} ${className}`}
+      className={mainInputLabel}
     >
       <option value="">Selecione</option>
       {options.map((option) => (
@@ -28,6 +28,11 @@ export const SelectInput: React.FC<SelectInputProps> = ({
           {option.label}
         </option>
       ))}
+      {errorMessage && (
+        <span className={inp}>
+          {errorMessage}
+        </span>
+      )}
     </select>
   );
 };

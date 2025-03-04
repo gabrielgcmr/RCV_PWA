@@ -1,53 +1,57 @@
 import React from "react";
 import { InputProps } from "./types";
+import { inputStyles } from "./inputStyles";
+interface NumberInputProps extends InputProps {
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-export const NumberInput: React.FC<InputProps> = ({
+export const NumberInput: React.FC<NumberInputProps> = ({
   name,
   label,
-  placeholder = "",
-  value,
-  disabled = false,
   onChange,
-  className = "",
-  inputClassName = "",
-  errorMessage = "",
-  errorClassName = "",
+  errorMessage,
+  ...rest
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let inputValue = e.target.value;
+    let value = e.target.value;
 
     // Substituir vírgula por ponto antes da conversão
-    inputValue = inputValue.replace(",", ".");
+    value = value.replace(",", ".");
 
     // Converter para número, se válido
-    const numericValue = inputValue === "" ? NaN : Number(inputValue);
+    const numericValue = value === "" ? NaN : Number(value);
 
-    if (inputValue === "") {
+    if (value === "") {
         // Handle the empty string case if needed
-        onChange(name, 0); // or any other default value you prefer
+        if(onChange){
+            onChange(e); 
+        }
+        // or any other default value you prefer
     } else if (!isNaN(numericValue)) {
-        onChange(name, numericValue);
+        if(onChange){
+            onChange(e); 
+        }
     }
 };
 
 return (
-    <div className={className}>
+    <div>
         {label && (
-        <label htmlFor={name} className="block text-sm font-medium mb-1">
+        <label htmlFor={name} className={inputStyles.mainInputLabel}>
             {label}
         </label>
         )}
         <input
-        id={name}
+        {...rest}
+        name = {name}
         type="number"
-        placeholder={placeholder}
-        value={value}
-        disabled={disabled}
         onChange={handleChange}
-        className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 ${inputClassName}`}
+        className={inputStyles.numberInput}
         />
         {errorMessage && (
-        <p className={`text-red-500 text-sm mt-1 ${errorClassName}`}>{errorMessage}</p>
+            <span className={inputStyles.errorInput}>
+                {errorMessage}
+            </span>
         )}
     </div>
 );

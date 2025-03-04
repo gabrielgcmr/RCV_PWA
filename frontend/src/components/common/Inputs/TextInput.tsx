@@ -1,42 +1,43 @@
 import React from "react";
-import { TextInputProps } from "./types";
+import { InputProps } from "./types";
+import { inputStyles } from "./inputStyles";
+
+interface TextInputProps extends InputProps {
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export const TextInput: React.FC<TextInputProps> = ({
   name,
   label,
-  placeholder = "",
-  value,
-  disabled = false,
   onChange,
-  className = "",
-  inputClassName = "",
-  ariaInvalid,
-  ariaDescribedby,
+  errorMessage,
+  ...rest
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Bloquear números no input de texto
-    const inputValue = e.target.value.replace(/[0-9]/g, "");
-    onChange(name, inputValue);
+    const value = e.target.value.replace(/[^a-zA-Z\s]/g, ""); // Remove números
+    e.target.value = value;
+    if (onChange) {
+      onChange(e);
+    }
   };
 
   return (
-    <div className={className}>
+    <div>
       {label && (
-        <label htmlFor={name} className="block text-sm font-medium mb-1">
+        <label htmlFor={name} className={inputStyles.mainLabelInput}>
           {label}
         </label>
       )}
       <input
-        id={name}
+        {...rest}
+        name={name}
         type="text"
-        placeholder={placeholder}
-        value={value}
-        disabled={disabled}
         onChange={handleChange}
-        aria-invalid={ariaInvalid}
-        aria-describedby={ariaDescribedby}
-        className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 ${inputClassName}`}
+        className={inputStyles.textInput}
       />
+      {errorMessage && (
+        <span className={inputStyles.errorInput}>{errorMessage}</span>
+      )}
     </div>
   );
 };

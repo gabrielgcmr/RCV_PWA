@@ -23,6 +23,7 @@ export default function CBCForm() {
       <ExamInput
         name= "platelets"
         label="Plaquetas"
+        placeholder="plaquetas"
         abbreviation="plaq."
         value={getExamValue("platelets") || ""}
       />

@@ -13,9 +13,9 @@ export default function ExamDateForm() {
   
 
   return (
-    <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white">
-      <label htmlFor="exam-date" className="block text-sm font-bold mb-2">
-        Data dos exames:
+    <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white col-span-1">
+      <label htmlFor="exam-date" className="text-sm mb-1 block">
+        Data dos exames
       </label>
 
       <input
@@ -30,7 +30,7 @@ export default function ExamDateForm() {
             updatePatientData("complementaryExams", { date: localDate });
           }
         }}
-        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
         placeholder="Data dos exames"
       />
     </div>

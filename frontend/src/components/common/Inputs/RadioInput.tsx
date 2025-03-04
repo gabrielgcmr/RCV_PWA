@@ -1,28 +1,30 @@
 import React from "react";
-import { RadioInputProps } from "./types";
+import { InputProps } from "./types";
+import { inputStyles } from "./inputStyles";
+interface RadioInputProps extends InputProps {
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 export const RadioInput: React.FC<RadioInputProps> = ({
   name,
-  value,
   label,
-  checked,
   onChange,
-  className = "",
-  inputClassName = "",
+  ...rest
 }) => {
-  const handleChange = () => {
-    onChange(name, value); // Passa o nome e o valor para a função onChange
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if(onChange){
+        onChange(e)
+      }
+    };
 
   return (
-    <label className={`flex items-center space-x-2 ${className}`}>
+    <label className={inputStyles}>
       <input
+        {...rest}
         type="radio"
         name={name}
-        value={value}
-        checked={checked}
         onChange={handleChange}
-        className={`form-radio text-blue-500 focus:ring-blue-200 ${inputClassName}`}
+        className={inputStyles.radioInput}
       />
       <span>{label}</span>
     </label>

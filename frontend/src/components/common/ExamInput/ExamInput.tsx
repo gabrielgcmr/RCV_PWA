@@ -12,7 +12,7 @@ export function ExamInput({
   }: IExamInputProps) {
   return (
     <div className="mb-2">
-    <label className="block text-sm font-medium mb-1" htmlFor={name}>
+    <label className="block text-sm" htmlFor={name}>
       {label}
     </label>
     <input

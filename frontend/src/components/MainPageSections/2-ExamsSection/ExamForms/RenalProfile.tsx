@@ -1,5 +1,5 @@
 import ExamProfileForm from "../../../common/ExamForm/ExamForm";
-import { createExamInput } from "../../../common/ExamInput/ExamUtils";
+import { createExamInput } from "../../../../utils/CreateExamInput";
 import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
 
 export default function RenalProfileForm() {

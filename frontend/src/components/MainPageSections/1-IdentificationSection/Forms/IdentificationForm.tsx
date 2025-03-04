@@ -6,9 +6,14 @@ import { SelectInput } from "../../../common/Inputs/SelectInput";
 
 export default function IdentificationForm() {
   const { patientData, updatePatientData } = usePatient();
+  const { identification } = patientData;
 
-  const handleChange = (field: string, value: string | number) => {
-    updatePatientData("identification", { ...patientData.identification, [field]: value });
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = event.target;
+
+    updatePatientData("identification", { ...identification, [name]: value });
   };
 
   return (
@@ -19,20 +24,18 @@ export default function IdentificationForm() {
       <TextInput
         name="name"
         label="Nome"
-        value={patientData.identification.name || ""}
-        onChange={handleChange}
-        placeholder="Digite o nome do paciente"
-        className="mb-2"
+        value={identification.name || ""}
+        onChange={handleInputChange}
+        placeholder="Nome do paciente"
       />
 
       {/* Idade */}
       <NumberInput
         name="age"
         label="Idade"
-        value={patientData.identification.age || ""}
-        onChange={handleChange}
-        placeholder="Digite a idade"
-        className="mb-2"
+        value={identification.age || ""}
+        onChange={handleInputChange}
+        placeholder="Idade"
       />
 
       {/* Gênero */}
@@ -41,31 +44,28 @@ export default function IdentificationForm() {
           name="gender"
           value="Male"
           label="Masculino"
-          checked={patientData.identification.gender === "Male"}
-          onChange={handleChange}
-          className="mb-2"
+          checked={identification.gender === "Male"}
+          onChange={handleInputChange}
         />
         <RadioInput
           name="gender"
           value="Female"
           label="Feminino"
-          checked={patientData.identification.gender === "Female"}
-          onChange={handleChange}
-          className="mb-2"
+          checked={identification.gender === "Female"}
+          onChange={handleInputChange}
         />
       </div>
 
       {/* Raça */}
       <SelectInput
         name="race"
-        value={patientData.identification.race || ""}
-        onChange={handleChange}
+        value={identification.race || ""}
+        onChange={handleInputChange}
         options={[
           { label: "Branco", value: "white" },
           { label: "Preto", value: "black" },
           { label: "Outro", value: "other" },
         ]}
-        className="mb-2"
       />
     </div>
   );

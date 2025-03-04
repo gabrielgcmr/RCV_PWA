@@ -13,7 +13,7 @@ export default function ExamProfileForm({ title = "Exame", exams }: IExamFormPro
 
   return (
     <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white flex-shrink-0 min-w-[100px] max-w-[200px]">
-      <h2 className="text-lg font-bold mb-2">{title}</h2>
+      <h2 className="text-pretty font-medium mb-1">{title}</h2>
 
       {/* Renderização dinâmica dos exames */}
       {exams.map((exam) => (
