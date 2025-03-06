@@ -1,4 +1,5 @@
-import { IComplementaryExams } from "./IExam";
+//PatientData.ts
+import { ComplementaryExams } from "./ExamData";
 
 export interface Problem {
   name: string; // Descrição do problema (ex.: "Diabetes Mellitus tipo 2")
@@ -8,7 +9,7 @@ export interface Problem {
 export interface ProblemList {
   problems: Problem[]; // Lista de problemas
 }
-export interface IPatientData {
+export interface PatientData {
   identification:{
     name: string;
     age: string;
@@ -25,5 +26,5 @@ export interface IPatientData {
     hasDiabetes: boolean;
     isSmoker: boolean;
   };
-  complementaryExams: IComplementaryExams
+  complementaryExams: ComplementaryExams
 } 

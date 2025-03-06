@@ -1,28 +1,37 @@
 import React from "react";
 import { inputStyles } from "./inputStyles";
-import { GenericInputProps } from "./types";
+import { ExamInputProps } from "./types";
+import { usePatient } from "../../../../hooks/usePatient";
 
-export const GenericInput = ({
+// Esse componente é igual ao BaseInput, com a adição da propriedade "abbreviation"
+// que é exibida no label e passada para a lógica de alteração.
+export const ExamInput: React.FC<ExamInputProps> = ({
   name,
   label,
+  abbreviation,
   type,
-  onChange,
+  section,
   errorMessage,
   checked,
   ...rest
-}: GenericInputProps & { checked?: boolean }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    onChange?.(e);
+}) => {
+  const { handleExamChange, getInputFieldValue } = usePatient();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = type === "checkbox" ? e.target.checked : e.target.value;
+    if (section) {
+      // Aqui chamamos a função específica para exames, passando também a abreviação.
+      handleExamChange(name, newValue, abbreviation);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (type === "checkbox" && (e.key === "Enter" || e.key === " ")) {
       e.preventDefault();
-      const syntheticEvent = {
-        ...e,
-        target: { ...e.currentTarget, checked: !e.currentTarget.checked },
-      } as React.ChangeEvent<HTMLInputElement>;
-      onChange?.(syntheticEvent);
+      const newChecked = !e.currentTarget.checked;
+      if (section) {
+        handleExamChange(name, newChecked, abbreviation);
+      }
     }
   };
 
@@ -39,10 +48,12 @@ export const GenericInput = ({
     }
   };
 
+  const value = section ? getInputFieldValue(section, name) : "";
+
   return (
     <div className="mb-1">
       {type === "checkbox" || type === "radio" ? (
-        <div className={inputStyles.radioInputLabel}> {/* Alinha label ao lado do input */}
+        <div className={inputStyles.radioInputLabel}>
           <input
             id={name}
             type={type}
@@ -50,39 +61,18 @@ export const GenericInput = ({
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             className={getInputClassName()}
-            checked={checked}
+            checked={checked !== undefined ? checked : Boolean(value)}
             {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
           />
           <label htmlFor={name} className="text-white">
-            {label}
+            {label} {`(${abbreviation})`}
           </label>
-        </div>
-      ) : type === "select" ? (
-        <div>
-          <label htmlFor={name} className={inputStyles.mainInputLabel}>
-            {label}
-          </label>
-          <select
-            id={name}
-            name={name}
-            onChange={handleChange}
-            className={inputStyles.textInput}
-            {...(rest as React.SelectHTMLAttributes<HTMLSelectElement>)}
-          >
-            <option value="">Selecione</option>
-            {"options" in rest &&
-              rest.options?.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.option}
-                </option>
-              ))}
-          </select>
         </div>
       ) : (
         <div>
           {label && (
             <label htmlFor={name} className={inputStyles.mainInputLabel}>
-              {label}
+              {label} {`(${abbreviation})`}
             </label>
           )}
           <input
@@ -91,6 +81,7 @@ export const GenericInput = ({
             name={name}
             onChange={handleChange}
             className={getInputClassName()}
+            value={value || ""}
             {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
           />
         </div>

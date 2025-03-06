@@ -1,4 +1,5 @@
-export interface IExam {
+//ExamsData.ts
+export interface ExamData {
     name: string; // Nome completo do exame
     abbreviation?: string; // Abreviação para exibição
     value?: string | number; // Valor do exame
@@ -7,7 +8,7 @@ export interface IExam {
     referenceRange?: string; // Intervalo de referência (ex.: "70-110 mg/dL")
   }
 
-export interface IComplementaryExams {
+export interface ComplementaryExams {
     date: Date;
-    exams: IExam[];
+    exams: ExamData[];
   }
