@@ -1,6 +1,7 @@
 import React from "react";
+import { inputStyles } from "../inputStyles";
 import { InputProps } from "./types";
-import { inputStyles } from "./inputStyles";
+
 interface NumberInputProps extends InputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -22,37 +23,35 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     const numericValue = value === "" ? NaN : Number(value);
 
     if (value === "") {
-        // Handle the empty string case if needed
-        if(onChange){
-            onChange(e); 
-        }
-        // or any other default value you prefer
+      // Handle the empty string case if needed
+      if (onChange) {
+        onChange(e);
+      }
+      // or any other default value you prefer
     } else if (!isNaN(numericValue)) {
-        if(onChange){
-            onChange(e); 
-        }
+      if (onChange) {
+        onChange(e);
+      }
     }
-};
+  };
 
-return (
+  return (
     <div>
-        {label && (
+      {label && (
         <label htmlFor={name} className={inputStyles.mainInputLabel}>
-            {label}
+          {label}
         </label>
-        )}
-        <input
+      )}
+      <input
         {...rest}
-        name = {name}
+        name={name}
         type="number"
         onChange={handleChange}
         className={inputStyles.numberInput}
-        />
-        {errorMessage && (
-            <span className={inputStyles.errorInput}>
-                {errorMessage}
-            </span>
-        )}
+      />
+      {errorMessage && (
+        <span className={inputStyles.errorInput}>{errorMessage}</span>
+      )}
     </div>
-);
+  );
 };

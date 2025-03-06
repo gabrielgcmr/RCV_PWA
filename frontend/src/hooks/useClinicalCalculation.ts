@@ -5,18 +5,22 @@ import { CKDEPIIndex } from "../services/ClinicalCalculations/CKD-EPI/CKDEPIInde
 import { FIB4Index } from "../services/ClinicalCalculations/FIB-4/FIB4Index";
 import { CVRIndex } from "../services/ClinicalCalculations/CVR/CVRIndex";
 
+type CalculationResult = number | string;
+type CalculationErrors = { message: string; code?: string }[];
+
+type ClinicalCalculationsData = {
+  results: { TFG?: CalculationResult; RCV?: CalculationResult; FIB4?: CalculationResult };
+  errors: { TFG?: CalculationErrors; RCV?: CalculationErrors; FIB4?: CalculationErrors };
+};
+
 export function useClinicalCalculations() {
   const { patientData, getExamValue } = usePatient();
   const getExamValueNumber = (name: string) => getExamValueAsNumber(getExamValue, name);
 
-  const [data, setData] = useState<{
-    results: { TFG?: string; RCV?: string; FIB4?: string };
-    errors: { TFG?: string[]; RCV?: string[]; FIB4?: string[] };
-  }>({
-    results: {},
-    errors: {},
-  });
-
+  const [data, setData] = useState<ClinicalCalculationsData>({
+  results: {},
+  errors: {},
+});
   const runCalculation = (name: "TFG" | "RCV" | "FIB4", 
     calculateFn: Function) => {
       const { [name]: result, errors } = calculateFn(patientData, getExamValueNumber);

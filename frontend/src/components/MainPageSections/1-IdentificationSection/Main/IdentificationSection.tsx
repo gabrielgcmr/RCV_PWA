@@ -4,11 +4,10 @@ import ProblemListForm from "../Forms/ProblemList";
 
 export default function IdentificationSection() {
   return (
-      <div className="p-2 space-y-4">
+      <div className="space-y-2">
         <IdentificationForm />
         <ProblemListForm />
         <PhysicalExamForm />
-        
       </div>
   );
 }

@@ -1,14 +1,38 @@
-import ExamProfileForm from "../../../common/ExamForm/ExamForm";
-import { createExamInput } from "../../../../utils/CreateExamInput";
-import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
+
+import { GenericInputProps } from "../../../common/Inputs/types";
+import ExamProfileForm from "../ExamForm/ExamForm";
 
 export default function LiverProfileForm() {
-  const lipidExams: IExamInputProps[] = [
-    createExamInput("ALT", "ALT", "TGO", "ALT"),
-    createExamInput("AST", "AST", "TGP", "AST"),
-    createExamInput("GGT", "GGT", "GGT", "GGT"),
-    createExamInput("Fosfatase Alcalina", "FA", "FA", "FA"),
+  const lipidExams: GenericInputProps[] = [
+    {
+      name: "ALT",
+      label: "ALT",
+      type: "number",
+      abbreviation: "TGO",
+      placeholder: "TGO" 
+    },
+    {
+      name: "AST",
+      label: "AST",
+      type: "number",
+      abbreviation: "TGP",
+      placeholder: "TGP"
+    },
+    {
+      name: "GGT",
+      label: "GGT",
+      type: "number",
+      abbreviation: "GGT",
+      placeholder: "GGT"
+    },
+    {
+      name: "alkaline_phosphatase",
+      label: "FA",
+      type: "number",
+      abbreviation: "FA.",
+      placeholder: "FA."
+    },
   ];
 
-  return <ExamProfileForm title="Perfil Hepático" exams={lipidExams} />;
+  return <ExamProfileForm title="Perfil Hepático" inputs={lipidExams} />;
 }

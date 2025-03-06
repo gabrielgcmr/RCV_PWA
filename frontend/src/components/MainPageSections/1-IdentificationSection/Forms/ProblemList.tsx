@@ -1,94 +1,49 @@
 import { usePatient } from "../../../../hooks/usePatient";
+import { GenericInput } from "../../../common/Inputs/GenericInput"; // Importe o GenericInput
 
 export default function ProblemListForm() {
   const { patientData, updatePatientData } = usePatient();
 
-  // Função simples para adicionar/remover problemas da lista
+  // Adiciona ou remove um problema da lista do paciente
   const handleProblemToggle = (problemName: string, checked: boolean) => {
-    const existingProblems = patientData.problemList.problems.map((p) => p.name);
-
-    let updatedProblems;
+    let updatedProblems = [...patientData.problemList.problems];
 
     if (checked) {
-      // Adiciona o problema se não existir
-      if (!existingProblems.includes(problemName)) {
-        updatedProblems = [
-          ...patientData.problemList.problems,
-          { name: problemName },
-        ];
-      } else {
-        updatedProblems = [...patientData.problemList.problems];
+      if (!updatedProblems.some((p) => p.name === problemName)) {
+        updatedProblems.push({ name: problemName });
       }
     } else {
-      // Remove o problema se ele existir
-      updatedProblems = patientData.problemList.problems.filter(
-        (p) => p.name !== problemName
-      );
+      updatedProblems = updatedProblems.filter((p) => p.name !== problemName);
     }
 
     updatePatientData("problemList", { problems: updatedProblems });
   };
 
-  // Verifica se o problema já está presente na lista
+  // Verifica se um problema já está na lista
   const isProblemChecked = (problemName: string) =>
     patientData.problemList.problems.some((p) => p.name === problemName);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, name: string, checked: boolean) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault(); // Previne o comportamento padrão
-      handleProblemToggle(name, !checked); // Inverte o estado do checkbox
-    }
-  };
-  
+  // Lista de problemas disponíveis
+  const problems = [
+    { id: "HAS", label: "HAS" },
+    { id: "Diabetes", label: "DM" },
+    { id: "Tabagismo", label: "Tabagismo" },
+  ];
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white">
       <h2 className="text-lg font-bold mb-4"> 📝 Lista de Problemas</h2>
 
-      {/* HAS */}
-      <div className="flex items-center mb-2">
-        <input
-          type="checkbox"
-          id="HAS"
-          checked={isProblemChecked("HAS")}
-          onChange={(e) => handleProblemToggle("HAS", e.target.checked)}
-          onKeyDown={(e) => handleKeyDown(e, "HAS", isProblemChecked("HAS"))}
-          className="mr-2"
+      {problems.map((problem) => (
+        <GenericInput
+          key={problem.id}
+          name={problem.id}
+          label={problem.label}
+          type="checkbox" // Define o tipo como checkbox
+          checked={isProblemChecked(problem.id)}
+          onChange={(e) => handleProblemToggle(problem.id, (e.target as HTMLInputElement).checked)}
         />
-        <label htmlFor="HAS" className="text-sm font-medium">
-          HAS
-        </label>
-      </div>
-
-      {/* Diabetes */}
-      <div className="flex items-center mb-2">
-        <input
-          type="checkbox"
-          id="diabetes"
-          checked={isProblemChecked("Diabetes")}
-          onChange={(e) => handleProblemToggle("Diabetes", e.target.checked)}
-          onKeyDown={(e) => handleKeyDown(e, "Diabetes", isProblemChecked("Diabetes"))}
-          className="mr-2"
-        />
-        <label htmlFor="diabetes" className="text-sm font-medium">
-          DM
-        </label>
-      </div>
-
-      {/* Tabagismo */}
-      <div className="flex items-center mb-2">
-        <input
-          type="checkbox"
-          id="smoker"
-          checked={isProblemChecked("Tabagismo")}
-          onChange={(e) => handleProblemToggle("Tabagismo", e.target.checked)}
-          onKeyDown={(e) => handleKeyDown(e, "Tabagismo", isProblemChecked("Tabagismo"))}
-          className="mr-2"
-        />
-        <label htmlFor="smoker" className="text-sm font-medium">
-          Tabagismo
-        </label>
-      </div>
+      ))}
     </div>
   );
 }

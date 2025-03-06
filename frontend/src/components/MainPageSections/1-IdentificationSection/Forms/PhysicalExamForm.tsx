@@ -1,36 +1,41 @@
 import { usePatient } from "../../../../hooks/usePatient";
+import { GenericInput } from "../../../common/Inputs/GenericInput";
+import { NumberInput } from "../../../common/Inputs/old/NumberInput";
 
 export default function PhysicalExamForm() {
   const { patientData, updatePatientData } = usePatient();
+  const { physicalExam } = patientData;
 
+  // Função para atualizar os valores do exame físico
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = event.target;
+
+    updatePatientData("physicalExam", {...physicalExam,[name]: value,});
+  };
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white">
-      <h2 className="text-lg font-bold mb-4">🩺 Exame Físico</h2>
+      <h2 className="text-lg font-bold mb-2">🩺 Exame Físico</h2>
 
       {/* Pressão Arterial Sistólica */}
-      <label className="block text-sm font-medium">
-        Pressão Arterial Sistólica (mmHg):
-      <input
+      <GenericInput
+        name="systolicBP"
+        label="Pressão Arterial Sistólica (mmHg)"
         type="number"
-        value={patientData.physicalExam.systolicBP}
-        onChange={(e) => updatePatientData("physicalExam", {systolicBP:e.target.value})}
-        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Digite a pressão sistólica"
+        value={physicalExam.systolicBP}
+        onChange={handleInputChange}
+        placeholder="PAS"
       />
-      </label>
 
       {/* Pressão Arterial Diastólica */}
-      <label className="block text-sm font-medium">
-        Pressão Arterial Diastólica (mmHg):
-      <input
+      <NumberInput
+        name="diastolicBP"
+        label="Pressão Arterial Diastólica (mmHg)"
         type="number"
-        value={patientData.physicalExam.diastolicBP}
-        onChange={(e) => updatePatientData("physicalExam", {diastolicBP:e.target.value})}
-        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Digite a pressão diastólica"
+        value={physicalExam.diastolicBP}
+        onChange={handleInputChange}
+        placeholder="PAD"
       />
-      </label>
     </div>
   );
 }

@@ -1,31 +1,27 @@
-import { usePatient } from "../../../../hooks/usePatient";
-import { ExamInput } from "../../../common/ExamInput/ExamInput";
-import { ExamSelectInput } from "../../../common/ExamInput/ExamSelectInput";
+import { GenericInput } from "../../../common/Inputs/GenericInput";
 
 export default function CBCForm() {
-  const { handleExamChange, getExamValue } = usePatient();
 
   return (
     <div className="p-4 bg-zinc-600 rounded-lg shadow-md text-white flex-shrink-0 flex-1">
       <h2 className="text-lg font-bold mb-4">Hemograma</h2>
 
-      <ExamSelectInput
+      <GenericInput
         name="CBC"
-        label="Hemograma :"  
-        abbreviation="HMG"
-        value={getExamValue("CBC") || ""}
+        label="Hemograma"
+        type = "select"  
+        abbreviation="HMG" 
         options={[
-          { label: "Normal", value: "Normal" },
-          { label: "Alterado", value: "Alterado" },
+          { option: "Normal", value: "Normal" },
+          { option: "Alterado", value: "Alterado" },
         ]}
-        onChange={handleExamChange}
       />
-      <ExamInput
+      <GenericInput
         name= "platelets"
         label="Plaquetas"
-        placeholder="plaquetas"
-        abbreviation="plaq."
-        value={getExamValue("platelets") || ""}
+        type="number"
+        abbreviation="plaq." 
+        placeholder="Plaquetas"
       />
     </div>
   );

@@ -3,14 +3,15 @@ import {
   LipidProfileForm,
   RenalProfileForm,
   CBCForm,
-  UrinalysisForm,
+
   GlucoseProfileForm,
+  UrinalysisForm,
 } from '../ExamForms';
 import LiverProfileForm from '../ExamForms/LiverProfile';
 
 export default function ExamsSection() {
   return (
-    <div className=" p-2 m-2 bg-zinc-700 rounded-lg shadow-md ">
+    <div className=" p-2 bg-zinc-700 rounded-lg shadow-md ">
       <h2 className="text-lg font-bold p-2 text-center">
       🧪 Exames Complementares
       </h2>
@@ -28,7 +29,7 @@ export default function ExamsSection() {
         <GlucoseProfileForm />
         <LiverProfileForm />
         <CBCForm  />
-        <UrinalysisForm  />
+        <UrinalysisForm />
         {/* Outro componente pode ser adicionado aqui */}
       </div>
     </div>

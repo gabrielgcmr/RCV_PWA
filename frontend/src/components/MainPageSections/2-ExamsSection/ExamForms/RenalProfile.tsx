@@ -1,13 +1,31 @@
-import ExamProfileForm from "../../../common/ExamForm/ExamForm";
-import { createExamInput } from "../../../../utils/CreateExamInput";
-import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
+
+import { GenericInputProps } from "../../../common/Inputs/types";
+import ExamProfileForm from "../ExamForm/ExamForm";
 
 export default function RenalProfileForm() {
-  const renalProfileExams: IExamInputProps[] = [
-    createExamInput("urea", "Ur", "Ureia", "Ureia"),
-    createExamInput("creatinine", "Cr", "Creatinina", "Creatinina"),
-    createExamInput("uricAcid", "Ac. Úrico", "Ácido Úrico", "Ácido Úrico"),
+  const renalProfileExams: GenericInputProps[] = [
+    {
+      name: "urea",
+      label: "Ureia",
+      type: "number",
+      abbreviation: "Ur",
+      placeholder: "Ur" 
+    },
+    {
+      name: "creatinine",
+      label: "Creatinina",
+      type: "number",
+      abbreviation: "Cr",
+      placeholder: "Cr"
+    },
+    {
+      name: "uricAcid",
+      label: "Ac. Úrico",
+      type: "number",
+      abbreviation: "Ac. Úrico",
+      placeholder: "Ac. Úrico"
+    },
   ];
 
-  return <ExamProfileForm title="Perfil Renal" exams={renalProfileExams} />;
+  return <ExamProfileForm title="Perfil Renal" inputs={renalProfileExams} />;
 }

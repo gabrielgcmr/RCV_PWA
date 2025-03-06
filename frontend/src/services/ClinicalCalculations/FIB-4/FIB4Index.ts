@@ -7,6 +7,7 @@ export class FIB4Index {
   static calculateFIB4(patientData: IPatientData, getExamValue: (name: string) => number): { fib4: number | null; errors: string[] } {
     // Mapeia os dados do paciente
     const mappedData = FIB4Mapper.mapPatientData(patientData, getExamValue);
+    console.log(mappedData);
 
     // Valida os dados antes do cálculo
     const validation = FIB4Validator.validate(mappedData);

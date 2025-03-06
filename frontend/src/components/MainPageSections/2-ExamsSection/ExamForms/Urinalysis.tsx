@@ -1,24 +1,21 @@
-import { usePatient } from "../../../../hooks/usePatient";
-import { ExamSelectInput } from "../../../common/ExamInput/ExamSelectInput";
+import { GenericInput } from "../../../common/Inputs/GenericInput";
 
 export default function UrinalysisForm() {
-  const { handleExamChange, getExamValue } = usePatient();
 
   return (
     <div className="p-4 bg-zinc-600 rounded-lg shadow-md text-white flex-shrink-0 flex-1 ">
       <h2 className="text-lg font-bold mb-4">EAS</h2>
 
       {/* Select com opções pré-definidas */}
-      <ExamSelectInput
+      <GenericInput
         name="UR"
         abbreviation="EAS"
         label="EAS"
-        value={getExamValue("UR") || ""}
+        type="select"
         options={[
-          { label: "Normal", value: "Normal" },
-          { label: "Alterado", value: "Alterado" },
+          { option: "Normal", value: "Normal" },
+          { option: "Alterado", value: "Alterado" },
         ]}
-        onChange={handleExamChange}
       />
     </div>
   );

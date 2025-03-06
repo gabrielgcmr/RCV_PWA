@@ -1,14 +1,37 @@
-import ExamProfileForm from "../../../common/ExamForm/ExamForm";
-import { createExamInput } from "../../../../utils/CreateExamInput";
-import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
+import { GenericInputProps } from "../../../common/Inputs/types";
+import ExamProfileForm from "../ExamForm/ExamForm";
 
 export default function LipidProfileForm() {
-  const lipidExams: IExamInputProps[] = [
-    createExamInput("totalCholesterol", "CT", "Colesterol Total", "Colesterol Total"),
-    createExamInput("ldlCholesterol", "LDL", "LDL", "LDL"),
-    createExamInput("hdlCholesterol", "HDL", "HDL", "HDL"),
-    createExamInput("triglycerides", "Trig", "Trig", "Triglicerídeos"),
+  const lipidExams: GenericInputProps[] = [
+    {
+      name: "totalCholesterol",
+      label: "Colesterol Total",
+      type: "number",
+      abbreviation: "CT",
+      placeholder: "CT"
+    },
+    {
+      name: "hdlCholesterol",
+      label: "HDL",
+      type: "number",
+      abbreviation: "HDL",
+      placeholder: "HDL"
+    },
+    {
+      name: "ldlCholesterol",
+      label: "LDL",
+      type: "number",
+      abbreviation: "LDL",
+      placeholder: "LDL"
+    },
+    {
+      name: "triglycerides",
+      label: "Triglicerídeos",
+      type: "number",
+      abbreviation: "Trig.",
+      placeholder: "Trig."
+    },
   ];
 
-  return <ExamProfileForm title="Lipidograma" exams={lipidExams} />;
+  return <ExamProfileForm title="Lipidograma" inputs={lipidExams} />;
 }

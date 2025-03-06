@@ -1,8 +1,5 @@
 import { usePatient } from "../../../../hooks/usePatient";
-import { RadioInput } from "../../../common/Inputs/RadioInput";
-import { TextInput } from "../../../common/Inputs/TextInput";
-import { NumberInput } from "../../../common/Inputs/NumberInput";
-import { SelectInput } from "../../../common/Inputs/SelectInput";
+import { GenericInput } from "../../../common/Inputs/GenericInput";
 
 export default function IdentificationForm() {
   const { patientData, updatePatientData } = usePatient();
@@ -18,53 +15,57 @@ export default function IdentificationForm() {
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white">
-      <h2 className="text-lg font-bold mb-4">🏷️ Identificação</h2>
+      <h2 className="text-lg font-bold mb-2">🏷️ Identificação</h2>
 
       {/* Nome */}
-      <TextInput
+      <GenericInput
         name="name"
+        type = "text"
         label="Nome"
-        value={identification.name || ""}
         onChange={handleInputChange}
         placeholder="Nome do paciente"
       />
 
       {/* Idade */}
-      <NumberInput
+      <GenericInput
         name="age"
+        type = "number"
         label="Idade"
-        value={identification.age || ""}
         onChange={handleInputChange}
         placeholder="Idade"
       />
 
       {/* Gênero */}
       <div className="flex gap-4 mb-2">
-        <RadioInput
+        <GenericInput
           name="gender"
-          value="Male"
+          value="male"
+          type = "radio"
           label="Masculino"
-          checked={identification.gender === "Male"}
+          checked={identification.gender === "male"}
           onChange={handleInputChange}
         />
-        <RadioInput
+        <GenericInput
           name="gender"
-          value="Female"
+          value="female"
+          type = "radio"
           label="Feminino"
-          checked={identification.gender === "Female"}
+          checked={identification.gender === "female"}
           onChange={handleInputChange}
         />
       </div>
 
       {/* Raça */}
-      <SelectInput
+      <GenericInput
         name="race"
+        label = "Raça"
+        type = "select"
         value={identification.race || ""}
         onChange={handleInputChange}
         options={[
-          { label: "Branco", value: "white" },
-          { label: "Preto", value: "black" },
-          { label: "Outro", value: "other" },
+          { option: "Branco", value: "white" },
+          { option: "Preto", value: "black" },
+          { option: "Outro", value: "other" },
         ]}
       />
     </div>

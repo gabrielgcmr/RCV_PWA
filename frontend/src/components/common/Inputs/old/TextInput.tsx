@@ -1,6 +1,6 @@
 import React from "react";
 import { InputProps } from "./types";
-import { inputStyles } from "./inputStyles";
+import { inputStyles } from "../inputStyles";
 
 interface TextInputProps extends InputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -24,7 +24,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   return (
     <div>
       {label && (
-        <label htmlFor={name} className={inputStyles.mainLabelInput}>
+        <label htmlFor={name} className={inputStyles.mainInputLabel}>
           {label}
         </label>
       )}
