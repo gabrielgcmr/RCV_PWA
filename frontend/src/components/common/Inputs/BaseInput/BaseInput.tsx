@@ -1,52 +1,32 @@
 import React from "react";
 import { inputStyles } from "../inputStyles";
 import { BaseInputProps } from "./types";
-import { usePatient } from "../../../../hooks/usePatient";
+import { useInputHandlers } from "./useInputHandlers";
+
 
 export const BaseInput = ({
   name,
   label,
   type,
-  section,
+  formSection: section,
   errorMessage,
   checked,
   ...rest
 }: BaseInputProps & { checked?: boolean }) => {
-  const { handleFieldChange, getFieldValue } = usePatient();
+  const { handleChange, handleKeyDown, getFieldValue } = useInputHandlers(section, name, type);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = type === "checkbox" ? e.target.checked : e.target.value;
-    if (section) {
-      handleFieldChange(section, name, newValue);
-    }
-  };
+  const inputClassName = classNames({
+    [inputStyles.checkboxInput]: type === "checkbox",
+    [inputStyles.radioInput]: type === "radio",
+    [inputStyles.numberInput]: type === "number",
+    [inputStyles.textInput]: type === "text",
+  });
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (type === "checkbox" && (e.key === "Enter" || e.key === " ")) {
-      e.preventDefault();
-      const newChecked = !e.currentTarget.checked;
-      if (section) {
-        handleFieldChange(section, name, newChecked);
-      }
-    }
-  };
-
-  const getInputClassName = () => {
-    switch (type) {
-      case "checkbox":
-        return inputStyles.checkboxInput;
-      case "radio":
-        return inputStyles.radioInput;
-      case "number":
-        return inputStyles.numberInput;
-      default:
-        return inputStyles.textInput;
-    }
-  };
+  const isCheckboxOrRadio = type === "checkbox" || type === "radio";
 
   return (
     <div className="mb-1">
-      {type === "checkbox" || type === "radio" ? (
+      {isCheckboxOrRadio ? (
         <div className={inputStyles.radioInputLabel}>
           <input
             id={name}
@@ -54,7 +34,7 @@ export const BaseInput = ({
             name={name}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            className={getInputClassName()}
+            className={inputClassName}
             checked={checked !== undefined ? checked : Boolean(getFieldValue(section, name))}
             {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
           />
@@ -74,7 +54,7 @@ export const BaseInput = ({
             type={type}
             name={name}
             onChange={handleChange}
-            className={getInputClassName()}
+            className={inputClassName}
             value={getFieldValue(section, name)}
             {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
           />

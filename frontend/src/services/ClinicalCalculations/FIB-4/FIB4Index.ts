@@ -1,4 +1,4 @@
-import { PatientData } from "../../../interfaces/IPatientData";
+import { PatientData } from "../../../interfaces/PatientData";
 import { FIB4Mapper } from "./FIB4Mapper";
 import { FIB4Validator } from "./FIB4Validator";
 import { FIB4Calculator } from "./FIB4Calculator";
@@ -6,6 +6,7 @@ import { FIB4Calculator } from "./FIB4Calculator";
 export class FIB4Index {
   static calculateFIB4(patientData: PatientData, getExamValue: (name: string) => number): { fib4: number | null; errors: string[] } {
     // Mapeia os dados do paciente
+    console.log(patientData);
     const mappedData = FIB4Mapper.mapPatientData(patientData, getExamValue);
     console.log(mappedData);
 

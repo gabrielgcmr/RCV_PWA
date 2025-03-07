@@ -27,7 +27,7 @@ export default function ExamForm({ category, title }: ExamFormProps) {
                 type = "select"
                 label={label}
                 abbreviation={abbreviation}
-                section="complementaryExams"
+                formSection="complementaryExams"
                 options={options || []}
               />
             ) : (
@@ -37,7 +37,7 @@ export default function ExamForm({ category, title }: ExamFormProps) {
                 label={label}
                 abbreviation={abbreviation}
                 type={type}
-                section="complementaryExams"
+                formSection="complementaryExams"
               />
             )
           )}

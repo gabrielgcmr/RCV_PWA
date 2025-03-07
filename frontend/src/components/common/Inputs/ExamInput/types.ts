@@ -1,10 +1,10 @@
 import { BaseInputProps, BaseSelectInputProps } from "../BaseInput/types";
 
-export type ExamInputProps = BaseInputProps & {
+export interface ExamInputProps extends BaseInputProps {
   abbreviation: string; // Torna obrigatório para exames
 };
 
 //  **Selects para Exames** (Sempre têm abreviação)
-export type ExamSelectInputProps = BaseSelectInputProps & {
+export interface ExamSelectInputProps extends BaseSelectInputProps {
   abbreviation: string; // Torna obrigatório para exames
 };

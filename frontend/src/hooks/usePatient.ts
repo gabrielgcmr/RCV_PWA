@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { PatientData } from "../interfaces/PatientData";
 import { ExamData } from "../interfaces/ExamData";
 import { PatientContext } from "../context/PatientContextType";
+import { FormSection } from "../components/common/Inputs/BaseInput/types";
 
 export function usePatient() {
   const context = useContext(PatientContext);
@@ -14,22 +14,12 @@ export function usePatient() {
   // ======================================================
   // Função Genérica para Atualizar Qualquer Seção (Wrapper)
   // ======================================================
-  const handleFieldChange = (
-    section: keyof PatientData,
+  const updatePatientField = (
+    section: FormSection,
     field: string,
-    value: string | number | boolean
+    value: string | number
   ) => {
-    // Para campos gerais, chamamos a função unificada diretamente
-    if (section === "problemList") {
-      updateProblemList(field, value as boolean);
-      return;
-    }
     updatePatientData(section, field, value);
-  };
-
-  const getFieldValue = (section: keyof PatientData, field: string) => {
-    const sectionData = patientData[section] as { [key: string]: string | number };
-    return sectionData?.[field] ?? "";
   };
    
 
@@ -82,7 +72,7 @@ export function usePatient() {
   return {
     ...context,
     // Expondo as funções genéricas
-    handleFieldChange,
+    handleFieldChange: updatePatientField,
     getFieldValue,
     hasProblem,
     // Expondo as funções específicas para exames

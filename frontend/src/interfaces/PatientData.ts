@@ -1,31 +1,34 @@
-//PatientData.ts
-
+// PatientData.ts
 import { ComplementaryExamsData } from "./ExamData";
 
+export interface IdentificationData {
+  name: string;
+  age: string;
+  gender: string;
+  race: string;
+}
+
 export interface Problem {
-  name: string; // Descrição do problema (ex.: "Diabetes Mellitus tipo 2")
+  name: string;
+  abbreviation?: string;
   description?: string;
 }
 
-export interface ProblemList {
-  problems: Problem[]; // Lista de problemas
+export interface ProblemListData {
+  problems: Problem[];
 }
+
+export interface PhysicalExamData {
+  systolicBP: string;
+  diastolicBP: string;
+}
+
 export interface PatientData {
-  identification:{
-    name: string;
-    age: string;
-    gender: string;
-    race: string;
-  };
-  problemList: ProblemList;
-  physicalExam:{ 
-    systolicBP: string;
-    diastolicBP: string;
-  };
-  lifeHabits:{
-    isTreatingHAS: boolean;
-    hasDiabetes: boolean;
-    isSmoker: boolean;
-  };
-  complementaryExams: ComplementaryExamsData
-} 
+  identification: IdentificationData;
+  problemList: ProblemListData;
+  physicalExam: PhysicalExamData;
+  complementaryExams: ComplementaryExamsData;
+}
+
+// Para mapear as seções do formulário com as chaves de PatientData, você pode criar um tipo auxiliar:
+export type PatientDataSection = keyof PatientData; // "identification" | "problemList" | "physicalExam" | "complementaryExams"

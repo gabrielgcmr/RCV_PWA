@@ -12,7 +12,7 @@ export const ExamSelectInput: React.FC<ExamSelectInputProps> = ({
   label,
   abbreviation,
   options,
-  section,
+  formSection: section,
   errorMessage,
   ...rest
 }) => {

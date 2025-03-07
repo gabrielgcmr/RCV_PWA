@@ -4,9 +4,11 @@ export default function ExamDateForm() {
   const { patientData, handleFieldChange } = usePatient();
 
   // 🔹 Função para formatar a data no formato YYYY-MM-DD (usado pelo input date)
-  const formatDate = (date?: Date): string => {
-    if (!date || isNaN(date.getTime())) return "";
-    return date.toISOString().split("T")[0]; // Mantém o formato YYYY-MM-DD
+  const formatDate = (date: Date | null | undefined): string => {
+    if (!date || isNaN(date.getTime())) return ""; // Check for invalid Date
+    // Adjusting for local timezone (Brazil)
+    const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+    return localDate.toISOString().split("T")[0]; // Format YYYY-MM-DD
   };
 
   // 🔹 Função para converter a string YYYY-MM-DD em um objeto Date correto

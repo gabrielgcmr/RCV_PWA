@@ -1,13 +1,11 @@
 import { createContext } from "react";
 import { PatientData } from "../interfaces/PatientData";
 
-export interface PatientContextType {
+export interface PatientContext {
   patientData: PatientData;
   updatePatientData: (
-    section: keyof PatientData,
     field: string,
-    value: string | number | boolean,
-    options?: { exam?: boolean; abbreviation?: string }
+    value: string | number
   ) => void;
 }
-export const PatientContext = createContext<PatientContextType | undefined>(undefined);
+export const PatientContext = createContext<PatientContext | undefined>(undefined);

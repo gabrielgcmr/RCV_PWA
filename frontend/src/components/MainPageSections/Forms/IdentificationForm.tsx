@@ -5,19 +5,19 @@ import { BaseSelectInput } from "../../common/Inputs/BaseInput/SelectInput";
 export default function IdentificationForm() {
   return (
     <FormSection title="🏷️ Identificação">
-      <BaseInput name="name" type="text" label="Nome" section="identification" placeholder="Nome do paciente" />
-      <BaseInput name="age" type="number" label="Idade" section="identification" placeholder="Idade" />
+      <BaseInput name="name" type="text" label="Nome" formSection="identification" placeholder="Nome do paciente" />
+      <BaseInput name="age" type="number" label="Idade" formSection="identification" placeholder="Idade" />
 
       <div className="flex gap-2 mb-1">
-        <BaseInput name="gender" value="male" type="radio" section="identification" label="Masculino" />
-        <BaseInput name="gender" value="female" type="radio" section="identification" label="Feminino" />
+        <BaseInput name="gender" value="male" type="radio" formSection="identification" label="Masculino" />
+        <BaseInput name="gender" value="female" type="radio" formSection="identification" label="Feminino" />
       </div>
 
       <BaseSelectInput
         name="race"
         label="Raça"
         type="select"
-        section="identification"
+        formSection="identification"
         options={[
           { label: "Branco", value: "white" },
           { label: "Preto", value: "black" },

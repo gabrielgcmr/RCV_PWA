@@ -8,7 +8,7 @@ export const ExamInput: React.FC<ExamInputProps> = ({
   label,
   abbreviation,
   type,
-  section,
+  formSection: section,
   errorMessage,
   checked,
   ...rest

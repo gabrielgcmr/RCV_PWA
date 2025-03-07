@@ -8,7 +8,7 @@ export const BaseSelectInput: React.FC<BaseSelectInputProps> = ({
   label,
   options,
   errorMessage,
-  section,
+  formSection: section,
   ...rest
 }) => {
   const { handleFieldChange, getFieldValue } = usePatient();
