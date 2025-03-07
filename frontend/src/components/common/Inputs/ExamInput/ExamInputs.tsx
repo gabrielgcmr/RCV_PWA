@@ -1,10 +1,8 @@
 import React from "react";
-import { inputStyles } from "./inputStyles";
 import { ExamInputProps } from "./types";
 import { usePatient } from "../../../../hooks/usePatient";
+import { inputStyles } from "../inputStyles";
 
-// Esse componente é igual ao BaseInput, com a adição da propriedade "abbreviation"
-// que é exibida no label e passada para a lógica de alteração.
 export const ExamInput: React.FC<ExamInputProps> = ({
   name,
   label,
@@ -15,77 +13,53 @@ export const ExamInput: React.FC<ExamInputProps> = ({
   checked,
   ...rest
 }) => {
-  const { handleExamChange, getInputFieldValue } = usePatient();
+  const { handleExamChange, getFieldValue } = usePatient();
 
+  // Obtém o valor do campo dentro de "complementaryExams"
+  const value = section ? getFieldValue(section, name) : "";
+
+  // 🔹 Função de mudança do input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = type === "checkbox" ? e.target.checked : e.target.value;
-    if (section) {
-      // Aqui chamamos a função específica para exames, passando também a abreviação.
-      handleExamChange(name, newValue, abbreviation);
-    }
+    handleExamChange(name, newValue, abbreviation);
   };
 
+  // 🔹 Atalho para checkboxes e radio buttons com "Enter" e "Espaço"
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (type === "checkbox" && (e.key === "Enter" || e.key === " ")) {
       e.preventDefault();
-      const newChecked = !e.currentTarget.checked;
-      if (section) {
-        handleExamChange(name, newChecked, abbreviation);
-      }
+      handleExamChange(name, !!value, abbreviation);
     }
   };
 
+  // 🔹 Determina a classe CSS do input
   const getInputClassName = () => {
-    switch (type) {
-      case "checkbox":
-        return inputStyles.checkboxInput;
-      case "radio":
-        return inputStyles.radioInput;
-      case "number":
-        return inputStyles.numberInput;
-      default:
-        return inputStyles.textInput;
-    }
+    return {
+      checkbox: inputStyles.checkboxInput,
+      radio: inputStyles.radioInput,
+      number: inputStyles.numberInput,
+      text: inputStyles.textInput,
+    }[type] || inputStyles.textInput;
   };
-
-  const value = section ? getInputFieldValue(section, name) : "";
 
   return (
     <div className="mb-1">
-      {type === "checkbox" || type === "radio" ? (
-        <div className={inputStyles.radioInputLabel}>
-          <input
-            id={name}
-            type={type}
-            name={name}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            className={getInputClassName()}
-            checked={checked !== undefined ? checked : Boolean(value)}
-            {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
-          />
-          <label htmlFor={name} className="text-white">
-            {label} {`(${abbreviation})`}
-          </label>
-        </div>
-      ) : (
-        <div>
-          {label && (
-            <label htmlFor={name} className={inputStyles.mainInputLabel}>
-              {label} {`(${abbreviation})`}
-            </label>
-          )}
-          <input
-            id={name}
-            type={type}
-            name={name}
-            onChange={handleChange}
-            className={getInputClassName()}
-            value={value || ""}
-            {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
-          />
-        </div>
-      )}
+      <label htmlFor={name} className={inputStyles.mainInputLabel}>
+        {label}
+      </label>
+
+      <input
+        id={name}
+        type={type}
+        name={name}
+        placeholder={abbreviation}
+        onChange={handleChange}
+        onKeyDown={type === "checkbox" ? handleKeyDown : undefined}
+        className={getInputClassName()}
+        checked={checked !== undefined ? checked : Boolean(value)}
+        value={type !== "checkbox" ? value || "" : undefined}
+        {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
+      />
 
       {errorMessage && <span className={inputStyles.errorInput}>{errorMessage}</span>}
     </div>

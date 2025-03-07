@@ -1,7 +1,7 @@
 import { usePatient } from "../../../../hooks/usePatient";
 import { CKDEPIIndex } from "../../../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
 import { CVRIndex } from "../../../../services/ClinicalCalculations/CVR/CVRIndex";
-import { getExamValueAsNumber } from "../../../../utils/examUtils";
+
 
 export default function SummaryComponent() {
   const { patientData, getExamValue, hasProblem } = usePatient();
@@ -9,7 +9,7 @@ export default function SummaryComponent() {
 const { realRisk, realRiskCategory, idealRisk, errors } =
   CVRIndex.calculateRCV(
     patientData,
-    (name) => getExamValueAsNumber(getExamValue, name)
+    (name) => Number(getExamValue(name))
   );
 
 console.log("Resultado de calculateRCV:", { realRisk, realRiskCategory, idealRisk, errors });
@@ -17,7 +17,7 @@ console.log("Resultado de calculateRCV:", { realRisk, realRiskCategory, idealRis
 
   // Cálculo da TFG usando o getExamValueAsNumber para garantir números
   const {tfg:TGF}  =
-    CKDEPIIndex.calculateTFG(patientData, (name) => getExamValueAsNumber(getExamValue, name));
+    CKDEPIIndex.calculateTFG(patientData, (name) => Number(getExamValue( name)));
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
       <h2 className="text-lg font-bold mb-4">📋 Resumo do Paciente</h2>

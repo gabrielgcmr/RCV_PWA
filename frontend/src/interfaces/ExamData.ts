@@ -8,7 +8,7 @@ export interface ExamData {
     referenceRange?: string; // Intervalo de referência (ex.: "70-110 mg/dL")
   }
 
-export interface ComplementaryExams {
+export interface ComplementaryExamsData {
     date: Date;
     exams: ExamData[];
   }

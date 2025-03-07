@@ -1,5 +1,6 @@
 //PatientData.ts
-import { ComplementaryExams } from "./ExamData";
+
+import { ComplementaryExamsData } from "./ExamData";
 
 export interface Problem {
   name: string; // Descrição do problema (ex.: "Diabetes Mellitus tipo 2")
@@ -26,5 +27,5 @@ export interface PatientData {
     hasDiabetes: boolean;
     isSmoker: boolean;
   };
-  complementaryExams: ComplementaryExams
+  complementaryExams: ComplementaryExamsData
 } 

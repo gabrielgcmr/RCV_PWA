@@ -1,7 +1,7 @@
 import { useState, ReactNode } from "react";
-
 import { PatientData } from "../interfaces/PatientData";
 import { PatientDataService } from "../services/PatientDataService";
+import { PatientContext } from "./PatientContextType";
 
 const initialPatientData: PatientData = {
   identification: { name: "", age: "", gender: "", race: "" },

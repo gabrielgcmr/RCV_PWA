@@ -1,5 +1,6 @@
-import ExamDate from "./ExamDate";
-import ExamForm from "./ProfileForm";
+import ExamDate from "./ExamsSection/ExamDate";
+import ExamForm from "../common/FormUtils/ExamForm";
+
 
 export default function ExamsSection() {
   return (

@@ -1,5 +1,5 @@
-import { ExamSection } from "../components/MainPageSections/2-ExamsSection";
-import { IdentificationSection } from "../components/MainPageSections/1-IdentificationSection";
+import IdentificationSection from "../components/MainPageSections/1-IdentificationSection";
+import ExamSection from "../components/MainPageSections/2-ExamSection";
 import { OverviewSection } from "../components/MainPageSections/3-OverviewSection";
 import ClinicalCalculations from "../components/MainPageSections/4-ActionComponents/ClinicalCalculations";
 

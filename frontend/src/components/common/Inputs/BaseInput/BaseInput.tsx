@@ -1,5 +1,5 @@
 import React from "react";
-import { inputStyles } from "./inputStyles";
+import { inputStyles } from "../inputStyles";
 import { BaseInputProps } from "./types";
 import { usePatient } from "../../../../hooks/usePatient";
 
@@ -12,7 +12,7 @@ export const BaseInput = ({
   checked,
   ...rest
 }: BaseInputProps & { checked?: boolean }) => {
-  const {handleFieldChange, getInputFieldValue} = usePatient();
+  const { handleFieldChange, getFieldValue } = usePatient();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = type === "checkbox" ? e.target.checked : e.target.value;
@@ -20,7 +20,7 @@ export const BaseInput = ({
       handleFieldChange(section, name, newValue);
     }
   };
-  
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (type === "checkbox" && (e.key === "Enter" || e.key === " ")) {
       e.preventDefault();
@@ -44,8 +44,6 @@ export const BaseInput = ({
     }
   };
 
-  const value = section ? getInputFieldValue(section, name) : "";
-
   return (
     <div className="mb-1">
       {type === "checkbox" || type === "radio" ? (
@@ -57,7 +55,7 @@ export const BaseInput = ({
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             className={getInputClassName()}
-            checked={checked !== undefined ? checked : Boolean(value)}
+            checked={checked !== undefined ? checked : Boolean(getFieldValue(section, name))}
             {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
           />
           <label htmlFor={name} className="text-white">
@@ -77,7 +75,7 @@ export const BaseInput = ({
             name={name}
             onChange={handleChange}
             className={getInputClassName()}
-            value={value || ""}
+            value={getFieldValue(section, name)}
             {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
           />
         </div>

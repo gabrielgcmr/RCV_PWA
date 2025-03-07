@@ -1,5 +1,5 @@
 import React from "react";
-import { inputStyles } from "./inputStyles";
+import { inputStyles } from "../inputStyles";
 import { BaseSelectInputProps } from "./types";
 import { usePatient } from "../../../../hooks/usePatient";
 
@@ -8,24 +8,34 @@ export const BaseSelectInput: React.FC<BaseSelectInputProps> = ({
   label,
   options,
   errorMessage,
-  onChange,
   section,
   ...rest
 }) => {
-  const {handleFieldChange, getInputFieldValue} = usePatient();
-   // Obtém o valor atual do campo correspondente
-   const selectedValue = section ? getInputFieldValue(section, name) : "";
+  const { handleFieldChange, getFieldValue } = usePatient();
 
-   return (
+  // Obtém o valor atual do campo correspondente
+  const selectedValue = section ? getFieldValue(section, name) : "";
+
+  // Função para lidar com mudanças no select
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (section) {
+      handleFieldChange(section, name, e.target.value);
+    }
+  };
+
+  return (
     <div className="mb-2">
-      <label htmlFor={name} className={inputStyles.mainInputLabel}>
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={name} className={inputStyles.mainInputLabel}>
+          {label}
+        </label>
+      )}
+
       <select
         id={name}
         name={name}
         value={selectedValue}
-        onChange={(e) => section && handleFieldChange(section, name, e.target.value)}
+        onChange={handleChange}
         className={inputStyles.textInput}
         {...rest}
       >

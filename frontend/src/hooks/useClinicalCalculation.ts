@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { usePatient } from "./usePatient";
-import { getExamValueAsNumber } from "../utils/examUtils";
 import { CKDEPIIndex } from "../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
 import { FIB4Index } from "../services/ClinicalCalculations/FIB-4/FIB4Index";
 import { CVRIndex } from "../services/ClinicalCalculations/CVR/CVRIndex";
@@ -15,7 +14,6 @@ type ClinicalCalculationsData = {
 
 export function useClinicalCalculations() {
   const { patientData, getExamValue } = usePatient();
-  const getExamValueNumber = (name: string) => getExamValueAsNumber(getExamValue, name);
 
   const [data, setData] = useState<ClinicalCalculationsData>({
   results: {},
@@ -23,7 +21,7 @@ export function useClinicalCalculations() {
 });
   const runCalculation = (name: "TFG" | "RCV" | "FIB4", 
     calculateFn: Function) => {
-      const { [name]: result, errors } = calculateFn(patientData, getExamValueNumber);
+      const { [name]: result, errors } = calculateFn(patientData, getExamValue);
     setData((prev) => ({
       results: { ...prev.results, [name]: result !== null ? `${result}` : "Não avaliado" },
       errors: { ...prev.errors, [name]: errors },
