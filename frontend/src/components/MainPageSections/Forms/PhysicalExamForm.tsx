@@ -1,11 +1,23 @@
-import { FormSection } from "../../common/FormUtils/FormSection";
-import { BaseInput } from "../../common/Inputs/BaseInput/BaseInput";
+import { FormSection } from "../../common/formUtils/FormSection";
+import { BaseInput } from "../../common/Inputs/BaseInput";
 
-export default function PhysicalExamForm() {
+export default function PhysicalExamSection() {
   return (
     <FormSection title="🩺 Exame Físico">
-      <BaseInput name="systolicBP" label="Pressão Arterial Sistólica (mmHg)" type="number" formSection="physicalExam" placeholder="PAS" />
-      <BaseInput name="diastolicBP" label="Pressão Arterial Diastólica (mmHg)" type="number" formSection="physicalExam" placeholder="PAD" />
+      <BaseInput
+        section="physicalExam"
+        name="systolicBP"
+        label="Pressão Arterial Sistólica (mmHg)"
+        type="number"
+        placeholder="PAS"
+      />
+      <BaseInput
+        section="physicalExam"
+        name="diastolicBP"
+        label="Pressão Arterial Diastólica (mmHg)"
+        type="number"
+        placeholder="PAD"
+      />
     </FormSection>
   );
 }

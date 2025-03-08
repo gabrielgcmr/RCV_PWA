@@ -1,23 +1,23 @@
-import { FormSection } from "../../common/FormUtils/FormSection";
-import { BaseInput } from "../../common/Inputs/BaseInput/BaseInput";
-import { BaseSelectInput } from "../../common/Inputs/BaseInput/SelectInput";
+import { FormSection } from "../../common/formUtils/FormSection";
+import { BaseInput } from "../../common/Inputs/BaseInput";
+import { SelectInput } from "../../common/Inputs/SelectInput";
 
-export default function IdentificationForm() {
+export default function IdentificationSection() {
   return (
     <FormSection title="🏷️ Identificação">
-      <BaseInput name="name" type="text" label="Nome" formSection="identification" placeholder="Nome do paciente" />
-      <BaseInput name="age" type="number" label="Idade" formSection="identification" placeholder="Idade" />
+      <BaseInput section = "identification" name="name" type="text" label="Nome" placeholder="Nome do paciente" />
+      <BaseInput section = "identification" name="age" type="number" label="Idade" placeholder="Idade" />
 
       <div className="flex gap-2 mb-1">
-        <BaseInput name="gender" value="male" type="radio" formSection="identification" label="Masculino" />
-        <BaseInput name="gender" value="female" type="radio" formSection="identification" label="Feminino" />
+        <BaseInput section = "identification" name="gender" value="male" type="radio"  label="Masculino" />
+        <BaseInput section = "identification" name="gender" value="female" type="radio"  label="Feminino" />
       </div>
 
-      <BaseSelectInput
+      <SelectInput
+        section = "identification"
         name="race"
         label="Raça"
         type="select"
-        formSection="identification"
         options={[
           { label: "Branco", value: "white" },
           { label: "Preto", value: "black" },

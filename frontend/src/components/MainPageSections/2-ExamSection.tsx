@@ -1,10 +1,12 @@
 import ExamDate from "./ExamsSection/ExamDate";
-import ExamForm from "../common/FormUtils/ExamForm";
+import ExamForm from "../common/formUtils/ExamForm";
+import { FormSection } from "../common/formUtils/FormSection";
 
 
-export default function ExamsSection() {
+export default function ExamsForm() {
   return (
-    <div className=" p-2 bg-zinc-700 rounded-lg shadow-md ">
+    <FormSection title="🧪 Exames Complementares">
+    <div className=" p-2 bg-zinc-800 rounded-lg shadow-md ">
       <h2 className="text-lg font-bold p-2 text-center">
       🧪 Exames Complementares
       </h2>
@@ -23,5 +25,6 @@ export default function ExamsSection() {
         {/* Outro componente pode ser adicionado aqui */}
       </div>
     </div>
+  </FormSection>
   );
 }

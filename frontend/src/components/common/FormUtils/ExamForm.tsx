@@ -1,7 +1,6 @@
-import { examDictionary } from "../../common/constants/examDictionary";
-import { ExamInput } from "../../common/Inputs/ExamInput/ExamInputs";
-import { ExamSelectInput } from "../Inputs/ExamInput/ExamSelectInput";
-
+import { examDictionary } from "../constants/examDictionary";
+import { BaseInput } from "../Inputs/BaseInput";
+import { SelectInput } from "../Inputs/SelectInput";
 
 interface ExamFormProps {
   category: string; // Ex.: "LipidProfile", "LiverProfile", "RenalProfile", etc.
@@ -15,29 +14,30 @@ export default function ExamForm({ category, title }: ExamFormProps) {
     .map(([key, exam]) => ({ key, ...exam }));
 
   return (
-    <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white">
+    <div className="p-2 bg-zinc-400 rounded-lg shadow-md text-white">
       <h2 className="text-lg font-bold mb-2">{title}</h2>
       {exams.length > 0 ? (
         <div className="grid grid-cols-2 gap-2">
           {exams.map(({ key, type, label, abbreviation, options }) =>
             type === "select" ? (
-              <ExamSelectInput
+              <SelectInput
                 key={key}
+                section="complementaryExams"
                 name={key}
                 type = "select"
                 label={label}
                 abbreviation={abbreviation}
-                formSection="complementaryExams"
-                options={options || []}
+                options={options!}
               />
             ) : (
-              <ExamInput
+              <BaseInput
                 key={key}
+                section = "complementaryExams"
                 name = {key}
                 label={label}
                 abbreviation={abbreviation}
                 type={type}
-                formSection="complementaryExams"
+                placeholder={abbreviation}
               />
             )
           )}

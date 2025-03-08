@@ -1,19 +1,9 @@
-import { PatientData } from "../interfaces/PatientData";
+import { PatientData } from "../interfaces/Interfaces";
 
 // PatientDataService.ts
 export class PatientService {
-  static updatePatientData<T extends keyof PatientData>(
-    patientData: PatientData,
-    section: T,
-    field: keyof PatientData[T],
-    value: PatientData[T][typeof field]
-  ): PatientData {
-    return {
-      ...patientData,
-      [section]: {
-        ...patientData[section],
-        [field]:value,
-      },
-    };
-  }
+    static validatePatientData(patientData: PatientData): boolean {
+        // Adicione validações específicas aqui
+        return true; // Retorne `false` se a validação falhar
+      }
 }

@@ -1,4 +1,4 @@
-import { PatientData } from "../../../interfaces/PatientData";
+import { PatientData } from "../../../interfaces/Interfaces";
 import { FIB4Mapper } from "./FIB4Mapper";
 import { FIB4Validator } from "./FIB4Validator";
 import { FIB4Calculator } from "./FIB4Calculator";
