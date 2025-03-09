@@ -1,4 +1,4 @@
-import { ExamInputProps } from "./IExamInputProps";
+import { ExamInputProps } from "./ExamInputProps";
 
 /**
  * Função utilitária para criar objetos de entrada de exame.

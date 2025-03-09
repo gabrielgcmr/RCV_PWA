@@ -4,8 +4,8 @@ import { ExamInputProps } from "../../../common/ExamInput/IExamInputProps";
 
 export default function LiverProfileForm() {
   const lipidExams: ExamInputProps[] = [
-    createExamInput("ALT (TGP)", "TGP", "TGP", "TGP"),
-    createExamInput("AST (TGO)", "TGO", "TGO", "TGO"),
+    createExamInput("AST (TGP)", "TGP", "TGP", "TGP"),
+    createExamInput("ALT (TGO)", "TGO", "TGO", "TGO"),
     createExamInput("GGT", "GGT", "GGT", "GGT"),
     createExamInput("Fosfatase Alcalina", "FA", "FA", "FA"),
   ];

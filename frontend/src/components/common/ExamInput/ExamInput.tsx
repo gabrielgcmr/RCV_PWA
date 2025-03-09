@@ -1,4 +1,4 @@
-import { ExamInputProps } from "./IExamInputProps";
+import { ExamInputProps } from "./ExamInputProps";
 
 export function ExamInput({ 
   name, 
@@ -23,7 +23,7 @@ export function ExamInput({
       aria-label={label}
       disabled={disabled}
       onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
-      className={`w-28 p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200 ${
+      className={`w-20 p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200 ${
         errorMessage ? "border-red-500" : "border-gray-300"
       }`}
     />

@@ -1,13 +1,13 @@
 import { usePatient } from "../../../hooks/usePatient";
 import { ExamInput } from "../ExamInput/ExamInput";
-import { ExamInputProps } from "../ExamInput/IExamInputProps";
+import { ExamInputProps } from "../ExamInput/ExamInputProps";
 
-export interface IExamFormProps {
+export interface ExamFormProps {
   title?: string;
   exams: ExamInputProps[];
 }
 
-export default function ExamProfileForm({ title = "Exame", exams }: IExamFormProps) {
+export default function ExamProfileForm({ title = "Exame", exams }: ExamFormProps) {
   const { handleExamChange, getExamValue } = usePatient();
 
   return (
