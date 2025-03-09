@@ -1,4 +1,4 @@
-import { IExamInputProps } from "./IExamInputProps";
+import { ExamInputProps } from "./IExamInputProps";
 
 /**
  * Função utilitária para criar objetos de entrada de exame.
@@ -10,7 +10,7 @@ export const createExamInput = (
   placeholder: string,
   value: string = "",
   disabled: boolean = false
-): IExamInputProps => ({
+): ExamInputProps => ({
   name,
   abbreviation : abbreviation, 
   label,

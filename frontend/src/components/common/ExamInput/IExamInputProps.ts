@@ -1,6 +1,6 @@
-import { IExam } from "../../../interfaces/IExam";
+import { ExamData } from "../../../interfaces/Interfaces";
 
-export interface IExamInputProps extends IExam {
+export interface ExamInputProps extends ExamData {
     label: string; // Label do campo de input
     placeholder?: string; // Placeholder do campo
     errorMessage?: string; // Mensagem de erro personalizada

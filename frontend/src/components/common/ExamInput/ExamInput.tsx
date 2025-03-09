@@ -1,4 +1,4 @@
-import { IExamInputProps } from "./IExamInputProps";
+import { ExamInputProps } from "./IExamInputProps";
 
 export function ExamInput({ 
   name, 
@@ -9,7 +9,7 @@ export function ExamInput({
   disabled = false,
   errorMessage,
   onChange,
-  }: IExamInputProps) {
+  }: ExamInputProps) {
   return (
     <div className="mb-2">
     <label className="block text-sm font-medium mb-1" htmlFor={name}>

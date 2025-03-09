@@ -1,10 +1,10 @@
-import { IPatientData } from "../../../interfaces/IPatientData";
+import { PatientData } from "../../../interfaces/Interfaces";
 import { CVRCalculator } from "./CVRCalculator";
 import { CVRMapper } from "./CVRMapper";
 import { CVRValidator } from "./CVRValidator";
 
 export class CVRIndex {
-  static calculateRCV(patientData: IPatientData, getExamValue:(name:string)=>number): {
+  static calculateRCV(patientData: PatientData, getExamValue:(name:string)=>number): {
     realRisk: number;
     realRiskCategory: string;
     idealRisk: number;

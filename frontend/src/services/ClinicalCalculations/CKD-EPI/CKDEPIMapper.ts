@@ -1,7 +1,7 @@
-import { IPatientData } from "../../../interfaces/IPatientData";
+import { PatientData } from "../../../interfaces/Interfaces";
 
 export class CKDEPIMapper {
-  static mapPatientData(patientData: IPatientData, getExamValue: (name: string) => number) {
+  static mapPatientData(patientData: PatientData, getExamValue: (name: string) => number) {
     const seric_creatinine_result = getExamValue("creatinine");
 
     return {

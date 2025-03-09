@@ -1,9 +1,9 @@
 import ExamProfileForm from "../../../common/ExamForm/ExamForm";
 import { createExamInput } from "../../../common/ExamInput/ExamUtils";
-import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
+import { ExamInputProps } from "../../../common/ExamInput/IExamInputProps";
 
 export default function LipidProfileForm() {
-  const lipidExams: IExamInputProps[] = [
+  const lipidExams: ExamInputProps[] = [
     createExamInput("totalCholesterol", "CT", "CT", "Colesterol Total"),
     createExamInput("ldlCholesterol", "LDL", "LDL", "LDL"),
     createExamInput("hdlCholesterol", "HDL", "HDL", "HDL"),

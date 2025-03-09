@@ -1,10 +1,11 @@
-import { IPatientData } from "../../../interfaces/IPatientData";
+
+import { PatientData } from "../../../interfaces/Interfaces";
 import { CKDEPICalculator } from "./CKDEPICalculator";
 import { CKDEPIMapper } from "./CKDEPIMapper";
 import { CKDEPIValidator } from "./CKDEPIValidator";
 
 export class CKDEPIIndex {
-    static calculateTFG(patientData: IPatientData, getExamValue: (name: string) => number): { tfg: number | null; errors: string[] } {
+    static calculateTFG(patientData: PatientData, getExamValue: (name: string) => number): { tfg: number | null; errors: string[] } {
       // Mapeia os dados do paciente
       const mappedData = CKDEPIMapper.mapPatientData(patientData, getExamValue);
   

@@ -1,7 +1,7 @@
-import { IPatientData } from "../../../interfaces/IPatientData";
+import { PatientData } from "../../../interfaces/Interfaces";
 
 export class CVRMapper {
-  static mapPatientData(patientData: IPatientData, getExamValue: (name: string) => number) {
+  static mapPatientData(patientData: PatientData, getExamValue: (name: string) => number) {
     const totalCholesterol = getExamValue("totalCholesterol");
     const hdlCholesterol = getExamValue("hdlCholesterol");
 

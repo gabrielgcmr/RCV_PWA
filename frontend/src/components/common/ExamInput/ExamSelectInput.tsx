@@ -1,6 +1,6 @@
-import { IExamInputProps } from "./IExamInputProps";
+import { ExamInputProps } from "./IExamInputProps";
 
-interface ExamSelectInputProps extends  IExamInputProps {
+interface ExamSelectInputProps extends  ExamInputProps {
     options: { label: string; value: string }[];
 }
 

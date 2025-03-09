@@ -1,9 +1,9 @@
 import ExamProfileForm from "../../../common/ExamForm/ExamForm";
 import { createExamInput } from "../../../common/ExamInput/ExamUtils";
-import { IExamInputProps } from "../../../common/ExamInput/IExamInputProps";
+import { ExamInputProps } from "../../../common/ExamInput/IExamInputProps";
 
 export default function LiverProfileForm() {
-  const lipidExams: IExamInputProps[] = [
+  const lipidExams: ExamInputProps[] = [
     createExamInput("ALT (TGP)", "TGP", "TGP", "TGP"),
     createExamInput("AST (TGO)", "TGO", "TGO", "TGO"),
     createExamInput("GGT", "GGT", "GGT", "GGT"),
