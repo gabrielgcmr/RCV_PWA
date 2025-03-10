@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { calculateTFG } from "../../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
+import { calculateCKDEPIIndex } from "../../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
 import { calculateCVRIndex } from "../../../services/ClinicalCalculations/CVR/CVRIndex";
 import { calculateFIB4Index } from "../../../services/ClinicalCalculations/FIB-4/FIB4Index";
 import { usePatient } from "../../../hooks/usePatient";
@@ -20,7 +20,7 @@ export default function ClinicalCalculations() {
   };
 
   const buttons: { label: "TFG" | "RCV" | "FIB4"; color: string; action: () => void }[] = [
-    { label: "TFG", color: "bg-blue-500", action: () => runCalculation("TFG", calculateTFG) },
+    { label: "TFG", color: "bg-blue-500", action: () => runCalculation("TFG", calculateCKDEPIIndex) },
     { label: "RCV", color: "bg-green-500", action: () => runCalculation("RCV", calculateCVRIndex) },
     { label: "FIB4", color: "bg-yellow-500", action: () => runCalculation("FIB4", calculateFIB4Index) },
   ];

@@ -1,5 +1,6 @@
 import { PatientData } from "../../../interfaces/Interfaces";
 import { calculateCVR } from "./CVRCalculator";
+import { classifyCVR } from "./CVRClassifier";
 import { mapPatientData } from "./CVRMapper";
 import { validateCVRData } from "./CVRValidator";
 
@@ -8,24 +9,23 @@ import { validateCVRData } from "./CVRValidator";
  */
 export function calculateCVRIndex(patientData: PatientData) {
   // 1. Mapeia os dados do paciente para o formato correto
-  console.log (patientData)
-  const mappedData = mapPatientData(patientData,);
-  console.log(mappedData)
+  const mappedData = mapPatientData(patientData);
   
   // 2. Valida os dados do paciente
   const validation = validateCVRData(mappedData);
   if (!validation.isValid) {
-    return { realRisk: null, realRiskCategory: "", idealRisk: null, errors: validation.errors };
+    return { realRisk: undefined, realRiskCategory: "Não Avaliado", idealRisk: undefined, errors: validation.errors };
   }
 
   // 3. Calcula os riscos
-  const { realRiskResult, idealRiskResult } = calculateCVR(mappedData);
+  const { CVRRealRisk,CVRIdealRisk } = calculateCVR(mappedData);
+  const CVRcategory = classifyCVR(CVRRealRisk)
 
   // 4. Retorna os resultados
   return {
-    realRisk: realRiskResult.risk,
-    realRiskCategory: realRiskResult.category,
-    idealRisk: idealRiskResult,
+    CVRRealRisk,
+    CVRIdealRisk,
+    CVRcategory,
     errors: [],
   };
 }

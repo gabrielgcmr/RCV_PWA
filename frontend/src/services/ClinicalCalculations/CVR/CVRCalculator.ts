@@ -82,26 +82,15 @@ export function calculateCVR(data: CVRData) {
     return 100 / (1 + Math.exp(-logit));
   };
 
-  /**
-   * Classifica o risco cardiovascular em categorias.
-   */
-  const classifyRisk = (riskScore: number): string => {
-    if (riskScore < 5) return "Baixo risco";
-    if (riskScore < 7.5) return "Risco limítrofe";
-    if (riskScore < 20) return "Risco intermediário";
-    return "Alto risco";
-  };
-
+  
   /**
    * Calcula o risco real do paciente com os valores informados.
    */
-  const realRisk = equationForGetLogit(false);
-  const realRiskResult = { risk: realRisk, category: classifyRisk(realRisk) };
-
-  /**
+  const CVRRealRisk = equationForGetLogit(false);
+   /**
    * Calcula o risco ideal, assumindo valores padronizados.
    */
-  const idealRiskResult = equationForGetLogit(true);
+  const CVRIdealRisk = equationForGetLogit(true);
 
-  return { classifyRisk, realRiskResult, idealRiskResult };
+  return {  CVRRealRisk, CVRIdealRisk };
 }
