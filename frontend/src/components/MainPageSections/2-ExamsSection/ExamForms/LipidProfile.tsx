@@ -1,6 +1,6 @@
 import ExamProfileForm from "../../../common/ExamForm/ExamForm";
 import { createExamInput } from "../../../common/ExamInput/ExamUtils";
-import { ExamInputProps } from "../../../common/ExamInput/IExamInputProps";
+import { ExamInputProps } from "../../../common/ExamInput/ExamInputProps";
 
 export default function LipidProfileForm() {
   const lipidExams: ExamInputProps[] = [

@@ -9,7 +9,8 @@ export const createExamInput = (
   label: string,
   placeholder: string,
   value: string = "",
-  disabled: boolean = false
+  disabled: boolean = false,
+  options?:{label: string; value: string}[]
 ): ExamInputProps => ({
   name,
   abbreviation : abbreviation, 
@@ -18,4 +19,5 @@ export const createExamInput = (
   value,
   disabled,
   errorMessage: "",
+  options,
 });

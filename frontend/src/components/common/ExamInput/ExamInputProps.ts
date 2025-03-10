@@ -6,4 +6,5 @@ export interface ExamInputProps extends ExamData {
     errorMessage?: string; // Mensagem de erro personalizada
     disabled?: boolean; // Desativa o campo (opcional)
     onChange?: (name: string, value: string | number, abbreviation: string | undefined ) => void;
+    options?: { label: string; value: string }[]
 }  

@@ -1,33 +1,28 @@
 import { ExamInputProps } from "./ExamInputProps";
+import { ExamSelectInput } from "./ExamSelectInput";
 
-export function ExamInput({ 
-  name, 
-  abbreviation,
-  value,
-  label,
-  placeholder,
-  disabled = false,
-  errorMessage,
-  onChange,
-  }: ExamInputProps) {
+export function ExamInput(props: ExamInputProps){ 
+  if (props.options && props.options.length >.0 ){
+    return <ExamSelectInput {...props} options = {props.options}/>;
+  }
+
   return (
     <div className="mb-2">
-    <label className="block text-sm font-medium mb-1" htmlFor={name}>
-      {label}
+    <label className="block text-sm font-medium mb-1" htmlFor={props.name}>
+      {props.label}
     </label>
     <input
-      id={name}
+      id={props.name}
       type="number"
-      placeholder={placeholder}
-      value={value}
-      aria-label={label}
-      disabled={disabled}
-      onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
-      className={`w-20 p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200 ${
-        errorMessage ? "border-red-500" : "border-gray-300"
+      placeholder={props.placeholder}
+      value={props.value}
+      aria-label={props.label}
+      disabled={props.disabled}
+      onChange={(e) => props.onChange?.(props.name, e.target.value,props.abbreviation)}
+      className={`w-20 p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200}
       }`}
     />
-    {errorMessage && <span className="text-red-500 text-sm">{errorMessage}</span>}
+   
     </div>
   );
 }

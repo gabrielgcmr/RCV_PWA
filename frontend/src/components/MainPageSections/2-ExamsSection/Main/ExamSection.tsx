@@ -2,10 +2,10 @@ import {
   ExamDate,
   LipidProfileForm,
   RenalProfileForm,
-  CBCForm,
   UrinalysisForm,
   GlucoseProfileForm,
 } from '../ExamForms';
+import CompleteBloodCountForm from '../ExamForms/CompleteBloodCount..tsx';
 import LiverProfileForm from '../ExamForms/LiverProfile';
 
 export default function ExamsSection() {
@@ -29,7 +29,7 @@ export default function ExamsSection() {
         <GlucoseProfileForm />
         <LiverProfileForm />
         <div className="flex flex-col gap-2 min-w-[200px] max-w-[250px]">
-          <CBCForm  />
+          <CompleteBloodCountForm />
           <UrinalysisForm  />
         </div>
         {/* Outro componente pode ser adicionado aqui */}

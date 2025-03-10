@@ -1,7 +1,7 @@
-import { ICKDEPIData } from "./ICKDEOIData";
+import { CKDEPIData } from "./CKDEPIData";
 
 export class CKDEPICalculator {
-  static calculate(data: ICKDEPIData): number {
+  static calculate(data: CKDEPIData): number {
     const { age, gender, race, seric_creatinine } = data;
 
     // Definição dos coeficientes

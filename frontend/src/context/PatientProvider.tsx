@@ -18,13 +18,8 @@ export function PatientProvider({ children }: { children: ReactNode }) {
       systolicBP: "",
       diastolicBP: "",
     },
-    lifeHabits: {
-      isTreatingHAS: false,
-      hasDiabetes: false,
-      isSmoker: false,
-    },
     complementaryExams: {
-      date: "",
+      date: null,
       exams: [], // Inicializamos com um array vazio para armazenar exames dinamicamente
     },
   });

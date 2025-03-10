@@ -25,9 +25,9 @@ export default function ExamDateForm() {
         onChange={(e) => {
           const selectedDate = e.target.value; // Já vem no formato "YYYY-MM-DD"
           if (selectedDate) {
-            // Criar um objeto Date sem alteração de fuso horário
-            const localDate = new Date(selectedDate + "T00:00:00"); // Garantindo meia-noite local
-            updatePatientData("complementaryExams", { date: localDate });
+            updatePatientData("complementaryExams", { date: new Date(selectedDate + "T00:00:00") });
+          } else {
+            updatePatientData("complementaryExams", { date: null }); // Define explicitamente como "sem data"
           }
         }}
         className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"

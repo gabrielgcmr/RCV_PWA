@@ -1,4 +1,4 @@
-import { IFIB4Data } from "./IFIB4Data";
+import { IFIB4Data } from "./FIB4Data";
 
 export class FIB4Validator {
   static validate(data: IFIB4Data): { isValid: boolean; errors: string[] } {

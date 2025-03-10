@@ -3,7 +3,7 @@ import { ErrorPopup } from "../../common/ErrorPopup";
 import { useState } from "react";
 
 export default function ClinicalCalculations() {
-  const { results, errors, calculateTFG, calculateRCV, calculateFIB4 } = useClinicalCalculations();
+  const { errors, calculateTFG, calculateRCV, calculateFIB4 } = useClinicalCalculations();
   const [visibleError, setVisibleError] = useState<"TFG" | "RCV" | "FIB4" | null>(null);
 
   const buttons: { label: "TFG" | "RCV" | "FIB4"; color: string; action: () => void }[] = [

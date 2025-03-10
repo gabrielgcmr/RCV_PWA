@@ -8,7 +8,7 @@ export interface ExamData {
 }
 
 export interface ComplementaryExamsData {
-  date: Date;
+  date: Date | null;
   exams: ExamData[];
 }
 

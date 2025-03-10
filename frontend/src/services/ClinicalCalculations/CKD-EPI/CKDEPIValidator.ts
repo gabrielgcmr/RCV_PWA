@@ -1,4 +1,4 @@
-import { ICKDEPIData } from "./ICKDEOIData";
+import { ICKDEPIData } from "./CKDEPIData";
 
 export class CKDEPIValidator {
   static validate(data: ICKDEPIData): { isValid: boolean; errors: string[] } {
