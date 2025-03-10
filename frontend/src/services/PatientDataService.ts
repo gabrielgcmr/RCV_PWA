@@ -1,3 +1,4 @@
+import { examDictionary } from "../constants/examDictionary";
 import { PatientData } from "../interfaces/Interfaces";
 
 export class PatientDataService {
@@ -7,19 +8,20 @@ export class PatientDataService {
   static updatePatientData<T extends keyof PatientData>(
     patientData: PatientData,
     field: T,
-    value: Partial<PatientData[T]> // 🔹 Permite atualizar apenas um ou vários campos sem sobrescrever os outros
+    value: Partial<PatientData[T]>
   ): PatientData {
     return {
       ...patientData,
       [field]: {
-        ...patientData[field], // 🔹 Mantém os valores antigos
-        ...value, // 🔹 Atualiza apenas os campos passados
+        ...patientData[field],
+        ...value,
       },
     };
   }
-  
+
   /**
-   * Adiciona ou atualiza um exame complementar no array de exames.
+   * Adiciona ou atualiza um exame complementar no array de exames,
+   * garantindo que a abreviação nunca seja perdida.
    */
   static updateComplementaryExam(
     patientData: PatientData,
@@ -30,9 +32,18 @@ export class PatientDataService {
     const examIndex = updatedExams.findIndex((exam) => exam.name === examName);
 
     if (examIndex !== -1) {
-      updatedExams[examIndex].value = examValue; // Atualiza exame existente
+      // 🔹 Mantemos a abreviação original ao atualizar o exame existente
+      updatedExams[examIndex] = {
+        ...updatedExams[examIndex],
+        value: examValue,
+      };
     } else {
-      updatedExams.push({ name: examName, value: examValue }); // Adiciona novo exame
+      // 🔹 Buscamos a abreviação no `examDictionary` ao adicionar um novo exame
+      updatedExams.push({
+        name: examName,
+        value: examValue,
+        abbreviation: examDictionary[examName]?.abbreviation || "", // 🔥 Aqui está a correção!
+      });
     }
 
     return {
