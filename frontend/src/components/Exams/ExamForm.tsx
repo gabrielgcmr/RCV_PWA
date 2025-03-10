@@ -30,6 +30,7 @@ export default function ExamCategoryForm({ category, title }: ExamCategoryFormPr
               {...(examProps)}
               inputType= "select"
               name={key}
+              abbreviation={abbreviation}
               placeholder={abbreviation}
               value={getExamValue(key) || ""}
               onChange={handleExamChange}
@@ -42,6 +43,7 @@ export default function ExamCategoryForm({ category, title }: ExamCategoryFormPr
               {...(examProps)}
               inputType="input"
               name={key}
+              abbreviation={abbreviation}
               placeholder={abbreviation}
               value={getExamValue(key) || ""}
               onChange={handleExamChange}
