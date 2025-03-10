@@ -15,11 +15,8 @@ export default function MainPage() {
 
       {/* Terceira Coluna (Resumo do Paciente) */}
       <OverviewSection />
-
-      {/* Quarta Coluna (Botões de Cálculo) */}
-      <div className="flex justify-end">
-        <ClinicalCalculations />
-      </div>
+      <ClinicalCalculations />
+  
 
     </div>
   );

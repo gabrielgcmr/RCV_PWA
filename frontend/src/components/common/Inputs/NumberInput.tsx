@@ -1,7 +1,7 @@
 import React from "react";
-import { InputProps } from "./types";
+import { TextInputProps } from "./types";
 
-export const NumberInput: React.FC<InputProps> = ({
+export const NumberInput: React.FC<TextInputProps> = ({
   name,
   label,
   placeholder = "",
@@ -9,9 +9,6 @@ export const NumberInput: React.FC<InputProps> = ({
   disabled = false,
   onChange,
   className = "",
-  inputClassName = "",
-  errorMessage = "",
-  errorClassName = "",
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;
@@ -44,11 +41,8 @@ return (
         value={value}
         disabled={disabled}
         onChange={handleChange}
-        className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 ${inputClassName}`}
+        className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200`}
         />
-        {errorMessage && (
-        <p className={`text-red-500 text-sm mt-1 ${errorClassName}`}>{errorMessage}</p>
-        )}
     </div>
 );
 };

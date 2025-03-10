@@ -8,7 +8,6 @@ export const RadioInput: React.FC<RadioInputProps> = ({
   checked,
   onChange,
   className = "",
-  inputClassName = "",
 }) => {
   const handleChange = () => {
     onChange(name, value); // Passa o nome e o valor para a função onChange
@@ -22,7 +21,7 @@ export const RadioInput: React.FC<RadioInputProps> = ({
         value={value}
         checked={checked}
         onChange={handleChange}
-        className={`form-radio text-blue-500 focus:ring-blue-200 ${inputClassName}`}
+        className={`form-radio text-blue-500 focus:ring-blue-200 `}
       />
       <span>{label}</span>
     </label>

@@ -1,6 +1,6 @@
 import IdentificationForm from "../Forms/IdentificationForm";
 import PhysicalExamForm from "../Forms/PhysicalExamForm";
-import ProblemListForm from "../Forms/ProblemList";
+import ProblemListForm from "../Forms/ProblemListForm";
 
 export default function IdentificationSection() {
   return (

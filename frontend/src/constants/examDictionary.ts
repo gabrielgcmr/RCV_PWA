@@ -24,6 +24,7 @@ export const examDictionary : Record<string, ExamDefinition> = {
     creatinine: { label: "Creatinina", abbreviation: "CR", category: "RenalProfile",inputType: "input" },
     urea: { label: "Ureia", abbreviation: "UR", category: "RenalProfile",inputType: "input" },
     uricAcid: { label: "Ácido Úrico", abbreviation: "AU", category: "RenalProfile",inputType: "input" },
+    microalbuminuria: { label: "Microalbuminúria", abbreviation: "Microalb.", category: "RenalProfile", inputType: "input" },
   
     // Glucose Profile
     fastingGlucose: { label: "Glicemia Jejum", abbreviation: "GJ", category: "GlucoseProfile",inputType: "input" },
@@ -45,4 +46,15 @@ export const examDictionary : Record<string, ExamDefinition> = {
         { label: "Alterado", value: "alterado" }
       ]
      },
+    
+     // Vitaminas
+    vitaminD: { label: "Vitamina D", abbreviation: "Vit. D", category: "Vitamins", inputType: "input" },
+    vitaminB12: { label: "Vitamina B12", abbreviation: "Vit. B12", category: "Vitamins", inputType: "input" },
+
+    // Eletrólitos
+    potassium: { label: "Potássio", abbreviation: "K", category: "Electrolytes", inputType: "input" },
+    sodium: { label: "Sódio", abbreviation: "Na", category: "Electrolytes", inputType: "input" },
+    calcium: { label: "Cálcio", abbreviation: "Ca", category: "Electrolytes", inputType: "input" },
+    magnesium: { label: "Magnésio", abbreviation: "Mg", category: "Electrolytes", inputType: "input" },
+
   };

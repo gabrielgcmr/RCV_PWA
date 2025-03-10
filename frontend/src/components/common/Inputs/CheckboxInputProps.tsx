@@ -2,35 +2,30 @@ import React from "react";
 import { CheckboxInputProps } from "./types";
 
 export const CheckboxInput: React.FC<CheckboxInputProps> = ({
+  id,
   name,
-  value,
   label,
   checked,
   onChange,
-  className = "",
-  inputClassName = "",
 }) => {
-  const handleChange = () => {
-    onChange(name, checked ? "" : value); // Alterna entre selecionado e não selecionado
-  };
-
+  // Função para capturar pressionamento de tecla
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault(); // Previne o comportamento padrão (rolagem da página no caso do Space)
-      onChange(name, !checked ? value : ""); // Inverte o estado do checkbox
+      e.preventDefault(); // Previne rolagem ao pressionar "Espaço"
+      onChange(name, !checked); // Alterna o estado do checkbox
     }
   };
 
   return (
-    <label className={`flex items-center space-x-2 ${className}`}>
+    <label className="flex items-center space-x-2 mb-2">
       <input
         type="checkbox"
+        id={id || name}
         name={name}
-        value={value}
         checked={checked}
-        onChange={handleChange}
+        onChange={(e) => onChange(name, e.target.checked)} // Agora recebe boolean diretamente
         onKeyDown={handleKeyDown}
-        className={`form-checkbox text-blue-500 focus:ring-blue-200 ${inputClassName}`}
+        className="form-checkbox text-blue-500 focus:ring-blue-200"
       />
       <span>{label}</span>
     </label>

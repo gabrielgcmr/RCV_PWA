@@ -16,13 +16,15 @@ export default function ExamsSection() {
         </div>
         {/* Exames e outros componentes ocupam os 3/4 restantes */}   
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1">
         <ExamForm category= "LipidProfile" title = "Lipidograma"/>
         <ExamForm category='RenalProfile' title = "Perfil Renal"/>
         <ExamForm category='LiverProfile' title='Perfil Hepático'/>
         <ExamForm category='GlucoseProfile' title='Perfil Glicemico'/>
         <ExamForm category='CBC' title='Hemograma'/>
         <ExamForm category='Urinalysis' title= 'EAS'/>
+        <ExamForm category='Vitamins' title='Vitaminas'/>
+        <ExamForm category='Electrolytes' title='Eletrólitos'/>
         </div>
         {/* Outro componente pode ser adicionado aqui */}
       </div>
