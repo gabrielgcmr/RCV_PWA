@@ -9,9 +9,6 @@ export const TextInput: React.FC<TextInputProps> = ({
   disabled = false,
   onChange,
   className = "",
-  inputClassName = "",
-  ariaInvalid,
-  ariaDescribedby,
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Bloquear números no input de texto
@@ -33,9 +30,7 @@ export const TextInput: React.FC<TextInputProps> = ({
         value={value}
         disabled={disabled}
         onChange={handleChange}
-        aria-invalid={ariaInvalid}
-        aria-describedby={ariaDescribedby}
-        className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 ${inputClassName}`}
+        className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200`}
       />
     </div>
   );

@@ -18,8 +18,8 @@ describe("CardiovascularRiskCalculator", () => {
 
   it("deve calcular corretamente o risco real", () => {
     const result = calculateCVR(mockData);
-    expect(result.realRiskResult).toBeGreaterThan(0);
-    expect(result.realRiskResult).toBeLessThanOrEqual(100);
+    expect(result.CVRRealRisk).toBeGreaterThan(0);
+    expect(result.CVRRealRisk).toBeLessThanOrEqual(100);
   });
 
   it("deve calcular corretamente o risco ideal", () => {
