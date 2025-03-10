@@ -7,5 +7,5 @@ export interface CVRData {
   smoking: number;
   diabetes: number;
   totalCholesterol: number;
-  hdlCholesterol: number;
+  hdl: number;
 }

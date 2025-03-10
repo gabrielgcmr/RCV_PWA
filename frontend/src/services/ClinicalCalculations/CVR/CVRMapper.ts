@@ -26,6 +26,6 @@ export function mapPatientData(patientData: PatientData) {
     smoking: hasProblem("Tabagismo") ? 1 : 0,
     diabetes: hasProblem("Diabetes") ? 1 : 0,
     totalCholesterol: getExamValue("totalCholesterol"),
-    hdlCholesterol: getExamValue("hdlCholesterol"),
+    hdl: getExamValue("hdl"),
   };
 }

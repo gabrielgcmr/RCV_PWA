@@ -8,12 +8,14 @@ import { validateCVRData } from "./CVRValidator";
  */
 export function calculateCVRIndex(patientData: PatientData) {
   // 1. Mapeia os dados do paciente para o formato correto
+  console.log (patientData)
   const mappedData = mapPatientData(patientData,);
+  console.log(mappedData)
   
   // 2. Valida os dados do paciente
   const validation = validateCVRData(mappedData);
   if (!validation.isValid) {
-    return { realRisk: 0, realRiskCategory: "Desconhecido", idealRisk: 0, errors: validation.errors };
+    return { realRisk: null, realRiskCategory: "", idealRisk: null, errors: validation.errors };
   }
 
   // 3. Calcula os riscos

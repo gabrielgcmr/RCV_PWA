@@ -1,19 +1,15 @@
-import { ExamInputProps } from "./ExamInputProps";
-
-interface ExamSelectInputProps extends  ExamInputProps {
-    options: { label: string; value: string }[];
-}
+import { ExamSelectInputProps } from "./types";
 
 const baseInputClasses = "w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200";
 
 export function ExamSelectInput({
   name,
   abbreviation,
-  value,
+  value = "",
   label,
   disabled = false,
   onChange,
-  options,
+  options = [],
 }: ExamSelectInputProps) {
   return (
     <label className="block text-sm font-medium mb-1" htmlFor={name}>

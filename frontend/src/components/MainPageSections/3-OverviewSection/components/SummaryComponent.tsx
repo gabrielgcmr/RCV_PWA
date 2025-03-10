@@ -21,12 +21,7 @@ export default function SummaryComponent() {
       {hasProblem("Tabagismo") && <p><strong>Tabagismo:</strong> Presente</p>}
       
       {/* Exibe o risco cardiovascular */}
-      {realRisk !== null && (
-        <p>
-          <strong>RCV:</strong> Risco Atual: {realRisk.toFixed(2)}% - ({realRiskCategory}) || 
-          Risco Ideal: {idealRisk.toFixed(2)}%
-        </p>
-      )}
+      {realRisk !== null && <p> <strong>RCV:</strong> Risco Atual: {realRisk.toFixed(2)}% - ({realRiskCategory}) || Risco Ideal: {idealRisk.toFixed(2)}% </p>}
 
       {/* Exibe a TFG se houver */}
       {tfg !== null && <p><strong>TFG: </strong> {tfg} mL/min/1.73m²</p>}

@@ -8,8 +8,8 @@ export function mapFIB4Data(patientData: PatientData): FIB4Data {
 
   return {
     age: Number(patientData.identification.age),
-    ast: getExamValue("AST"),
-    alt: getExamValue("ALT"),
+    ast: getExamValue("ast"),
+    alt: getExamValue("alt"),
     platelets: getExamValue("platelets"),
   };
 }

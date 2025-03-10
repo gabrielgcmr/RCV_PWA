@@ -19,7 +19,7 @@ export function validateCVRData(data: CVRData): { isValid: boolean; errors: stri
   validate(["white", "black", "other"].includes(data.race), "Escolha uma raça válida.");
   validate(data.systolicBloodPressure >= 60 && data.systolicBloodPressure <= 250, "Preencha o valor da PAS.");
   validate(data.totalCholesterol > 20 && data.totalCholesterol <= 400, "O colesterol total deve estar entre 20 e 400.");
-  validate(data.hdlCholesterol > 10 && data.hdlCholesterol <= 100, "O HDL deve estar entre 10 e 100.");
+  validate(data.hdl > 10 && data.hdl <= 100, "O HDL deve estar entre 10 e 100.");
 
   return {
     isValid: errors.length === 0,

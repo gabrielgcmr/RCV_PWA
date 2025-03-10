@@ -33,7 +33,7 @@ export function calculateCVR(data: CVRData) {
     } else {
       systolicBloodPressure = data.systolicBloodPressure;
       totalCholesterol = data.totalCholesterol;
-      hdlCholesterol = data.hdlCholesterol;
+      hdlCholesterol = data.hdl;
     }
 
     const systolicBloodPressure2 = systolicBloodPressure ** 2;
