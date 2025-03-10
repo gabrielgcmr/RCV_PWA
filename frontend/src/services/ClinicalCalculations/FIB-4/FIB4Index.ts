@@ -1,22 +1,14 @@
-
-import { FIB4Mapper } from "./FIB4Mapper";
-import { FIB4Validator } from "./FIB4Validator";
-import { FIB4Calculator } from "./FIB4Calculator";
+import { mapFIB4Data } from "./FIB4Mapper";
+import { validateFIB4Data } from "./FIB4Validator";
+import { calculateFIB4 } from "./FIB4Calculator";
 import { PatientData } from "../../../interfaces/Interfaces";
 
-export class FIB4Index {
-  static calculateFIB4(patientData: PatientData, getExamValue: (name: string) => number): { fib4: number | null; errors: string[] } {
-    // Mapeia os dados do paciente
-    const mappedData = FIB4Mapper.mapPatientData(patientData, getExamValue);
+// Calcula o índice FIB-4.
+export function calculateFIB4Index(patientData: PatientData): { fib4: number | null; errors: string[] } {
+  const mappedData = mapFIB4Data(patientData);
+  const validation = validateFIB4Data(mappedData);
 
-    // Valida os dados antes do cálculo
-    const validation = FIB4Validator.validate(mappedData);
-    if (!validation.isValid) {
-      return { fib4: null, errors: validation.errors };
-    }
+  if (!validation.isValid) return { fib4: null, errors: validation.errors };
 
-    // Calcula o FIB-4 se os dados forem válidos
-    const fib4 = FIB4Calculator.calculate(mappedData);
-    return { fib4, errors: [] };
-  }
+  return { fib4: calculateFIB4(mappedData), errors: [] };
 }

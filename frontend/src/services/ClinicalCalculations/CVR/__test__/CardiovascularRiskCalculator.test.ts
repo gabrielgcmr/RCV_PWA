@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { CVRCalculator } from "../CVRCalculator";
-import { ICVRData } from "../ICVRData";
+import { ICVRData } from "../CVRData";
 
 describe("CardiovascularRiskCalculator", () => {
   const mockData: ICVRData = {

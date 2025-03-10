@@ -1,17 +1,30 @@
-import { useClinicalCalculations } from "../../../hooks/useClinicalCalculation";
-import { ErrorPopup } from "../../common/ErrorPopup";
 import { useState } from "react";
+import { calculateTFG } from "../../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
+import { calculateCVRIndex } from "../../../services/ClinicalCalculations/CVR/CVRIndex";
+import { calculateFIB4Index } from "../../../services/ClinicalCalculations/FIB-4/FIB4Index";
+import { usePatient } from "../../../hooks/usePatient";
+import { ErrorPopup } from "../../common/ErrorPopup";
+import { PatientData } from "../../../interfaces/Interfaces";
 
 export default function ClinicalCalculations() {
-  const { errors, calculateTFG, calculateRCV, calculateFIB4 } = useClinicalCalculations();
+  const { patientData } = usePatient();
+  const [errors, setErrors] = useState<{ TFG?: string[]; RCV?: string[]; FIB4?: string[] }>({});
   const [visibleError, setVisibleError] = useState<"TFG" | "RCV" | "FIB4" | null>(null);
 
+  const runCalculation = (label: "TFG" | "RCV" | "FIB4", calculateFn: (data: PatientData) => { errors: string[] }) => {
+    const result = calculateFn(patientData);
+    if (result.errors.length > 0) {
+      setErrors((prev) => ({ ...prev, [label]: result.errors }));
+      setVisibleError(label);
+    }
+  };
+
   const buttons: { label: "TFG" | "RCV" | "FIB4"; color: string; action: () => void }[] = [
-    { label: "TFG", color: "bg-blue-500", action: calculateTFG },
-    { label: "RCV", color: "bg-green-500", action: calculateRCV },
-    { label: "FIB4", color: "bg-yellow-500", action: calculateFIB4 },
+    { label: "TFG", color: "bg-blue-500", action: () => runCalculation("TFG", calculateTFG) },
+    { label: "RCV", color: "bg-green-500", action: () => runCalculation("RCV", calculateCVRIndex) },
+    { label: "FIB4", color: "bg-yellow-500", action: () => runCalculation("FIB4", calculateFIB4Index) },
   ];
-  
+
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-48 flex flex-col gap-2">
       <h2 className="text-sm font-bold text-white mb-2">📊 Cálculos Clínicos</h2>
@@ -20,12 +33,7 @@ export default function ClinicalCalculations() {
       {buttons.map(({ label, color, action }) => (
         <div key={label}>
           <button
-            onClick={() => {
-              action();
-              if (errors[label]?.length) {
-                setVisibleError(label);
-              }
-            }}
+            onClick={action}
             className={`px-1 py-1 text-xs ${color} text-white rounded hover:brightness-110 transition`}
           >
             {label}
@@ -39,7 +47,7 @@ export default function ClinicalCalculations() {
         </div>
       ))}
 
-      {/* Modal de erro flutuante (somente para o cálculo que gerou erro) */}
+      {/* Modal de erro flutuante */}
       {visibleError && errors[visibleError] && (
         <ErrorPopup errors={errors[visibleError] || []} onClose={() => setVisibleError(null)} />
       )}

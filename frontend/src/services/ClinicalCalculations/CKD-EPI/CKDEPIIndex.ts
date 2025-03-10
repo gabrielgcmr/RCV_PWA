@@ -1,23 +1,14 @@
-
 import { PatientData } from "../../../interfaces/Interfaces";
-import { CKDEPICalculator } from "./CKDEPICalculator";
-import { CKDEPIMapper } from "./CKDEPIMapper";
-import { CKDEPIValidator } from "./CKDEPIValidator";
+import { calculateCKDEPI } from "./CKDEPICalculator";
+import { mapCKDEPIData } from "./CKDEPIMapper";
+import { validateCKDEPIData } from "./CKDEPIValidator";
 
-export class CKDEPIIndex {
-    static calculateTFG(patientData: PatientData, getExamValue: (name: string) => number): { tfg: number | null; errors: string[] } {
-      // Mapeia os dados do paciente
-      const mappedData = CKDEPIMapper.mapPatientData(patientData, getExamValue);
-  
-      // Valida os dados mapeados
-      const validation = CKDEPIValidator.validate(mappedData);
-      if (!validation.isValid) {
-        return { tfg: null, errors: validation.errors };
-      }
-  
-      // Calcula a TFG com os dados validados
-      const tfg = CKDEPICalculator.calculate(mappedData);
-  
-      return { tfg, errors: [] };
-    }
-  }
+// Calcula a TFG pela equação CKD-EPI.
+export function calculateTFG(patientData: PatientData): { tfg: number | null; errors: string[] } {
+  const mappedData = mapCKDEPIData(patientData);
+  const validation = validateCKDEPIData(mappedData);
+
+  if (!validation.isValid) return { tfg: null, errors: validation.errors };
+
+  return { tfg: calculateCKDEPI(mappedData), errors: [] };
+}

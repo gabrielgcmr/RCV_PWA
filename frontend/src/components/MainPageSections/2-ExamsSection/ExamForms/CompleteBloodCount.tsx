@@ -8,7 +8,7 @@ export default function CompleteBloodCountForm() {
       {label: "Normal", value: "Normal" },
       {label: "Alterado", value: "Alterado"}
     ]),
-    createExamInput("platelets", "plaq.", "Plaquetas", "plaq."),
+    createExamInput("platelets", "plaq.", "Plaquetas (mil)", "plaq."),
   ];
 
   return <ExamProfileForm title="Hemograma" exams={CompleteBloodCount} />;

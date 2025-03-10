@@ -1,22 +1,18 @@
-import { IFIB4Data } from "./FIB4Data";
+import { FIB4Data } from "./FIB4Data";
 
-export class FIB4Validator {
-  static validate(data: IFIB4Data): { isValid: boolean; errors: string[] } {
-    const errors: string[] = [];
+// Valida os dados para o cálculo do FIB-4.
+export function validateFIB4Data(data: FIB4Data): { isValid: boolean; errors: string[] } {
+  const errors: string[] = [];
 
-    if (!data.age || data.age < 18 || data.age > 120) {
-      errors.push("A idade deve estar entre 18 e 120 anos.");
-    }
-    if (!data.ast || data.ast <= 0) {
-      errors.push("O valor de AST deve ser maior que 0.");
-    }
-    if (!data.alt || data.alt <= 0) {
-      errors.push("O valor de ALT deve ser maior que 0.");
-    }
-    if (!data.platelets || data.platelets <= 0) {
-      errors.push("O valor das plaquetas deve ser maior que 0.");
-    }
+  // Adiciona erro se a condição não for atendida.
+  const validate = (condition: boolean, message: string) => {
+    if (!condition) errors.push(message);
+  };
 
-    return { isValid: errors.length === 0, errors };
-  }
+  validate(data.age >= 18 && data.age <= 120, "A idade deve estar entre 18 e 120 anos.");
+  validate(data.ast > 0, "O valor de AST deve ser maior que 0.");
+  validate(data.alt > 0, "O valor de ALT deve ser maior que 0.");
+  validate(data.platelets > 0, "O valor das plaquetas deve ser maior que 0.");
+
+  return { isValid: errors.length === 0, errors };
 }

@@ -5,7 +5,7 @@ import {
   UrinalysisForm,
   GlucoseProfileForm,
 } from '../ExamForms';
-import CompleteBloodCountForm from '../ExamForms/CompleteBloodCount..tsx';
+import CompleteBloodCountForm from '../ExamForms/CompleteBloodCount.tsx';
 import LiverProfileForm from '../ExamForms/LiverProfile';
 
 export default function ExamsSection() {

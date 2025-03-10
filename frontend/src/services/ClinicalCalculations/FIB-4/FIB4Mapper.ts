@@ -1,13 +1,15 @@
 import { PatientData } from "../../../interfaces/Interfaces";
-import { IFIB4Data } from "./FIB4Data";
+import { FIB4Data } from "./FIB4Data";
 
-export class FIB4Mapper {
-  static mapPatientData(patientData: PatientData, getExamValue: (name: string) => number): IFIB4Data {
-    return {
-      age: Number(patientData.identification.age),
-      ast: getExamValue("AST"),
-      alt: getExamValue("ALT"),
-      platelets: getExamValue("platelets"),
-    };
-  }
+// Mapeia os dados do paciente para o cálculo do FIB-4.
+export function mapFIB4Data(patientData: PatientData): FIB4Data {
+  const getExamValue = (name: string): number =>
+    Number(patientData.complementaryExams.exams.find(exam => exam.name === name)?.value || 0);
+
+  return {
+    age: Number(patientData.identification.age),
+    ast: getExamValue("AST"),
+    alt: getExamValue("ALT"),
+    platelets: getExamValue("platelets"),
+  };
 }
