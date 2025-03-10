@@ -1,36 +1,26 @@
-import IdentificationForm from "../components/IdentificationForm";
-import PhysicalExamForm from "../components/PhysicalExamForm";
-import HabitsForm from "../components/HabitsForm";
-import LipidProfileForm from "../components/LipidProfileForm";
-import SummaryComponent from "../components/SummaryComponent";
-import ClipboadComponent from "../components/CopyboardComponent";
-import ExamDateForm from "../components/ExamDateForm";
+import { ExamSection } from "../components/MainPageSections/2-ExamsSection";
+import { IdentificationSection } from "../components/MainPageSections/1-IdentificationSection";
+import { OverviewSection } from "../components/MainPageSections/3-OverviewSection";
+import ClinicalCalculations from "../components/MainPageSections/4-ActionComponents/ClinicalCalculations";
 
 export default function MainPage() {
   return (
-    <div className="grid grid-cols-[1fr_2fr_2fr] gap-4 p-6 bg-zinc-900 min-h-screen h-full">
-      {/* Primeira Coluna - Identificação, Exame Físico e Hábitos de Vida */}
-      <div className="flex flex-col space-y-4">
-        <div className="bg-zinc-800 p-4 rounded-lg shadow space-y-4">
-          <IdentificationForm />
-          <PhysicalExamForm />
-          <HabitsForm />
-        </div>
+    <div className="grid grid-cols-[0.8fr_2fr_2fr_0.5fr] gap-4 p-2 bg-zinc-900 min-h-screen h-full">
+      
+      {/* Primeira e Segunda Coluna (Identificação + Exames) */}
+      <div className="grid grid-cols-[1fr_2fr] bg-zinc-800 gap-2 col-span-2 h-full rounded-lg shadow">
+        <IdentificationSection />
+        <ExamSection />
       </div>
 
-      {/* Segunda Coluna - Exames Complementares */}
-      <div className="bg-zinc-800 p-4 rounded-lg shadow h-full space-y-4">
-        <h2 className="text-lg font-bold mb-4 text-center">🧪 Exames Complementares</h2>
-        <ExamDateForm />
-        <LipidProfileForm />
+      {/* Terceira Coluna (Resumo do Paciente) */}
+      <OverviewSection />
+
+      {/* Quarta Coluna (Botões de Cálculo) */}
+      <div className="flex justify-end">
+        <ClinicalCalculations />
       </div>
 
-      {/* Terceira Coluna - Cálculo de Risco e Resumo */}
-      <div className="bg-zinc-800 p-4 rounded-lg shadow h-full space-y-4">
-        <h2 className="text-lg font-bold mb-4 text-center">📊 Resultado e Resumo</h2>
-        <SummaryComponent/>
-        <ClipboadComponent/>
-      </div>
     </div>
   );
 }

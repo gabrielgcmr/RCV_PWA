@@ -1,14 +1,14 @@
-import { IPatientData } from "../interfaces/IPatientData";
+import { PatientData } from "../interfaces/Interfaces";
 
 export class PatientDataService {
   /**
    * Atualiza um campo dentro do estado do paciente, garantindo que a estrutura seja preservada.
    */
-  static updatePatientData<T extends keyof IPatientData>(
-    patientData: IPatientData,
+  static updatePatientData<T extends keyof PatientData>(
+    patientData: PatientData,
     field: T,
-    value: Partial<IPatientData[T]> // 🔹 Permite atualizar apenas um ou vários campos sem sobrescrever os outros
-  ): IPatientData {
+    value: Partial<PatientData[T]> // 🔹 Permite atualizar apenas um ou vários campos sem sobrescrever os outros
+  ): PatientData {
     return {
       ...patientData,
       [field]: {
@@ -22,10 +22,10 @@ export class PatientDataService {
    * Adiciona ou atualiza um exame complementar no array de exames.
    */
   static updateComplementaryExam(
-    patientData: IPatientData,
+    patientData: PatientData,
     examName: string,
     examValue: string
-  ): IPatientData {
+  ): PatientData {
     const updatedExams = [...patientData.complementaryExams.exams];
     const examIndex = updatedExams.findIndex((exam) => exam.name === examName);
 

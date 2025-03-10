@@ -1,0 +1,1 @@
+export { default as ExamSection } from './Main/ExamSection';
