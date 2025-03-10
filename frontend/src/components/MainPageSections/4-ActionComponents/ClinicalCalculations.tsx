@@ -26,8 +26,8 @@ export default function ClinicalCalculations() {
   ];
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-48 flex flex-col gap-2">
-      <h2 className="text-sm font-bold text-white mb-2">📊 Cálculos Clínicos</h2>
+    <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-30 flex flex-col gap-2 mb-2">
+      <h2 className="text-sm font-bold text-center text-white mb-2">📊 Cálculos Clínicos</h2>
 
       {/* Botões de Cálculo */}
       {buttons.map(({ label, color, action }) => (

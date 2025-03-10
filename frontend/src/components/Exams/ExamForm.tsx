@@ -19,7 +19,7 @@ export default function ExamCategoryForm({ category, title }: ExamCategoryFormPr
 
   return (
     <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white">
-      <h2 className="text-lg font-bold mb-2">{title}</h2>
+      <h2 className="text-base font-bold mb-2">{title}</h2>
 
       {exams.length > 0 ? (
         <div className="grid">
