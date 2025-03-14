@@ -4,10 +4,10 @@ import RadioInput from "../common/inputs/RadioInput";
 import SelectInput from "../common/inputs/SelectInput";
 import TextInput from "../common/inputs/TextInput";
 
-export default function IdentificationForm() {
+function IdentificationSection() {
   const { patientData, updatePatientData } = usePatient();
 
-  const handleChange = (field: string, value: string | number) => {
+  const handleChange = (field: string, value: string | number | null ) => {
     updatePatientData("identification", { ...patientData.identification, [field]: value });
   };
 
@@ -19,7 +19,7 @@ export default function IdentificationForm() {
       <TextInput
         name="name"
         label="Nome"
-        value={patientData.identification.name || ""}
+        value={patientData.identification.name}
         onChange={handleChange}
         placeholder="Digite o nome do paciente"
         className="mb-2"
@@ -58,7 +58,7 @@ export default function IdentificationForm() {
       {/* Raça */}
       <SelectInput
         name="race"
-        value={patientData.identification.race || ""}
+        value={patientData.identification.race}
         onChange={handleChange}
         options={[
           { label: "Branco", value: "white" },
@@ -70,3 +70,5 @@ export default function IdentificationForm() {
     </div>
   );
 }
+
+export default IdentificationSection

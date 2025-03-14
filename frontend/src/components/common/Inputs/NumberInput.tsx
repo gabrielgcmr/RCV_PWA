@@ -11,20 +11,8 @@ const NumberInput: React.FC<NumberInputProps> = ({
   className = "",
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let inputValue = e.target.value;
-
-    // Substituir vírgula por ponto antes da conversão
-    inputValue = inputValue.replace(",", ".");
-
-    // Converter para número, se válido
-    const numericValue = inputValue === "" ? NaN : Number(inputValue);
-
-    if (inputValue === "") {
-        // Handle the empty string case if needed
-        onChange(name, 0); // or any other default value you prefer
-    } else if (!isNaN(numericValue)) {
-        onChange(name, numericValue);
-    }
+    let inputValue = e.target.value.replace(",", ".") ;
+    onChange(name,inputValue)
 };
 
 return (

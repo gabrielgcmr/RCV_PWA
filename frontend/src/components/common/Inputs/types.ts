@@ -18,8 +18,8 @@ export interface TextInputProps extends BaseInputProps {
 }
 
 export interface NumberInputProps extends BaseInputProps {
-  value: number;
-  onChange: (name: string, value: number) => void;
+  value: string | number ;
+  onChange: (name: string, value: string | number ) => void;
 }
 
 export interface RadioInputProps extends BaseInputProps {

@@ -1,6 +1,6 @@
-import { usePatient } from "../../../hooks/usePatient";
+import { usePatient } from "../../hooks/usePatient";
 
-export default function ExamDateForm() {
+function ExamDateForm() {
   const { patientData, updatePatientData } = usePatient();
 
   // Função para formatar a data no formato YYYY-MM-DD no horário local (Brasília - UTC-3)
@@ -36,3 +36,5 @@ export default function ExamDateForm() {
     </div>
   );
 }
+
+export default ExamDateForm

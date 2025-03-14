@@ -1,10 +1,10 @@
 import { usePatient } from "../../hooks/usePatient";
 import NumberInput  from "../common/inputs/NumberInput";
 
-export default function PhysicalExamForm() {
+function PhysicalExamSection() {
   const { patientData, updatePatientData } = usePatient();
 
-  const handleChange = (field: string, value: string | number) => {
+  const handleChange = (field: string, value: string | number | null) => {
     updatePatientData("physicalExam", { ...patientData.physicalExam, [field]: value });
   };
 
@@ -32,3 +32,5 @@ export default function PhysicalExamForm() {
     </div>
   );
 }
+
+export default PhysicalExamSection

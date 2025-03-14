@@ -1,14 +1,15 @@
 import { usePatient } from "../../hooks/usePatient";
 import  CheckboxInput  from "../common/inputs/CheckboxInputProps";
 
-export default function ProblemListForm() {
+function ProblemListSection() {
   const { patientData, updatePatientData } = usePatient();
 
   const problemOptions = [
     { name: "HAS", label: "Hipertensão Arterial (HAS)" },
     { name: "Diabetes", label: "Diabetes Mellitus (DM)" },
     { name: "Tabagismo", label: "Tabagismo" },
-    { name: "DHGNA", label: "DHGNA (NAFLD)"}
+    { name: "DHGNA", label: "DHGNA (NAFLD)"},
+    {name: "DRC", label:"DRC"}
   ];
 
   // Função simplificada para adicionar/remover problemas
@@ -40,3 +41,5 @@ export default function ProblemListForm() {
     </div>
   );
 }
+
+export default ProblemListSection

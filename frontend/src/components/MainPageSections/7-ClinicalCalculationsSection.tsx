@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { calculateCKDEPIIndex } from "../../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
-import { calculateCVRIndex } from "../../../services/ClinicalCalculations/CVR/CVRIndex";
-import { calculateFIB4Index } from "../../../services/ClinicalCalculations/FIB-4/FIB4Index";
-import { usePatient } from "../../../hooks/usePatient";
-import { ErrorPopup } from "../../common/ErrorPopup";
-import { PatientData } from "../../../interfaces/Interfaces";
+import { usePatient } from "../../hooks/usePatient";
+import { PatientData } from "../../interfaces/Interfaces";
+import { calculateCKDEPIIndex } from "../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
+import { calculateCVRIndex } from "../../services/ClinicalCalculations/CVR/CVRIndex";
+import { calculateFIB4Index } from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
+import { ErrorPopup } from "../common/ErrorPopup";
 
-export default function ClinicalCalculations() {
+function ClinicalCalculations() {
   const { patientData } = usePatient();
   const [errors, setErrors] = useState<{ TFG?: string[]; RCV?: string[]; FIB4?: string[] }>({});
   const [visibleError, setVisibleError] = useState<"TFG" | "RCV" | "FIB4" | null>(null);
@@ -54,3 +54,6 @@ export default function ClinicalCalculations() {
     </div>
   );
 }
+
+
+export default ClinicalCalculations

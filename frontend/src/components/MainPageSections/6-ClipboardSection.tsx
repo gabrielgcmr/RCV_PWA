@@ -1,6 +1,6 @@
-import { usePatient } from "../../../../hooks/usePatient";
+import { usePatient } from "../../hooks/usePatient";
 
-export default function ClipboardComponent() {
+ function ClipboardSection() {
   const { patientData, hasProblem } = usePatient();
 
   const findExamWithAbbreviation = () => {
@@ -22,14 +22,7 @@ export default function ClipboardComponent() {
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
-      <h2 className="text-lg font-bold mb-4">🛑LISTA DE PROBLEMAS</h2>
-
-      {/* Lista de Problemas */}
-      {hasProblem("HAS") && (<p><strong>HAS:</strong> Presente</p>)}
-      {hasProblem("Diabetes") && (<p><strong>Diabetes:</strong> Presente</p>)}
-      {hasProblem("Tabagismo") && (<p><strong>Tabagismo:</strong> Presente</p>)}
-
-      <h3 className="text-lg font-bold mt-4">🧪 EXAMES COMPLEMENTARES</h3>
+      <h3 className="text-lg font-bold gap-2">🧪 EXAMES COMPLEMENTARES</h3>
       <ul>
         <li>
           <strong>Imagem:</strong> Nenhuma imagem informada
@@ -49,3 +42,6 @@ export default function ClipboardComponent() {
     </div>
   );
 }
+
+
+export default ClipboardSection

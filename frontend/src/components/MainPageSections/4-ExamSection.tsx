@@ -1,7 +1,7 @@
-import ExamForm from '../../Exams/ExamForm.tsx';
-import ExamDate from './ExamDate.tsx';
+import ExamDate from "../Exams/ExamDate";
+import ExamForm from "../Exams/ExamForm";
 
-export default function ExamsSection() {
+function ExamsSection() {
   return (
     <div className=" p-2 bg-zinc-700 rounded-lg shadow-md mb-2 ">
       <h2 className="text-lg font-bold p-2 text-center">
@@ -34,3 +34,5 @@ export default function ExamsSection() {
     </div>
   );
 }
+
+export default ExamsSection
