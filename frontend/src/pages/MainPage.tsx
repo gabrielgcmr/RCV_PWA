@@ -1,9 +1,9 @@
 import { ExamSection } from "../components/MainPageSections/2-ExamsSection";
 import { OverviewSection } from "../components/MainPageSections/3-OverviewSection";
 import ClinicalCalculations from "../components/MainPageSections/4-ActionComponents/ClinicalCalculations";
-import IdentificationForm from "../components/MainPageSections/1-IdentificationSection/Forms/IdentificationForm";
-import ProblemListForm from "../components/MainPageSections/1-IdentificationSection/Forms/ProblemListForm";
-import PhysicalExamForm from "../components/MainPageSections/1-IdentificationSection/Forms/PhysicalExamForm";
+import IdentificationForm from "../components/MainPageSections/1-IdentificationForm";
+import PhysicalExamForm from "../components/MainPageSections/2-PhysicalExamForm";
+import ProblemListForm from "../components/MainPageSections/3-ProblemListForm";
 
 export default function MainPage() {
   return (

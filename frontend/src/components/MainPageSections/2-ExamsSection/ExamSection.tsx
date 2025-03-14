@@ -1,5 +1,5 @@
-import ExamForm from '../../../Exams/ExamForm.tsx';
-import ExamDate from '../ExamDate.tsx';
+import ExamForm from '../../Exams/ExamForm.tsx';
+import ExamDate from './ExamDate.tsx';
 
 export default function ExamsSection() {
   return (
@@ -29,6 +29,7 @@ export default function ExamsSection() {
         <ExamForm category='Vitamins' title='Vitaminas'/>
         <ExamForm category='CBC' title='Hemograma'/>
         <ExamForm category='Urinalysis' title= 'EAS'/>
+        <ExamForm category='ThyroidProfile' title= 'Perfil Tireoideano'/>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
-import { TextInputProps } from "./types";
+import { NumberInputProps} from "./types";
 
-export const NumberInput: React.FC<TextInputProps> = ({
+const NumberInput: React.FC<NumberInputProps> = ({
   name,
   label,
   placeholder = "",
@@ -46,3 +46,5 @@ return (
     </div>
 );
 };
+
+export default NumberInput

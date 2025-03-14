@@ -1,1 +1,1 @@
-export { default as ExamSection } from './Main/ExamSection';
+export { default as ExamSection } from './ExamSection';

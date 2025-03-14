@@ -1,7 +1,7 @@
 import React from "react";
 import { SelectInputProps } from "./types";
 
-export const SelectInput: React.FC<SelectInputProps> = ({
+ const SelectInput: React.FC<SelectInputProps> = ({
   name,
   value,
   disabled = false,
@@ -29,3 +29,5 @@ export const SelectInput: React.FC<SelectInputProps> = ({
     </select>
   );
 };
+
+export default SelectInput

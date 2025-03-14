@@ -1,5 +1,5 @@
-import { usePatient } from "../../../../hooks/usePatient";
-import { NumberInput } from "../../../common/Inputs/NumberInput";
+import { usePatient } from "../../hooks/usePatient";
+import NumberInput  from "../common/inputs/NumberInput";
 
 export default function PhysicalExamForm() {
   const { patientData, updatePatientData } = usePatient();
@@ -16,16 +16,16 @@ export default function PhysicalExamForm() {
       <NumberInput
       name = "systolicBP"
       label = "Pressão Arterial Sistólica"
-      value = {patientData.physicalExam.systolicBP || ""}
+      value = {patientData.physicalExam.systolicBP}
       onChange = {handleChange}
       placeholder = "PAS"
       />
 
       {/* Pressão Arterial Diastólica */}
       <NumberInput
-      name = "DiastolicBP"
+      name = "diastolicBP"
       label = "Pressão Arterial Diastolica"
-      value = {patientData.physicalExam.diastolicBP || ""}
+      value = {patientData.physicalExam.diastolicBP}
       onChange = {handleChange}
       placeholder = "PAD"
       />

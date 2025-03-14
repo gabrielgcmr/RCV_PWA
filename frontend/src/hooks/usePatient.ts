@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PatientContext } from "../context/PatientContext";
 import { examDictionary } from "../constants/examDictionary";
 
@@ -9,11 +9,6 @@ export function usePatient() {
   }
 
   const { patientData, updatePatientData } = context;
-
-  useEffect(() => {
-    console.log(" usePatient foi montado! (isso deve aparecer no preview)");
-  }, []);
-
    // ====== FUNÇÕES DE EXAMES ======
   const findExam = (name: string) => {
     return patientData?.complementaryExams?.exams.find(exam => exam.name === name)?.value;
@@ -49,15 +44,12 @@ export function usePatient() {
       console.warn(" Tentativa de acessar `patientData` antes de estar pronto.");
       return;
     }
-    console.log(" Alterando exame:", name, value);
     const examExists = patientData.complementaryExams.exams.some(
       (exam) => exam.name === name
     );
     console.log(" ExamDictionary carregado:", examDictionary);
-    // 🔹 Pegamos a abreviação correta do dicionário caso não tenha sido passada
     const examAbbreviation = abbreviation || examDictionary[name]?.abbreviation || "";
-    console.log(" Exame já existe?", examExists);
-    console.log(" Abreviação do exame:", examAbbreviation);
+
     if (examExists) {
       updateExam(name, value, examAbbreviation); // 🔹 Atualizamos incluindo a abreviação
     } else {

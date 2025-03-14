@@ -1,27 +1,31 @@
-export interface Option {
+interface Option {
     label: string;
     value: string;
   }
   
-export interface BaseInputProps {
+interface BaseInputProps {
   id?:string
   name: string;
   label?: string;
   placeholder?: string;
   disabled?: boolean;
-  errorMessage?: string;
   className?: string;
 }
 
 export interface TextInputProps extends BaseInputProps {
-  value: string | number;
-  onChange: (name: string, value: string | number) => void;
+  value: string;
+  onChange: (name: string, value: string) => void;
+}
+
+export interface NumberInputProps extends BaseInputProps {
+  value: number;
+  onChange: (name: string, value: number) => void;
 }
 
 export interface RadioInputProps extends BaseInputProps {
-  value: string | number;
+  value: string;
   checked: boolean;
-  onChange: (name: string, value: string | number) => void;
+  onChange: (name: string, value: string) => void;
 }
 
 export interface CheckboxInputProps extends BaseInputProps {
@@ -30,9 +34,9 @@ export interface CheckboxInputProps extends BaseInputProps {
 }
 
 export interface SelectInputProps extends BaseInputProps {
-  value: string | number;
+  value: string ;
   options: Option[];
-  onChange: (name: string, value: string | number) => void;
+  onChange: (name: string, value: string ) => void;
 }
 
 export type InputProps = TextInputProps | SelectInputProps | RadioInputProps | CheckboxInputProps;

@@ -1,7 +1,7 @@
 import React from "react";
 import { CheckboxInputProps } from "./types";
 
-export const CheckboxInput: React.FC<CheckboxInputProps> = ({
+const CheckboxInput: React.FC<CheckboxInputProps> = ({
   id,
   name,
   label,
@@ -31,3 +31,5 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = ({
     </label>
   );
 };
+
+export default CheckboxInput

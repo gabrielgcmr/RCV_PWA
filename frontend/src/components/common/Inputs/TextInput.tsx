@@ -1,7 +1,7 @@
 import React from "react";
 import { TextInputProps } from "./types";
 
-export const TextInput: React.FC<TextInputProps> = ({
+const TextInput: React.FC<TextInputProps> = ({
   name,
   label,
   placeholder = "",
@@ -35,3 +35,5 @@ export const TextInput: React.FC<TextInputProps> = ({
     </div>
   );
 };
+
+export default TextInput

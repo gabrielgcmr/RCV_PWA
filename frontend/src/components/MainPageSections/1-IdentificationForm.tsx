@@ -1,8 +1,8 @@
-import { usePatient } from "../../../../hooks/usePatient";
-import { RadioInput } from "../../../common/Inputs/RadioInput";
-import { TextInput } from "../../../common/Inputs/TextInput";
-import { NumberInput } from "../../../common/Inputs/NumberInput";
-import { SelectInput } from "../../../common/Inputs/SelectInput";
+import { usePatient } from "../../hooks/usePatient";
+import NumberInput from "../common/inputs/NumberInput";
+import RadioInput from "../common/inputs/RadioInput";
+import SelectInput from "../common/inputs/SelectInput";
+import TextInput from "../common/inputs/TextInput";
 
 export default function IdentificationForm() {
   const { patientData, updatePatientData } = usePatient();
@@ -29,7 +29,7 @@ export default function IdentificationForm() {
       <NumberInput
         name="age"
         label="Idade"
-        value={patientData.identification.age || ""}
+        value={patientData.identification.age}
         onChange={handleChange}
         placeholder="Digite a idade"
         className="mb-2"

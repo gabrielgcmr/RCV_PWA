@@ -7,7 +7,7 @@ export function PatientProvider({ children }: { children: ReactNode }) {
   const [patientData, setPatientData] = useState<PatientData>({
     identification: {
       name: "",
-      age: "",
+      age: null,
       gender: "",
       race: "",
     },
@@ -15,8 +15,8 @@ export function PatientProvider({ children }: { children: ReactNode }) {
       problems: [],
     },
     physicalExam: {
-      systolicBP: "",
-      diastolicBP: "",
+      systolicBP: null,
+      diastolicBP: null,
     },
     complementaryExams: {
       date: null,

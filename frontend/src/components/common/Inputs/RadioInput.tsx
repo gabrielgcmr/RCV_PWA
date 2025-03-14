@@ -1,7 +1,7 @@
 import React from "react";
 import { RadioInputProps } from "./types";
 
-export const RadioInput: React.FC<RadioInputProps> = ({
+const RadioInput: React.FC<RadioInputProps> = ({
   name,
   value,
   label,
@@ -27,3 +27,5 @@ export const RadioInput: React.FC<RadioInputProps> = ({
     </label>
   );
 };
+
+export default RadioInput

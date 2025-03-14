@@ -29,6 +29,25 @@ export const examDictionary : Record<string, ExamDefinition> = {
     // Glucose Profile
     fastingGlucose: { label: "Glicemia Jejum", abbreviation: "GJ", category: "GlucoseProfile",inputType: "input" },
     hba1c: { label: "HbA1c", abbreviation: "HbA1c", category: "GlucoseProfile",inputType: "input" },
+
+    // Thyroid Profile
+    tsh: { label: "TSH", abbreviation: "TSH", category: "ThyroidProfile", inputType: "input" },
+    freeT4: { label: "T4 Livre", abbreviation: "T4L", category: "ThyroidProfile", inputType: "input" },
+    //totalT4: { label: "T4 Total", abbreviation: "T4T", category: "ThyroidProfile", inputType: "input" },
+    //freeT3: { label: "T3 Livre", abbreviation: "T3L", category: "ThyroidProfile", inputType: "input" },
+    //totalT3: { label: "T3 Total", abbreviation: "T3T", category: "ThyroidProfile", inputType: "input" },
+    //antiTPO: { label: "Anti-TPO", abbreviation: "Anti-TPO", category: "ThyroidProfile", inputType: "input" },
+    //antiTG: { label: "Anti-TG", abbreviation: "Anti-TG", category: "ThyroidProfile", inputType: "input" },
+
+    // Vitaminas
+    vitaminD: { label: "Vitamina D", abbreviation: "Vit. D", category: "Vitamins", inputType: "input" },
+    vitaminB12: { label: "Vitamina B12", abbreviation: "Vit. B12", category: "Vitamins", inputType: "input" },
+
+    // Eletrólitos
+    potassium: { label: "Potássio", abbreviation: "K", category: "Electrolytes", inputType: "input" },
+    sodium: { label: "Sódio", abbreviation: "Na", category: "Electrolytes", inputType: "input" },
+    calcium: { label: "Cálcio", abbreviation: "Ca", category: "Electrolytes", inputType: "input" },
+    magnesium: { label: "Magnésio", abbreviation: "Mg", category: "Electrolytes", inputType: "input" },
   
     // CBC
     CBC: { label: "Hemograma", abbreviation: "Hemograma", category: "CBC",inputType: "select",
@@ -47,14 +66,4 @@ export const examDictionary : Record<string, ExamDefinition> = {
       ]
      },
     
-     // Vitaminas
-    vitaminD: { label: "Vitamina D", abbreviation: "Vit. D", category: "Vitamins", inputType: "input" },
-    vitaminB12: { label: "Vitamina B12", abbreviation: "Vit. B12", category: "Vitamins", inputType: "input" },
-
-    // Eletrólitos
-    potassium: { label: "Potássio", abbreviation: "K", category: "Electrolytes", inputType: "input" },
-    sodium: { label: "Sódio", abbreviation: "Na", category: "Electrolytes", inputType: "input" },
-    calcium: { label: "Cálcio", abbreviation: "Ca", category: "Electrolytes", inputType: "input" },
-    magnesium: { label: "Magnésio", abbreviation: "Mg", category: "Electrolytes", inputType: "input" },
-
   };
