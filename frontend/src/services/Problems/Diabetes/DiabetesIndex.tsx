@@ -22,6 +22,7 @@ function DiabetesIndex() {
   // Pacientes com diabetes
   if(hasDiabetes){
     if(hba1c !== undefined){
+      if (hba1c ===0 ) return <li><strong>DM: </strong> Presente</li>
       if (hba1c< 7.0) return <li><strong>DM: </strong> Presente (controlado)</li>
       if (hba1c >= 7) return <li><strong>DM: </strong> Presente (descontrolado)</li>
       return <li><strong>DM: </strong> Presente</li>

@@ -21,10 +21,10 @@ function SummarySection() {
       
       <HypertensionIndex/>
       <DiabetesIndex/>
-      {hasProblem("Tabagismo") && <p><strong>Tabagismo:</strong> Presente</p>}
-      {hasProblem("DHGNA") && <p><strong>DHGNA:</strong> Presente</p>}
-      {hasProblem("DRC") && <p><strong>DRC:</strong> Presente</p>}
-      <p></p>
+      {hasProblem("Tabagismo") && <li><strong>Tabagismo:</strong> Presente</li>}
+      {hasProblem("DHGNA") && <li><strong>DHGNA:</strong> Presente</li>}
+      {hasProblem("DRC") && <li><strong>DRC:</strong> Presente</li>}
+
       {/* Exibe o risco cardiovascular */}
       {CVRRealRisk !== undefined && <p> <strong>RCV:</strong> Risco Atual: {CVRRealRisk.toFixed(2)}% - ({CVRcategory}) || Risco Ideal: {CVRIdealRisk.toFixed(2)}% </p>}
 
