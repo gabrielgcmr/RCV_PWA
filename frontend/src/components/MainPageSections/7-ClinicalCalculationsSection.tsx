@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { usePatient } from "../../hooks/usePatient";
+import  usePatient  from "../../hooks/usePatient";
 import { PatientData } from "../../interfaces/Interfaces";
 import { calculateCKDEPIIndex } from "../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
 import { calculateCVRIndex } from "../../services/ClinicalCalculations/CVR/CVRIndex";

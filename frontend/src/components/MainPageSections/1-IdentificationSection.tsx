@@ -1,4 +1,4 @@
-import { usePatient } from "../../hooks/usePatient";
+import  usePatient  from "../../hooks/usePatient";
 import NumberInput from "../common/inputs/NumberInput";
 import RadioInput from "../common/inputs/RadioInput";
 import SelectInput from "../common/inputs/SelectInput";

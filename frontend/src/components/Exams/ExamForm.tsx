@@ -1,6 +1,6 @@
 
 import { examDictionary } from "../../constants/examDictionary";
-import { usePatient } from "../../hooks/usePatient";
+import  usePatient  from "../../hooks/usePatient";
 import { ExamInput } from "./ExamInput";
 import { ExamSelectInput } from "./ExamSelectInput";
 

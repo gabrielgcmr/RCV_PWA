@@ -1,7 +1,7 @@
-import { usePatient } from "../../hooks/usePatient";
+import  usePatient  from "../../hooks/usePatient";
 
  function ClipboardSection() {
-  const { patientData, hasProblem } = usePatient();
+  const { patientData } = usePatient();
 
   const findExamWithAbbreviation = () => {
     if (!patientData?.complementaryExams?.exams) return "";

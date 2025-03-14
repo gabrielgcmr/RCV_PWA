@@ -1,7 +1,9 @@
-import { usePatient } from "../../hooks/usePatient";
+import  usePatient  from "../../hooks/usePatient";
 import { calculateCKDEPIIndex } from "../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
 import { calculateCVRIndex } from "../../services/ClinicalCalculations/CVR/CVRIndex";
 import { calculateFIB4Index } from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
+import DiabetesIndex from "../../services/Problems/Diabetes/DiabetesIndex";
+import HypertensionIndex from "../../services/Problems/Hypertension/HypertensionIndex";
 
 function SummarySection() {
   const { patientData, hasProblem } = usePatient();
@@ -13,11 +15,12 @@ function SummarySection() {
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md mb-2">
-      <h2 className="text-lg font-bold mb-4">🛑LISTA DE PROBLEMAS</h2>
+      <h2 className="text-base font-bold mb-2">🛑LISTA DE PROBLEMAS</h2>
 
       {/* Exibe problemas de saúde */}
-      {hasProblem("HAS") && <p><strong>HAS:</strong> Presente</p>}
-      {hasProblem("Diabetes") && <p><strong>Diabetes:</strong> Presente</p>}
+      
+      <HypertensionIndex/>
+      <DiabetesIndex/>
       {hasProblem("Tabagismo") && <p><strong>Tabagismo:</strong> Presente</p>}
       {hasProblem("DHGNA") && <p><strong>DHGNA:</strong> Presente</p>}
       {hasProblem("DRC") && <p><strong>DRC:</strong> Presente</p>}

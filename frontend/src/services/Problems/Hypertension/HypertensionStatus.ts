@@ -5,11 +5,16 @@
  * - Controlada: PAS < 140 mmHg e PAD < 90 mmHg
  * - Descontrolada: PAS ≥ 140 mmHg ou PAD ≥ 90 mmHg
  */
-function hypertensionStatusChecker(SBP: number, DBP?: number): string {
-  if (SBP >= 140 || (DBP !== undefined && DBP >= 90)) {
-    return "Pressão Descontrolada";
+function HypertensionStatusChecker(SBP: number, DBP?: number): string {
+  if (!SBP || SBP <= 0) {
+    return "";
   }
-  return "Pressão Controlada";
+
+  if (SBP < 140 && (DBP === undefined || DBP < 90)) {
+    return " (controlada)";
+  }
+
+  return " (descontrolada)";
 }
 
-export default hypertensionStatusChecker;
+export default HypertensionStatusChecker;

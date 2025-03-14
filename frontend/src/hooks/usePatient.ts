@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { PatientContext } from "../context/PatientContext";
 import { examDictionary } from "../constants/examDictionary";
 
-export function usePatient() {
+function usePatient() {
   const context = useContext(PatientContext);
   if (!context) {
     throw new Error("usePatient deve ser usado dentro de um PatientProvider");
@@ -65,3 +65,4 @@ export function usePatient() {
   return { ...context, findExam, getExamValue,handleExamChange,hasProblem };
 }
 
+export default usePatient
