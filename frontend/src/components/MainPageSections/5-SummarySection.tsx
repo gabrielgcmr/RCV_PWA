@@ -4,6 +4,7 @@ import { calculateCVRIndex } from "../../services/ClinicalCalculations/CVR/CVRIn
 import { calculateFIB4Index } from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
 import DiabetesIndex from "../../services/Problems/Diabetes/DiabetesIndex";
 import HypertensionIndex from "../../services/Problems/Hypertension/HypertensionIndex";
+import TabagismIndex from "../../services/Problems/Tabagism/Tabagism";
 
 function SummarySection() {
   const { patientData, hasProblem } = usePatient();
@@ -21,7 +22,8 @@ function SummarySection() {
       
       <HypertensionIndex/>
       <DiabetesIndex/>
-      {hasProblem("Tabagismo") && <li><strong>Tabagismo:</strong> Presente</li>}
+      <TabagismIndex/>
+      
       {hasProblem("DHGNA") && <li><strong>DHGNA:</strong> Presente</li>}
       {hasProblem("DRC") && <li><strong>DRC:</strong> Presente</li>}
 
