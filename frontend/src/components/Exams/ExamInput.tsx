@@ -9,7 +9,7 @@ export function ExamInput(props: ExamInputProps) {
 
   return (
     <div className="mb-2">
-      <label className="block text-sm font-medium mb-1" htmlFor={props.name}>
+      <label className="block text-sm mb-1" htmlFor={props.name}>
         {props.label}
       </label>
       <input

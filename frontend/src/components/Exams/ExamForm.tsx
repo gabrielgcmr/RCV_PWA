@@ -18,8 +18,8 @@ export default function ExamCategoryForm({ category, title }: ExamCategoryFormPr
     .map(([key, exam]) => ({ key, ...exam }));
 
   return (
-    <div className="p-2 bg-zinc-600 rounded-lg shadow-md text-white">
-      <h2 className="text-base font-bold mb-2">{title}</h2>
+    <div className="p-1.5 bg-zinc-600 rounded-lg shadow-md text-white">
+      <h2 className="text-base font-medium mb-1">{title}</h2>
 
       {exams.length > 0 ? (
         <div className="grid">

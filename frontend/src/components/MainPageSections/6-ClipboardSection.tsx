@@ -1,47 +1,63 @@
-import  usePatient  from "../../hooks/usePatient";
+import { examDictionary } from "../../constants/examDictionary";
+import usePatient from "../../hooks/usePatient";
 
- function ClipboardSection() {
+function ClipboardSection() {
   const { patientData } = usePatient();
 
-  const findExamWithAbbreviation = () => {
-    if (!patientData?.complementaryExams?.exams) return "";
+  if (!patientData?.complementaryExams?.exams) return null;
 
-    return patientData.complementaryExams.exams
-      .filter((exam) => exam.value !== undefined && exam.value !== "")
-      .map((exam) => `${exam.abbreviation}: ${exam.value}`)
-      .join("; ");
-  };
+  // Criar um mapeamento reverso de abbreviations para categories
+  const abbreviationToCategory: Record<string, string> = Object.values(examDictionary).reduce(
+    (acc, exam) => {
+      acc[exam.abbreviation] = exam.category;
+      return acc;
+    },
+    {} as Record<string, string>
+  );
 
-  const bioquimicaExams = findExamWithAbbreviation();
-  const shouldShowLabData = bioquimicaExams;
+  // Agrupar os exames por categoria
+  const categorizedExams: Record<string, string[]> = {};
 
-    // Verifica se a data é uma instância válida de Date
-    const examDate = patientData.complementaryExams.date instanceof Date
-    ? patientData.complementaryExams.date.toLocaleDateString("pt-BR")
-    : "?";
+  patientData.complementaryExams.exams.forEach((exam) => {
+    if (exam.value !== undefined && exam.value !== "" && exam.abbreviation) {
+      const category = abbreviationToCategory[exam.abbreviation] || "Outros";
+      const formattedExam = `${exam.abbreviation}: ${exam.value}`;
+
+      if (!categorizedExams[category]) {
+        categorizedExams[category] = [];
+      }
+      categorizedExams[category].push(formattedExam);
+    }
+  });
+
+  // Verifica se há exames a serem exibidos
+  const hasExams = Object.keys(categorizedExams).length > 0;
+
+  // Verifica se a data é válida
+  const examDate =
+    patientData.complementaryExams.date instanceof Date
+      ? patientData.complementaryExams.date.toLocaleDateString("pt-BR")
+      : "?";
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
       <h3 className="text-lg font-bold gap-2">🧪 EXAMES COMPLEMENTARES</h3>
-      <ul>
         <li>
-          <strong>Imagem:</strong> Nenhuma imagem informada
+          <strong>Imagem:</strong> Nenhum
         </li>
-      </ul>
-      <ul>
-        <li>
+      <li>
+      {hasExams && (
+        <>
           <strong>Bioquímica:</strong>
-          {shouldShowLabData && (
-            <p>
-              LAB ({examDate}):{" "}
-              {bioquimicaExams}
-            </p>
-          )}
-        </li>
-      </ul>
+          <li className="font-semibold">Lab: {examDate}</li>
+          {Object.entries(categorizedExams).map(([, exams]) => (
+              <li>{exams.join("; ")}</li>
+          ))}
+        </>
+      )}
+    </li>  
     </div>
   );
 }
 
-
-export default ClipboardSection
+export default ClipboardSection;

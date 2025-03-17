@@ -3,7 +3,7 @@ import HypertensionStatusChecker from "./HypertensionStatus";
 
 function HypertensionIndex(){
   const { patientData, hasProblem } = usePatient();
-  const hasHypertension=hasProblem("HAS")
+  const hasHypertension=hasProblem("hypertension")
 
   if (!hasHypertension) return null;
 

@@ -14,7 +14,7 @@ function ExamDateForm() {
 
   return (
     <div className="p-4 bg-zinc-600 rounded-lg shadow-md text-white">
-      <label htmlFor="exam-date" className="block text-base font-bold mb-2">
+      <label htmlFor="exam-date" className="block text-base font-bold mb-1">
         Data dos exames:
       </label>
 
@@ -30,7 +30,7 @@ function ExamDateForm() {
             updatePatientData("complementaryExams", { date: null }); // Define explicitamente como "sem data"
           }
         }}
-        className="w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full p-1 border rounded mb-1 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Data dos exames"
       />
     </div>

@@ -5,11 +5,11 @@ function ProblemListSection() {
   const { patientData, updatePatientData } = usePatient();
 
   const problemOptions = [
-    { name: "HAS", label: "Hipertensão Arterial (HAS)" },
-    { name: "Diabetes", label: "Diabetes Mellitus (DM)" },
-    { name: "Tabagismo", label: "Tabagismo" },
-    { name: "DHGNA", label: "DHGNA (NAFLD)"},
-    {name: "DRC", label:"DRC"}
+    { name: "hypertension", label: "Hipertensão Arterial (HAS)" },
+    { name: "diabetes", label: "Diabetes Mellitus (DM)" },
+    { name: "tabagism", label: "Tabagismo" },
+    { name: "NAFLD", label: "DHGNA"},
+    {name: "CKD", label:"DRC"}
   ];
 
   // Função simplificada para adicionar/remover problemas

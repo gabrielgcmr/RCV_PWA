@@ -22,9 +22,9 @@ export function mapPatientData(patientData: PatientData) {
     gender: patientData.identification.gender.toLowerCase(),
     race: patientData.identification.race,
     systolicBloodPressure: Number(patientData.physicalExam.systolicBP),
-    onHypertensionMed: hasProblem("HAS") ? 1 : 0,
-    smoking: hasProblem("Tabagismo") ? 1 : 0,
-    diabetes: hasProblem("Diabetes") ? 1 : 0,
+    onHypertensionMed: hasProblem("hypertension") ? 1 : 0,
+    smoking: hasProblem("tabagism") ? 1 : 0,
+    diabetes: hasProblem("diabetes") ? 1 : 0,
     totalCholesterol: getExamValue("totalCholesterol"),
     hdl: getExamValue("hdl"),
   };

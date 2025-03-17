@@ -2,7 +2,7 @@ import usePatient from "../../../hooks/usePatient";
 
 function DiabetesIndex() {
   const { patientData, hasProblem } = usePatient();
-  const hasDiabetes = hasProblem("Diabetes");
+  const hasDiabetes = hasProblem("diabetes");
   const fastingGlucose = Number(patientData.complementaryExams.exams.find(exam => exam.name === "fastingGlucose")?.value ?? undefined);
   const hba1c = Number(patientData.complementaryExams.exams.find(exam => exam.name === "hba1c")?.value ?? undefined);
   // Pacientes sem diabetes
@@ -15,7 +15,7 @@ function DiabetesIndex() {
     if (fastingGlucose !== undefined && fastingGlucose!== 0) {
       if (fastingGlucose < 100) return <li><strong>DM: </strong> Ausente</li>;
       if (fastingGlucose < 126) return <li><strong>DM: </strong> Pré-diabetes</li>
-      if (fastingGlucose >- 126 )return <li><strong>DM: </strong> Diabetes?</li>
+      if (fastingGlucose >= 126 )return <li><strong>DM: </strong> Diabetes?</li>
     }
   }
 

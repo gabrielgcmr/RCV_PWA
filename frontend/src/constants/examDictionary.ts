@@ -24,7 +24,7 @@ export const examDictionary : Record<string, ExamDefinition> = {
     creatinine: { label: "Creatinina", abbreviation: "CR", category: "RenalProfile",inputType: "input" },
     urea: { label: "Ureia", abbreviation: "UR", category: "RenalProfile",inputType: "input" },
     uricAcid: { label: "Ácido Úrico", abbreviation: "AU", category: "RenalProfile",inputType: "input" },
-    microalbuminuria: { label: "Microalbuminúria", abbreviation: "Microalb.", category: "RenalProfile", inputType: "input" },
+    UACR: { label: "R. A/C", abbreviation: "R. A/C", category: "RenalProfile", inputType: "input" },
   
     // Glucose Profile
     fastingGlucose: { label: "Glicemia Jejum", abbreviation: "GJ", category: "GlucoseProfile",inputType: "input" },
@@ -56,7 +56,7 @@ export const examDictionary : Record<string, ExamDefinition> = {
       { label: "Alterado", value: "alterado" }
       ]
     },
-    platelets:{label:"Plaquetas (mil)", abbreviation: "Plaq.", category: "CBC", inputType: "input"},
+    platelets:{label:"Plaquetas (mil)", abbreviation: "Plaq (mil)", category: "CBC", inputType: "input"},
 
     //  EAS
     urinalysis: { label: "EAS", abbreviation: "EAS", category: "Urinalysis",inputType: "select",
@@ -65,5 +65,10 @@ export const examDictionary : Record<string, ExamDefinition> = {
         { label: "Alterado", value: "alterado" }
       ]
      },
+    // pcr E vhs
+    pcr:{ label: "PCR", abbreviation: "PCR", category:"Inflamatory", inputType:"input"},
+    vhs:{ label: "VHS", abbreviation: "VHS", category:"Inflamatory", inputType:"input"}
+    
+    //Cinética do Ferro
     
   };

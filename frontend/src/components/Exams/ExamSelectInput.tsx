@@ -1,6 +1,6 @@
 import { ExamSelectInputProps } from "./types";
 
-const baseInputClasses = "w-full p-2 border rounded mb-2 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200";
+const baseInputClasses = "block p-1 border rounded mb-1 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200";
 
 export function ExamSelectInput({
   name,
@@ -12,7 +12,7 @@ export function ExamSelectInput({
   options = [],
 }: ExamSelectInputProps) {
   return (
-    <label className="block text-sm font-medium mb-1" htmlFor={name}>
+    <label className="block text-sm" htmlFor={name}>
       {label}
       <select
         id={name}
@@ -20,7 +20,7 @@ export function ExamSelectInput({
         aria-label={label}
         disabled={disabled}
         onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
-        className={`${baseInputClasses} ${disabled ? "opacity-50" : ""}`}
+        className={`${baseInputClasses} ${disabled ? "opacity-10" : ""}`}
       >
         <option value="">Selecione</option>
         {options.map((option) => (
