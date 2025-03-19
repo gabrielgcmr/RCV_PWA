@@ -1,5 +1,5 @@
-import ExamDate from "../exams/ExamDate";
-import ExamForm from "../exams/ExamForm";
+import ExamDate from "../exam/ExamDate";
+import ExamForm from "../exam/ExamForm";
 
 function ExamsSection() {
   return (
