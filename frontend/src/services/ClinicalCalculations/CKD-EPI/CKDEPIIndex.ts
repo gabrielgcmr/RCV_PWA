@@ -4,11 +4,12 @@ import { mapCKDEPIData } from "./CKDEPIMapper";
 import { validateCKDEPIData } from "./CKDEPIValidator";
 
 // Calcula a TFG pela equação CKD-EPI.
-export function calculateCKDEPIIndex(patientData: PatientData): { tfg: number | undefined; errors: string[] } {
+export function calculateCKDEPIIndex(patientData: PatientData): { eGFR: number | undefined; errors: string[] } {
   const mappedData = mapCKDEPIData(patientData);
   const validation = validateCKDEPIData(mappedData);
+  const eGFR = calculateCKDEPI(mappedData)
 
-  if (!validation.isValid) return { tfg: undefined, errors: validation.errors };
+  if (!validation.isValid) return { eGFR: undefined, errors: validation.errors };
 
-  return { tfg: calculateCKDEPI(mappedData), errors: [] };
+  return { eGFR, errors: [] };
 }

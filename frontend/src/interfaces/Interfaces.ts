@@ -23,14 +23,14 @@ export interface ProblemListData {
 export interface PatientData {
   identification:{
     name: string;
-    age: string;
+    age: number | string;
     gender: string;
     race: string;
   };
   problemList: ProblemListData;
   physicalExam:{ 
-    systolicBP: string;
-    diastolicBP: string;
+    systolicBP: number | string;
+    diastolicBP: number | string;
   };
   complementaryExams: ComplementaryExamsData
 } 
