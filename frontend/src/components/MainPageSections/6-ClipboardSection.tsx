@@ -41,21 +41,20 @@ function ClipboardSection() {
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
-      <h3 className="text-lg font-bold gap-2">🧪 EXAMES COMPLEMENTARES</h3>
+      <h2 className="text-base font-bold gap-2">🧪 EXAMES COMPLEMENTARES</h2>
         <li>
           <strong>Imagem:</strong> Nenhum
         </li>
-      <li>
+      
       {hasExams && (
-        <>
+        <li>
           <strong>Bioquímica:</strong>
-          <li className="font-semibold">Lab: {examDate}</li>
+          <li className="font-semibold">Lab ({examDate}):</li>
           {Object.entries(categorizedExams).map(([, exams]) => (
-              <li>{exams.join("; ")}</li>
+              <li>{exams.join(" / ")}</li>
           ))}
-        </>
+        </li>
       )}
-    </li>  
     </div>
   );
 }

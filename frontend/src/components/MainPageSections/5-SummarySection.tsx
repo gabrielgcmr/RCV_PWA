@@ -18,24 +18,25 @@ function SummarySection() {
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md mb-2">
-      <h2 className="text-base font-bold mb-2">🛑LISTA DE PROBLEMAS</h2>
+      <h3 className="text-base font-bold mb-2">🛑LISTA DE PROBLEMAS</h3>
 
       {/* Exibe problemas de saúde */}
-      
+
       <HypertensionIndex/>
       <DiabetesIndex/>
       <TabagismIndex/>
       <CKDIndex/>
       <NAFLDIndex/>
 
+
       <p className="mt-2"></p>
-      <h2 className="text-base font-bold mb-2">🟢PREVENÇÕES E SEGMENTOS</h2>
+      <h3 className="text-base font-bold mb-2">🟢PREVENÇÕES E SEGMENTOS</h3>
       {/* Exibe o risco cardiovascular */}
       {CVRRealRisk !== undefined && <li> <strong>RCV:</strong> Risco Atual: {CVRRealRisk.toFixed(2)}% - ({CVRcategory}) || Risco Ideal: {CVRIdealRisk.toFixed(2)}% </li>}
       {/* Exibe a TFG se houver */}
       {eGFR !== undefined && <li><strong>TFG: </strong> {eGFR} mL/min/1.73m²</li>}
       {/* Exibe o FIB-4 se houver */}
-      {fib4 !== undefined && <><strong>FIB4: </strong>{fib4} pontos - Estadiamento de Fibrose estimado: {fib4category} </>}
+      {fib4 !== undefined && <li><strong>FIB4: </strong>{fib4} pontos - Estadiamento de Fibrose estimado: {fib4category} </li>}
     </div>
   );
 }

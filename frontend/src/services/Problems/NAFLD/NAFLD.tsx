@@ -10,8 +10,9 @@ function NAFLDIndex(){
   if (!hasNAFLD) return null
   if(hasNAFLD) {
     if(!fib4){
-      return <li><strong>DHGNA:</strong> presente; FIB4: Não avaliado</li>
-    }else{return <li><strong>DHGNA:</strong> presente; {fib4} - {fib4category}</li>} 
+      return <li><strong>DHGNA</strong> FIB4: Não avaliado</li>
+    }else{return <li><strong>DHGNA</strong> FIB4: {fib4} pontos - {fib4category}</li>} 
   }
 }
+
 export default NAFLDIndex

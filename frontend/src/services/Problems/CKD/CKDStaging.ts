@@ -29,7 +29,7 @@ function CKDStaging (eGFR:number, UACR?:number ): string {
  
 
   // Retorna a combinação das categorias G e A
-  return `${gCategory} ${aCategory}`;
+  return `${gCategory}${aCategory}`;
 }
 
 export default CKDStaging

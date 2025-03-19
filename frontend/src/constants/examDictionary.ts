@@ -50,7 +50,7 @@ export const examDictionary : Record<string, ExamDefinition> = {
     magnesium: { label: "Magnésio", abbreviation: "Mg", category: "Electrolytes", inputType: "input" },
   
     // CBC
-    CBC: { label: "Hemograma", abbreviation: "Hemograma", category: "CBC",inputType: "select",
+    CBC: { label: "Hemograma", abbreviation: "HMG", category: "CBC",inputType: "select",
       options: [
       { label: "Normal", value: "normal" },
       { label: "Alterado", value: "alterado" }

@@ -12,7 +12,7 @@ function HypertensionIndex(){
   const HypertensionStatus = HypertensionStatusChecker (SBP,DBP )
 
   return (
-    <li><strong>HAS:</strong> Presente {HypertensionStatus}</li>
+    <li><strong>HAS</strong> {HypertensionStatus}</li>
   )
 }
 
