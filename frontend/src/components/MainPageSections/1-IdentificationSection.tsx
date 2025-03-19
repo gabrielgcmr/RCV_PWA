@@ -4,6 +4,7 @@ import RadioInput from "../common/inputs/RadioInput";
 import SelectInput from "../common/inputs/SelectInput";
 import TextInput from "../common/inputs/TextInput";
 
+
 function IdentificationSection() {
   const { patientData, updatePatientData } = usePatient();
 
