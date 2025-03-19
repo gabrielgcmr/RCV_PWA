@@ -1,5 +1,5 @@
 import React from "react";
-import { NumberInputProps} from "./types";
+import { NumberInputProps } from "./types";
 
 const NumberInput: React.FC<NumberInputProps> = ({
   name,
@@ -11,7 +11,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
   className = "",
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let inputValue = e.target.value.replace(",", ".") ;
+    const inputValue = e.target.value.replace(",", ".") ;
     onChange(name,inputValue)
 };
 
