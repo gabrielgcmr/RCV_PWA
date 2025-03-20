@@ -5,7 +5,7 @@ import { PatientData } from "../../../interfaces/Interfaces";
 import { classifyFIB4 } from "./FIB4Classifier";
 
 // Calcula o índice FIB-4.
-export function calculateFIB4Index(patientData: PatientData): { fib4: number | undefined; fib4category: string; errors: string[] } {
+function calculateFIB4Index(patientData: PatientData): { fib4: number | undefined; fib4category: string; errors: string[] } {
   const mappedData = mapFIB4Data(patientData);
   const validation = validateFIB4Data(mappedData);
 
@@ -15,3 +15,5 @@ export function calculateFIB4Index(patientData: PatientData): { fib4: number | u
   const fib4category = classifyFIB4(fib4, mappedData.age)
   return { fib4, fib4category, errors: [] };
 }
+
+export default calculateFIB4Index

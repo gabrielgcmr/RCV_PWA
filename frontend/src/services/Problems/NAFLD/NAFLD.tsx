@@ -1,7 +1,6 @@
 // DHGNA
-
 import usePatient from "../../../hooks/usePatient";
-import { calculateFIB4Index } from "../../ClinicalCalculations/FIB-4/FIB4Index";
+import  calculateFIB4Index  from "../../ClinicalCalculations/FIB-4/FIB4Index";
 
 function NAFLDIndex(){
   const {patientData, hasProblem} = usePatient()

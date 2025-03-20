@@ -1,7 +1,7 @@
-import  usePatient  from "../../hooks/usePatient";
-import { calculateCKDEPIIndex } from "../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
-import { calculateCVRIndex } from "../../services/ClinicalCalculations/CVR/CVRIndex";
-import { calculateFIB4Index } from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
+import usePatient  from "../../hooks/usePatient";
+import calculateCKDEPIIndex  from "../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
+import calculateCVRIndex from "../../services/ClinicalCalculations/CVR/CVRIndex";
+import calculateFIB4Index from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
 import CKDIndex from "../../services/Problems/CKD/CKDIndex";
 import DiabetesIndex from "../../services/Problems/Diabetes/DiabetesIndex";
 import HypertensionIndex from "../../services/Problems/Hypertension/HypertensionIndex";
@@ -21,13 +21,11 @@ function SummarySection() {
       <h3 className="text-base font-bold mb-2">🛑LISTA DE PROBLEMAS</h3>
 
       {/* Exibe problemas de saúde */}
-
       <HypertensionIndex/>
       <DiabetesIndex/>
       <TabagismIndex/>
       <CKDIndex/>
       <NAFLDIndex/>
-
 
       <p className="mt-2"></p>
       <h3 className="text-base font-bold mb-2">🟢PREVENÇÕES E SEGMENTOS</h3>

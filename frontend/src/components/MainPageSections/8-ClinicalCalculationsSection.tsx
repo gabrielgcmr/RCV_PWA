@@ -1,9 +1,9 @@
 import { useState } from "react";
 import  usePatient  from "../../hooks/usePatient";
 import { PatientData } from "../../interfaces/Interfaces";
-import { calculateCKDEPIIndex } from "../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
-import { calculateCVRIndex } from "../../services/ClinicalCalculations/CVR/CVRIndex";
-import { calculateFIB4Index } from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
+import calculateCKDEPIIndex from "../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
+import calculateCVRIndex from "../../services/ClinicalCalculations/CVR/CVRIndex";
+import calculateFIB4Index from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
 import { ErrorPopup } from "../common/ErrorPopup";
 
 function ClinicalCalculations() {

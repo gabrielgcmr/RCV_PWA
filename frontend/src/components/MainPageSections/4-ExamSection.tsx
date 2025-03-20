@@ -4,9 +4,9 @@ import ExamForm from "../exam/ExamForm";
 function ExamsSection() {
   return (
     <div className=" p-2 bg-zinc-700 rounded-lg shadow-md mb-1 ">
-      <h2 className="text-lg font-bold p-2 text-center">
+      <h3 className="text-lg font-bold p-2 text-center">
       🧪 Exames Complementares
-      </h2>
+      </h3>
 
       {/* Layout principal com Grid */}
       <div className="grid grid-cols-4 grid-rows-1 gap-4 mb-1">

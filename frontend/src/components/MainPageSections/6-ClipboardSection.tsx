@@ -40,8 +40,8 @@ function ClipboardSection() {
       : "?";
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
-      <h2 className="text-base font-bold gap-2">🧪 EXAMES COMPLEMENTARES</h2>
+    <div className="p-4 bg-zinc-700 rounded-lg shadow-md mb-2">
+      <h3 className="text-base font-bold gap-2">🧪 EXAMES COMPLEMENTARES</h3>
         <li>
           <strong>Imagem:</strong> Nenhum
         </li>
