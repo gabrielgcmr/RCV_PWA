@@ -8,6 +8,8 @@ interface PatientContextType {
   updateExam: (examName: string, examValue: string| number) => void;
   updateProblemList: (problems: ProblemData[]) => void;
   updateProblems: ()=> void;
+  updateExamDate: (date: Date | null) => void;
+
 }
 
 // Criando o contexto e exportando

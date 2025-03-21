@@ -1,29 +1,9 @@
 import { useState, ReactNode, useCallback } from "react";
 import { PatientContext } from "./PatientContext";
 import { PatientData, ProblemData } from "../interfaces/Interfaces";
-import analyzeAllProblems from "../services/Problems/analyzeAllProblems";
+import analyzeAllProblems from "../services/problems/analyzeAllProblems";
 import { examDictionary } from "../constants/examDictionary";
-
-// Estado inicial do paciente
-const initialPatientData: PatientData = {
-  identification: {
-    name: "",
-    age: "",
-    gender: "",
-    race: "",
-  },
-  problemList: {
-    problems: [],
-  },
-  physicalExam: {
-    systolicBP: "",
-    diastolicBP: "",
-  },
-  complementaryExams: {
-    date: null,
-    exams: [],
-  },
-};
+import initialPatientData from "../constants/initialPatientData";
 
 export default function PatientProvider({ children }: { children: ReactNode }) {
   const [patientData, setPatientData] = useState<PatientData>(initialPatientData);
@@ -99,9 +79,19 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
     }));
   }, []);
   
+  const updateExamDate = useCallback((date: Date | null) => {
+    setPatientData((prev) => ({
+      ...prev,
+      complementaryExams: {
+        ...prev.complementaryExams,
+        date,
+      },
+    }));
+  }, []);
+  
 
   return (
-    <PatientContext.Provider value={{ patientData, updateIdentification, updatePhysicalExam, updateExam, updateProblemList, updateProblems }}>
+    <PatientContext.Provider value={{ patientData, updateIdentification, updatePhysicalExam, updateExam, updateProblemList,updateExamDate, updateProblems }}>
       {children}
     </PatientContext.Provider>
   );

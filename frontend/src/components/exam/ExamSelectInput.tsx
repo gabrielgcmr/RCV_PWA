@@ -19,7 +19,7 @@ export function ExamSelectInput({
         value={value}
         aria-label={label}
         disabled={disabled}
-        onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
+        onChange={(e) => onChange?.(name, e.target.value)}
         className={`${baseInputClasses} ${disabled ? "opacity-10" : ""}`}
       >
         <option value="">Selecione</option>

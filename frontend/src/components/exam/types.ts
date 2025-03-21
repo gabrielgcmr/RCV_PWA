@@ -5,7 +5,7 @@ export interface ExamInputPropsBase extends ExamData {
     placeholder?: string; // Placeholder do campo
     errorMessage?: string; // Mensagem de erro personalizada
     disabled?: boolean; // Desativa o campo (opcional)
-    onChange?: (name: string, value: string | number, abbreviation: string | undefined ) => void;
+    onChange?: (name: string, value: string | number ) => void;
 }  
 
 export interface ExamSelectInputProps extends ExamInputPropsBase {

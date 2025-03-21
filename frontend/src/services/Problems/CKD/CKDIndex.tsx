@@ -1,5 +1,5 @@
 import usePatient from "../../../hooks/usePatient";
-import calculateCKDEPIIndex  from "../../ClinicalCalculations/CKD-EPI/CKDEPIIndex";
+import calculateCKDEPIIndex  from "../../clinicalCalculations/CKD-EPI/CKDEPIIndex";
 import CKDStaging from "./CKDStaging";
 
 function CKDIndex(){

@@ -1,12 +1,12 @@
 import usePatient  from "../../hooks/usePatient";
-import calculateCKDEPIIndex  from "../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
-import calculateCVRIndex from "../../services/ClinicalCalculations/CVR/CVRIndex";
-import calculateFIB4Index from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
-import CKDIndex from "../../services/Problems/CKD/CKDIndex";
-import DiabetesIndex from "../../services/Problems/diabetes/DiabetesIndex";
-import HypertensionIndex from "../../services/Problems/Hypertension/HypertensionIndex";
-import NAFLDIndex from "../../services/Problems/NAFLD/NAFLD";
-import TabagismIndex from "../../services/Problems/Tabagism/Tabagism";
+import calculateCKDEPIIndex  from "../../services/clinicalCalculations/CKD-EPI/CKDEPIIndex";
+import calculateCVRIndex from "../../services/clinicalCalculations/CVR/CVRIndex";
+import calculateFIB4Index from "../../services/clinicalCalculations/FIB-4/FIB4Index";
+import CKDIndex from "../../services/problems/CKD/CKDIndex";
+import DiabetesIndex from "../../services/problems/diabetes/DiabetesIndex";
+import HypertensionIndex from "../../services/problems/Hypertension/HypertensionIndex";
+import NAFLDIndex from "../../services/problems/NAFLD/NAFLD";
+import TabagismIndex from "../../services/problems/Tabagism/Tabagism";
 
 function SummarySection() {
   const { patientData } = usePatient();
