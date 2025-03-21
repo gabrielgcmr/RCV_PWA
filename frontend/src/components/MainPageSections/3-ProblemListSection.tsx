@@ -1,24 +1,23 @@
-import  usePatient  from "../../hooks/usePatient";
-import  CheckboxInput  from "../common/input/CheckboxInputProps";
+import usePatient from "../../hooks/usePatient";
+import CheckboxInput from "../common/input/CheckboxInputProps";
 
 function ProblemListSection() {
-  const { patientData, updatePatientData } = usePatient();
+  const { patientData, updateProblemList } = usePatient();
 
   const problemOptions = [
     { name: "hypertension", label: "Hipertensão Arterial (HAS)" },
     { name: "diabetes", label: "Diabetes Mellitus (DM)" },
     { name: "tabagism", label: "Tabagismo" },
-    { name: "NAFLD", label: "DHGNA"},
-    {name: "CKD", label:"DRC"}
+    { name: "NAFLD", label: "DHGNA" },
+    { name: "CKD", label: "DRC" },
   ];
 
-  // Função simplificada para adicionar/remover problemas
   const handleProblemToggle = (problemName: string, checked: boolean) => {
     const updatedProblems = checked
-      ? [...patientData.problemList.problems, { name: problemName }]
+      ? [...patientData.problemList.problems, { name: problemName, present: true }]
       : patientData.problemList.problems.filter((p) => p.name !== problemName);
 
-    updatePatientData("problemList", { problems: updatedProblems });
+    updateProblemList(updatedProblems);
   };
 
   const isProblemChecked = (problemName: string) =>
@@ -30,16 +29,16 @@ function ProblemListSection() {
 
       {problemOptions.map(({ name, label }) => (
         <CheckboxInput
-          id={name}
           key={name}
+          id={name}
           name={name}
           label={label}
           checked={isProblemChecked(name)}
-          onChange={handleProblemToggle} // Agora passa boolean direto, sem `value`
+          onChange={handleProblemToggle}
         />
       ))}
     </div>
   );
 }
 
-export default ProblemListSection
+export default ProblemListSection;

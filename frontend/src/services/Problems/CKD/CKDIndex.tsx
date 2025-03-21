@@ -13,11 +13,6 @@ function CKDIndex(){
     const result =  CKDStaging(eGFR, UACR)
     if(result) return <li><strong>DRC </strong> ({result})</li>
   } else{return <li><strong>DRC </strong> Sem TFG!</li>}
-    
-    
-  
-
-  
   
 }
 

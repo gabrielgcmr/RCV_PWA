@@ -1,5 +1,5 @@
 import { PatientData } from "../../../interfaces/Interfaces";
-import { calculateCVR } from "./CVRCalculator";
+import  calculateCVR  from "./CVRCalculator";
 import { classifyCVR } from "./CVRClassifier";
 import { mapPatientData } from "./CVRMapper";
 import { validateCVRData } from "./CVRValidator";
@@ -15,7 +15,7 @@ function calculateCVRIndex(patientData: PatientData) {
   // 2. Valida os dados do paciente
   const validation = validateCVRData(mappedData);
   if (!validation.isValid) {
-    return { realRisk: undefined, realRiskCategory: "Não Avaliado", idealRisk: undefined, errors: validation.errors };
+    return { CVRRealRisk: undefined, CVRcategory: "Não Avaliado", CVRIdealRisk: undefined, errors: validation.errors };
   }
 
   // 3. Calcula os riscos

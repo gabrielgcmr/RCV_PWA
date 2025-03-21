@@ -1,13 +1,13 @@
 import { createContext } from "react";
-import { PatientData } from "../interfaces/Interfaces";
+import { PatientData, ProblemData } from "../interfaces/Interfaces";
 
 interface PatientContextType {
   patientData: PatientData;
-  updatePatientData: <T extends keyof PatientData>(
-    field: T,
-    value: Partial<PatientData[T]> // ✅ Agora aceita objetos parciais
-  ) => void;
-  updateExam: (examName: string, examValue: string) => void;
+  updateIdentification: (value: Partial<PatientData["identification"]>) => void;
+  updatePhysicalExam: (value: Partial<PatientData["physicalExam"]>) => void;
+  updateExam: (examName: string, examValue: string| number) => void;
+  updateProblemList: (problems: ProblemData[]) => void;
+  updateProblems: ()=> void;
 }
 
 // Criando o contexto e exportando

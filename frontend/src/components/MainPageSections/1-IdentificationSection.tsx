@@ -6,10 +6,10 @@ import TextInput from "../common/input/TextInput";
 
 
 function IdentificationSection() {
-  const { patientData, updatePatientData } = usePatient();
+  const { patientData, updateIdentification } = usePatient();
 
   const handleChange = (field: string, value: string | number | null ) => {
-    updatePatientData("identification", { ...patientData.identification, [field]: value });
+    updateIdentification( { [field]: value });
   };
 
   return (

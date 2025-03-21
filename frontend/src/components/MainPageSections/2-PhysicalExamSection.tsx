@@ -2,10 +2,10 @@ import  usePatient  from "../../hooks/usePatient";
 import NumberInput  from "../common/input/NumberInput";
 
 function PhysicalExamSection() {
-  const { patientData, updatePatientData } = usePatient();
+  const { patientData, updatePhysicalExam } = usePatient();
 
   const handleChange = (field: string, value: string | number | null) => {
-    updatePatientData("physicalExam", { ...patientData.physicalExam, [field]: value });
+    updatePhysicalExam( { [field]: value });
   };
 
   return (

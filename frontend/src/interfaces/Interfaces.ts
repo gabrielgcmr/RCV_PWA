@@ -13,8 +13,12 @@ export interface ComplementaryExamsData {
 }
 
 export interface ProblemData {
-  name: string; // Descrição do problema (ex.: "Diabetes Mellitus tipo 2")
-  description?: string;
+  name: string;
+  present: boolean;
+  details?: {
+    analyzedAt?: string;
+    [key: string]: any; // outros dados específicos do problema
+  };
 }
 
 export interface ProblemListData {

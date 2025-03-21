@@ -3,7 +3,7 @@ interface ErrorPopupProps {
   onClose: () => void;
 }
 
-export function ErrorPopup({ errors, onClose }: ErrorPopupProps) {
+function ErrorPopup({ errors, onClose }: ErrorPopupProps) {
   if (errors.length === 0) return null;
 
   return (
@@ -20,3 +20,5 @@ export function ErrorPopup({ errors, onClose }: ErrorPopupProps) {
     </div>
   );
 }
+
+export default ErrorPopup

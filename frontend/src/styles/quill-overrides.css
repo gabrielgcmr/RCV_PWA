@@ -1,0 +1,27 @@
+/* Muda a cor dos ícones da toolbar */
+.ql-toolbar .ql-picker-label svg,
+.ql-toolbar button svg {
+  fill: rgb(66, 66, 66) !important;
+  stroke: rgb(82, 82, 82) !important;
+}
+
+/* Muda a cor dos ícones ativos */
+.ql-toolbar .ql-picker-label.ql-active svg,
+.ql-toolbar button.ql-active svg {
+  fill: #facc15 !important;   /* amarelo */
+  stroke: #facc15 !important;
+}
+
+.ql-toolbar.ql-snow {
+  background-color: #b3b3b3 !important;
+  border: none;
+}
+/* Cor do texto dentro do editor Quill */
+.ql-editor {
+  color: #000000 !important; /* preto */
+}
+
+/* Cor dos títulos ou textos fortes, se quiser deixar mais escuro também */
+.ql-editor strong {
+  color: #000000 !important;
+}

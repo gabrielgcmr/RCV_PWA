@@ -3,7 +3,7 @@ import calculateCKDEPIIndex  from "../../services/ClinicalCalculations/CKD-EPI/C
 import calculateCVRIndex from "../../services/ClinicalCalculations/CVR/CVRIndex";
 import calculateFIB4Index from "../../services/ClinicalCalculations/FIB-4/FIB4Index";
 import CKDIndex from "../../services/Problems/CKD/CKDIndex";
-import DiabetesIndex from "../../services/Problems/Diabetes/DiabetesIndex";
+import DiabetesIndex from "../../services/Problems/diabetes/DiabetesIndex";
 import HypertensionIndex from "../../services/Problems/Hypertension/HypertensionIndex";
 import NAFLDIndex from "../../services/Problems/NAFLD/NAFLD";
 import TabagismIndex from "../../services/Problems/Tabagism/Tabagism";
@@ -19,7 +19,6 @@ function SummarySection() {
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md mb-2">
       <h3 className="text-base font-bold mb-2">🛑LISTA DE PROBLEMAS</h3>
-
       {/* Exibe problemas de saúde */}
       <HypertensionIndex/>
       <DiabetesIndex/>

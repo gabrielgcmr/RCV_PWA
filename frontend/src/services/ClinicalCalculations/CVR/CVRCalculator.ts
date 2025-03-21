@@ -3,7 +3,7 @@ import { CVRData } from "./CVRData";
 /**
  * Função para calcular o risco cardiovascular e suas classificações.
  */
-export function calculateCVR(data: CVRData) {
+function calculateCVR(data: CVRData) {
   /**
    * Obtém o valor da raça para o cálculo do risco cardiovascular.
    */
@@ -92,5 +92,7 @@ export function calculateCVR(data: CVRData) {
    */
   const CVRIdealRisk = equationForGetLogit(true);
 
-  return {  CVRRealRisk, CVRIdealRisk };
+  return { CVRRealRisk, CVRIdealRisk };
 }
+
+export default calculateCVR

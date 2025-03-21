@@ -1,8 +1,11 @@
 import { useEffect, useRef } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
+import "../../styles/quill-overrides.css"
 import usePatient from "../../hooks/usePatient";
 import { examDictionary } from "../../constants/examDictionary";
+import getAllergiesText from "../../services/medicalText/allergiesSection.";
+
 
 function QuillEditor() {
   const { patientData } = usePatient();
@@ -16,9 +19,8 @@ function QuillEditor() {
     if (!quillRef.current) {
       quillRef.current = new Quill(editorContainerRef.current, {
         theme: "snow",
-        readOnly: true, // Impede que o usuário edite manualmente
         modules: {
-          toolbar: false, // Oculta a barra de ferramentas
+          toolbar: true, // Oculta a barra de ferramentas
         },
       });
     }
@@ -59,8 +61,26 @@ function QuillEditor() {
         : "?";
 
     // Monta o conteúdo do editor
-    let quillContent = `<h3>🧪 <strong> EXAMES COMPLEMENTARES </strong> </h3>`;
+    let quillContent = getAllergiesText()
+    quillContent += `
+    <h3><strong>LISTA DE PROBLEMAS</strong></h3>  
+        <ul>
+        <li>HAS: Presente</li>
+        <li>DM: Presente</li>
+        <li>Tabagismo: Presente</li>
+        <li>DRC: G2</li>
+        <li>DHGNA</li>
+        </ul>
+    `;
+    quillContent += `
+      <h3><strong>PREVENÇÕES E SEGMENTOS</strong> </h3>`;
     quillContent += `<p><strong>Imagem:</strong> Nenhum</p>`;
+    quillContent += `<li>Nenhum</li>`;
+
+    quillContent += `
+      <h3><strong> EXAMES COMPLEMENTARES </strong> </h3>`;
+    quillContent += `<p><strong>Imagem:</strong> Nenhum</p>`;
+    quillContent += `<li>Nenhum</li>`;
 
     if (hasExams) {
       quillContent += `<li><strong>Bioquímica:</strong></li>`;
@@ -72,11 +92,11 @@ function QuillEditor() {
     }
 
     // Atualiza o conteúdo do editor Quill
-    quillRef.current.root.innerHTML = quillContent;
+    quillRef.current.clipboard.dangerouslyPasteHTML(quillContent);
   }, [patientData]);
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
+    <div className="p-2 bg-zinc-200 rounded-lg shadow-md">
       <div ref={editorContainerRef} className="quill-container" />
     </div>
   );

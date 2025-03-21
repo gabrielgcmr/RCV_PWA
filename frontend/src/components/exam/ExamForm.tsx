@@ -4,14 +4,13 @@ import  usePatient  from "../../hooks/usePatient";
 import { ExamInput } from "./ExamInput";
 import { ExamSelectInput } from "./ExamSelectInput";
 
-
 interface ExamCategoryFormProps {
   category: string; // Ex.: "LipidProfile", "LiverProfile", "RenalProfile"
   title: string;
 }
 
 export default function ExamCategoryForm({ category, title }: ExamCategoryFormProps) {
-  const { handleExamChange, getExamValue } = usePatient();
+  const { updateExam, getExamValue } = usePatient();
 
   const exams = Object.entries(examDictionary)
     .filter(([, exam]) => exam.category === category)
@@ -33,7 +32,7 @@ export default function ExamCategoryForm({ category, title }: ExamCategoryFormPr
               abbreviation={abbreviation}
               placeholder={abbreviation}
               value={getExamValue(key) || ""}
-              onChange={handleExamChange}
+              onChange={updateExam}
               options = {options}
 
             />
@@ -46,7 +45,7 @@ export default function ExamCategoryForm({ category, title }: ExamCategoryFormPr
               abbreviation={abbreviation}
               placeholder={abbreviation}
               value={getExamValue(key) || ""}
-              onChange={handleExamChange}
+              onChange={updateExam}
             />
           )
         )}
