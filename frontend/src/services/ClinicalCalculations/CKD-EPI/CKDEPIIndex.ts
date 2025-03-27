@@ -1,10 +1,10 @@
 import { PatientData } from "../../../interfaces/Interfaces";
-import { calculateCKDEPI } from "./CKDEPICalculator";
+import calculateCKDEPI  from "./CKDEPICalculator";
 import { mapCKDEPIData } from "./CKDEPIMapper";
 import { validateCKDEPIData } from "./CKDEPIValidator";
 
-// Calcula a TFG pela equação CKD-EPI.
-export function calculateCKDEPIIndex(patientData: PatientData): { eGFR: number | undefined; errors: string[] } {
+// Calcula a TFG pela equação CKD-EPI
+function calculateCKDEPIIndex(patientData: PatientData): { eGFR: number | undefined; errors: string[] } {
   const mappedData = mapCKDEPIData(patientData);
   const validation = validateCKDEPIData(mappedData);
   const eGFR = calculateCKDEPI(mappedData)
@@ -13,3 +13,5 @@ export function calculateCKDEPIIndex(patientData: PatientData): { eGFR: number |
 
   return { eGFR, errors: [] };
 }
+
+export default calculateCKDEPIIndex

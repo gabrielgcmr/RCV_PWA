@@ -7,7 +7,7 @@ import { validateCVRData } from "./CVRValidator";
 /**
  * Função principal para calcular o risco cardiovascular.
  */
-export function calculateCVRIndex(patientData: PatientData) {
+function calculateCVRIndex(patientData: PatientData) {
   console.log(patientData)
   // 1. Mapeia os dados do paciente para o formato correto
   const mappedData = mapPatientData(patientData);
@@ -30,3 +30,5 @@ export function calculateCVRIndex(patientData: PatientData) {
     errors: [],
   };
 }
+
+export default calculateCVRIndex

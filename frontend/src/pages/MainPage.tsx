@@ -4,7 +4,8 @@ import ProblemListSection from "../components/MainPageSections/3-ProblemListSect
 import ExamSection from "../components/MainPageSections/4-ExamSection";
 import SummarySection from "../components/MainPageSections/5-SummarySection";
 import ClipboardSection from "../components/MainPageSections/6-ClipboardSection";
-import ClinicalCalculations from "../components/MainPageSections/7-ClinicalCalculationsSection";
+import ClinicalCalculations from "../components/MainPageSections/8-ClinicalCalculationsSection";
+import QuillEditor from "../components/MainPageSections/7-Quill";
 
 function MainPage() {
   return (
@@ -20,6 +21,7 @@ function MainPage() {
       <div>
       <SummarySection/>
       <ClipboardSection/>
+      <QuillEditor/>
       </div>
       <ClinicalCalculations />
     </div>

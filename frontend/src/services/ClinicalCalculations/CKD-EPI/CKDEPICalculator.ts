@@ -1,7 +1,7 @@
 import { CKDEPIData } from "./CKDEPIData";
 
 // Calcula a TFG pela equação CKD-EPI.
-export function calculateCKDEPI(data: CKDEPIData): number {
+ function calculateCKDEPI(data: CKDEPIData): number {
   const { age, gender, race, seric_creatinine } = data;
 
   const kappa = gender === "female" ? 0.7 : 0.9;
@@ -15,3 +15,5 @@ export function calculateCKDEPI(data: CKDEPIData): number {
 
   return parseFloat((141 * minFactor * maxFactor * ageFactor * genderFactor * raceFactor).toFixed(2));
 }
+
+export default calculateCKDEPI
