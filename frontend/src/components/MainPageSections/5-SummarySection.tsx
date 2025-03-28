@@ -28,7 +28,7 @@ function SummarySection() {
       <NAFLDIndex/>
 
       <p className="mt-2"></p>
-      <h4 className="text-base font-bold mb-2"><strong>🟢PREVENÇÕES E SEGMENTOS</strong></h4>
+      <h4 className="text-base font-bold mb-2"><strong>🟢PREVENÇÕES E SEGUIMENTOS</strong></h4>
       {/* Exibe o risco cardiovascular */}
       {CVRRealRisk !== undefined && <li> <strong>RCV:</strong> Risco Atual: {CVRRealRisk.toFixed(2)}% - ({CVRcategory}) || Risco Ideal: {CVRIdealRisk.toFixed(2)}% </li>}
       {/* Exibe a TFG se houver */}
