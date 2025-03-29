@@ -67,8 +67,15 @@ export const examDictionary : Record<string, ExamDefinition> = {
      },
     // pcr E vhs
     pcr:{ label: "PCR", abbreviation: "PCR", category:"Inflamatory", inputType:"input"},
-    vhs:{ label: "VHS", abbreviation: "VHS", category:"Inflamatory", inputType:"input"}
+    vhs:{ label: "VHS", abbreviation: "VHS", category:"Inflamatory", inputType:"input"},
     
     //Cinética do Ferro
     
+    //Fecal
+    psof:{ label: "PSOF", abbreviation: "PSOF", category:"Fecal",inputType:"select",
+      options:[
+        {label:"Negativo",value:"negativo"},
+        {label:"Positivo",value:"positivo"}
+      ]
+    }
   };

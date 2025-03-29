@@ -18,7 +18,7 @@ function SummarySection() {
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md mb-2">
-      <h4 className="text-base font-bold mb-2"><strong>🛑LISTA DE PROBLEMAS</strong></h4>
+      <p className="text-base font-bold mb-2">🛑<strong>LISTA DE PROBLEMAS</strong></p>
 
       {/* Exibe problemas de saúde */}
       <HypertensionIndex/>
@@ -28,7 +28,7 @@ function SummarySection() {
       <NAFLDIndex/>
 
       <p className="mt-2"></p>
-      <h4 className="text-base font-bold mb-2"><strong>🟢PREVENÇÕES E SEGUIMENTOS</strong></h4>
+      <p className="text-base font-bold mb-2">🟢<strong>PREVENÇÕES E SEGUIMENTOS</strong></p>
       {/* Exibe o risco cardiovascular */}
       {CVRRealRisk !== undefined && <li> <strong>RCV:</strong> Risco Atual: {CVRRealRisk.toFixed(2)}% - ({CVRcategory}) || Risco Ideal: {CVRIdealRisk.toFixed(2)}% </li>}
       {/* Exibe a TFG se houver */}

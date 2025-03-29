@@ -41,7 +41,7 @@ function ClipboardSection() {
 
   return (
     <div className="p-4 bg-zinc-700 rounded-lg shadow-md">
-      <h4 className="text-base font-bold gap-2"><strong>🟠 EXAMES COMPLEMENTARES</strong></h4> 
+      <p className="text-base font-bold gap-2">🟠<strong> EXAMES COMPLEMENTARES</strong></p> 
       {hasExams && (
         <ul className="list-disc pl-4 space-y-2">
           <li><strong>Bioquímica ({examDate}):</strong>
