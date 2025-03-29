@@ -31,6 +31,7 @@ function ExamsSection() {
         <ExamForm category='Urinalysis' title= 'EAS'/>
         <ExamForm category='ThyroidProfile' title= 'Perfil Tireoideano'/>
         <ExamForm category="Inflamatory" title="Inflamatórios" />
+        <ExamForm category="Fecal" title=" Fecal"/>
       </div>
     </div>
   );
