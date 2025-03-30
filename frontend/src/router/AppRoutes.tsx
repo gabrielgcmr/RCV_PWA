@@ -1,8 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "../components/layout/Layout";
 import StartPage from "../pages/StartPage";
+import PatientDetailsPage from "../pages/PatientDetailsPage";
+import PrivateRoute from "./PrivateRoute";
 
-export default function AppRoutes() {
+function AppRoutes() {
   return (
     <Routes>
       <Route element={<Layout />}>
@@ -11,9 +13,11 @@ export default function AppRoutes() {
 
         {/* Rotas protegidas */}
         <Route element={<PrivateRoute />}>
-          <Route path="/patients" element={<PatientsPage />} />
+          <Route path="/patient/:id" element={<PatientDetailsPage />} />
         </Route>
       </Route>
     </Routes>
   );
 }
+
+export default AppRoutes;

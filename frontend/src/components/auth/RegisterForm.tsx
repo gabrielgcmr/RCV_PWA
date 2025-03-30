@@ -1,23 +1,24 @@
-// components/auth/RegisterForm.tsx
 import { useState } from "react";
 import { Button } from "../common/Button";
 import { register } from "../../services/AuthService";
 import { AxiosError } from "axios";
+import useAuth from "../../hooks/useAuth";
 
-export function RegisterForm({ onSubmit }: { onSubmit?: () => void }) {
+function RegisterForm({ onSubmit }: { onSubmit?: () => void }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth(); // ✅
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const newUser = await register({ name, email, password });
-      console.log("Usuário cadastrado:", newUser);
-      onSubmit?.(); // fecha o modal
+      await register({ name, email, password });
+      await login(email, password); // ✅ Login automático após cadastro
+      onSubmit?.(); // ✅ Fecha o modal
     } catch (error) {
       const axiosError = error as AxiosError<{ error: string }>;
-      alert(axiosError.response?.data?.error || "Erro no login");
+      alert(axiosError.response?.data?.error || "Erro no cadastro");
     }
   };
 
@@ -53,3 +54,5 @@ export function RegisterForm({ onSubmit }: { onSubmit?: () => void }) {
     </form>
   );
 }
+
+export default RegisterForm;

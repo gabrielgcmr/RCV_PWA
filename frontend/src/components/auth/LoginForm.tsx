@@ -1,18 +1,17 @@
-// components/auth/LoginForm.tsx
 import { useState } from "react";
 import { Button } from "../common/Button";
-import { login } from "../../services/AuthService";
+import useAuth from "../../hooks/useAuth"; // ✅
 import { AxiosError } from "axios";
 
 export function LoginForm({ onSubmit }: { onSubmit?: () => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth(); // ✅ usa o contexto
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const user = await login({ email, password });
-      console.log("Usuário logado:", user);
+      await login(email, password); // ✅ agora atualiza o contexto
       onSubmit?.(); // fecha o modal
     } catch (error) {
       const axiosError = error as AxiosError<{ error: string }>;

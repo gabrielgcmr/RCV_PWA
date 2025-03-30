@@ -1,15 +1,17 @@
-import  usePatient  from "../../hooks/usePatient";
+import usePatient from "../../hooks/usePatient";
 import NumberInput from "../common/input/NumberInput";
 import RadioInput from "../common/input/RadioInput";
 import SelectInput from "../common/input/SelectInput";
 import TextInput from "../common/input/TextInput";
 
-
-function IdentificationSection() {
+function IdentificationForm() {
   const { patientData, updatePatientData } = usePatient();
 
-  const handleChange = (field: string, value: string | number | null ) => {
-    updatePatientData("identification", { ...patientData.identification, [field]: value });
+  const handleChange = (field: string, value: string | number | null) => {
+    updatePatientData("identification", {
+      ...patientData.identification,
+      [field]: value,
+    });
   };
 
   return (
@@ -72,4 +74,4 @@ function IdentificationSection() {
   );
 }
 
-export default IdentificationSection
+export default IdentificationForm;
