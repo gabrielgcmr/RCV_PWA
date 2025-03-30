@@ -12,7 +12,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
-        name: 'MFC helper',
+        name: 'RastreaMed',
         short_name: 'Ajudante do médico de família',
         description: 'Ajuda o médico de família com calculos clínicos',
         theme_color: '#1e293b',

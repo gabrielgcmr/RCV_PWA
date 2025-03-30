@@ -1,30 +1,35 @@
-import IdentificationSection from "../components/MainPageSections/1-IdentificationSection";
-import PhysicalExamSection from "../components/MainPageSections/2-PhysicalExamSection";
-import ProblemListSection from "../components/MainPageSections/3-ProblemListSection";
-import ExamSection from "../components/MainPageSections/4-ExamSection";
-import SummarySection from "../components/MainPageSections/5-SummarySection";
-import ClipboardSection from "../components/MainPageSections/6-ClipboardSection";
-import ClinicalCalculations from "../components/MainPageSections/7-ClinicalCalculationsSection";
-
+import IdentificationSection from "../components/mainPageSections/1-IdentificationSection";
+import PhysicalExamSection from "../components/mainPageSections/2-PhysicalExamSection";
+import ProblemListSection from "../components/mainPageSections/3-ProblemListSection";
+import ExamSection from "../components/mainPageSections/4-ExamSection";
+import SummarySection from "../components/mainPageSections/5-SummarySection";
+import ClinicalCalculations from "../components/mainPageSections/6-ClinicalCalculationsSection";
+import Header from "../components/layout/Header";
+import Navbar from "../components/layout/Navbar";
 
 function MainPage() {
   return (
-    <div className="grid md:grid-cols-[0.8fr_2fr_2fr_0.5fr] gap-4 p-2 bg-zinc-900 min-h-screen h-full">
-      {/* Primeira e Segunda Coluna (Identificação + Exames) */}
-      <div className="grid">
-        <IdentificationSection />
-        <ProblemListSection />
-        <PhysicalExamSection />
-      </div>
-      <ExamSection />
-      {/* Terceira Coluna (Resumo do Paciente) */}
-      <div>
-      <SummarySection/>
-      <ClipboardSection/>
-      </div>
-      <ClinicalCalculations />
+    <div className="relative bg-zinc-900 min-h-screen pt-16">
+      <Header />
+      <Navbar />
+      <main className="pt-4 px-2">
+        <div className="grid md:grid-cols-[0.8fr_2fr_2fr_0.5fr] gap-4 p-2 ">
+          {/* Primeira e Segunda Coluna (Identificação + Exames) */}
+          <div className="grid">
+            <IdentificationSection />
+            <ProblemListSection />
+            <PhysicalExamSection />
+          </div>
+          <ExamSection />
+          {/* Terceira Coluna (Resumo do Paciente) */}
+          <div>
+            <SummarySection />
+          </div>
+          <ClinicalCalculations />
+        </div>
+      </main>
     </div>
   );
 }
 
-export default MainPage
+export default MainPage;

@@ -25,8 +25,8 @@ function ProblemListSection() {
     patientData.problemList.problems.some((p) => p.name === problemName);
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-2">
-      <h2 className="text-lg font-bold mb-4"> 📝 Lista de Problemas</h2>
+    <section className="p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-2">
+      <h3 className="text-lg font-bold mb-4"> 📝 Lista de Problemas</h3>
 
       {problemOptions.map(({ name, label }) => (
         <CheckboxInput
@@ -38,7 +38,7 @@ function ProblemListSection() {
           onChange={handleProblemToggle} // Agora passa boolean direto, sem `value`
         />
       ))}
-    </div>
+    </section>
   );
 }
 

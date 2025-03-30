@@ -3,11 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { PatientProvider } from "./context/PatientProvider";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PatientProvider>
-      <App /> 
-    </PatientProvider>
+    <BrowserRouter>
+      <PatientProvider>
+        <App /> 
+      </PatientProvider>
+    </BrowserRouter>
   </StrictMode>,
 );

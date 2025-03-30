@@ -13,7 +13,7 @@ function IdentificationSection() {
   };
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-2">
+    <section className="p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-2">
       <h2 className="text-lg font-bold mb-4">🏷️ Identificação</h2>
 
       {/* Nome */}
@@ -68,7 +68,7 @@ function IdentificationSection() {
         ]}
         className="mb-2"
       />
-    </div>
+    </section>
   );
 }
 

@@ -3,7 +3,7 @@ import ExamForm from "../exam/ExamForm";
 
 function ExamsSection() {
   return (
-    <div className=" p-2 bg-zinc-700 rounded-lg shadow-md mb-1 ">
+    <section className=" p-2 bg-zinc-700 rounded-lg shadow-md mb-1 ">
       <h3 className="text-lg font-bold p-2 text-center">
       🧪 Exames Complementares
       </h3>
@@ -33,7 +33,7 @@ function ExamsSection() {
         <ExamForm category="Inflamatory" title="Inflamatórios" />
         <ExamForm category="Fecal" title=" Fecal"/>
       </div>
-    </div>
+    </section>
   );
 }
 

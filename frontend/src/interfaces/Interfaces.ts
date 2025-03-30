@@ -20,6 +20,14 @@ export interface ProblemData {
 export interface ProblemListData {
   problems: ProblemData[]; // Lista de problemas
 }
+
+export interface Allergy{
+  id:string,
+  name:string
+}
+export interface AllergiesListData{
+  allergies:Allergy
+}
 export interface PatientData {
   identification:{
     name: string;
@@ -27,6 +35,7 @@ export interface PatientData {
     gender: string;
     race: string;
   };
+  allergieList:AllergiesListData
   problemList: ProblemListData;
   physicalExam:{ 
     systolicBP: number | string;
