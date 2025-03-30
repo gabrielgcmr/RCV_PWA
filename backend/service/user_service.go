@@ -1,11 +1,11 @@
-package services
+package service
 
 import (
 	"log"
 
-	"github.com/gabrielgcmr/medapp/models"
+	"github.com/gabrielgcmr/medapp/model"
 	"github.com/gabrielgcmr/medapp/pkg/database"
-	authErr "github.com/gabrielgcmr/medapp/pkg/errors"
+	"github.com/gabrielgcmr/medapp/pkg/errs"
 	"github.com/gabrielgcmr/medapp/pkg/utils"
 )
 
@@ -15,10 +15,10 @@ func NewUserService() *UserService {
 	return &UserService{}
 }
 
-func (s *UserService) RegisterUser(user *models.User) (*models.User, error) {
-	var existing models.User
+func (s *UserService) RegisterUser(user *model.User) (*model.User, error) {
+	var existing model.User
 	if err := database.DB.Where("email = ?", user.Email).First(&existing).Error; err == nil {
-		return nil, authErr.ErrDuplicateEmail
+		return nil, errs.ErrDuplicateEmail
 	}
 
 	hashedPassword, err := utils.HashPassword(user.Password)
@@ -30,23 +30,23 @@ func (s *UserService) RegisterUser(user *models.User) (*models.User, error) {
 	// Salva no banco
 	if err := database.DB.Create(user).Error; err != nil {
 		log.Println("Erro ao salvar usuário:", err)
-		return nil, authErr.ErrCreateUser
+		return nil, errs.ErrCreateUser
 	}
 
 	return user, nil
 }
 
-func (s *UserService) LoginUser(email, password string) (*models.User, error) {
-	var user models.User
+func (s *UserService) LoginUser(email, password string) (*model.User, error) {
+	var user model.User
 
 	// Busca o usuário pelo e-mail
 	if err := database.DB.Where("email = ?", email).First(&user).Error; err != nil {
-		return nil, authErr.ErrInvalidLogin
+		return nil, errs.ErrInvalidLogin
 	}
 
 	// Verifica se a senha bate com o hash
 	if !utils.CheckPasswordHash(password, user.Password) {
-		return nil, authErr.ErrInvalidLogin
+		return nil, errs.ErrInvalidLogin
 	}
 
 	return &user, nil

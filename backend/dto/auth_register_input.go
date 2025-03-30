@@ -1,6 +1,7 @@
-package dtos
+package dto
 
-type LoginInput struct {
+type RegisterInput struct {
+	Name     string `json:"name" validate:"required"`
 	Email    string `json:"email" validate:"required,email"`
 	Password string `json:"password" validate:"required,min=8"`
 }

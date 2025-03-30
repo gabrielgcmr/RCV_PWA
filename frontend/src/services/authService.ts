@@ -12,7 +12,7 @@ interface RegisterInput {
 }
 
 export async function login(data: LoginInput) {
-  const response = await api.post("/login", data);
+  const response = await api.post("/api/login", data);
   const { token, user } = response.data;
 
   localStorage.setItem("token", token);
@@ -20,6 +20,7 @@ export async function login(data: LoginInput) {
 }
 
 export async function register(data: RegisterInput) {
-  const response = await api.post("/register", data);
+  const response = await api.post("/api/register", data);
   return response.data;
 }
+

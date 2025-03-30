@@ -1,28 +1,28 @@
-package controllers
+package controller
 
 import (
 	"net/http"
 
-	"github.com/gabrielgcmr/medapp/dtos"
-	"github.com/gabrielgcmr/medapp/models"
-	authErr "github.com/gabrielgcmr/medapp/pkg/errors"
+	"github.com/gabrielgcmr/medapp/dto"
+	"github.com/gabrielgcmr/medapp/model"
+	"github.com/gabrielgcmr/medapp/pkg/errs"
 	"github.com/gabrielgcmr/medapp/pkg/utils"
 	"github.com/gabrielgcmr/medapp/pkg/validation"
-	"github.com/gabrielgcmr/medapp/services"
+	"github.com/gabrielgcmr/medapp/service"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 )
 
 type AuthController struct {
-	UserService *services.UserService
+	UserService *service.UserService
 }
 
-func NewAuthController(userService *services.UserService) *AuthController {
+func NewAuthController(userService *service.UserService) *AuthController {
 	return &AuthController{UserService: userService}
 }
 
 func (ac *AuthController) Register(c *gin.Context) {
-	var input dtos.RegisterInput
+	var input dto.RegisterInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Input inválido"})
@@ -39,7 +39,7 @@ func (ac *AuthController) Register(c *gin.Context) {
 		return
 	}
 
-	user := models.User{
+	user := model.User{
 		Name:     input.Name,
 		Email:    input.Email,
 		Password: input.Password,
@@ -48,7 +48,7 @@ func (ac *AuthController) Register(c *gin.Context) {
 	createdUser, err := ac.UserService.RegisterUser(&user)
 	if err != nil {
 		switch err {
-		case authErr.ErrDuplicateEmail:
+		case errs.ErrDuplicateEmail:
 			c.JSON(http.StatusConflict, gin.H{"error": err.Error()})
 		default:
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -57,7 +57,7 @@ func (ac *AuthController) Register(c *gin.Context) {
 
 	}
 
-	response := dtos.AuthResponse{
+	response := dto.AuthResponse{
 		ID:    createdUser.ID,
 		Name:  createdUser.Name,
 		Email: createdUser.Email,
@@ -67,7 +67,7 @@ func (ac *AuthController) Register(c *gin.Context) {
 }
 
 func (ac *AuthController) Login(c *gin.Context) {
-	var input dtos.LoginInput
+	var input dto.LoginInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Input Inválido"})
@@ -77,7 +77,7 @@ func (ac *AuthController) Login(c *gin.Context) {
 	user, err := ac.UserService.LoginUser(input.Email, input.Password)
 	if err != nil {
 		switch err {
-		case authErr.ErrInvalidLogin:
+		case errs.ErrInvalidLogin:
 			c.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		default:
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Erro interno no login"})
@@ -91,7 +91,7 @@ func (ac *AuthController) Login(c *gin.Context) {
 		return
 	}
 
-	response := dtos.AuthResponse{
+	response := dto.AuthResponse{
 		ID:    user.ID,
 		Name:  user.Name,
 		Email: user.Email,
