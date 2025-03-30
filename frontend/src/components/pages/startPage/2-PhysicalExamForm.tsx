@@ -1,5 +1,5 @@
-import usePatient from "../../hooks/usePatient";
-import NumberInput from "../common/input/NumberInput";
+import usePatient from "../../../hooks/usePatient";
+import NumberInput from "../../common/input/NumberInput";
 
 function PhysicalExamForm() {
   const { patientData, updatePatientData } = usePatient();

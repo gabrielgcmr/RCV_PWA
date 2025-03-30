@@ -1,8 +1,8 @@
-import usePatient from "../../hooks/usePatient";
-import NumberInput from "../common/input/NumberInput";
-import RadioInput from "../common/input/RadioInput";
-import SelectInput from "../common/input/SelectInput";
-import TextInput from "../common/input/TextInput";
+import usePatient from "../../../hooks/usePatient";
+import NumberInput from "../../common/input/NumberInput";
+import RadioInput from "../../common/input/RadioInput";
+import SelectInput from "../../common/input/SelectInput";
+import TextInput from "../../common/input/TextInput";
 
 function IdentificationForm() {
   const { patientData, updatePatientData } = usePatient();

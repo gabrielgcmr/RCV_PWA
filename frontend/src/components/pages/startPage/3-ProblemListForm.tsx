@@ -1,5 +1,5 @@
-import usePatient from "../../hooks/usePatient";
-import CheckboxInput from "../common/input/CheckboxInputProps";
+import usePatient from "../../../hooks/usePatient";
+import CheckboxInput from "../../common/input/CheckboxInputProps";
 
 function ProblemListForm() {
   const { patientData, updatePatientData } = usePatient();

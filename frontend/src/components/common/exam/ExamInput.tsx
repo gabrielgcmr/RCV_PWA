@@ -19,7 +19,9 @@ export function ExamInput(props: ExamInputProps) {
         value={props.value}
         aria-label={props.label}
         disabled={props.disabled}
-        onChange={(e) => props.onChange?.(props.name, e.target.value, props.abbreviation)}
+        onChange={(e) =>
+          props.onChange?.(props.name, e.target.value, props.abbreviation)
+        }
         className="w-20 p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200"
       />
     </div>

@@ -1,9 +1,9 @@
-import IdentificationForm from "../components/formSections/1-IdentificationForm";
-import PhysicalExamForm from "../components/formSections/2-PhysicalExamForm";
-import ProblemListForm from "../components/formSections/3-ProblemListForm";
-import ExamSection from "../components/formSections/3-ExamForm/4-ExamForm";
-import SummarySection from "../components/formSections/5-SummarySection";
-import ClinicalCalculations from "../components/formSections/6-ClinicalCalculationsSection";
+import IdentificationForm from "../components/pages/startPage/1-IdentificationForm";
+import PhysicalExamForm from "../components/pages/startPage/2-PhysicalExamForm";
+import ProblemListForm from "../components/pages/startPage/3-ProblemListForm";
+import ExamsForm from "../components/pages/startPage/4-ExamForm";
+import SummarySection from "../components/pages/startPage/5-SummarySection";
+import ClinicalCalculations from "../components/pages/startPage/6-ClinicalCalculationsSection";
 
 function StartPage() {
   return (
@@ -14,7 +14,7 @@ function StartPage() {
         <ProblemListForm />
         <PhysicalExamForm />
       </div>
-      <ExamSection />
+      <ExamsForm />
       {/* Terceira Coluna (Resumo do Paciente) */}
       <div>
         <SummarySection />

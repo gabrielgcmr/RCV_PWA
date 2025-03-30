@@ -1,5 +1,5 @@
-import { examDictionary } from "../../constants/examDictionary";
-import usePatient from "../../hooks/usePatient";
+import { examDictionary } from "../../../../constants/examDictionary";
+import usePatient from "../../../../hooks/usePatient";
 
 export default function Exams() {
   const { patientData } = usePatient();
