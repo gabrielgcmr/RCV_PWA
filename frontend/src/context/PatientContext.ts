@@ -1,5 +1,6 @@
+//context/PatienteContext.tsx
 import { createContext } from "react";
-import { PatientData } from "../interfaces/Interfaces";
+import { PatientData } from "../interfaces/Patient";
 
 interface PatientContextType {
   patientData: PatientData;

@@ -1,4 +1,4 @@
-import { PatientData } from "../../../interfaces/Interfaces";
+import { PatientData } from "../../../interfaces/Patient";
 import calculateCKDEPI  from "./CKDEPICalculator";
 import { mapCKDEPIData } from "./CKDEPIMapper";
 import { validateCKDEPIData } from "./CKDEPIValidator";

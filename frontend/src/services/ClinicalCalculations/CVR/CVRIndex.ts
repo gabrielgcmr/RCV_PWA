@@ -1,4 +1,4 @@
-import { PatientData } from "../../../interfaces/Interfaces";
+import { PatientData } from "../../../interfaces/Patient";
 import { calculateCVR } from "./CVRCalculator";
 import { classifyCVR } from "./CVRClassifier";
 import { mapPatientData } from "./CVRMapper";

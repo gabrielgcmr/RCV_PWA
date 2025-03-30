@@ -1,3 +1,4 @@
+import { User } from "../interfaces/User";
 import api from "../lib/axiosInstance";
 
 interface LoginInput {
@@ -11,13 +12,12 @@ interface RegisterInput {
   password: string;
 }
 
-export async function login(data: LoginInput) {
+export async function login(data: LoginInput): Promise<{ user: User; token: string }> {
   const response = await api.post("/api/login", data);
   const { token, user } = response.data;
-
-  localStorage.setItem("token", token);
-  return user;
+  return { user, token };
 }
+
 
 export async function register(data: RegisterInput) {
   const response = await api.post("/api/register", data);

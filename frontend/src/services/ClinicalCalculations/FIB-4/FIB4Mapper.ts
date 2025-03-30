@@ -1,4 +1,4 @@
-import { PatientData } from "../../../interfaces/Interfaces";
+import { PatientData } from "../../../interfaces/Patient";
 import { FIB4Data } from "./FIB4Data";
 
 // Mapeia os dados do paciente para o cálculo do FIB-4.

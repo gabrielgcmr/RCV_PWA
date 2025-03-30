@@ -1,6 +1,7 @@
+//context/PatienteProvider.tsx
 import { useState, ReactNode } from "react";
 import { PatientContext } from "./PatientContext";
-import { PatientData } from "../interfaces/Interfaces";
+import { PatientData } from "../interfaces/Patient";
 import { PatientDataService } from "../services/PatientDataService";
 
 export function PatientProvider({ children }: { children: ReactNode }) {
@@ -24,20 +25,25 @@ export function PatientProvider({ children }: { children: ReactNode }) {
     },
   });
 
-
   const updatePatientData = <T extends keyof PatientData>(
     field: T,
     value: Partial<PatientData[T]>
   ) => {
-    setPatientData((prev) => PatientDataService.updatePatientData(prev, field, value));
+    setPatientData((prev) =>
+      PatientDataService.updatePatientData(prev, field, value)
+    );
   };
 
   const updateExam = (examName: string, examValue: string) => {
-    setPatientData((prev) => PatientDataService.updateComplementaryExam(prev, examName, examValue));
+    setPatientData((prev) =>
+      PatientDataService.updateComplementaryExam(prev, examName, examValue)
+    );
   };
 
   return (
-    <PatientContext.Provider value={{ patientData, updatePatientData, updateExam }}>
+    <PatientContext.Provider
+      value={{ patientData, updatePatientData, updateExam }}
+    >
       {children}
     </PatientContext.Provider>
   );

@@ -1,4 +1,4 @@
-import { ExamData } from "../../interfaces/Interfaces";
+import { ExamData } from "../../interfaces/Patient";
 
 export interface ExamInputPropsBase extends ExamData {
     label: string; // Label do campo de input

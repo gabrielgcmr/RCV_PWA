@@ -1,7 +1,7 @@
 // components/auth/LoginForm.tsx
 import { useState } from "react";
 import { Button } from "../common/Button";
-import { login } from "../../services/authService";
+import { login } from "../../services/AuthService";
 import { AxiosError } from "axios";
 
 export function LoginForm({ onSubmit }: { onSubmit?: () => void }) {

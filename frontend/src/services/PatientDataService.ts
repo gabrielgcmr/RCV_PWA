@@ -1,5 +1,5 @@
 import { examDictionary } from "../constants/examDictionary";
-import { PatientData } from "../interfaces/Interfaces";
+import { PatientData } from "../interfaces/Patient";
 
 export class PatientDataService {
   /**

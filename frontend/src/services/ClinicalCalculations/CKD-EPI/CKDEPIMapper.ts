@@ -1,4 +1,4 @@
-import { PatientData } from "../../../interfaces/Interfaces";
+import { PatientData } from "../../../interfaces/Patient";
 
 // Função para mapear os dados do paciente para o cálculo da equação CKD-EPI.
 export function mapCKDEPIData(patientData: PatientData) {

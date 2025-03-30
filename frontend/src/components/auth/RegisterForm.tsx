@@ -1,7 +1,7 @@
 // components/auth/RegisterForm.tsx
 import { useState } from "react";
 import { Button } from "../common/Button";
-import { register } from "../../services/authService";
+import { register } from "../../services/AuthService";
 import { AxiosError } from "axios";
 
 export function RegisterForm({ onSubmit }: { onSubmit?: () => void }) {

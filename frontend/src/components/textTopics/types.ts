@@ -1,4 +1,4 @@
-import { PatientData } from "../../interfaces/Interfaces";
+import { PatientData } from "../../interfaces/Patient";
 
 export default interface MedicalTextTopicsProps {
     patientData: PatientData;

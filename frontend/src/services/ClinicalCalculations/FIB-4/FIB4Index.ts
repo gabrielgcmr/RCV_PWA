@@ -1,7 +1,7 @@
 import { mapFIB4Data } from "./FIB4Mapper";
 import { validateFIB4Data } from "./FIB4Validator";
 import { calculateFIB4 } from "./FIB4Calculator";
-import { PatientData } from "../../../interfaces/Interfaces";
+import { PatientData } from "../../../interfaces/Patient";
 import { classifyFIB4 } from "./FIB4Classifier";
 
 // Calcula o índice FIB-4.
