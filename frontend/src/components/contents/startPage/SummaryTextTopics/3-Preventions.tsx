@@ -2,6 +2,7 @@ import usePatient from "../../../../hooks/usePatient";
 import calculateCKDEPIIndex from "../../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
 import calculateCVRIndex from "../../../../services/clinical/calculator/CVR/CVRIndex";
 import calculateFIB4Index from "../../../../services/clinical/calculator/FIB-4/FIB4Index";
+import { summaryTitle } from "./styles";
 
 export default function Preventions() {
   const { patientData } = usePatient();
@@ -12,7 +13,7 @@ export default function Preventions() {
 
   return (
     <>
-      <p className="text-base font-bold mb-2 mt-2">
+      <p className={summaryTitle}>
         🟢 <b>PREVENÇÕES</b>{" "}
       </p>
       <ul className="list-disc pl-4">

@@ -3,11 +3,12 @@ import DiabetesIndex from "../../../../services/clinical/problems/Diabetes/Diabe
 import HypertensionIndex from "../../../../services/clinical/problems/Hypertension/HypertensionIndex";
 import NAFLDIndex from "../../../../services/clinical/problems/NAFLD/NAFLD";
 import TabagismIndex from "../../../../services/clinical/problems/Tabagism/Tabagism";
+import { summaryTitle } from "./styles";
 
 export default function ProblemList() {
   return (
     <>
-      <p className="text-base font-bold mb-2 mt-2">
+      <p className={summaryTitle}>
         🟠<b>LISTA DE PROBLEMAS</b>{" "}
       </p>
       <ul className="list-disc pl-4">

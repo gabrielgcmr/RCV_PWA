@@ -1,6 +1,8 @@
+import { summaryTitle } from "./styles";
+
 export default function PresentIllness() {
   return (
-    <p className="text-base font-bold mb-2 mt-2">
+    <p className={summaryTitle}>
       🔵 <b>DOENÇA ATUAL</b>{" "}
     </p>
   );

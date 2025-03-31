@@ -1,7 +1,9 @@
+import { summaryTitle } from "./styles";
+
 export default function Medications() {
   return (
     <>
-      <p className="text-base font-bold mb-2 mt-2">
+      <p className={summaryTitle}>
         {" "}
         💊<b>MUC</b>{" "}
       </p>

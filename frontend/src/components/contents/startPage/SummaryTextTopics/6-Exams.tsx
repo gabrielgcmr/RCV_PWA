@@ -1,5 +1,6 @@
 import { examDictionary } from "../../../../constants/examDictionary";
 import usePatient from "../../../../hooks/usePatient";
+import { summaryTitle } from "./styles";
 
 export default function Exams() {
   const { patientData } = usePatient();
@@ -43,7 +44,7 @@ export default function Exams() {
 
   return (
     <>
-      <p className="text-base font-bold mb-2 mt-2">
+      <p className={summaryTitle}>
         🟣 <b>EXAMES COMPLEMENTARES</b>
       </p>
 
