@@ -10,7 +10,6 @@ function PhysicalExamForm() {
       [field]: value,
     });
   };
-
   return (
     <section className="p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-1">
       <h2 className="text-lg font-bold mb-4">🩺 Exame Físico</h2>

@@ -1,9 +1,9 @@
-import IdentificationForm from "../components/pages/startPage/1-IdentificationForm";
-import PhysicalExamForm from "../components/pages/startPage/2-PhysicalExamForm";
-import ProblemListForm from "../components/pages/startPage/3-ProblemListForm";
-import ExamsForm from "../components/pages/startPage/4-ExamForm";
-import SummarySection from "../components/pages/startPage/5-SummarySection";
-import ClinicalCalculations from "../components/pages/startPage/6-ClinicalCalculationsSection";
+import IdentificationForm from "../components/contents/startPage/1-IdentificationForm";
+import PhysicalExamForm from "../components/contents/startPage/2-PhysicalExamForm";
+import ProblemListForm from "../components/contents/startPage/3-ProblemListForm";
+import ExamsForm from "../components/contents/startPage/4-ExamForm";
+import SummarySection from "../components/contents/startPage/5-SummarySection";
+import ClinicalCalculations from "../components/contents/startPage/6-ClinicalCalculationsSection";
 
 function StartPage() {
   return (

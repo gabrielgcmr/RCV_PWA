@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "../common/Button";
-import { register } from "../../services/AuthService";
+import { register } from "../../services/auth/AuthService";
 import { AxiosError } from "axios";
 import useAuth from "../../hooks/useAuth";
 

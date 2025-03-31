@@ -1,5 +1,5 @@
-import { User } from "../interfaces/User";
-import api from "../lib/axiosInstance";
+import { User } from "../../interfaces/User";
+import api from "../../lib/axiosInstance";
 
 interface LoginInput {
   email: string;
