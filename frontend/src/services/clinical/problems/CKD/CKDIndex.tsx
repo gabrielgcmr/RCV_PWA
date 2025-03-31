@@ -1,4 +1,4 @@
-import usePatient from "../../../hooks/usePatient";
+import usePatient from "../../../../hooks/usePatient";
 import calculateCKDEPIIndex from "../../calculator/CKD-EPI/CKDEPIIndex";
 import CKDStaging from "./CKDStaging";
 

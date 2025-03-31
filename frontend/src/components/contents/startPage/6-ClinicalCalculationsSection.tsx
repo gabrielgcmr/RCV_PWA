@@ -1,10 +1,10 @@
 import { useState } from "react";
 import usePatient from "../../../hooks/usePatient";
 import { PatientData } from "../../../interfaces/Patient";
-import calculateCKDEPIIndex from "../../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
-import calculateCVRIndex from "../../../services/ClinicalCalculations/CVR/CVRIndex";
-import calculateFIB4Index from "../../../services/ClinicalCalculations/FIB-4/FIB4Index";
 import { ErrorPopup } from "../../common/ErrorPopup";
+import calculateCKDEPIIndex from "../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
+import calculateCVRIndex from "../../../services/clinical/calculator/CVR/CVRIndex";
+import calculateFIB4Index from "../../../services/clinical/calculator/FIB-4/FIB4Index";
 
 function ClinicalCalculations() {
   const { patientData } = usePatient();

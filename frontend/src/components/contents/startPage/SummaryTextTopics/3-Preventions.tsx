@@ -1,7 +1,7 @@
 import usePatient from "../../../../hooks/usePatient";
-import calculateCKDEPIIndex from "../../../../services/ClinicalCalculations/CKD-EPI/CKDEPIIndex";
-import calculateCVRIndex from "../../../../services/ClinicalCalculations/CVR/CVRIndex";
-import calculateFIB4Index from "../../../../services/ClinicalCalculations/FIB-4/FIB4Index";
+import calculateCKDEPIIndex from "../../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
+import calculateCVRIndex from "../../../../services/clinical/calculator/CVR/CVRIndex";
+import calculateFIB4Index from "../../../../services/clinical/calculator/FIB-4/FIB4Index";
 
 export default function Preventions() {
   const { patientData } = usePatient();

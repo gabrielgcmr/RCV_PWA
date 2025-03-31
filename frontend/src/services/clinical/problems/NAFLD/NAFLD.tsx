@@ -1,5 +1,6 @@
 // DHGNA
-import usePatient from "../../../hooks/usePatient";
+
+import usePatient from "../../../../hooks/usePatient";
 import calculateFIB4Index from "../../calculator/FIB-4/FIB4Index";
 
 function NAFLDIndex() {

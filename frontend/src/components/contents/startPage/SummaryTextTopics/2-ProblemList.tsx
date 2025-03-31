@@ -1,8 +1,8 @@
-import CKDIndex from "../../../../services/Problems/CKD/CKDIndex";
-import DiabetesIndex from "../../../../services/Problems/Diabetes/DiabetesIndex";
-import HypertensionIndex from "../../../../services/Problems/Hypertension/HypertensionIndex";
-import NAFLDIndex from "../../../../services/Problems/NAFLD/NAFLD";
-import TabagismIndex from "../../../../services/Problems/Tabagism/Tabagism";
+import CKDIndex from "../../../../services/clinical/problems/CKD/CKDIndex";
+import DiabetesIndex from "../../../../services/clinical/problems/Diabetes/DiabetesIndex";
+import HypertensionIndex from "../../../../services/clinical/problems/Hypertension/HypertensionIndex";
+import NAFLDIndex from "../../../../services/clinical/problems/NAFLD/NAFLD";
+import TabagismIndex from "../../../../services/clinical/problems/Tabagism/Tabagism";
 
 export default function ProblemList() {
   return (
