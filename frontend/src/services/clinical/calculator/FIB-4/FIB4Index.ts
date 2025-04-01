@@ -1,8 +1,8 @@
 import { mapFIB4Data } from "./FIB4Mapper";
 import { validateFIB4Data } from "./FIB4Validator";
 import { calculateFIB4 } from "./FIB4Calculator";
-import { PatientData } from "../../../interfaces/Patient";
 import { classifyFIB4 } from "./FIB4Classifier";
+import { PatientData } from "../../../../interfaces/Patient";
 
 // Calcula o índice FIB-4.
 function calculateFIB4Index(patientData: PatientData): { fib4: number | undefined; fib4category: string; errors: string[] } {

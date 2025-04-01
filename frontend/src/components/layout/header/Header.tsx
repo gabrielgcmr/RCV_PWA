@@ -14,7 +14,7 @@ function Header() {
   console.log("isAuthenticated", isAuthenticated);
   console.log("user", user);
   return (
-    <header className="fixed top-0 left-0 w-full bg-zinc-800 text-white shadow-md z-50 px-4 md:px-6 py-3 flex justify-between items-center">
+    <header className="fixed top-0 left-0 w-full bg-zinc-800 text-white shadow-md z-50 px-4 md:px-6 py-2 flex justify-between items-center">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <img src="/pwa-192x192.png" alt="Logo" className="h-8 w-8" />

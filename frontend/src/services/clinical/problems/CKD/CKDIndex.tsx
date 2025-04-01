@@ -13,11 +13,11 @@ function CKDIndex() {
 
   if (!hasCKD) return null;
   if (eGFR !== undefined) {
-    const result = CKDStaging(eGFR, UACR);
-    if (result)
+    const stage = CKDStaging(eGFR, UACR);
+    if (stage)
       return (
         <li>
-          <strong>DRC </strong> ({result})
+          <strong>DRC </strong> ({stage})
         </li>
       );
   } else {

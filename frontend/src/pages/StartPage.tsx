@@ -2,7 +2,7 @@ import IdentificationForm from "../components/contents/startPage/1-Identificatio
 import PhysicalExamForm from "../components/contents/startPage/2-PhysicalExamForm";
 import ProblemListForm from "../components/contents/startPage/3-ProblemListForm";
 import ExamsForm from "../components/contents/startPage/4-ExamForm";
-import SummarySection from "../components/contents/startPage/5-SummarySection";
+import SummaryBuilder from "../components/contents/startPage/5-summaryBuilder";
 import ClinicalCalculations from "../components/contents/startPage/6-ClinicalCalculationsSection";
 
 function StartPage() {
@@ -17,7 +17,7 @@ function StartPage() {
       <ExamsForm />
       {/* Terceira Coluna (Resumo do Paciente) */}
       <div>
-        <SummarySection />
+        <SummaryBuilder />
       </div>
       <ClinicalCalculations />
     </div>

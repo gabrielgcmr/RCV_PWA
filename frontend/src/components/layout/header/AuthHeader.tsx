@@ -7,7 +7,7 @@ interface Props {
 
 function AuthHeader({ onLogin, onRegister }: Props) {
   return (
-    <div className="flex gap-2 md:gap-3">
+    <div className="flex gap-1 md:gap-2">
       <Button
         onClick={onLogin}
         className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 md:py-2 px-3 md:px-4 rounded-2xl shadow transition-colors duration-200"

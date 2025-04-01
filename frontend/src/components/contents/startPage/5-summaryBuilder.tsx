@@ -7,7 +7,7 @@ import MedicalHistory from "./SummaryTextTopics/5-MedicalHistory";
 import Exams from "./SummaryTextTopics/6-Exams";
 import PresentIllness from "./SummaryTextTopics/7-PresentIllness";
 
-function SummarySection() {
+function SummaryBuilder() {
   const { patientData } = usePatient();
 
   if (!patientData) {
@@ -35,4 +35,4 @@ function SummarySection() {
   );
 }
 
-export default SummarySection;
+export default SummaryBuilder;
