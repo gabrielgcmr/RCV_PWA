@@ -1,16 +1,19 @@
 //Nota: Aplicar reducer futuramente!
 import { useState, ReactNode } from "react";
 import { PatientContext } from "./PatientContext";
-import { PatientData } from "../interfaces/Patient";
 import { examDictionary } from "../constants/examDictionary";
+import { Patient } from "../interfaces";
 
-export function PatientProvider({ children }: { children: ReactNode }) {
-  const [patientData, setPatientData] = useState<PatientData>({
+export default function PatientProvider({ children }: { children: ReactNode }) {
+  const [patient, setPatient] = useState<Patient>({
     identification: {
       name: "",
       age: "",
       gender: "",
       race: "",
+    },
+    preventionList: {
+      prevention: [],
     },
     problemList: {
       problems: [],
@@ -25,11 +28,11 @@ export function PatientProvider({ children }: { children: ReactNode }) {
     },
   });
 
-  const updatePatientData = <T extends keyof PatientData>(
+  const updatePatient = <T extends keyof Patient>(
     field: T,
-    value: Partial<PatientData[T]>
+    value: Partial<Patient[T]>
   ) => {
-    setPatientData((prev) => ({
+    setPatient((prev) => ({
       ...prev,
       [field]: {
         ...prev[field],
@@ -39,7 +42,7 @@ export function PatientProvider({ children }: { children: ReactNode }) {
   };
 
   const updateExam = (examName: string, examValue: string) => {
-    setPatientData((prev) => {
+    setPatient((prev) => {
       const updatedExams = [...prev.complementaryExams.exams];
       const index = updatedExams.findIndex((e) => e.name === examName);
 
@@ -68,7 +71,7 @@ export function PatientProvider({ children }: { children: ReactNode }) {
 
   return (
     <PatientContext.Provider
-      value={{ patientData, updatePatientData, updateExam }}
+      value={{ patient: patient, updatePatient, updateExam }}
     >
       {children}
     </PatientContext.Provider>

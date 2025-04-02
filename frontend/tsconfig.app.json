@@ -23,5 +23,8 @@
     "noUncheckedSideEffectImports": true
   },
   "include": ["src/**/*", "tailwind.config.js"],
-  "baseUrl": "src"
+  "baseUrl": "./",
+  "paths":{
+    "@/*": ["src/*"]
+  }
 }

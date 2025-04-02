@@ -1,14 +1,14 @@
 // DHGNA
 import usePatient from "../../../../hooks/usePatient";
-import calculateFIB4Index from "../../calculator/FIB-4/FIB4Index";
+import FIB4Index from "../../calculator/FIB4/FIB4Index";
 
 function NAFLDText() {
-  const { patientData, hasProblem } = usePatient();
+  const { patient: patientData, hasProblem } = usePatient();
   const hasNAFLD = hasProblem("NAFLD");
 
   if (!hasNAFLD) return null;
 
-  const { fib4, fib4category } = calculateFIB4Index(patientData);
+  const { fib4, fib4category } = FIB4Index(patientData);
 
   if (!fib4) {
     return (

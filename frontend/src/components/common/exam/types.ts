@@ -1,6 +1,5 @@
-import { ExamData } from "../../../interfaces/Patient";
-
-export interface ExamInputPropsBase extends ExamData {
+import { Exam } from "../../../interfaces";
+export interface ExamInputPropsBase extends Exam {
     label: string; // Label do campo de input
     placeholder?: string; // Placeholder do campo
     errorMessage?: string; // Mensagem de erro personalizada

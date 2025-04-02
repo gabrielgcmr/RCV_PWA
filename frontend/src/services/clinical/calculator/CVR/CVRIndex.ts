@@ -1,34 +1,43 @@
-import { PatientData } from "../../../interfaces/Patient";
-import { calculateCVR } from "./CVRCalculator";
-import { classifyCVR } from "./CVRClassifier";
-import { mapPatientData } from "./CVRMapper";
-import { validateCVRData } from "./CVRValidator";
+
+import { Prevention } from "../../../../interfaces";
+import { Patient } from "../../../../interfaces/Patient";
+import  calculateCVR  from "./CVRCalculator";
+import  classifyCVR  from "./CVRClassifier";
+import  mapPatientData  from "./CVRMapper";
+import  validateCVRData  from "./CVRValidator";
 
 /**
  * Função principal para calcular o risco cardiovascular.
  */
-function calculateCVRIndex(patientData: PatientData) {
-  console.log(patientData)
-  // 1. Mapeia os dados do paciente para o formato correto
+function CVRIndex(patientData: Patient): Prevention {
   const mappedData = mapPatientData(patientData);
-  
-  // 2. Valida os dados do paciente
   const validation = validateCVRData(mappedData);
+  
+
   if (!validation.isValid) {
-    return { realRisk: undefined, realRiskCategory: "Não Avaliado", idealRisk: undefined, errors: validation.errors };
+    return {
+      name: "Risco Cardiovascular",
+      abreviation: "RCV",
+      classification: "Não Avaliado",
+      errors: validation.errors,
+    };
   }
+
 
   // 3. Calcula os riscos
   const { CVRRealRisk,CVRIdealRisk } = calculateCVR(mappedData);
-  const CVRcategory = classifyCVR(CVRRealRisk)
+  const classification = classifyCVR(CVRRealRisk)
 
-  // 4. Retorna os resultados
   return {
-    CVRRealRisk,
-    CVRIdealRisk,
-    CVRcategory,
+    name: "RCV",
+    abreviation: "RCV",
+    value: CVRRealRisk,
+    referenceValue: CVRIdealRisk,
+    unit: "%",
+    classification: classification,
+    description: `Risco atual: ${CVRRealRisk.toFixed(2)}% — Ideal: ${CVRIdealRisk.toFixed(2)}%`,
     errors: [],
   };
 }
 
-export default calculateCVRIndex
+export default CVRIndex

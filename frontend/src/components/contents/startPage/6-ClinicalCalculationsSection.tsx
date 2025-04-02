@@ -1,29 +1,33 @@
 import { useState } from "react";
 import usePatient from "../../../hooks/usePatient";
-import { PatientData } from "../../../interfaces/Patient";
+
 import { ErrorPopup } from "../../common/ErrorPopup";
-import calculateCKDEPIIndex from "../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
-import calculateCVRIndex from "../../../services/clinical/calculator/CVR/CVRIndex";
-import calculateFIB4Index from "../../../services/clinical/calculator/FIB-4/FIB4Index";
+import CKDEPIIndex from "../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
+import CVRIndex from "../../../services/clinical/calculator/CVR/CVRIndex";
+import FIB4Index from "../../../services/clinical/calculator/FIB4/FIB4Index";
+import { Patient, Prevention } from "../../../interfaces";
 
 function ClinicalCalculations() {
-  const { patientData } = usePatient();
-  const [errors, setErrors] = useState<{
-    TFG?: string[];
-    RCV?: string[];
-    FIB4?: string[];
+  const { patient } = usePatient();
+
+  const [preventionResults, setPreventionResults] = useState<{
+    TFG?: Prevention;
+    RCV?: Prevention;
+    FIB4?: Prevention;
   }>({});
+
   const [visibleError, setVisibleError] = useState<
     "TFG" | "RCV" | "FIB4" | null
   >(null);
 
   const runCalculation = (
     label: "TFG" | "RCV" | "FIB4",
-    calculateFn: (data: PatientData) => { errors: string[] }
+    calculateFn: (data: Patient) => Prevention
   ) => {
-    const result = calculateFn(patientData);
+    const result = calculateFn(patient);
+    setPreventionResults((prev) => ({ ...prev, [label]: result }));
+
     if (result.errors.length > 0) {
-      setErrors((prev) => ({ ...prev, [label]: result.errors }));
       setVisibleError(label);
     }
   };
@@ -36,17 +40,17 @@ function ClinicalCalculations() {
     {
       label: "TFG",
       color: "bg-blue-500",
-      action: () => runCalculation("TFG", calculateCKDEPIIndex),
+      action: () => runCalculation("TFG", CKDEPIIndex),
     },
     {
       label: "RCV",
       color: "bg-green-500",
-      action: () => runCalculation("RCV", calculateCVRIndex),
+      action: () => runCalculation("RCV", CVRIndex),
     },
     {
       label: "FIB4",
       color: "bg-yellow-500",
-      action: () => runCalculation("FIB4", calculateFIB4Index),
+      action: () => runCalculation("FIB4", FIB4Index),
     },
   ];
 
@@ -66,7 +70,7 @@ function ClinicalCalculations() {
             {label}
           </button>
 
-          {(errors[label] || []).length > 0 && (
+          {preventionResults[label]?.errors?.length > 0 && (
             <p className="text-xs text-red-400 mt-1">
               ⚠️ Erro em {label} - Ver detalhes
             </p>
@@ -75,9 +79,9 @@ function ClinicalCalculations() {
       ))}
 
       {/* Modal de erro flutuante */}
-      {visibleError && errors[visibleError] && (
+      {visibleError && preventionResults[visibleError]?.errors?.length > 0 && (
         <ErrorPopup
-          errors={errors[visibleError] || []}
+          errors={preventionResults[visibleError]?.errors || []}
           onClose={() => setVisibleError(null)}
         />
       )}

@@ -1,11 +1,11 @@
 import usePatient from "../../../../hooks/usePatient";
-import calculateCKDEPIIndex from "../../calculator/CKD-EPI/CKDEPIIndex";
+import CKDEPIIndex from "../../calculator/CKD-EPI/CKDEPIIndex";
 import CKDStaging from "./CKDStaging";
 
 function CKDIndex() {
-  const { patientData, hasProblem } = usePatient();
+  const { patient: patientData, hasProblem } = usePatient();
   const hasCKD = hasProblem("CKD");
-  const { eGFR } = calculateCKDEPIIndex(patientData);
+  const { eGFR } = CKDEPIIndex(patientData);
   const UACR = Number(
     patientData.complementaryExams.exams.find((exam) => exam.name === "UACR")
       ?.value ?? undefined

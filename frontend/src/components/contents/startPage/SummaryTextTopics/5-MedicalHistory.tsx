@@ -10,7 +10,7 @@ export default function MedicalHistory() {
         <li>
           Hábitos de Vida
           <ul className="list-disc pl-6">
-            <li>NA</li>
+            <li>Não Avaliado</li>
           </ul>
         </li>
       </ul>
@@ -18,7 +18,7 @@ export default function MedicalHistory() {
         <li>
           Ant. Patológicos
           <ul className="list-disc pl-6">
-            <li>NA</li>
+            <li>Não Avaliado</li>
           </ul>
         </li>
       </ul>
@@ -26,7 +26,7 @@ export default function MedicalHistory() {
         <li>
           Ant. Familiares
           <ul className="list-disc pl-6">
-            <li>NA</li>
+            <li>Não Avaliado</li>
           </ul>
         </li>
       </ul>

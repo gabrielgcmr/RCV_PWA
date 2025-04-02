@@ -8,7 +8,7 @@ function usePatient() {
     throw new Error("usePatient deve ser usado dentro de um PatientProvider");
   }
 
-  const { patientData, updatePatientData } = context;
+  const { patient: patientData, updatePatient: updatePatientData } = context;
    // ====== FUNÇÕES DE EXAMES ======
   const findExam = (name: string) => {
     return patientData?.complementaryExams?.exams.find(exam => exam.name === name)?.value;

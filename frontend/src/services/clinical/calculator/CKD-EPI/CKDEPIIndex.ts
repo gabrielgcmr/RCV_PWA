@@ -1,17 +1,35 @@
-import { PatientData } from "../../../interfaces/Patient";
+
+import { Patient, Prevention } from "../../../../interfaces";
 import calculateCKDEPI  from "./CKDEPICalculator";
-import { mapCKDEPIData } from "./CKDEPIMapper";
-import { validateCKDEPIData } from "./CKDEPIValidator";
+import classifyTFG from "./CKDEPIClassifier";
+import  mapCKDEPIData  from "./CKDEPIMapper";
+import  validateCKDEPIData  from "./CKDEPIValidator";
 
 // Calcula a TFG pela equação CKD-EPI
-function calculateCKDEPIIndex(patientData: PatientData): { eGFR: number | undefined; errors: string[] } {
-  const mappedData = mapCKDEPIData(patientData);
+function CKDEPIIndex(patient: Patient): Prevention {
+  const mappedData = mapCKDEPIData(patient);
   const validation = validateCKDEPIData(mappedData);
-  const eGFR = calculateCKDEPI(mappedData)
+  if (!validation.isValid) {
+    return {
+      name: "TFG",
+      abreviation: "TFG",
+      classification: "Não Avaliado",
+      errors: validation.errors,
+    };
+  }
 
-  if (!validation.isValid) return { eGFR: undefined, errors: validation.errors };
+  const eGFR = calculateCKDEPI(mappedData);
 
-  return { eGFR, errors: [] };
+  return {
+    name: "TFG",
+    abreviation: "TFG",
+    value: eGFR,
+    unit: "mL/min/1.73m²",
+    classification: classifyTFG(eGFR), // se desejar classificar, veja abaixo
+    description: `TFG estimada: ${eGFR} mL/min/1.73m²`,
+    errors: [],
+  };
 }
 
-export default calculateCKDEPIIndex
+
+export default CKDEPIIndex

@@ -3,7 +3,7 @@ import usePatient from "../../../../hooks/usePatient";
 import { summaryTitle } from "./styles";
 
 export default function Exams() {
-  const { patientData } = usePatient();
+  const { patient: patientData } = usePatient();
 
   if (!patientData?.complementaryExams?.exams) return null;
 

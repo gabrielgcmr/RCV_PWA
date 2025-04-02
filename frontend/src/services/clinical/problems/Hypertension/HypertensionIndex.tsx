@@ -1,8 +1,8 @@
 import usePatient from "../../../../hooks/usePatient";
 import HypertensionStatusChecker from "./HypertensionStatus";
 
-function HypertensionIndex() {
-  const { patientData, hasProblem } = usePatient();
+function HypertensionText() {
+  const { patient: patientData, hasProblem } = usePatient();
   const hasHypertension = hasProblem("hypertension");
 
   if (!hasHypertension) return null;
@@ -18,4 +18,4 @@ function HypertensionIndex() {
   );
 }
 
-export default HypertensionIndex;
+export default HypertensionText;

@@ -2,7 +2,8 @@ import usePatient from "../../../hooks/usePatient";
 import NumberInput from "../../common/input/NumberInput";
 
 function PhysicalExamForm() {
-  const { patientData, updatePatientData } = usePatient();
+  const { patient: patientData, updatePatient: updatePatientData } =
+    usePatient();
 
   const handleChange = (field: string, value: string | number | null) => {
     updatePatientData("physicalExam", {

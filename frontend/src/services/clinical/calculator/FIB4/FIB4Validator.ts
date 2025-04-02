@@ -1,7 +1,7 @@
 import { FIB4Data } from "./FIB4Data";
 
 // Valida os dados para o cálculo do FIB-4.
-export function validateFIB4Data(data: FIB4Data): { isValid: boolean; errors: string[] } {
+export default function validateFIB4Data(data: FIB4Data): { isValid: boolean; errors: string[] } {
   const errors: string[] = [];
 
   // Adiciona erro se a condição não for atendida.

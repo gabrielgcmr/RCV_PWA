@@ -1,4 +1,4 @@
-export interface CVRData {
+export default interface CVRData {
   age: number;
   gender: string;
   race: string;

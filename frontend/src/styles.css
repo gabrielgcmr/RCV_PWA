@@ -11,8 +11,7 @@
 }
 
 body {
-  background-color: #18181b; /* Equivalent to bg-zinc-900 */
-  color: #ffffff; /* Equivalent to text-white */
+  background-color: #18181b; /* Equivalent to bg-zinc-900 *//* Equivalent to text-white */
   font-family: Inter, system-ui, sans-serif; /* Equivalent to font-sans */
   margin: 0;
   min-width: 320px;

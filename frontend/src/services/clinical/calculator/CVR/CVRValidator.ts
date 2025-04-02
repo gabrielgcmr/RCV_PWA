@@ -1,9 +1,9 @@
-import { CVRData } from "./CVRData";
+import  CVRData  from "./CVRData";
 
 /**
  * Função para validar os dados do risco cardiovascular.
  */
-export function validateCVRData(data: CVRData): { isValid: boolean; errors: string[] } {
+export default function validateCVRData(data: CVRData): { isValid: boolean; errors: string[] } {
   const errors: string[] = [];
 
   /**

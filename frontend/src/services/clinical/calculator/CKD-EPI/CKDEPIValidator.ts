@@ -1,7 +1,7 @@
-import { CKDEPIData } from "./CKDEPIData";
+import  CKDEPIData  from "./CKDEPIData";
 
 // Valida os dados para CKD-EPI.
-export function validateCKDEPIData(data: CKDEPIData): { isValid: boolean; errors: string[] } {
+export default function validateCKDEPIData(data: CKDEPIData): { isValid: boolean; errors: string[] } {
   const errors: string[] = [];
 
   // Adiciona erro se a condição não for atendida.

@@ -8,9 +8,9 @@ import Exams from "./SummaryTextTopics/6-Exams";
 import PresentIllness from "./SummaryTextTopics/7-PresentIllness";
 
 function SummaryBuilder() {
-  const { patientData } = usePatient();
+  const { patient } = usePatient();
 
-  if (!patientData) {
+  if (!patient) {
     return (
       <div className="p-4 text-center">Carregando dados do paciente...</div>
     );

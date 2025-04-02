@@ -5,7 +5,8 @@ import SelectInput from "../../common/input/SelectInput";
 import TextInput from "../../common/input/TextInput";
 
 function IdentificationForm() {
-  const { patientData, updatePatientData } = usePatient();
+  const { patient: patientData, updatePatient: updatePatientData } =
+    usePatient();
 
   const handleChange = (field: string, value: string | number | null) => {
     updatePatientData("identification", {
