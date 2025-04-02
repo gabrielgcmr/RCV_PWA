@@ -3,6 +3,7 @@ import { useState, ReactNode } from "react";
 import { PatientContext } from "./PatientContext";
 import { examDictionary } from "../constants/examDictionary";
 import { Patient } from "../interfaces";
+import generatePreventionList from "../services/clinical/summary/generatePreventionList";
 
 export default function PatientProvider({ children }: { children: ReactNode }) {
   const [patient, setPatient] = useState<Patient>({
@@ -32,13 +33,25 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
     field: T,
     value: Partial<Patient[T]>
   ) => {
-    setPatient((prev) => ({
-      ...prev,
-      [field]: {
-        ...prev[field],
-        ...value,
-      },
-    }));
+    setPatient((prev) => {
+      const updated = {
+        ...prev,
+        [field]: {
+          ...prev[field],
+          ...value,
+        },
+      };
+
+      // 🔁 Gera a lista atualizada de prevenções com base no novo estado do paciente
+      const updatedPreventionList = generatePreventionList(updated);
+
+      return {
+        ...updated,
+        preventionList: {
+          prevention: updatedPreventionList,
+        },
+      };
+    });
   };
 
   const updateExam = (examName: string, examValue: string) => {
