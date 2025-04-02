@@ -12,6 +12,7 @@ function FIB4Index(patient: Patient): Prevention {
   if (!validation.isValid) {
     return {
       name: "FIB4",
+      abbreviation: "FIB4",
       errors: validation.errors,
       classification: "Não Avaliado",
     };
@@ -22,7 +23,7 @@ function FIB4Index(patient: Patient): Prevention {
 
   return {
     name: "FIB4",
-    abreviation: "FIB4",
+    abbreviation: "FIB4",
     value: result,
     unit: "pontos",
     classification: classification,

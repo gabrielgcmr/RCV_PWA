@@ -3,9 +3,9 @@ import usePatient from "../../../../hooks/usePatient";
 import { summaryTitle } from "./styles";
 
 export default function Exams() {
-  const { patient: patientData } = usePatient();
+  const { patient } = usePatient();
 
-  if (!patientData?.complementaryExams?.exams) return null;
+  if (!patient?.complementaryExams?.exams) return null;
 
   // Criar um mapeamento reverso de abbreviations para categories
   const abbreviationToCategory: Record<string, string> = Object.values(
@@ -21,7 +21,7 @@ export default function Exams() {
   // Agrupar os exames por categoria
   const categorizedExams: Record<string, string[]> = {};
 
-  patientData.complementaryExams.exams.forEach((exam) => {
+  patient.complementaryExams.exams.forEach((exam) => {
     if (exam.value !== undefined && exam.value !== "" && exam.abbreviation) {
       const category = abbreviationToCategory[exam.abbreviation] || "Outros";
       const formattedExam = `${exam.abbreviation}: ${exam.value}`;
@@ -38,8 +38,8 @@ export default function Exams() {
 
   // Verifica se a data é válida
   const examDate =
-    patientData.complementaryExams.date instanceof Date
-      ? patientData.complementaryExams.date.toLocaleDateString("pt-BR")
+    patient.complementaryExams.date instanceof Date
+      ? patient.complementaryExams.date.toLocaleDateString("pt-BR")
       : "?";
 
   return (
@@ -48,7 +48,7 @@ export default function Exams() {
         🟣 <b>EXAMES COMPLEMENTARES</b>
       </p>
 
-      {hasExams && (
+      {hasExams ? (
         <div className="mt-2">
           {hasExams && (
             <ul className="list-disc pl-4 space-y-2">
@@ -63,6 +63,8 @@ export default function Exams() {
             </ul>
           )}
         </div>
+      ) : (
+        <li>Sem exames</li>
       )}
     </>
   );

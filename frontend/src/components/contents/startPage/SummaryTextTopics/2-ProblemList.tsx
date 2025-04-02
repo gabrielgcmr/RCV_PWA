@@ -7,8 +7,8 @@ import TabagismIndex from "../../../../services/clinical/problems/Tabagism/Tabag
 import { summaryTitle } from "./styles";
 
 export default function ProblemList() {
-  const { patient: patientData } = usePatient();
-  const hasAnyProblem = patientData.problemList.problems.length > 0;
+  const { patient } = usePatient();
+  const hasAnyProblem = patient.problemList.problems.length > 0;
 
   return (
     <>

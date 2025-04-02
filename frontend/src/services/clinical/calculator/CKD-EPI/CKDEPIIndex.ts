@@ -1,9 +1,8 @@
-
 import { Patient, Prevention } from "../../../../interfaces";
-import calculateCKDEPI  from "./CKDEPICalculator";
+import calculateCKDEPI from "./CKDEPICalculator";
 import classifyTFG from "./CKDEPIClassifier";
-import  mapCKDEPIData  from "./CKDEPIMapper";
-import  validateCKDEPIData  from "./CKDEPIValidator";
+import mapCKDEPIData from "./CKDEPIMapper";
+import validateCKDEPIData from "./CKDEPIValidator";
 
 // Calcula a TFG pela equação CKD-EPI
 function CKDEPIIndex(patient: Patient): Prevention {
@@ -12,7 +11,7 @@ function CKDEPIIndex(patient: Patient): Prevention {
   if (!validation.isValid) {
     return {
       name: "TFG",
-      abreviation: "TFG",
+      abbreviation: "TFG",
       classification: "Não Avaliado",
       errors: validation.errors,
     };
@@ -22,14 +21,13 @@ function CKDEPIIndex(patient: Patient): Prevention {
 
   return {
     name: "TFG",
-    abreviation: "TFG",
+    abbreviation: "TFG",
     value: eGFR,
     unit: "mL/min/1.73m²",
     classification: classifyTFG(eGFR), // se desejar classificar, veja abaixo
-    description: `TFG estimada: ${eGFR} mL/min/1.73m²`,
+    description: `${eGFR} mL/min/1.73m²`,
     errors: [],
   };
 }
 
-
-export default CKDEPIIndex
+export default CKDEPIIndex;

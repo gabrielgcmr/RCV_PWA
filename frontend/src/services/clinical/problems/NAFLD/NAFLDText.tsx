@@ -8,9 +8,9 @@ function NAFLDText() {
 
   if (!hasNAFLD) return null;
 
-  const { fib4, fib4category } = FIB4Index(patientData);
+  const { value, classification } = FIB4Index(patientData);
 
-  if (!fib4) {
+  if (!value) {
     return (
       <li>
         <strong>DHGNA</strong>
@@ -21,14 +21,14 @@ function NAFLDText() {
     );
   }
 
-  const isHighRisk = fib4category.startsWith("Alto risco");
+  const isHighRisk = classification.startsWith("Alto risco");
 
   return (
     <li>
       <strong>DHGNA</strong>
       <ul className="list-disc pl-6">
         <li>
-          FIB4: {fib4} pontos - {fib4category}
+          FIB4: {value} pontos - {classification}
         </li>
         {isHighRisk && (
           <li>Recomendado avaliação com elastografia hepática.</li>

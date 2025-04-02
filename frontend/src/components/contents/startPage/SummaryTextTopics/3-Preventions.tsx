@@ -1,13 +1,15 @@
 import usePatient from "../../../../hooks/usePatient";
 import CKDEPIIndex from "../../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
 import CVRIndex from "../../../../services/clinical/calculator/CVR/CVRIndex";
-import FIB4Text from "../../../../services/clinical/calculator/FIB4/FIB4Text";
+import FIB4Index from "../../../../services/clinical/calculator/FIB4/FIB4Index";
 import { summaryTitle } from "./styles";
 
 export default function Preventions() {
-  const { patient: patientData } = usePatient();
-  const { CRVvalue, referenceValue, classification } = CVRIndex(patientData);
-  const { value } = CKDEPIIndex(patientData);
+  const { patient } = usePatient();
+  const hasAnyPrevention = patient.preventionList.prevention.length > 0;
+  const cvr = CVRIndex(patient);
+  const tfg = CKDEPIIndex(patient);
+  const fib4 = FIB4Index(patient);
 
   return (
     <>
@@ -15,21 +17,21 @@ export default function Preventions() {
         🟢 <b>PREVENÇÕES</b>{" "}
       </p>
       <ul className="list-disc pl-4">
-        {/* Exibe o risco cardiovascular */}
-        {CRVvalue !== undefined && (
-          <li>
-            {" "}
-            <b>RCV:</b> Risco Atual: {CRVvalue.toFixed(2)}% - ({classification})
-            || Risco Ideal: {referenceValue.toFixed(2)}%{" "}
-          </li>
+        {hasAnyPrevention ? (
+          <>
+            <li>
+              <strong>{cvr.abbreviation}</strong>: {cvr.description}
+            </li>
+            <li>
+              <strong>{tfg.abbreviation}</strong>: {tfg.description}
+            </li>
+            <li>
+              <strong>{fib4.abbreviation}</strong>: {fib4.description}
+            </li>
+          </>
+        ) : (
+          <li>Sem prevenções</li>
         )}
-        {/* Exibe a TFG se houver */}
-        {CRVvalue !== undefined && (
-          <li>
-            <b>TFG: </b> {CRVvalue} mL/min/1.73m²
-          </li>
-        )}
-        <FIB4Text />
       </ul>
     </>
   );
