@@ -1,6 +1,6 @@
 import { examDictionary } from "../../../constants/examDictionary";
 import usePatient from "../../../hooks/usePatient";
-import { ExamInput } from "./ExamInput";
+import { ExamInput } from "./ExamInputA";
 import { ExamSelectInput } from "./ExamSelectInput";
 
 interface ExamCategoryFormProps {

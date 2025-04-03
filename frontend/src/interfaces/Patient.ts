@@ -1,6 +1,6 @@
 import { ComplementaryExams } from "./Exams";
 import { PreventionList } from "./Preventions";
-import { ProblemList } from "./Problems";
+import { Problem } from "./Problems";
 export interface Patient {
   meta?: {
     id?: string;
@@ -10,11 +10,11 @@ export interface Patient {
   identification: {
     name: string;
     age: number | string;
-    gender: string;
+    gender: "Male" | "Female";
     race: string;
   };
   preventionList: PreventionList;
-  problemList: ProblemList;
+  problemList: {problems: Problem[]};
   physicalExam: {
     systolicBP: number | string;
     diastolicBP: number | string;

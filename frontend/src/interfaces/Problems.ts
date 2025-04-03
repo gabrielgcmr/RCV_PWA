@@ -7,6 +7,3 @@ export interface Problem {
     errors?:string[]
   }
   
-  export interface ProblemList {
-    problems: Problem[]; // Lista de problemas
-  }

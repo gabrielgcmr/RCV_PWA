@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { PatientContext } from "../context/PatientContext";
 import { examDictionary } from "../constants/examDictionary";
+import { Patient } from "../interfaces";
 
 function usePatient() {
   const context = useContext(PatientContext);
@@ -9,6 +10,37 @@ function usePatient() {
   }
 
   const { patient, updatePatient } = context;
+  
+   // ====== FUNÇÃO GENÉRICA PARA ATUALIZAÇÃO ======
+  const updateField = <T extends keyof Patient>(
+    section: T,
+    field: keyof Patient[T],
+    value: Patient[T][keyof Patient[T]]
+  ) => {
+    updatePatient(section, {
+      ...patient[section],
+      [field]: value,
+    });
+  };
+  // ====== FUNÇÕES DE PROBLEMAS ======
+  const toggleProblem = (problemName: string, isChecked: boolean) => {
+    const currentProblems = patient.problemList.problems || [];
+    const updatedProblems = isChecked
+      ? [...currentProblems, { name: problemName }]
+      : currentProblems.filter(p => p.name !== problemName);
+
+    updatePatient("problemList", {
+      problems: updatedProblems,
+    });
+  };
+
+  const hasProblem = (problemName: string): boolean => {
+    return patient.problemList?.problems?.some(p => p.name === problemName) ?? false;
+  };
+
+
+
+  
   // ====== FUNÇÕES DE EXAMES ======
  
   const getExamValue = (name: string) => {
@@ -32,37 +64,12 @@ function usePatient() {
     });
   };
 
-  const addExam = (
-    name: string,
-    value: string | number,
-    abbreviation: string = ""
-  ) => {
-    const updatedExams = [
-      ...patient.complementaryExams.exams,
-      { name, value, abbreviation },
-    ];
-
-    updatePatient("complementaryExams", {
-      date: patient.complementaryExams.date,
-      exams: updatedExams,
-    });
-  };
-
-  const handleExamChange = (
+    const handleExamChange = (
     name: string,
     value: string | number,
     abbreviation?: string
   ) => {
-    if (
-      !patient ||
-      !patient.complementaryExams ||
-      !patient.complementaryExams.exams
-    ) {
-      console.warn(
-        " Tentativa de acessar `patientData` antes de estar pronto."
-      );
-      return;
-    }
+   
     const examExists = patient.complementaryExams.exams.some(
       (exam) => exam.name === name
     );
@@ -73,19 +80,17 @@ function usePatient() {
     if (examExists) {
       updateExam(name, value, examAbbreviation); // 🔹 Atualizamos incluindo a abreviação
     } else {
-      addExam(name, value, examAbbreviation); // 🔹 Adicionamos garantindo a abreviação
+      updatePatient("complementaryExams", {
+        ...patient.complementaryExams,
+        exams: [
+          ...patient.complementaryExams.exams,
+          { name, value, abbreviation }
+        ],
+      });
     }
   };
 
-  // ====== FUNÇÕES DE PROBLEMAS ======
-  const hasProblem = (problemName: string) => {
-    return (
-      patient.problemList?.problems?.some((p) => p.name === problemName) ||
-      false
-    );
-  };
-
-  return { ...context, getExamValue, handleExamChange, hasProblem };
+  return { ...context, updateField, hasProblem, toggleProblem, getExamValue, handleExamChange,   };
 }
 
 export default usePatient;

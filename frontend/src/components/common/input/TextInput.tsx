@@ -19,7 +19,7 @@ const TextInput: React.FC<TextInputProps> = ({
   return (
     <div className={className}>
       {label && (
-        <label htmlFor={name} className="block text-sm font-medium mb-1">
+        <label htmlFor={name} className="block text-sm font-medium">
           {label}
         </label>
       )}
@@ -30,10 +30,10 @@ const TextInput: React.FC<TextInputProps> = ({
         value={value}
         disabled={disabled}
         onChange={handleChange}
-        className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200`}
+        className={`w-60 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200`}
       />
     </div>
   );
 };
 
-export default TextInput
+export default TextInput;

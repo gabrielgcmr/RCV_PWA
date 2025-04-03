@@ -1,45 +1,26 @@
 import usePatient from "../../../hooks/usePatient";
-import CheckboxInput from "../../common/input/CheckboxInputProps";
+import FormBase from "../../common/form/FormBase";
+import CheckboxGroup from "../../common/input/CheckBoxGroup";
+
+const problemOptions = [
+  { value: "hypertension", label: "Hipertensão Arterial (HAS)" },
+  { value: "diabetes", label: "Diabetes Mellitus (DM)" },
+  { value: "tabagism", label: "Tabagismo" },
+  { value: "NAFLD", label: "DHGNA" },
+  { value: "CKD", label: "DRC" },
+];
 
 function ProblemListForm() {
-  const { patient: patientData, updatePatient: updatePatientData } =
-    usePatient();
-
-  const problemOptions = [
-    { name: "hypertension", label: "Hipertensão Arterial (HAS)" },
-    { name: "diabetes", label: "Diabetes Mellitus (DM)" },
-    { name: "tabagism", label: "Tabagismo" },
-    { name: "NAFLD", label: "DHGNA" },
-    { name: "CKD", label: "DRC" },
-  ];
-
-  // Função simplificada para adicionar/remover problemas
-  const handleProblemToggle = (problemName: string, checked: boolean) => {
-    const updatedProblems = checked
-      ? [...patientData.problemList.problems, { name: problemName }]
-      : patientData.problemList.problems.filter((p) => p.name !== problemName);
-
-    updatePatientData("problemList", { problems: updatedProblems });
-  };
-
-  const isProblemChecked = (problemName: string) =>
-    patientData.problemList.problems.some((p) => p.name === problemName);
+  const { toggleProblem, hasProblem } = usePatient();
 
   return (
-    <section className="p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-2">
-      <h3 className="text-lg font-bold mb-4"> 📝 Lista de Problemas</h3>
-
-      {problemOptions.map(({ name, label }) => (
-        <CheckboxInput
-          id={name}
-          key={name}
-          name={name}
-          label={label}
-          checked={isProblemChecked(name)}
-          onChange={handleProblemToggle} // Agora passa boolean direto, sem `value`
-        />
-      ))}
-    </section>
+    <FormBase title="Lista de Problemas" icon="📝">
+      <CheckboxGroup
+        options={problemOptions}
+        isChecked={(value) => hasProblem(value)}
+        onChange={(value, checked) => toggleProblem(value, checked)}
+      />
+    </FormBase>
   );
 }
 

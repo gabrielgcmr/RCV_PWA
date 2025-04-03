@@ -1,7 +1,7 @@
 import React from "react";
 import { SelectInputProps } from "./types";
 
- const SelectInput: React.FC<SelectInputProps> = ({
+const SelectInput: React.FC<SelectInputProps> = ({
   name,
   value,
   disabled = false,
@@ -18,7 +18,7 @@ import { SelectInputProps } from "./types";
       value={value}
       disabled={disabled}
       onChange={handleChange}
-      className={`w-full p-2 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200`}
+      className={`w-28 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200`}
     >
       <option value="">Selecione</option>
       {options.map((option) => (
@@ -30,4 +30,4 @@ import { SelectInputProps } from "./types";
   );
 };
 
-export default SelectInput
+export default SelectInput;

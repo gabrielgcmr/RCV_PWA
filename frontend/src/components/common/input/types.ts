@@ -10,11 +10,13 @@ interface BaseInputProps {
   placeholder?: string;
   disabled?: boolean;
   className?: string;
+  required?: boolean
 }
 
 export interface TextInputProps extends BaseInputProps {
   value: string;
   onChange: (name: string, value: string) => void;
+  allowNumbers?: boolean;
 }
 
 export interface NumberInputProps extends BaseInputProps {
@@ -22,16 +24,6 @@ export interface NumberInputProps extends BaseInputProps {
   onChange: (name: string, value: string | number ) => void;
 }
 
-export interface RadioInputProps extends BaseInputProps {
-  value: string;
-  checked: boolean;
-  onChange: (name: string, value: string) => void;
-}
-
-export interface CheckboxInputProps extends BaseInputProps {
-  checked: boolean;
-  onChange: (name: string, checked: boolean) => void
-}
 
 export interface SelectInputProps extends BaseInputProps {
   value: string ;
@@ -39,4 +31,4 @@ export interface SelectInputProps extends BaseInputProps {
   onChange: (name: string, value: string ) => void;
 }
 
-export type InputProps = TextInputProps | SelectInputProps | RadioInputProps | CheckboxInputProps;
+export type InputProps = TextInputProps | SelectInputProps ;

@@ -1,38 +1,28 @@
 import usePatient from "../../../hooks/usePatient";
+import FormBase from "../../common/form/FormBase";
 import NumberInput from "../../common/input/NumberInput";
 
 function PhysicalExamForm() {
-  const { patient: patientData, updatePatient: updatePatientData } =
-    usePatient();
+  const { patient, updateField } = usePatient();
 
-  const handleChange = (field: string, value: string | number | null) => {
-    updatePatientData("physicalExam", {
-      ...patientData.physicalExam,
-      [field]: value,
-    });
-  };
   return (
-    <section className="p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-1">
-      <h2 className="text-lg font-bold mb-4">🩺 Exame Físico</h2>
-
-      {/* Pressão Arterial Sistólica */}
+    <FormBase title="Exame Físico" icon="🩺">
       <NumberInput
         name="systolicBP"
         label="Pressão Arterial Sistólica"
-        value={patientData.physicalExam.systolicBP}
-        onChange={handleChange}
+        value={patient.physicalExam.systolicBP}
+        onChange={(value) => updateField("physicalExam", "systolicBP", value)}
         placeholder="PAS"
       />
 
-      {/* Pressão Arterial Diastólica */}
       <NumberInput
         name="diastolicBP"
         label="Pressão Arterial Diastolica"
-        value={patientData.physicalExam.diastolicBP}
-        onChange={handleChange}
+        value={patient.physicalExam.diastolicBP}
+        onChange={(value) => updateField("physicalExam", "diastolicBP", value)}
         placeholder="PAD"
       />
-    </section>
+    </FormBase>
   );
 }
 
