@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from 'vite-plugin-pwa'
+import path from "path"
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
-        name: 'MFC helper',
+        name: 'RastreaMed',
         short_name: 'Ajudante do médico de família',
         description: 'Ajuda o médico de família com calculos clínicos',
         theme_color: '#1e293b',
@@ -33,4 +34,19 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"), // ← isso aqui é o que faz funcionar!
+    },
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080", // URL do seu backend Go
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+  
 });

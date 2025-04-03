@@ -8,47 +8,67 @@ function usePatient() {
     throw new Error("usePatient deve ser usado dentro de um PatientProvider");
   }
 
-  const { patientData, updatePatientData } = context;
-   // ====== FUNÇÕES DE EXAMES ======
-  const findExam = (name: string) => {
-    return patientData?.complementaryExams?.exams.find(exam => exam.name === name)?.value;
-  };
-
+  const { patient, updatePatient } = context;
+  // ====== FUNÇÕES DE EXAMES ======
+ 
   const getExamValue = (name: string) => {
-    if (!patientData?.complementaryExams?.exams) return undefined;
-    return patientData.complementaryExams.exams.find(exam => exam.name === name)?.value;
+    if (!patient?.complementaryExams?.exams) return undefined;
+    return patient.complementaryExams.exams.find((exam) => exam.name === name)
+      ?.value;
   };
 
-  const updateExam = (name: string, value: string | number, abbreviation: string) => {
-    const updatedExams = patientData.complementaryExams.exams.map((exam) =>
-      exam.name === name ? { ...exam, value, abbreviation } : exam // 🔹 Atualiza a abreviação também
+  const updateExam = (
+    name: string,
+    value: string | number,
+    abbreviation: string
+  ) => {
+    const updatedExams = patient.complementaryExams.exams.map(
+      (exam) => (exam.name === name ? { ...exam, value, abbreviation } : exam) // 🔹 Atualiza a abreviação também
     );
-  
-    updatePatientData("complementaryExams", {
-      date: patientData.complementaryExams.date,
+
+    updatePatient("complementaryExams", {
+      date: patient.complementaryExams.date,
       exams: updatedExams,
     });
   };
-  
-  const addExam = (name: string, value: string | number, abbreviation:string = "") => {
-    const updatedExams = [...patientData.complementaryExams.exams, { name, value,abbreviation }];
-  
-    updatePatientData("complementaryExams", {
-      date: patientData.complementaryExams.date,
+
+  const addExam = (
+    name: string,
+    value: string | number,
+    abbreviation: string = ""
+  ) => {
+    const updatedExams = [
+      ...patient.complementaryExams.exams,
+      { name, value, abbreviation },
+    ];
+
+    updatePatient("complementaryExams", {
+      date: patient.complementaryExams.date,
       exams: updatedExams,
     });
   };
-  
-  const handleExamChange = (name: string, value: string | number, abbreviation?: string) => {
-    if (!patientData || !patientData.complementaryExams || !patientData.complementaryExams.exams) {
-      console.warn(" Tentativa de acessar `patientData` antes de estar pronto.");
+
+  const handleExamChange = (
+    name: string,
+    value: string | number,
+    abbreviation?: string
+  ) => {
+    if (
+      !patient ||
+      !patient.complementaryExams ||
+      !patient.complementaryExams.exams
+    ) {
+      console.warn(
+        " Tentativa de acessar `patientData` antes de estar pronto."
+      );
       return;
     }
-    const examExists = patientData.complementaryExams.exams.some(
+    const examExists = patient.complementaryExams.exams.some(
       (exam) => exam.name === name
     );
     console.log(" ExamDictionary carregado:", examDictionary);
-    const examAbbreviation = abbreviation || examDictionary[name]?.abbreviation || "";
+    const examAbbreviation =
+      abbreviation || examDictionary[name]?.abbreviation || "";
 
     if (examExists) {
       updateExam(name, value, examAbbreviation); // 🔹 Atualizamos incluindo a abreviação
@@ -56,13 +76,16 @@ function usePatient() {
       addExam(name, value, examAbbreviation); // 🔹 Adicionamos garantindo a abreviação
     }
   };
-  
+
   // ====== FUNÇÕES DE PROBLEMAS ======
   const hasProblem = (problemName: string) => {
-  return patientData.problemList?.problems?.some((p) => p.name === problemName) || false;
+    return (
+      patient.problemList?.problems?.some((p) => p.name === problemName) ||
+      false
+    );
   };
 
-  return { ...context, findExam, getExamValue,handleExamChange,hasProblem };
+  return { ...context, getExamValue, handleExamChange, hasProblem };
 }
 
-export default usePatient
+export default usePatient;
