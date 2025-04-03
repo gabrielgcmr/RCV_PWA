@@ -10,11 +10,7 @@ function usePatient() {
 
   const { patient, updatePatient } = context;
   // ====== FUNÇÕES DE EXAMES ======
-  const findExam = (name: string) => {
-    return patient?.complementaryExams?.exams.find((exam) => exam.name === name)
-      ?.value;
-  };
-
+ 
   const getExamValue = (name: string) => {
     if (!patient?.complementaryExams?.exams) return undefined;
     return patient.complementaryExams.exams.find((exam) => exam.name === name)
@@ -89,7 +85,7 @@ function usePatient() {
     );
   };
 
-  return { ...context, findExam, getExamValue, handleExamChange, hasProblem };
+  return { ...context, getExamValue, handleExamChange, hasProblem };
 }
 
 export default usePatient;

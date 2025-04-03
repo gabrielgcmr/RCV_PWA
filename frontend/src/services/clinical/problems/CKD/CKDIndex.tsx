@@ -5,15 +5,16 @@ import CKDStaging from "./CKDStaging";
 function CKDIndex() {
   const { patient: patientData, hasProblem } = usePatient();
   const hasCKD = hasProblem("CKD");
-  const { eGFR } = CKDEPIIndex(patientData);
+  const { value } = CKDEPIIndex(patientData);
   const UACR = Number(
     patientData.complementaryExams.exams.find((exam) => exam.name === "UACR")
       ?.value ?? undefined
   );
 
   if (!hasCKD) return null;
-  if (eGFR !== undefined) {
-    const stage = CKDStaging(eGFR, UACR);
+  const tfg = Number(value);
+  if (value !== undefined) {
+    const stage = CKDStaging(tfg, UACR);
     if (stage)
       return (
         <li>

@@ -8,7 +8,8 @@ function NAFLDText() {
 
   if (!hasNAFLD) return null;
 
-  const { value, classification } = FIB4Index(patientData);
+  const { value } = FIB4Index(patientData);
+  let { classification } = FIB4Index(patientData);
 
   if (!value) {
     return (
@@ -21,6 +22,9 @@ function NAFLDText() {
     );
   }
 
+  if (!classification) {
+    classification = " Sem classificação";
+  }
   const isHighRisk = classification.startsWith("Alto risco");
 
   return (

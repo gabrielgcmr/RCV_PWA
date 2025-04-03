@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { CVRData } from "../CVRData";
-import { calculateCVR } from "../CVRCalculator";
+import  CVRData  from "../CVRData";
+import  calculateCVR  from "../CVRCalculator";
 
 
 describe("CardiovascularRiskCalculator", () => {

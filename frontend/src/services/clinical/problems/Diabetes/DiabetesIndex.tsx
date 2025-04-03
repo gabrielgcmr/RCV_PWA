@@ -1,15 +1,15 @@
 import usePatient from "../../../../hooks/usePatient";
 
 function DiabetesIndex() {
-  const { patient: patientData, hasProblem } = usePatient();
+  const { patient, hasProblem } = usePatient();
   const hasDiabetes = hasProblem("diabetes");
   const fastingGlucose = Number(
-    patientData.complementaryExams.exams.find(
+    patient.complementaryExams.exams.find(
       (exam) => exam.name === "fastingGlucose"
     )?.value ?? undefined
   );
   const hba1c = Number(
-    patientData.complementaryExams.exams.find((exam) => exam.name === "hba1c")
+    patient.complementaryExams.exams.find((exam) => exam.name === "hba1c")
       ?.value ?? undefined
   );
   // Pacientes sem diabetes

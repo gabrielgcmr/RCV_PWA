@@ -25,6 +25,9 @@ function ClinicalCalculations() {
     calculateFn: (data: Patient) => Prevention
   ) => {
     const result = calculateFn(patient);
+
+    result.errors = result.errors ?? [];
+
     setPreventionResults((prev) => ({ ...prev, [label]: result }));
 
     if (result.errors.length > 0) {
@@ -70,7 +73,7 @@ function ClinicalCalculations() {
             {label}
           </button>
 
-          {preventionResults[label]?.errors?.length > 0 && (
+          {(preventionResults[label]?.errors?.length ?? 0) > 0 && (
             <p className="text-xs text-red-400 mt-1">
               ⚠️ Erro em {label} - Ver detalhes
             </p>
@@ -79,12 +82,13 @@ function ClinicalCalculations() {
       ))}
 
       {/* Modal de erro flutuante */}
-      {visibleError && preventionResults[visibleError]?.errors?.length > 0 && (
-        <ErrorPopup
-          errors={preventionResults[visibleError]?.errors || []}
-          onClose={() => setVisibleError(null)}
-        />
-      )}
+      {visibleError &&
+        (preventionResults[visibleError]?.errors?.length ?? 0) > 0 && (
+          <ErrorPopup
+            errors={preventionResults[visibleError]?.errors || []}
+            onClose={() => setVisibleError(null)}
+          />
+        )}
     </div>
   );
 }
