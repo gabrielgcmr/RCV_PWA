@@ -1,17 +1,17 @@
 // components/common/form/FormBase.tsx
-type FormBaseProps = {
+type SectionBaseProps = {
   title: string;
   icon?: string;
   children: React.ReactNode;
   className?: string;
 };
 
-export default function FormBase({
+export default function SectionBase({
   title,
   icon,
   children,
   className = "",
-}: FormBaseProps) {
+}: SectionBaseProps) {
   return (
     <section
       className={`p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-2 ${className}`}

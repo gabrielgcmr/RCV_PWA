@@ -1,13 +1,13 @@
 import usePatient from "../../../hooks/usePatient";
-import FormBase from "../../common/form/FormBase";
-import NumberInput from "../../common/input/NumberInput";
+import SectionBase from "../../common/form/SectionBase";
+import TextInput from "../../common/input/TextInput";
 
 function PhysicalExamForm() {
   const { patient, updateField } = usePatient();
 
   return (
-    <FormBase title="Exame Físico" icon="🩺">
-      <NumberInput
+    <SectionBase title="Exame Físico" icon="🩺">
+      <TextInput
         name="systolicBP"
         label="Pressão Arterial Sistólica"
         value={patient.physicalExam.systolicBP}
@@ -15,14 +15,14 @@ function PhysicalExamForm() {
         placeholder="PAS"
       />
 
-      <NumberInput
+      <TextInput
         name="diastolicBP"
         label="Pressão Arterial Diastolica"
         value={patient.physicalExam.diastolicBP}
         onChange={(value) => updateField("physicalExam", "diastolicBP", value)}
         placeholder="PAD"
       />
-    </FormBase>
+    </SectionBase>
   );
 }
 

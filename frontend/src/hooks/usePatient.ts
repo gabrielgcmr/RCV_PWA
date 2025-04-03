@@ -23,6 +23,10 @@ function usePatient() {
     });
   };
   // ====== FUNÇÕES DE PROBLEMAS ======
+  const hasProblem = (problemName: string): boolean => {
+    return patient.problemList?.problems?.some(p => p.name === problemName) ?? false;
+  };
+
   const toggleProblem = (problemName: string, isChecked: boolean) => {
     const currentProblems = patient.problemList.problems || [];
     const updatedProblems = isChecked
@@ -33,16 +37,8 @@ function usePatient() {
       problems: updatedProblems,
     });
   };
-
-  const hasProblem = (problemName: string): boolean => {
-    return patient.problemList?.problems?.some(p => p.name === problemName) ?? false;
-  };
-
-
-
   
   // ====== FUNÇÕES DE EXAMES ======
- 
   const getExamValue = (name: string) => {
     if (!patient?.complementaryExams?.exams) return undefined;
     return patient.complementaryExams.exams.find((exam) => exam.name === name)
@@ -51,7 +47,7 @@ function usePatient() {
 
   const updateExam = (
     name: string,
-    value: string | number,
+    value: string,
     abbreviation: string
   ) => {
     const updatedExams = patient.complementaryExams.exams.map(
@@ -66,7 +62,7 @@ function usePatient() {
 
     const handleExamChange = (
     name: string,
-    value: string | number,
+    value: string,
     abbreviation?: string
   ) => {
    

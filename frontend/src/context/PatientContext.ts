@@ -6,10 +6,9 @@ interface PatientContextType {
   patient: Patient;
   updatePatient: <T extends keyof Patient>(
     field: T,
-    value: Partial<Patient[T]> // ✅ Agora aceita objetos parciais
+    value: Partial<Patient[T]>
   ) => void;
-  updateExam: (examName: string, examValue: string) => void;
+  updateExam: (field: string, value: string) => void;
 }
 
-// Criando o contexto e exportando
 export const PatientContext = createContext<PatientContextType | undefined>(undefined);

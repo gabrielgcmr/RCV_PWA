@@ -1,4 +1,4 @@
-import IdentificationForm from "../components/contents/startPage/1-IdentificationForm";
+import IdentificationForm from "../components/contents/startPage/1-IdentificationSection";
 import PhysicalExamForm from "../components/contents/startPage/2-PhysicalExamForm";
 import ProblemListForm from "../components/contents/startPage/3-ProblemListForm";
 import ExamsForm from "../components/contents/startPage/4-ExamForm";

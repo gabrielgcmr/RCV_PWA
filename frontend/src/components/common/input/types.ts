@@ -3,7 +3,8 @@ interface Option {
     value: string;
   }
   
-interface BaseInputProps {
+
+export interface TextInputProps {
   id?:string
   name: string;
   label?: string;
@@ -11,21 +12,18 @@ interface BaseInputProps {
   disabled?: boolean;
   className?: string;
   required?: boolean
-}
-
-export interface TextInputProps extends BaseInputProps {
   value: string;
-  onChange: (name: string, value: string) => void;
+  onChange: ( value: string) => void;
   allowNumbers?: boolean;
 }
-
-export interface NumberInputProps extends BaseInputProps {
-  value: string | number ;
-  onChange: (name: string, value: string | number ) => void;
-}
-
-
-export interface SelectInputProps extends BaseInputProps {
+export interface SelectInputProps {
+  id?:string
+  name: string;
+  label?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  className?: string;
+  required?: boolean
   value: string ;
   options: Option[];
   onChange: (name: string, value: string ) => void;

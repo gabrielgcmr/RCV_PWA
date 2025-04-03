@@ -1,8 +1,8 @@
 export interface Prevention {
   name: string;
   abbreviation?: string;
-  value?: number | string;
-  referenceValue?: number | string;
+  value?:  string;
+  referenceValue?:  string;
   unit?: string;
   classification?: string;
   description?: string;

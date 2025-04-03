@@ -1,39 +1,33 @@
-import React from "react";
-import { TextInputProps } from "./types";
+import React, { forwardRef } from "react";
 
-const TextInput: React.FC<TextInputProps> = ({
-  name,
-  label,
-  placeholder = "",
-  value,
-  disabled = false,
-  onChange,
-  className = "",
-}) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Bloquear números no input de texto
-    const inputValue = e.target.value.replace(/[0-9]/g, "");
-    onChange(name, inputValue);
-  };
+interface TextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
+  containerClassName?: string;
+}
 
-  return (
-    <div className={className}>
-      {label && (
-        <label htmlFor={name} className="block text-sm font-medium">
-          {label}
-        </label>
-      )}
-      <input
-        id={name}
-        type="text"
-        placeholder={placeholder}
-        value={value}
-        disabled={disabled}
-        onChange={handleChange}
-        className={`w-60 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200`}
-      />
-    </div>
-  );
-};
+const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  ({ label, className = "", containerClassName = "", ...props }, ref) => {
+    return (
+      <div className={`mb-4 ${containerClassName}`}>
+        {label && (
+          <label className="block text-sm font-medium mb-1">
+            {label}
+            {props.required && <span className="text-red-500 ml-1">*</span>}
+          </label>
+        )}
+        <input
+          ref={ref}
+          className={`w-full px-3 py-2 border rounded-md shadow-sm ${
+            className
+          }`}
+          {...props}
+        />
+      </div>
+    );
+  }
+);
+
+TextInput.displayName = "TextInput";
 
 export default TextInput;

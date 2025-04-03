@@ -1,4 +1,4 @@
-import FormBase from "../form/FormBase";
+import SectionBase from "../form/SectionBase";
 
 // components/common/exam/ExamsLayout.tsx
 type ExamsLayoutProps = {
@@ -13,7 +13,7 @@ export default function ExamsLayout({
   examComponents,
 }: ExamsLayoutProps) {
   return (
-    <FormBase title="Exames Complementares" icon="🧪" className="p-2">
+    <SectionBase title="Exames Complementares" icon="🧪" className="p-2">
       <div className="grid grid-cols-4 grid-rows-1 gap-4 mb-1">
         <div className="col-span-2">{dateComponent}</div>
         <div className="bg-zinc-500 col-span-2 p-3 rounded-lg">
@@ -21,6 +21,6 @@ export default function ExamsLayout({
         </div>
       </div>
       <div className="flex flex-wrap gap-1">{examComponents}</div>
-    </FormBase>
+    </SectionBase>
   );
 }

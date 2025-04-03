@@ -9,15 +9,15 @@ export interface Patient {
   };
   identification: {
     name: string;
-    age: number | string;
+    age: string;
     gender: "Male" | "Female";
     race: string;
   };
   preventionList: PreventionList;
   problemList: {problems: Problem[]};
   physicalExam: {
-    systolicBP: number | string;
-    diastolicBP: number | string;
+    systolicBP: string;
+    diastolicBP: string;
   };
   complementaryExams: ComplementaryExams;
 }

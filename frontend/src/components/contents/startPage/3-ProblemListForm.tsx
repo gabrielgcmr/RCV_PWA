@@ -1,5 +1,5 @@
 import usePatient from "../../../hooks/usePatient";
-import FormBase from "../../common/form/FormBase";
+import SectionBase from "../../common/form/SectionBase";
 import CheckboxGroup from "../../common/input/CheckBoxGroup";
 
 const problemOptions = [
@@ -14,13 +14,13 @@ function ProblemListForm() {
   const { toggleProblem, hasProblem } = usePatient();
 
   return (
-    <FormBase title="Lista de Problemas" icon="📝">
+    <SectionBase title="Lista de Problemas" icon="📝">
       <CheckboxGroup
         options={problemOptions}
         isChecked={(value) => hasProblem(value)}
         onChange={(value, checked) => toggleProblem(value, checked)}
       />
-    </FormBase>
+    </SectionBase>
   );
 }
 
