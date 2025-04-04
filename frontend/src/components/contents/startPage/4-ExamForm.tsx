@@ -1,13 +1,10 @@
 import ExamDate from "../../common/exam/ExamDate";
 import ExamForm from "../../common/exam/ExamForm";
+import SectionBase from "../../common/form/SectionBase";
 
 function ExamsForm() {
   return (
-    <section className=" p-2 bg-zinc-700 rounded-lg shadow-md mb-1 ">
-      <h3 className="text-lg font-bold p-2 text-center">
-        🧪 Exames Complementares
-      </h3>
-
+    <SectionBase title=" Exames Complementares" icon="🧪">
       {/* Layout principal com Grid */}
       <div className="grid grid-cols-4 grid-rows-1 gap-4 mb-1">
         {/* ExamDate ocupa 1/4 à esquerda */}
@@ -33,7 +30,7 @@ function ExamsForm() {
         <ExamForm category="Inflamatory" title="Inflamatórios" />
         <ExamForm category="Fecal" title=" Fecal" />
       </div>
-    </section>
+    </SectionBase>
   );
 }
 

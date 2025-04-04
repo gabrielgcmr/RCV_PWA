@@ -1,45 +1,48 @@
 import usePatient from "../../../hooks/usePatient";
-import CheckboxInput from "../../common/input/CheckboxInputProps";
+import SectionBase from "../../common/form/SectionBase";
+
+const problemOptions = [
+  { name: "hypertension", label: "Hipertensão Arterial (HAS)" },
+  { name: "diabetes", label: "Diabetes Mellitus (DM)" },
+  { name: "tabagism", label: "Tabagismo" },
+  { name: "NAFLD", label: "DHGNA" },
+  { name: "CKD", label: "DRC" },
+];
 
 function ProblemListForm() {
-  const { patient: patientData, updatePatient: updatePatientData } =
-    usePatient();
+  const { hasProblem, toggleProblem } = usePatient();
 
-  const problemOptions = [
-    { name: "hypertension", label: "Hipertensão Arterial (HAS)" },
-    { name: "diabetes", label: "Diabetes Mellitus (DM)" },
-    { name: "tabagism", label: "Tabagismo" },
-    { name: "NAFLD", label: "DHGNA" },
-    { name: "CKD", label: "DRC" },
-  ];
-
-  // Função simplificada para adicionar/remover problemas
-  const handleProblemToggle = (problemName: string, checked: boolean) => {
-    const updatedProblems = checked
-      ? [...patientData.problemList.problems, { name: problemName }]
-      : patientData.problemList.problems.filter((p) => p.name !== problemName);
-
-    updatePatientData("problemList", { problems: updatedProblems });
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    name: string
+  ) => {
+    if (e.key === " " || e.key === "Enter") {
+      e.preventDefault();
+      toggleProblem(name, !hasProblem(name));
+    }
   };
 
-  const isProblemChecked = (problemName: string) =>
-    patientData.problemList.problems.some((p) => p.name === problemName);
-
   return (
-    <section className="p-4 bg-zinc-700 rounded-lg shadow-md text-white mb-2">
-      <h3 className="text-lg font-bold mb-4"> 📝 Lista de Problemas</h3>
-
-      {problemOptions.map(({ name, label }) => (
-        <CheckboxInput
-          id={name}
-          key={name}
-          name={name}
-          label={label}
-          checked={isProblemChecked(name)}
-          onChange={handleProblemToggle} // Agora passa boolean direto, sem `value`
-        />
-      ))}
-    </section>
+    <SectionBase title="Lista de Problemas" icon="📝">
+      <form>
+        {problemOptions.map(({ name, label }) => (
+          <div key={name} className="flex items-center">
+            <input
+              type="checkbox"
+              id={name}
+              value={name}
+              checked={hasProblem(name)}
+              onChange={(e) => toggleProblem(name, e.target.checked)}
+              onKeyDown={(e) => handleKeyDown(e, name)}
+              className="mr-2 accent-blue-500 focus:ring-blue-200"
+            />
+            <label htmlFor={name} className="text-sm">
+              {label}
+            </label>
+          </div>
+        ))}
+      </form>
+    </SectionBase>
   );
 }
 

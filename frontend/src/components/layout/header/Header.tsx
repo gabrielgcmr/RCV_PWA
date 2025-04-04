@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal } from "../../common/Modal";
+import { Modal } from "../../ui/Modal";
 import { LoginForm } from "../../auth/LoginForm";
 import RegisterForm from "../../auth/RegisterForm";
 import UserHeader from "./UserHeader";

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { PatientContext } from "../context/PatientContext";
 import { examDictionary } from "../constants/examDictionary";
+import { Patient } from "../interfaces";
 
 function usePatient() {
   const context = useContext(PatientContext);
@@ -9,83 +10,69 @@ function usePatient() {
   }
 
   const { patient, updatePatient } = context;
-  // ====== FUNÇÕES DE EXAMES ======
- 
-  const getExamValue = (name: string) => {
-    if (!patient?.complementaryExams?.exams) return undefined;
-    return patient.complementaryExams.exams.find((exam) => exam.name === name)
-      ?.value;
-  };
-
-  const updateExam = (
-    name: string,
-    value: string | number,
-    abbreviation: string
+  // ====== FUNÇÃO GENÉRICA PARA ATUALIZAÇÃO ======
+  const updateField = <T extends keyof Patient>(
+    section: T,
+    field: keyof Patient[T],
+    value: Patient[T][keyof Patient[T]]
   ) => {
-    const updatedExams = patient.complementaryExams.exams.map(
-      (exam) => (exam.name === name ? { ...exam, value, abbreviation } : exam) // 🔹 Atualiza a abreviação também
-    );
-
-    updatePatient("complementaryExams", {
-      date: patient.complementaryExams.date,
-      exams: updatedExams,
+    updatePatient(section, {
+      ...patient[section],
+      [field]: value,
     });
   };
+  
+ // ====== FUNÇÕES DE PROBLEMAS ======
+ const toggleProblem = (problemName: string, isChecked: boolean) => {
+  const currentProblems = patient.problemList.problems || [];
+  const updatedProblems = isChecked
+    ? [...currentProblems, { name: problemName }]
+    : currentProblems.filter(p => p.name !== problemName);
 
-  const addExam = (
-    name: string,
-    value: string | number,
-    abbreviation: string = ""
-  ) => {
-    const updatedExams = [
-      ...patient.complementaryExams.exams,
-      { name, value, abbreviation },
-    ];
+  updatePatient("problemList", {
+    problems: updatedProblems,
+  });
+};
 
+const hasProblem = (problemName: string): boolean => {
+  return patient.problemList?.problems?.some(p => p.name === problemName) ?? false;
+};
+
+
+ // ====== FUNÇÕES DE EXAMES ======
+ const getExamValue = (name: string): string | number | undefined => {
+  return patient.complementaryExams?.exams?.find(exam => exam.name === name)?.value;
+};
+
+const updateExam = (name: string, value: string | number, abbreviation: string = "") => {
+  const updatedExams = patient.complementaryExams.exams.map(exam => 
+    exam.name === name ? { ...exam, value, abbreviation } : exam
+  );
+
+  updatePatient("complementaryExams", {
+    ...patient.complementaryExams,
+    exams: updatedExams,
+  });
+};
+
+const handleExamChange = (name: string, value: string | number) => {
+  const abbreviation = examDictionary[name]?.abbreviation || "";
+  const examExists = patient.complementaryExams.exams.some(exam => exam.name === name);
+
+  if (examExists) {
+    updateExam(name, value, abbreviation);
+  } else {
     updatePatient("complementaryExams", {
-      date: patient.complementaryExams.date,
-      exams: updatedExams,
+      ...patient.complementaryExams,
+      exams: [
+        ...patient.complementaryExams.exams,
+        { name, value, abbreviation }
+      ],
     });
-  };
+  }
+};
 
-  const handleExamChange = (
-    name: string,
-    value: string | number,
-    abbreviation?: string
-  ) => {
-    if (
-      !patient ||
-      !patient.complementaryExams ||
-      !patient.complementaryExams.exams
-    ) {
-      console.warn(
-        " Tentativa de acessar `patientData` antes de estar pronto."
-      );
-      return;
-    }
-    const examExists = patient.complementaryExams.exams.some(
-      (exam) => exam.name === name
-    );
-    console.log(" ExamDictionary carregado:", examDictionary);
-    const examAbbreviation =
-      abbreviation || examDictionary[name]?.abbreviation || "";
-
-    if (examExists) {
-      updateExam(name, value, examAbbreviation); // 🔹 Atualizamos incluindo a abreviação
-    } else {
-      addExam(name, value, examAbbreviation); // 🔹 Adicionamos garantindo a abreviação
-    }
-  };
-
-  // ====== FUNÇÕES DE PROBLEMAS ======
-  const hasProblem = (problemName: string) => {
-    return (
-      patient.problemList?.problems?.some((p) => p.name === problemName) ||
-      false
-    );
-  };
-
-  return { ...context, getExamValue, handleExamChange, hasProblem };
+  return { ...context, updateField, toggleProblem, hasProblem, getExamValue, updateExam, handleExamChange,  };
 }
 
 export default usePatient;
