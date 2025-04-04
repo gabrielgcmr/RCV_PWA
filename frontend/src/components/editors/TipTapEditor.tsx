@@ -1,13 +1,20 @@
-import { EditorContent, useEditor, BubbleMenu } from "@tiptap/react";
+import "./styles.css";
+import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Heading from "@tiptap/extension-heading";
 import Document from "@tiptap/extension-document";
 import ListItem from "@tiptap/extension-list-item";
 import Paragraph from "@tiptap/extension-paragraph";
-import BulletList from "@tiptap/extension-bullet-list";
+import Highlight from "@tiptap/extension-highlight";
+import TextAlign from "@tiptap/extension-text-align";
 import Text from "@tiptap/extension-text";
-import { Bold, Italic, List, ListOrdered } from "lucide-react";
+import Bold from "@tiptap/extension-bold";
+import BulletList from "@tiptap/extension-bullet-list";
 import SectionBase from "../common/form/SectionBase";
+import Strike from "@tiptap/extension-strike";
+import Link from "@tiptap/extension-link";
+import Italic from "@tiptap/extension-italic";
+import { content } from "./Content";
 
 const extensions = [
   StarterKit,
@@ -16,12 +23,20 @@ const extensions = [
   Text,
   BulletList,
   ListItem,
-  Heading.configure({
-    levels: [1, 2, 3],
+  Bold,
+  Italic,
+  Heading,
+  Strike,
+  Link.configure({
+    openOnClick: false,
+  }),
+  Highlight.configure({
+    multicolor: true,
+  }),
+  TextAlign.configure({
+    types: ["heading", "paragraph"],
   }),
 ];
-
-const content = "<p>Hello World!</p>";
 
 const Tiptap = () => {
   const editor = useEditor({
@@ -33,56 +48,53 @@ const Tiptap = () => {
 
   return (
     <SectionBase title="Editor" icon="📝">
-      <div className="flex gap-4 border-b pb-2 m-2">
+      <div className="flex gap-4 border-2 p-2 m-1">
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive("bold") ? "text-blue-300" : ""}
+          disabled={!editor.can().chain().focus().toggleBold().run()}
+          className={editor.isActive("bold") ? "is-active" : ""}
         >
-          <Bold size={18} />
+          Bold
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive("italic") ? "text-blue-300" : ""}
+          disabled={!editor.can().chain().focus().toggleItalic().run()}
+          className={editor.isActive("italic") ? "is-active" : ""}
         >
-          <Italic size={18} />
+          Italic
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+          disabled={!editor.can().chain().focus().toggleStrike().run()}
+          className={editor.isActive("strike") ? "is-active" : ""}
+        >
+          Strike
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleCode().run()}
+          disabled={!editor.can().chain().focus().toggleCode().run()}
+          className={editor.isActive("code") ? "is-active" : ""}
+        >
+          Code
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editor.isActive("bulletList") ? "text-blue-300" : ""}
+          className={editor.isActive("bulletList") ? "is-active" : ""}
         >
-          <List size={18} />
+          Bullet list
         </button>
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editor.isActive("orderedList") ? "text-blue-300" : ""}
+          className={editor.isActive("orderedList") ? "is-active" : ""}
         >
-          <ListOrdered size={18} />
+          Ordered list
         </button>
       </div>
 
       <EditorContent
         editor={editor}
-        className="min-h-[120px] border p-2 rounded"
+        className=" tiptap min-h-40 border p-2 m-1 rounded"
       />
-
-      <BubbleMenu
-        editor={editor}
-        tippyOptions={{ duration: 100 }}
-        className="bg-white border shadow px-2 py-1 rounded"
-      >
-        <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          className={editor.isActive("bold") ? "text-blue-600" : ""}
-        >
-          <Bold size={18} />
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={editor.isActive("italic") ? "text-blue-600" : ""}
-        >
-          <Italic size={18} />
-        </button>
-      </BubbleMenu>
     </SectionBase>
   );
 };
