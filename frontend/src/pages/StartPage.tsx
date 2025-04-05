@@ -4,7 +4,7 @@ import ProblemListForm from "../components/contents/startPage/3-ProblemListForm"
 import ExamsForm from "../components/contents/startPage/4-ExamForm";
 import SummaryBuilder from "../components/contents/startPage/5-summaryBuilder";
 import ClinicalCalculations from "../components/contents/startPage/6-ClinicalCalculationsSection";
-import TiptapEditor from "../components/editors/TipTapEditor";
+import TiptapEditor from "../components/editors/TipTap";
 
 function StartPage() {
   return (

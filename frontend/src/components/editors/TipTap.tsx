@@ -15,6 +15,7 @@ import Strike from "@tiptap/extension-strike";
 import Link from "@tiptap/extension-link";
 import Italic from "@tiptap/extension-italic";
 import { content } from "./Content";
+import MenuBar from "./ToolBar";
 
 const extensions = [
   StarterKit,
@@ -49,20 +50,7 @@ const Tiptap = () => {
   return (
     <SectionBase title="Editor" icon="📝">
       <div className="flex gap-4 border-2 p-2 m-1">
-        <button
-          onClick={() => editor.chain().focus().toggleBold().run()}
-          disabled={!editor.can().chain().focus().toggleBold().run()}
-          className={editor.isActive("bold") ? "is-active" : ""}
-        >
-          Bold
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-          disabled={!editor.can().chain().focus().toggleItalic().run()}
-          className={editor.isActive("italic") ? "is-active" : ""}
-        >
-          Italic
-        </button>
+        <MenuBar editor={editor} />
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={!editor.can().chain().focus().toggleStrike().run()}

@@ -64,7 +64,9 @@ export default function Exams() {
           )}
         </div>
       ) : (
-        <li>Sem exames</li>
+        <ul className="list-disc pl-4">
+          <li>Sem exames</li>
+        </ul>
       )}
     </>
   );

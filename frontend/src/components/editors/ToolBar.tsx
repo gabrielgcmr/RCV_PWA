@@ -18,9 +18,10 @@ export default function MenuBar({ editor }: Props) {
     `p-2 rounded transition hover:bg-gray-200 ${isActive ? "bg-gray-300" : ""}`;
 
   return (
-    <div className="flex gap-2 border border-gray-300 p-2 rounded-md shadow-sm bg-white">
+    <div className="flex gap-2 border border-gray-300 p-2 rounded-md shadow-sm bg-gray-700">
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
+        disabled={!editor.can().chain().focus().toggleBold().run()}
         className={buttonClass(editor.isActive("bold"))}
         title="Negrito"
       >
@@ -29,6 +30,7 @@ export default function MenuBar({ editor }: Props) {
 
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
+        disabled={!editor.can().chain().focus().toggleItalic().run()}
         className={buttonClass(editor.isActive("italic"))}
         title="Itálico"
       >
