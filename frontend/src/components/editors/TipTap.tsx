@@ -1,4 +1,3 @@
-import "./styles.css";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Heading from "@tiptap/extension-heading";
@@ -14,8 +13,11 @@ import SectionBase from "../common/form/SectionBase";
 import Strike from "@tiptap/extension-strike";
 import Link from "@tiptap/extension-link";
 import Italic from "@tiptap/extension-italic";
-import { content } from "./Content";
-import MenuBar from "./ToolBar";
+import { initialContent } from "./initialContent";
+import MenuBar from "./MenuBar";
+
+const tiptapClassName =
+  "prose prose-invert max-w-none min-h-40 p-4 border mt-1 bg-zinc-600 rounded-lg list-disc list-inside [&_ul]:list-disc [&_ul]:pl-5 [&_li]:ml-2";
 
 const extensions = [
   StarterKit,
@@ -42,47 +44,15 @@ const extensions = [
 const Tiptap = () => {
   const editor = useEditor({
     extensions,
-    content,
+    content: initialContent,
   });
 
   if (!editor) return null;
 
   return (
     <SectionBase title="Editor" icon="📝">
-      <div className="flex gap-4 border-2 p-2 m-1">
-        <MenuBar editor={editor} />
-        <button
-          onClick={() => editor.chain().focus().toggleStrike().run()}
-          disabled={!editor.can().chain().focus().toggleStrike().run()}
-          className={editor.isActive("strike") ? "is-active" : ""}
-        >
-          Strike
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleCode().run()}
-          disabled={!editor.can().chain().focus().toggleCode().run()}
-          className={editor.isActive("code") ? "is-active" : ""}
-        >
-          Code
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editor.isActive("bulletList") ? "is-active" : ""}
-        >
-          Bullet list
-        </button>
-        <button
-          onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editor.isActive("orderedList") ? "is-active" : ""}
-        >
-          Ordered list
-        </button>
-      </div>
-
-      <EditorContent
-        editor={editor}
-        className=" tiptap min-h-40 border p-2 m-1 rounded"
-      />
+      <MenuBar editor={editor} />
+      <EditorContent editor={editor} className={tiptapClassName} />
     </SectionBase>
   );
 };
