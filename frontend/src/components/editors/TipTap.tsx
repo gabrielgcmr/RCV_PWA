@@ -17,7 +17,7 @@ import { initialContent } from "./initialContent";
 import MenuBar from "./MenuBar";
 
 const tiptapClassName =
-  "prose prose-invert max-w-none min-h-40 p-4 border mt-1 bg-zinc-600 rounded-lg list-disc list-inside [&_ul]:list-disc [&_ul]:pl-5 [&_li]:ml-2";
+  "prose prose-invert max-w-none min-h-40 p-2 border mt-1 bg-zinc-600 rounded-lg list-disc list-inside [&_ul]:list-disc [&_ul]:pl-5 [&_li]:ml-2";
 
 const extensions = [
   StarterKit,
@@ -50,7 +50,7 @@ const Tiptap = () => {
   if (!editor) return null;
 
   return (
-    <SectionBase title="Editor" icon="📝">
+    <SectionBase title="Editor" icon="📝" id="editor">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} className={tiptapClassName} />
     </SectionBase>

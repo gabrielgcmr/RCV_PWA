@@ -4,10 +4,12 @@ import SectionBase from "../../common/form/SectionBase";
 
 function ExamsForm() {
   return (
-    <SectionBase title=" Exames Complementares" icon="🧪">
-      {/* Layout principal com Grid */}
+    <SectionBase
+      title=" Exames Complementares"
+      icon="🧪"
+      id="complementaryExams"
+    >
       <div className="grid grid-cols-4 grid-rows-1 gap-4 mb-1">
-        {/* ExamDate ocupa 1/4 à esquerda */}
         <div className="col-span-2">
           <ExamDate />
         </div>

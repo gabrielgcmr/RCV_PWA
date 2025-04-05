@@ -23,7 +23,7 @@ function ProblemListForm() {
   };
 
   return (
-    <SectionBase title="Lista de Problemas" icon="📝">
+    <SectionBase title="Lista de Problemas" icon="📝" id="problemList">
       <form>
         {problemOptions.map(({ name, label }) => (
           <div key={name} className="flex items-center">

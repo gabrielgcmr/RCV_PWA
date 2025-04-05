@@ -18,7 +18,7 @@ function SummaryBuilder() {
   }
 
   return (
-    <SectionBase title="Resumo" icon="📄">
+    <SectionBase title="Resumo" icon="📄" id="summary">
       <Allergies />
 
       <ProblemList />

@@ -16,7 +16,7 @@ function IdentificationForm() {
   const { patient, updateField } = usePatient();
 
   return (
-    <SectionBase title="Identificação" icon="🏷️">
+    <SectionBase title="Identificação" icon="🏷️" id="identification">
       <form>
         <label htmlFor="name" className="block text-sm font-medium">
           {" "}

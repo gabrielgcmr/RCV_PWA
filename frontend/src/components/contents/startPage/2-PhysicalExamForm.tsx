@@ -5,7 +5,7 @@ function PhysicalExamForm() {
   const { patient, updateField } = usePatient();
 
   return (
-    <SectionBase title="Exame Físico" icon="🩺">
+    <SectionBase title="Exame Físico" icon="🩺" id="physicalExam">
       <form>
         <label htmlFor="systolicBP" className="block text-sm font-medium">
           Pressão Arterial Sistólica
