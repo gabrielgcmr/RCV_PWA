@@ -4,7 +4,7 @@ export const initialContent = {
     {
       type: "heading",
       attrs: { level: 3 },
-      content: [{ type: "text", text: "🤧ALERGIAS" }],
+      content: [{ type: "text", text: "🚨ALERGIAS" }],
     },
     {
       type: "bulletList",
