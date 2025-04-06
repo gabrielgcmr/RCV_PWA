@@ -45,7 +45,7 @@ export default function Exams() {
   return (
     <>
       <p className={summaryTitle}>
-        🟣 <b>EXAMES COMPLEMENTARES</b>
+        🧪 <b>EXAMES COMPLEMENTARES</b>
       </p>
 
       {hasExams ? (

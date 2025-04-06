@@ -4,7 +4,7 @@ export default function PresentIllness() {
   return (
     <>
       <p className={summaryTitle}>
-        🔵 <b>DOENÇA ATUAL</b>{" "}
+        🔍 <b>DOENÇA ATUAL</b>{" "}
       </p>
       <ul className="list-disc pl-4">
         <li>HDA</li>

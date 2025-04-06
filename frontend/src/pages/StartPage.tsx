@@ -11,7 +11,7 @@ import { SectionProvider } from "../context/SectionProvider";
 function StartPage() {
   return (
     <SectionProvider>
-      <div className="grid md:grid-cols-[0.8fr_2fr_1.5fr_2.5fr_0.5fr] gap-2 p-2 ">
+      <div className="grid md:grid-cols-[0.2fr_2fr_1.5fr_2.5fr_0.5fr] gap-2 p-2 ">
         <MinimizedSectionBar />
         <div className="flex flex-col gap-1">
           <IdentificationForm />

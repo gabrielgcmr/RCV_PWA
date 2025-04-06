@@ -5,7 +5,7 @@ export default function Allergies() {
   return (
     <div>
       <p className={summaryTitle}>
-        🔴 <b>ALERGIAS</b>{" "}
+        🤧 <b>ALERGIAS</b>{" "}
       </p>
       <ul className="list-disc pl-4">
         <li>Nenhuma</li>

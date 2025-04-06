@@ -28,7 +28,8 @@ export default function SectionBase({
         className="cursor-pointer flex justify-between items-center hover:bg-zinc-600 p-2 rounded transition"
       >
         <h3 className="text-lg font-bold flex items-center gap-2">
-          {icon} {title}
+          {icon && <span className="text-2xl">{icon}</span>}
+          <span>{title}</span>
         </h3>
       </div>
       <div className="mt-2">{children}</div>
