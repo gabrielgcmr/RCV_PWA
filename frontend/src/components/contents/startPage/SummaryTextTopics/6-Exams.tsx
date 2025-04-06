@@ -45,7 +45,7 @@ export default function Exams() {
   return (
     <>
       <p className={summaryTitle}>
-        🟣 <b>EXAMES COMPLEMENTARES</b>
+        🧪 <b>EXAMES COMPLEMENTARES</b>
       </p>
 
       {hasExams ? (
@@ -64,7 +64,9 @@ export default function Exams() {
           )}
         </div>
       ) : (
-        <li>Sem exames</li>
+        <ul className="list-disc pl-4">
+          <li>Sem exames</li>
+        </ul>
       )}
     </>
   );

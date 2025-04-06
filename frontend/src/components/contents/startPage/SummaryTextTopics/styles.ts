@@ -1,2 +1,2 @@
-export const summaryTitle = "text-base font-bold";
+export const summaryTitle = "text-base font-bold mt-1";
 

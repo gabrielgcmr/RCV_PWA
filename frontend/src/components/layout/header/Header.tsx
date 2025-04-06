@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Modal } from "../../common/Modal";
+import { Modal } from "../../ui/Modal";
 import { LoginForm } from "../../auth/LoginForm";
 import RegisterForm from "../../auth/RegisterForm";
 import UserHeader from "./UserHeader";
@@ -9,10 +9,8 @@ import AuthHeader from "./AuthHeader";
 function Header() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  console.log("isAuthenticated", isAuthenticated);
-  console.log("user", user);
   return (
     <header className="fixed top-0 left-0 w-full bg-zinc-800 text-white shadow-md z-50 px-4 md:px-6 py-2 flex justify-between items-center">
       {/* Logo */}

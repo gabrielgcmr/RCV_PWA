@@ -1,7 +1,7 @@
 import { useState } from "react";
 import usePatient from "../../../hooks/usePatient";
 
-import { ErrorPopup } from "../../common/ErrorPopup";
+import { ErrorPopup } from "../../ui/ErrorPopup";
 import CKDEPIIndex from "../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
 import CVRIndex from "../../../services/clinical/calculator/CVR/CVRIndex";
 import FIB4Index from "../../../services/clinical/calculator/FIB4/FIB4Index";
@@ -58,11 +58,7 @@ function ClinicalCalculations() {
   ];
 
   return (
-    <div className="p-4 bg-zinc-700 rounded-lg shadow-md w-30 flex flex-col gap-2 mb-2">
-      <h2 className="text-sm font-bold text-center text-white mb-2">
-        📊 Cálculos Clínicos
-      </h2>
-
+    <div className="p-2 bg-zinc-700 rounded-lg shadow-md w-12 flex flex-col gap-2 mb-2">
       {/* Botões de Cálculo */}
       {buttons.map(({ label, color, action }) => (
         <div key={label}>

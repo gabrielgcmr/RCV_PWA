@@ -41,7 +41,7 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
           ...value,
         },
       };
-
+      console.log(patient);
       // 🔁 Gera a lista atualizada de prevenções com base no novo estado do paciente
       const updatedPreventionList = generatePreventionList(updated);
 
@@ -83,9 +83,7 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <PatientContext.Provider
-      value={{ patient: patient, updatePatient, updateExam }}
-    >
+    <PatientContext.Provider value={{ patient, updatePatient, updateExam }}>
       {children}
     </PatientContext.Provider>
   );

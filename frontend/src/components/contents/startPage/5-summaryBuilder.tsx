@@ -1,4 +1,5 @@
 import usePatient from "../../../hooks/usePatient";
+import SectionBase from "../../common/form/SectionBase";
 import Allergies from "./SummaryTextTopics/1-Allergies";
 import ProblemList from "./SummaryTextTopics/2-ProblemList";
 import Preventions from "./SummaryTextTopics/3-Preventions";
@@ -17,7 +18,7 @@ function SummaryBuilder() {
   }
 
   return (
-    <section className="p-4 bg-zinc-700 rounded-lg shadow-md mb-2">
+    <SectionBase title="Resumo" icon="📄" id="summary">
       <Allergies />
 
       <ProblemList />
@@ -31,7 +32,7 @@ function SummaryBuilder() {
       <Exams />
 
       <PresentIllness />
-    </section>
+    </SectionBase>
   );
 }
 

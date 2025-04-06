@@ -12,7 +12,6 @@
 - [ ] Criar icones para o navbar
 - [ ] Implementar lógica CA de mama
 - [ ] Editor de texto
-- [ ] 
 
 ## Geral
 - [ ] Decidir estrutura do documento no MongoDB

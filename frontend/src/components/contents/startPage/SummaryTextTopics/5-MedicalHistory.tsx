@@ -4,7 +4,7 @@ export default function MedicalHistory() {
   return (
     <>
       <p className={summaryTitle}>
-        🟡 <b>ANTECEDENTES</b>{" "}
+        🕰️ <b>ANTECEDENTES</b>{" "}
       </p>
       <ul className="list-disc pl-4">
         <li>

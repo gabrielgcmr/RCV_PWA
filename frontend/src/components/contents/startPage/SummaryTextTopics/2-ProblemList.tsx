@@ -13,7 +13,7 @@ export default function ProblemList() {
   return (
     <>
       <p className={summaryTitle}>
-        🟠<b>LISTA DE PROBLEMAS</b>{" "}
+        📋<b>LISTA DE PROBLEMAS</b>{" "}
       </p>
       <ul className="list-disc pl-4">
         {hasAnyProblem ? (

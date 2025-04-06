@@ -14,7 +14,7 @@ export default function Preventions() {
   return (
     <>
       <p className={summaryTitle}>
-        🟢 <b>PREVENÇÕES</b>{" "}
+        ✅ <b>PREVENÇÕES</b>{" "}
       </p>
       <ul className="list-disc pl-4">
         {hasAnyPrevention ? (
