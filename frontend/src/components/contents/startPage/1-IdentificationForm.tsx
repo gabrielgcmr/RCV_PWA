@@ -1,4 +1,4 @@
-import usePatient from "../../../hooks/usePatient";
+import usePatientStore from "@/stores/patientStore";
 import SectionBase from "../../common/form/SectionBase";
 
 const genderOptions = [
@@ -13,35 +13,34 @@ const raceOptions = [
 ];
 
 function IdentificationForm() {
-  const { patient, updateField } = usePatient();
+  const identification = usePatientStore((state) => state.identification);
+  const setName = usePatientStore((state) => state.setName);
+  const setAge = usePatientStore((state) => state.setAge);
+  const setGender = usePatientStore((state) => state.setGender);
+  const setRace = usePatientStore((state) => state.setRace);
 
   return (
     <SectionBase title="Identificação" icon="🏷️" id="identification">
       <form>
         <label htmlFor="name" className="block text-sm font-medium">
-          {" "}
           Nome
         </label>
         <input
           type="text"
           id="name"
-          placeholder="Digite o nome do paciente"
-          value={patient.identification.name}
-          onChange={(e) =>
-            updateField("identification", "name", e.target.value)
-          }
+          value={identification.name}
+          onChange={(e) => setName(e.target.value)}
           className="w-60 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
+
         <label htmlFor="age" className="block text-sm font-medium">
-          {" "}
           Idade
         </label>
         <input
           type="number"
           id="age"
-          placeholder="Idade"
-          value={patient.identification.age}
-          onChange={(e) => updateField("identification", "age", e.target.value)}
+          value={identification.age}
+          onChange={(e) => setAge(e.target.value)}
           className="w-22 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
 
@@ -52,12 +51,9 @@ function IdentificationForm() {
               <label key={option.value} className="flex items-center gap-1">
                 <input
                   type="radio"
-                  id="gender"
                   value={option.value}
-                  checked={patient.identification.gender === option.value}
-                  onChange={() =>
-                    updateField("identification", "gender", option.value)
-                  }
+                  checked={identification.gender === option.value}
+                  onChange={() => setGender(option.value as "Male" | "Female")}
                 />
                 {option.label}
               </label>
@@ -70,11 +66,8 @@ function IdentificationForm() {
         </label>
         <select
           id="race"
-          name="race"
-          value={patient.identification.race}
-          onChange={(e) =>
-            updateField("identification", "race", e.target.value)
-          }
+          value={identification.race}
+          onChange={(e) => setRace(e.target.value)}
           className="w-30 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200"
         >
           <option value="">Selecione</option>
