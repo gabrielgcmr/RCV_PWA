@@ -2,7 +2,7 @@
 import { useState, ReactNode } from "react";
 import { PatientContext } from "./PatientContext";
 import { examDictionary } from "../constants/examDictionary";
-import { Patient } from "../interfaces";
+import { Patient } from "@/interfaces";
 import generatePreventionList from "../services/clinical/summary/generatePreventionList";
 
 export default function PatientProvider({ children }: { children: ReactNode }) {
@@ -14,7 +14,7 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
       race: "",
     },
     preventionList: {
-      prevention: [],
+      preventions: [],
     },
     problemList: {
       problems: [],
@@ -48,7 +48,7 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
       return {
         ...updated,
         preventionList: {
-          prevention: updatedPreventionList,
+          preventions: updatedPreventionList,
         },
       };
     });

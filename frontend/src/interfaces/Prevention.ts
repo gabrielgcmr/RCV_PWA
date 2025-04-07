@@ -11,5 +11,5 @@ export interface Prevention {
 }
 
 export interface PreventionList {
-  prevention: Prevention[];
+  preventions: Prevention[];
 }

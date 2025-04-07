@@ -1,7 +1,7 @@
 export interface Problem {
     name: string;
     abreviation?:string
-    bodysystem?:string
+    bodySystem?:string
     description?: string;
     other?: string
     errors?:string[]
