@@ -1,5 +1,5 @@
 import { ClinicalPatientData, Prevention } from "../../../interfaces";
-import CKDEPIIndex from "../calculator/CKD-EPI/CKDEPIIndex";
+import CKDEPIIndex from "../calculator/CKDEPI/CKDEPIIndex";
 import CVRIndex from "../calculator/CVR/CVRIndex";
 import FIB4Index from "../calculator/FIB4/FIB4Index";
 

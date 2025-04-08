@@ -11,6 +11,7 @@ interface PatientStore {
 
 export const usePatientStore = create<PatientStore>((set) => ({
   patient: initialPatientState,
+  
   setPatient: (data) =>
     set((state) => ({
       patient: {
@@ -18,5 +19,6 @@ export const usePatientStore = create<PatientStore>((set) => ({
         ...data,
       },
     })),
+    
   resetPatient: () => set({ patient: initialPatientState }),
 }));

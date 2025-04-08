@@ -1,3 +1,4 @@
+import DebugPatient from "@/hooks/debugPatient";
 import IdentificationForm from "../components/contents/startPage/1-IdentificationForm";
 import PhysicalExamForm from "../components/contents/startPage/2-PhysicalExamForm";
 import ProblemListForm from "../components/contents/startPage/3-ProblemListForm";
@@ -23,6 +24,7 @@ function StartPage() {
         <TiptapEditor />
         <ClinicalCalculations />
       </div>
+      <DebugPatient />
     </SectionProvider>
   );
 }

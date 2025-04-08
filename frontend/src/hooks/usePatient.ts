@@ -2,6 +2,7 @@
 
 import { Problem } from "@/interfaces";
 import { usePatientStore } from "@/store";
+import { calculateAllPreventions } from "@/utils/calculateAllPreventions";
 
 export function usePatient() {
   const { patient, setPatient } = usePatientStore();
@@ -53,12 +54,18 @@ export function usePatient() {
     setPatient({ exams });
   };
 
+  const refreshPreventions = () => {
+    const newPreventions = calculateAllPreventions(patient);
+    setPatient({ preventions: newPreventions });
+  };
+
   return {
     patient,
     hasProblem,
     toggleProblem,
     updateExamDates,
     getExamValue,
-    handleExamChange
+    handleExamChange,
+    refreshPreventions
   };
 }
