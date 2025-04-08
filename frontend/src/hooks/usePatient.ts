@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { PatientContext } from "../context/PatientContext";
 import { examDictionary } from "../constants/examDictionary";
-import { Patient } from "../interfaces";
+import { ClinicalPatientData } from "@/interfaces/Patient";
+
 
 function usePatient() {
   const context = useContext(PatientContext);
@@ -11,10 +12,10 @@ function usePatient() {
 
   const { patient, updatePatient } = context;
   // ====== FUNÇÃO GENÉRICA PARA ATUALIZAÇÃO ======
-  const updateField = <T extends keyof Patient>(
+  const updateField = <T extends keyof ClinicalPatientData>(
     section: T,
-    field: keyof Patient[T],
-    value: Patient[T][keyof Patient[T]]
+    field: keyof ClinicalPatientData[T],
+    value: ClinicalPatientData[T][keyof ClinicalPatientData[T]]
   ) => {
     updatePatient(section, {
       ...patient[section],

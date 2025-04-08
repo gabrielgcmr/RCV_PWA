@@ -1,4 +1,4 @@
-import { Prevention } from "../../../../interfaces";
+import { Prevention } from "../../../../interfaces/Patient";
 import { Patient } from "../../../../interfaces/Patient";
 import calculateCVR from "./CVRCalculator";
 import classifyCVR from "./CVRClassifier";

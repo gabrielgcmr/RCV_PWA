@@ -6,7 +6,7 @@ import { summaryTitle } from "./styles";
 
 export default function Preventions() {
   const { patient } = usePatient();
-  const hasAnyPrevention = patient.preventionList.prevention.length > 0;
+  const hasAnyPrevention = patient.preventionList.preventions.length > 0;
   const cvr = CVRIndex(patient);
   const tfg = CKDEPIIndex(patient);
   const fib4 = FIB4Index(patient);

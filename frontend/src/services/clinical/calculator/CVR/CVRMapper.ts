@@ -1,4 +1,4 @@
-import { Patient } from "../../../../interfaces";
+import { Patient } from "../../../../interfaces/Patient";
 
 
 /**

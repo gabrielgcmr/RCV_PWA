@@ -2,7 +2,7 @@
 import { useState, ReactNode } from "react";
 import { PatientContext } from "./PatientContext";
 import { examDictionary } from "../constants/examDictionary";
-import { Patient } from "@/interfaces";
+import { Patient } from "@/interfaces/Patient";
 import generatePreventionList from "../services/clinical/summary/generatePreventionList";
 
 export default function PatientProvider({ children }: { children: ReactNode }) {

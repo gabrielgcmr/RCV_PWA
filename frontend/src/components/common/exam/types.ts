@@ -1,4 +1,4 @@
-import { Exam } from "../../../interfaces";
+import { Exam } from "../../../interfaces/Patient";
 export interface ExamInputPropsBase extends Exam {
     label: string; // Label do campo de input
     placeholder?: string; // Placeholder do campo

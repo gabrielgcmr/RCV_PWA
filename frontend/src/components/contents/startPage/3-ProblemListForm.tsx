@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import usePatient from "../../../hooks/usePatient";
+import usePatient from "@/hooks/usePatient";
 import SectionBase from "../../common/form/SectionBase";
 
 const problemOptions = [

@@ -2,8 +2,8 @@ import { usePatientStore } from "@/stores/usePatientStore";
 import SectionBase from "../../common/form/SectionBase";
 
 const genderOptions = [
-  { value: "Male", label: "Masculino" },
-  { value: "Female", label: "Feminino" },
+  { value: "male", label: "Masculino" },
+  { value: "female", label: "Feminino" },
 ];
 
 const raceOptions = [
@@ -13,8 +13,12 @@ const raceOptions = [
 ];
 
 function IdentificationForm() {
-  const { patient, setName, setAge, setGender, setRace } = usePatientStore();
+  const { patient, updatePatient } = usePatientStore();
+  const { identification } = patient;
 
+  const handleChange = (field: keyof typeof identification, value: string) => {
+    updatePatient("identification", { [field]: value });
+  };
   return (
     <SectionBase title="Identificação" icon="🏷️" id="identification">
       <form>
@@ -25,8 +29,8 @@ function IdentificationForm() {
           type="text"
           id="name"
           placeholder="Nome"
-          value={patient.identification.name}
-          onChange={(e) => setName(e.target.value)}
+          value={identification.fullName}
+          onChange={(e) => handleChange("fullName", e.target.value)}
           className="w-60 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
 
@@ -37,8 +41,8 @@ function IdentificationForm() {
           type="number"
           id="age"
           placeholder="Idade"
-          value={patient.identification.age}
-          onChange={(e) => setAge(e.target.value)}
+          value={identification.age}
+          onChange={(e) => handleChange("age", e.target.value)}
           className="w-22 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
         <fieldset className="mb-1">
@@ -50,7 +54,9 @@ function IdentificationForm() {
                   type="radio"
                   value={option.value}
                   checked={patient.identification.gender === option.value}
-                  onChange={() => setGender(option.value as "Male" | "Female")}
+                  onChange={() =>
+                    handleChange("gender", option.value as "male" | "female")
+                  }
                 />
                 {option.label}
               </label>
@@ -64,7 +70,7 @@ function IdentificationForm() {
         <select
           id="race"
           value={patient.identification.race}
-          onChange={(e) => setRace(e.target.value)}
+          onChange={(e) => handleChange("race", e.target.value)}
           className="w-30 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200"
         >
           <option value="">Selecione</option>
