@@ -1,6 +1,6 @@
-import { Patient } from "../../../../interfaces";
+import { ClinicalPatientData } from "../../../../interfaces";
 export default interface MedicalTextTopicsProps {
-  patient: Patient;
+  patient: ClinicalPatientData;
   variant?: "compact" | "detailed"; // Viscualização compacta e detalhada
   className?: string;
 }

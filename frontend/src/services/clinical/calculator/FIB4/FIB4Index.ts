@@ -2,10 +2,10 @@ import mapFIB4Data from "./FIB4Mapper";
 import validateFIB4Data from "./FIB4Validator";
 import calculateFIB4 from "./FIB4Calculator";
 import classifyFIB4 from "./FIB4Classifier";
-import { Patient, Prevention } from "../../../../interfaces";
+import { ClinicalPatientData, Prevention } from "../../../../interfaces";
 
 // Calcula o índice FIB-4.
-function FIB4Index(patient: Patient): Prevention {
+function FIB4Index(patient: ClinicalPatientData): Prevention {
   const mappedData = mapFIB4Data(patient);
   const validation = validateFIB4Data(mappedData);
 

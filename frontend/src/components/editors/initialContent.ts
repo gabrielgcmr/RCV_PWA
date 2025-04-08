@@ -4,6 +4,25 @@ export const initialContent = {
     {
       type: "heading",
       attrs: { level: 3 },
+      content: [{ type: "text", text: "🏷️IDENTIFICAÇÃO" }],
+    },
+    {
+      type: "bulletList",
+      content: [
+        {
+          type: "listItem",
+          content: [
+            {
+              type: "paragraph",
+              content: [{ type: "text", text: "Nome" }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "heading",
+      attrs: { level: 3 },
       content: [{ type: "text", text: "🚨ALERGIAS" }],
     },
     {

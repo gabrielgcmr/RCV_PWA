@@ -5,7 +5,7 @@ import { ErrorPopup } from "../../ui/ErrorPopup";
 import CKDEPIIndex from "../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
 import CVRIndex from "../../../services/clinical/calculator/CVR/CVRIndex";
 import FIB4Index from "../../../services/clinical/calculator/FIB4/FIB4Index";
-import { Patient, Prevention } from "../../../interfaces";
+import { ClinicalPatientData, Prevention } from "../../../interfaces";
 
 function ClinicalCalculations() {
   const { patient } = usePatient();
@@ -22,7 +22,7 @@ function ClinicalCalculations() {
 
   const runCalculation = (
     label: "TFG" | "RCV" | "FIB4",
-    calculateFn: (data: Patient) => Prevention
+    calculateFn: (data: ClinicalPatientData) => Prevention
   ) => {
     const result = calculateFn(patient);
 

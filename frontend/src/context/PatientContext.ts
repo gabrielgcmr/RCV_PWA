@@ -1,12 +1,12 @@
 //context/PatienteContext.tsx
 import { createContext } from "react";
-import { Patient } from "../interfaces/Patient";
+import { ClinicalPatientData } from "../interfaces";
 
 interface PatientContextType {
-  patient: Patient;
-  updatePatient: <T extends keyof Patient>(
+  patient: ClinicalPatientData;
+  updatePatient: <T extends keyof ClinicalPatientData>(
     field: T,
-    value: Partial<Patient[T]> // ✅ Agora aceita objetos parciais
+    value: Partial<ClinicalPatientData[T]> // ✅ Agora aceita objetos parciais
   ) => void;
   updateExam: (examName: string, examValue: string) => void;
 }

@@ -1,10 +1,10 @@
-import { Patient } from "../../../../interfaces";
+import { ClinicalPatientData } from "../../../../interfaces";
 
 
 /**
  * Função para mapear os dados do paciente para o cálculo do risco cardiovascular.
  */
-export default function mapPatientData(patient: Patient) {
+export default function mapPatientData(patient: ClinicalPatientData) {
    
  /** 
   * Obtém o valor de um exame pelo nome. Retorna 0 se não for encontrado.

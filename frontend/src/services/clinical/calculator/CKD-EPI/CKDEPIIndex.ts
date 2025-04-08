@@ -1,11 +1,11 @@
-import { Patient, Prevention } from "../../../../interfaces";
+import { ClinicalPatientData, Prevention } from "../../../../interfaces";
 import calculateCKDEPI from "./CKDEPICalculator";
 import classifyTFG from "./CKDEPIClassifier";
 import mapCKDEPIData from "./CKDEPIMapper";
 import validateCKDEPIData from "./CKDEPIValidator";
 
 // Calcula a TFG pela equação CKD-EPI
-function CKDEPIIndex(patient: Patient): Prevention {
+function CKDEPIIndex(patient: ClinicalPatientData): Prevention {
   const mappedData = mapCKDEPIData(patient);
   const validation = validateCKDEPIData(mappedData);
   if (!validation.isValid) {

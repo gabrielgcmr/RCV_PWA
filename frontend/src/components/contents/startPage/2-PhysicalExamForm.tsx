@@ -1,8 +1,24 @@
-import usePatient from "../../../hooks/usePatient";
+// src/components/forms/PhysicalExamForm.tsx
+import { usePatientStore } from "../../../store";
 import SectionBase from "../../common/form/SectionBase";
 
 function PhysicalExamForm() {
-  const { patient, updateField } = usePatient();
+  const patient = usePatientStore((state) => state.patient);
+  const setPatient = usePatientStore((state) => state.setPatient);
+
+  const handlePhysicalExamChange = <
+    K extends keyof typeof patient.physicalExam,
+  >(
+    field: K,
+    value: (typeof patient.physicalExam)[K]
+  ) => {
+    setPatient({
+      physicalExam: {
+        ...patient.physicalExam,
+        [field]: value,
+      },
+    });
+  };
 
   return (
     <SectionBase title="Exame Físico" icon="🩺" id="physicalExam">
@@ -16,7 +32,7 @@ function PhysicalExamForm() {
           placeholder="PAS"
           value={patient.physicalExam.systolicBP ?? ""}
           onChange={(e) =>
-            updateField("physicalExam", "systolicBP", e.target.value)
+            handlePhysicalExamChange("systolicBP", e.target.value)
           }
           className="w-26 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-2"
         />
@@ -30,7 +46,7 @@ function PhysicalExamForm() {
           placeholder="PAD"
           value={patient.physicalExam.diastolicBP ?? ""}
           onChange={(e) =>
-            updateField("physicalExam", "diastolicBP", e.target.value)
+            handlePhysicalExamChange("diastolicBP", e.target.value)
           }
           className="w-26 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200"
         />

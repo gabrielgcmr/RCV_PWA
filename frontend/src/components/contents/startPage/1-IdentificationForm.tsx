@@ -1,4 +1,5 @@
-import usePatient from "../../../hooks/usePatient";
+import { ClinicalPatientData } from "../../../interfaces";
+import { usePatientStore } from "../../../store";
 import SectionBase from "../../common/form/SectionBase";
 
 const genderOptions = [
@@ -13,7 +14,26 @@ const raceOptions = [
 ];
 
 function IdentificationForm() {
-  const { patient, updateField } = usePatient();
+  // 1. Selecione o estado e a função de atualização do store
+  const patient = usePatientStore((state) => state.patient);
+  const setPatient = usePatientStore((state) => state.setPatient);
+
+  // 2. Crie uma função handler para atualizar os campos de identificação
+  const handleIdentificationChange = <
+    K extends keyof ClinicalPatientData["identification"],
+  >(
+    field: K,
+    value: ClinicalPatientData["identification"][K]
+  ) => {
+    setPatient({
+      identification: {
+        // Mantém os outros dados de identificação existentes
+        ...patient.identification,
+        // Atualiza o campo específico
+        [field]: value,
+      },
+    });
+  };
 
   return (
     <SectionBase title="Identificação" icon="🏷️" id="identification">
@@ -26,9 +46,9 @@ function IdentificationForm() {
           type="text"
           id="name"
           placeholder="Digite o nome do paciente"
-          value={patient.identification.name}
+          value={patient.identification.fullName}
           onChange={(e) =>
-            updateField("identification", "name", e.target.value)
+            handleIdentificationChange("fullName", e.target.value)
           }
           className="w-60 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
@@ -41,7 +61,7 @@ function IdentificationForm() {
           id="age"
           placeholder="Idade"
           value={patient.identification.age}
-          onChange={(e) => updateField("identification", "age", e.target.value)}
+          onChange={(e) => handleIdentificationChange("age", e.target.value)}
           className="w-22 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
 
@@ -56,7 +76,7 @@ function IdentificationForm() {
                   value={option.value}
                   checked={patient.identification.gender === option.value}
                   onChange={() =>
-                    updateField("identification", "gender", option.value)
+                    handleIdentificationChange("gender", option.value)
                   }
                 />
                 {option.label}
@@ -72,9 +92,7 @@ function IdentificationForm() {
           id="race"
           name="race"
           value={patient.identification.race}
-          onChange={(e) =>
-            updateField("identification", "race", e.target.value)
-          }
+          onChange={(e) => handleIdentificationChange("race", e.target.value)}
           className="w-30 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200"
         >
           <option value="">Selecione</option>

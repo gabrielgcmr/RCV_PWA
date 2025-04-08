@@ -2,13 +2,13 @@
 import { useState, ReactNode } from "react";
 import { PatientContext } from "./PatientContext";
 import { examDictionary } from "../constants/examDictionary";
-import { Patient } from "../interfaces";
+import { ClinicalPatientData } from "../interfaces";
 import generatePreventionList from "../services/clinical/summary/generatePreventionList";
 
 export default function PatientProvider({ children }: { children: ReactNode }) {
-  const [patient, setPatient] = useState<Patient>({
+  const [patient, setPatient] = useState<ClinicalPatientData>({
     identification: {
-      name: "",
+      fullName: "",
       age: "",
       gender: "",
       race: "",
@@ -29,9 +29,9 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
     },
   });
 
-  const updatePatient = <T extends keyof Patient>(
+  const updatePatient = <T extends keyof ClinicalPatientData>(
     field: T,
-    value: Partial<Patient[T]>
+    value: Partial<ClinicalPatientData[T]>
   ) => {
     setPatient((prev) => {
       const updated = {
