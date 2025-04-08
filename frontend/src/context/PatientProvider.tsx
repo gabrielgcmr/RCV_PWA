@@ -16,9 +16,7 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
     preventionList: {
       prevention: [],
     },
-    problemList: {
-      problems: [],
-    },
+    problemList: [],
     physicalExam: {
       systolicBP: "",
       diastolicBP: "",

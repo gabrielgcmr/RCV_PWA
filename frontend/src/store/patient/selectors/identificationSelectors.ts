@@ -12,9 +12,7 @@ export const useAge = () =>
 export const useGender = () =>
   usePatientStore((state) => state.patient.identification.gender);
 
-// Lista de problemas
-export const useProblemList = () =>
-  usePatientStore((state) => state.patient.problemList.problems);
+
 
 // Lista de prevenções
 export const usePreventionList = () =>
