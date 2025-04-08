@@ -1,4 +1,4 @@
-import usePatient from "../../../hooks/usePatient";
+import { usePatient } from "@/hooks";
 import SectionBase from "../../common/form/SectionBase";
 import Allergies from "./SummaryTextTopics/1-Allergies";
 import ProblemList from "./SummaryTextTopics/2-ProblemList";

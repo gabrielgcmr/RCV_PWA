@@ -1,69 +1,48 @@
 import { useCallback } from "react";
 import SectionBase from "../../common/form/SectionBase";
-import { Problem } from "../../../interfaces";
-import { usePatientStore } from "../../../store";
+import { usePatient } from "@/hooks";
 
 const problemOptions = [
-  { value: "hypertension", label: "Hipertensão Arterial (HAS)" },
-  { value: "diabetes", label: "Diabetes Mellitus (DM)" },
-  { value: "tabagism", label: "Tabagismo" },
-  { value: "NAFLD", label: "DHGNA" },
-  { value: "CKD", label: "DRC" },
+  { name: "hypertension", label: "HAS" },
+  { name: "diabetes", label: "DM" },
+  { name: "tabagism", label: "Tabagismo" },
+  { name: "NAFLD", label: "DHGNA" },
+  { name: "CKD", label: "DRC" },
 ];
 
 function ProblemListForm() {
-  const { patient, setPatient } = usePatientStore();
-  const problemList = patient.problemList;
-
-  const hasProblem = useCallback(
-    (code: string) => problemList.some((p) => p.code === code),
-    [problemList]
-  );
-
-  const toggleProblem = useCallback(
-    (problem: Problem) => {
-      const exists = hasProblem(problem.code!);
-
-      const updatedList = exists
-        ? problemList.filter((p) => p.code !== problem.code)
-        : [...problemList, problem];
-
-      setPatient({ problemList: updatedList });
-    },
-    [problemList, setPatient, hasProblem]
-  );
+  const { hasProblem, toggleProblem } = usePatient();
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>, problem: Problem) => {
+    (e: React.KeyboardEvent<HTMLInputElement>, name: string) => {
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
-        toggleProblem(problem);
+        toggleProblem(name, !hasProblem(name));
       }
     },
-    [toggleProblem]
+    [hasProblem, toggleProblem]
   );
 
   return (
     <SectionBase title="Lista de Problemas" icon="📋" id="problemList">
       <div className="max-h-50 overflow-y-auto pr-2 space-y-2">
+        {" "}
+        {/* 👈 Define altura máxima com rolagem */}
         <form>
-          {suggestedProblems.map((problem) => (
-            <div key={problem.code} className="flex items-center">
+          {problemOptions.map(({ name, label }) => (
+            <div key={name} className="flex items-center">
               <input
                 type="checkbox"
-                id={problem.code}
-                checked={hasProblem(problem.code!)}
-                onChange={() => toggleProblem(problem)}
-                onKeyDown={(e) => handleKeyDown(e, problem)}
+                id={name}
+                value={name}
+                checked={hasProblem(name)}
+                onChange={(e) => toggleProblem(name, e.target.checked)}
+                onKeyDown={(e) => handleKeyDown(e, name)}
                 className="mr-2 accent-blue-500 focus:ring-blue-200"
-                aria-labelledby={`label-${problem.code}`}
+                aria-labelledby={`label-${name}`}
               />
-              <label
-                htmlFor={problem.code}
-                id={`label-${problem.code}`}
-                className="text-sm"
-              >
-                {problem.abreviation}
+              <label htmlFor={name} id={`label-${name}`} className="text-sm">
+                {label}
               </label>
             </div>
           ))}

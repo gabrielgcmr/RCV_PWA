@@ -1,46 +1,36 @@
-import { examDictionary } from "../../../../constants/examDictionary";
-import usePatient from "../../../../hooks/usePatient";
+import { usePatient } from "@/hooks";
+import { examDictionary } from "@/constants/examDictionary";
 import { summaryTitle } from "./styles";
 
 export default function Exams() {
   const { patient } = usePatient();
+  if (!patient?.exams || patient.exams.length === 0) return null;
 
-  if (!patient?.complementaryExams?.exams) return null;
-
-  // Criar um mapeamento reverso de abbreviations para categories
-  const abbreviationToCategory: Record<string, string> = Object.values(
-    examDictionary
-  ).reduce(
-    (acc, exam) => {
-      acc[exam.abbreviation] = exam.category;
-      return acc;
-    },
-    {} as Record<string, string>
+  const categorizedExams: Record<string, string[]> = {};
+  const validExams = patient.exams.filter(
+    (exam) => exam.value !== undefined && exam.value !== ""
   );
 
-  // Agrupar os exames por categoria
-  const categorizedExams: Record<string, string[]> = {};
-
-  patient.complementaryExams.exams.forEach((exam) => {
-    if (exam.value !== undefined && exam.value !== "" && exam.abbreviation) {
-      const category = abbreviationToCategory[exam.abbreviation] || "Outros";
-      const formattedExam = `${exam.abbreviation}: ${exam.value}`;
-
-      if (!categorizedExams[category]) {
-        categorizedExams[category] = [];
-      }
-      categorizedExams[category].push(formattedExam);
-    }
+  validExams.forEach((exam) => {
+    const def = examDictionary[exam.name];
+    const category = def?.category || "Outros";
+    const label = def?.abbreviation || exam.name;
+    const formatted = `${label}: ${exam.value}`;
+    if (!categorizedExams[category]) categorizedExams[category] = [];
+    categorizedExams[category].push(formatted);
   });
 
-  // Verifica se há exames a serem exibidos
   const hasExams = Object.keys(categorizedExams).length > 0;
 
-  // Verifica se a data é válida
-  const examDate =
-    patient.complementaryExams.date instanceof Date
-      ? patient.complementaryExams.date.toLocaleDateString("pt-BR")
-      : "?";
+  const validDates = validExams
+    .map((exam) => exam.date)
+    .filter((d): d is string => !!d && d.length === 10);
+
+  const latestDate = validDates.length
+    ? new Date(Math.max(...validDates.map((d) => new Date(d).getTime())))
+    : null;
+
+  const examDate = latestDate ? latestDate.toLocaleDateString("pt-BR") : "?";
 
   return (
     <>
@@ -50,18 +40,16 @@ export default function Exams() {
 
       {hasExams ? (
         <div className="mt-2">
-          {hasExams && (
-            <ul className="list-disc pl-4 space-y-2">
-              <li>
-                <strong>Bioquímica ({examDate}):</strong>
-                <ul className="list-disc pl-6">
-                  {Object.entries(categorizedExams).map(([category, exams]) => (
-                    <li key={category}>{exams.join(" ; ")}</li>
-                  ))}
-                </ul>
-              </li>
-            </ul>
-          )}
+          <ul className="list-disc pl-4 space-y-2">
+            <li>
+              <strong>Bioquímica ({examDate}):</strong>
+              <ul className="list-disc pl-6">
+                {Object.entries(categorizedExams).map(([category, exams]) => (
+                  <li key={category}>{exams.join(" ; ")}</li>
+                ))}
+              </ul>
+            </li>
+          </ul>
         </div>
       ) : (
         <ul className="list-disc pl-4">

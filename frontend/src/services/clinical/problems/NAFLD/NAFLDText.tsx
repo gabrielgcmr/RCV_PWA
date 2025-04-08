@@ -1,5 +1,5 @@
 // DHGNA
-import usePatient from "../../../../hooks/usePatient";
+import { usePatient } from "@/hooks";
 import FIB4Index from "../../calculator/FIB4/FIB4Index";
 
 function NAFLDText() {

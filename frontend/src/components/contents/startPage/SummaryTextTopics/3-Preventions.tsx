@@ -1,4 +1,4 @@
-import usePatient from "../../../../hooks/usePatient";
+import { usePatient } from "@/hooks";
 import CKDEPIIndex from "../../../../services/clinical/calculator/CKD-EPI/CKDEPIIndex";
 import CVRIndex from "../../../../services/clinical/calculator/CVR/CVRIndex";
 import FIB4Index from "../../../../services/clinical/calculator/FIB4/FIB4Index";
@@ -6,7 +6,7 @@ import { summaryTitle } from "./styles";
 
 export default function Preventions() {
   const { patient } = usePatient();
-  const hasAnyPrevention = patient.preventionList.prevention.length > 0;
+  const hasAnyPrevention = patient.preventions.length > 0;
   const cvr = CVRIndex(patient);
   const tfg = CKDEPIIndex(patient);
   const fib4 = FIB4Index(patient);

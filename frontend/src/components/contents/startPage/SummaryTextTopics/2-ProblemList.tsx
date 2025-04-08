@@ -1,4 +1,4 @@
-import usePatient from "../../../../hooks/usePatient";
+import { usePatient } from "@/hooks";
 import CKDIndex from "../../../../services/clinical/problems/CKD/CKDIndex";
 import DiabetesIndex from "../../../../services/clinical/problems/Diabetes/DiabetesIndex";
 import HypertensionText from "../../../../services/clinical/problems/Hypertension/HypertensionIndex";
@@ -8,7 +8,7 @@ import { summaryTitle } from "./styles";
 
 export default function ProblemList() {
   const { patient } = usePatient();
-  const hasAnyProblem = patient.problemList.problems.length > 0;
+  const hasAnyProblem = patient.problems.length > 0;
 
   return (
     <>

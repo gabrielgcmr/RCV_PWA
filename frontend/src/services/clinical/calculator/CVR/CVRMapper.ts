@@ -10,13 +10,13 @@ export default function mapPatientData(patient: ClinicalPatientData) {
   * Obtém o valor de um exame pelo nome. Retorna 0 se não for encontrado.
   */
  const getExamValue = (name: string): number =>
-   Number(patient.complementaryExams.exams.find(exam => exam.name === name)?.value || 0);
+   Number(patient.exams.find(exam => exam.name === name)?.value || 0);
 
   /**
    * Verifica se um problema específico está na lista de problemas do paciente.
    */
   const hasProblem = (problemName: string): boolean =>
-    patient.problemList.problems.some((p) => p.name === problemName);
+    patient.problems.some((p) => p.name === problemName);
 
   return {
     age: Number(patient.identification.age),
