@@ -16,7 +16,7 @@ export const useGender = () =>
 
 // Lista de prevenções
 export const usePreventionList = () =>
-  usePatientStore((state) => state.patient.preventionList.prevention);
+  usePatientStore((state) => state.patient.preventions.prevention);
 
 // Pressão arterial
 export const useSystolicBP = () =>

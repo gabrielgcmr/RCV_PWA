@@ -1,41 +1,14 @@
-// src/components/form/problem/ProblemListForm.tsx
-
 import { useCallback } from "react";
 import SectionBase from "../../common/form/SectionBase";
 import { Problem } from "../../../interfaces";
 import { usePatientStore } from "../../../store";
 
-const suggestedProblems: Problem[] = [
-  {
-    code: "K86",
-    codeSystem: "CIAP2",
-    abreviation: "HAS",
-    description: "Hipertensão arterial sistêmica",
-  },
-  {
-    code: "T90",
-    codeSystem: "CIAP2",
-    abreviation: "DM",
-    description: "Diabetes mellitus",
-  },
-  {
-    code: "P17",
-    codeSystem: "CIAP2",
-    abreviation: "Tabagismo",
-    description: "Tabagismo ativo",
-  },
-  {
-    code: "D97",
-    codeSystem: "CIAP2",
-    abreviation: "DHGNA",
-    description: "Doença hepática gordurosa não alcoólica",
-  },
-  {
-    code: "U99",
-    codeSystem: "CIAP2",
-    abreviation: "DRC",
-    description: "Doença renal crônica",
-  },
+const problemOptions = [
+  { value: "hypertension", label: "Hipertensão Arterial (HAS)" },
+  { value: "diabetes", label: "Diabetes Mellitus (DM)" },
+  { value: "tabagism", label: "Tabagismo" },
+  { value: "NAFLD", label: "DHGNA" },
+  { value: "CKD", label: "DRC" },
 ];
 
 function ProblemListForm() {

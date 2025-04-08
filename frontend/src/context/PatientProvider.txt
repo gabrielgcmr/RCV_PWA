@@ -13,7 +13,7 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
       gender: "",
       race: "",
     },
-    preventionList: {
+    preventions: {
       prevention: [],
     },
     problemList: [],
@@ -45,7 +45,7 @@ export default function PatientProvider({ children }: { children: ReactNode }) {
 
       return {
         ...updated,
-        preventionList: {
+        preventions: {
           prevention: updatedPreventionList,
         },
       };

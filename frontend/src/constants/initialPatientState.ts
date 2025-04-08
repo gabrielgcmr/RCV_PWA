@@ -1,24 +1,21 @@
-//src/constants/initialPatientState.ts
+// src/constants/initialPatientState.ts
 
-const initialPatientState = {
-    identification: {
-        fullName: '',
-        age: '',
-        gender: '',
-        race: '',
-      },
-      preventionList: {
-        prevention: [],
-      },
-      problemList:[],
-      physicalExam: {
-        systolicBP: '',
-        diastolicBP: '',
-      },
-      complementaryExams: {
-        date: null,
-        exams: [],
-      },
-}
+import { ClinicalPatientData } from "../interfaces";
+
+const initialPatientState: ClinicalPatientData = {
+  identification: {
+    fullName: '',
+    age: '',
+    gender: '',
+    race: '',
+  },
+  preventions: [],
+  problems: [],
+  physicalExam: {
+    systolicBP: '',
+    diastolicBP: '',
+  },
+  exams: [],
+};
 
 export default initialPatientState;
