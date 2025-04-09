@@ -15,7 +15,7 @@ function StartPage() {
       <div className="grid md:grid-cols-[0.2fr_2fr_1.5fr_2.5fr_0.5fr] gap-2 p-2 ">
         <MinimizedSectionBar />
         <div className="flex flex-col gap-1">
-          <IdentificationForm />
+          <IdentificationForm editor={editor} />
           <ProblemListForm />
           <PhysicalExamForm />
         </div>

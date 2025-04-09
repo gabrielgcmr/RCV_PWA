@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+//component/startPage/1-IdentificationForm.tsx
 import { Editor } from "@tiptap/react";
 import { ClinicalPatientData } from "../../../interfaces";
 import { usePatientStore } from "../../../store";
 import SectionBase from "../../common/form/SectionBase";
-import { updateFieldWithPrefix } from "@/hooks/useEditorController";
+import { updateIdentificationFieldInEditor } from "@/controllers/editorSync/identificationSync";
+
 // Importe a função de atualização do controller
 
 const genderOptions = [
@@ -17,11 +18,7 @@ const raceOptions = [
   { label: "Outro", value: "other" },
 ];
 
-interface IdentificationFormProps {
-  editor: Editor | null; // Recebe o editor como prop
-}
-
-function IdentificationForm({ editor }: IdentificationFormProps) {
+function IdentificationForm({ editor }: { editor: Editor | null }) {
   const { patient, setPatient } = usePatientStore();
 
   // Função para atualizar o estado (Zustand) dos dados de identificação
@@ -37,19 +34,12 @@ function IdentificationForm({ editor }: IdentificationFormProps) {
         [field]: value,
       },
     });
-  };
 
-  // useEffect para atualizar o nó com id "age" no editor sempre que o valor da idade mudar
-  useEffect(() => {
-    if (editor) {
-      updateFieldWithPrefix(
-        editor,
-        "age",
-        "Idade:",
-        patient.identification.age
-      );
+    // Atualiza o editor apenas se o campo for reconhecido
+    if (typeof value === "string") {
+      updateIdentificationFieldInEditor(editor, field as any, value);
     }
-  }, [editor, patient.identification.age]);
+  };
 
   return (
     <SectionBase title="Identificação" icon="🏷️" id="identification">
