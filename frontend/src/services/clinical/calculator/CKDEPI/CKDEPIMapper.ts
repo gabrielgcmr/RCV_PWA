@@ -1,4 +1,4 @@
-import { ClinicalPatientData } from "../../../../interfaces";
+import { ClinicalPatientData } from "../../../../types";
 
 
 // Função para mapear os dados do paciente para o cálculo da equação CKD-EPI.

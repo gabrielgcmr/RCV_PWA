@@ -1,5 +1,5 @@
-import { Prevention } from "../../../../interfaces";
-import { ClinicalPatientData } from "../../../../interfaces";
+import { Prevention } from "../../../../types";
+import { ClinicalPatientData } from "../../../../types";
 import calculateCVR from "./CVRCalculator";
 import classifyCVR from "./CVRClassifier";
 import mapPatientData from "./CVRMapper";

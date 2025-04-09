@@ -1,4 +1,4 @@
-import { ClinicalPatientData, Prevention } from "../../../../interfaces";
+import { ClinicalPatientData, Prevention } from "../../../../types";
 import calculateCKDEPI from "./CKDEPICalculator";
 import classifyTFG from "./CKDEPIClassifier";
 import mapCKDEPIData from "./CKDEPIMapper";

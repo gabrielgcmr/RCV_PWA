@@ -8,22 +8,18 @@ export const updateParagraphTextById = (
   id: string,
   newText: string
 ) => {
-  if (!editor) return;
+  if (!editor) return false;
 
-  editor.commands.command(({ tr, state }) => {
-    const { doc, schema } = state;
-    let updated = false;
+  let updated = false;
 
+  editor.commands.command(({ tr }) => {
     console.log("🧠 Procurando nó pelo id:", id);
 
-    doc.descendants((node, pos) => {
-      if (node.type.name === "paragraph") {
-        console.log("🔍 Nós diponíveis:", node.attrs.id);
-      }
+    tr.doc.descendants((node, pos) => {
       if (node.type.name === "paragraph" && node.attrs?.id === id) {
-        const newNode = schema.nodes.paragraph.create(
+        const newNode = node.type.create(
           { ...node.attrs }, // mantém os atributos (inclusive o id)
-          [schema.text(newText)] // novo conteúdo
+          [editor.schema.text(newText)] // novo conteúdo
         );
 
         tr.replaceWith(pos, pos + node.nodeSize, newNode);
@@ -34,12 +30,8 @@ export const updateParagraphTextById = (
       return true;
     });
 
-    
-
-    if (updated) {
-      editor.view.dispatch(tr);
-    }
-
     return updated;
   });
+
+  return updated;
 };

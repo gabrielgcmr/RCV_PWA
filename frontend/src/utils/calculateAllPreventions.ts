@@ -1,5 +1,5 @@
 // utils/calculateAllPreventions.ts
-import { ClinicalPatientData, Prevention } from "@/interfaces";
+import { ClinicalPatientData, Prevention } from "@/types";
 import CVRIndex from "@/services/clinical/calculator/CVR/CVRIndex";
 import FIB4Index from "@/services/clinical/calculator/FIB4/FIB4Index";
 import CKDEPIIndex from "@/services/clinical/calculator/CKDEPI/CKDEPIIndex";

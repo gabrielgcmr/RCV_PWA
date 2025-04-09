@@ -1,4 +1,4 @@
-import { ClinicalPatientData } from "../../../../interfaces";
+import { ClinicalPatientData } from "../../../../types";
 
 
 /**

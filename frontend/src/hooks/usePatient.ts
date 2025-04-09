@@ -1,6 +1,6 @@
 // hooks/usePatient.ts
 
-import { Problem } from "@/interfaces";
+import { Problem } from "@/types";
 import { usePatientStore } from "@/store";
 import { calculateAllPreventions } from "@/utils/calculateAllPreventions";
 

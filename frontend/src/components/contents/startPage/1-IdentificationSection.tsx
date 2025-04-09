@@ -1,9 +1,8 @@
 //component/startPage/1-IdentificationForm.tsx
-import { useCurrentEditor } from "@tiptap/react";
-import { ClinicalPatientData } from "../../../interfaces";
 import { usePatientStore } from "../../../store";
 import SectionBase from "../../common/form/SectionBase";
-import { updateIdentificationFieldInEditor } from "@/controllers/editorSync/identificationSync";
+import { Editor } from "@tiptap/react";
+import { useIdentificationForm } from "@/hooks/useIdentificationChange";
 
 // Importe a função de atualização do controller
 
@@ -18,29 +17,13 @@ const raceOptions = [
   { label: "Outro", value: "other" },
 ];
 
-function IdentificationSection() {
-  const { patient, setPatient } = usePatientStore();
-  const { editor } = useCurrentEditor();
+interface IdentificationSectionProps {
+  editor: Editor | null;
+}
 
-  // Função para atualizar o estado (Zustand) dos dados de identificação
-  const handleIdentificationChange = <
-    K extends keyof ClinicalPatientData["identification"],
-  >(
-    field: K,
-    value: ClinicalPatientData["identification"][K]
-  ) => {
-    setPatient({
-      identification: {
-        ...patient.identification,
-        [field]: value,
-      },
-    });
-
-    // Atualiza o editor apenas se o campo for reconhecido
-    if (typeof value === "string") {
-      updateIdentificationFieldInEditor(editor, field as any, value);
-    }
-  };
+function IdentificationSection({ editor }: IdentificationSectionProps) {
+  const { patient } = usePatientStore();
+  const { handleIdentificationChange } = useIdentificationForm(editor);
 
   return (
     <SectionBase title="Identificação" icon="🏷️" id="identification">

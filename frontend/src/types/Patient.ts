@@ -1,5 +1,3 @@
-
-
 export interface Identification {
   fullName: string;
   age: string;
