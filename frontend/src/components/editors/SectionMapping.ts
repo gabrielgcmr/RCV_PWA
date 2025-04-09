@@ -1,17 +1,41 @@
-import { ClinicalPatientData } from "../../interfaces";
+import { ClinicalPatientData } from "@/interfaces";
+export interface SectionMapping {
+  sectionId: string; 
+  stateKey: keyof ClinicalPatientData;
+  fieldPaths?: { [key: string]: string }; // Para campos mais específicos dentro da seção
+}
 
-
-interface SectionMapping {
-    sectionId: string; // pode ser um identificador único usado nos headings ou nos bullet points
-    stateKey: keyof ClinicalPatientData; // por exemplo, "identification", "problems", etc.
-    // você pode incluir transformações: como extrair somente o nome ou concatenar múltiplos itens
-  }
-  
-  const sectionMappings: SectionMapping[] = [
-    {
-      sectionId: "identificacao", // por exemplo, um id customizado no heading ou bulletList
-      stateKey: "identification",
+// Exemplo completo adaptado ao seu contexto:
+export const sectionMappings: SectionMapping[] = [
+  {
+    sectionId: "identificacao",
+    stateKey: "identification",
+    fieldPaths: {
+      fullName: "Nome",
+      age: "Idade",
+      gender: "Genero",
+      race: "Raça",
     },
-    // outros mapeamentos para alergias, problemas, etc...
-  ];
-  
+  },
+  {
+    sectionId: "alergias",
+    stateKey: "problems", // Se alergias estiverem dentro de problems (ajuste se precisar)
+  },
+  {
+    sectionId: "problemas",
+    stateKey: "problems",
+  },
+  {
+    sectionId: "prevencoes",
+    stateKey: "preventions",
+  },
+  {
+    sectionId: "exames_complementares",
+    stateKey: "exams",
+  },
+  {
+    sectionId: "doenca_atual",
+    stateKey: "physicalExam", // ou um campo específico criado para doença atual
+  },
+  // Adicione mais conforme suas seções aumentarem...
+];

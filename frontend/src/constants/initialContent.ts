@@ -1,20 +1,52 @@
-export const initialContent = {
+export const initialTextContent = {
   type: "doc",
   content: [
     {
       type: "heading",
-      attrs: { level: 3 },
+      attrs: { level: 3,id: "section-identification"},
       content: [{ type: "text", text: "🏷️IDENTIFICAÇÃO" }],
     },
     {
       type: "bulletList",
+      attrs: { id: "list-identificacao" },
       content: [
         {
           type: "listItem",
           content: [
             {
               type: "paragraph",
-              content: [{ type: "text", text: "Nome" }],
+              attrs: {id:"fullName"},
+              content: [{ type: "text", text: "Nome:" }],
+            },
+          ],
+        },
+        {
+          type: "listItem",
+          content: [
+            {
+              type: "paragraph",
+              attrs: { id: "age" },
+              content: [{ type: "text", text: "Idade:" }],
+            },
+          ],
+        },
+        {
+          type: "listItem",
+          content: [
+            {
+              type: "paragraph",
+              attrs: { id: "gender" },
+              content: [{ type: "text", text: "Genero:" }],
+            },
+          ],
+        },
+        {
+          type: "listItem",
+          content: [
+            {
+              type: "paragraph",
+              attrs: { id: "race" },
+              content: [{ type: "text", text: "Raça:" }],
             },
           ],
         },

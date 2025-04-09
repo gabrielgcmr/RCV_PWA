@@ -1,6 +1,10 @@
+import { useEffect } from "react";
+import { Editor } from "@tiptap/react";
 import { ClinicalPatientData } from "../../../interfaces";
 import { usePatientStore } from "../../../store";
 import SectionBase from "../../common/form/SectionBase";
+import { updateFieldWithPrefix } from "@/hooks/useEditorController";
+// Importe a função de atualização do controller
 
 const genderOptions = [
   { value: "Male", label: "Masculino" },
@@ -13,12 +17,14 @@ const raceOptions = [
   { label: "Outro", value: "other" },
 ];
 
-function IdentificationForm() {
-  // 1. Selecione o estado e a função de atualização do store
-  const patient = usePatientStore((state) => state.patient);
-  const setPatient = usePatientStore((state) => state.setPatient);
+interface IdentificationFormProps {
+  editor: Editor | null; // Recebe o editor como prop
+}
 
-  // 2. Crie uma função handler para atualizar os campos de identificação
+function IdentificationForm({ editor }: IdentificationFormProps) {
+  const { patient, setPatient } = usePatientStore();
+
+  // Função para atualizar o estado (Zustand) dos dados de identificação
   const handleIdentificationChange = <
     K extends keyof ClinicalPatientData["identification"],
   >(
@@ -27,19 +33,28 @@ function IdentificationForm() {
   ) => {
     setPatient({
       identification: {
-        // Mantém os outros dados de identificação existentes
         ...patient.identification,
-        // Atualiza o campo específico
         [field]: value,
       },
     });
   };
 
+  // useEffect para atualizar o nó com id "age" no editor sempre que o valor da idade mudar
+  useEffect(() => {
+    if (editor) {
+      updateFieldWithPrefix(
+        editor,
+        "age",
+        "Idade:",
+        patient.identification.age
+      );
+    }
+  }, [editor, patient.identification.age]);
+
   return (
     <SectionBase title="Identificação" icon="🏷️" id="identification">
       <form>
         <label htmlFor="name" className="block text-sm font-medium">
-          {" "}
           Nome
         </label>
         <input
@@ -53,7 +68,6 @@ function IdentificationForm() {
           className="w-60 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
         <label htmlFor="age" className="block text-sm font-medium">
-          {" "}
           Idade
         </label>
         <input
@@ -64,7 +78,6 @@ function IdentificationForm() {
           onChange={(e) => handleIdentificationChange("age", e.target.value)}
           className="w-22 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
-
         <fieldset className="mb-1">
           <legend className="text-sm font-medium">Gênero</legend>
           <div className="flex gap-4 mt-1">
@@ -72,7 +85,7 @@ function IdentificationForm() {
               <label key={option.value} className="flex items-center gap-1">
                 <input
                   type="radio"
-                  id="gender"
+                  id={`gender-${option.value}`}
                   value={option.value}
                   checked={patient.identification.gender === option.value}
                   onChange={() =>
@@ -84,7 +97,6 @@ function IdentificationForm() {
             ))}
           </div>
         </fieldset>
-
         <label htmlFor="race" className="block text-sm font-medium">
           Raça
         </label>

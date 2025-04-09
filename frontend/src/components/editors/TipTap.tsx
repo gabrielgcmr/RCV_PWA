@@ -13,9 +13,11 @@ import SectionBase from "../common/form/SectionBase";
 import Strike from "@tiptap/extension-strike";
 import Link from "@tiptap/extension-link";
 import Italic from "@tiptap/extension-italic";
-import { initialContent } from "./initialContent";
+import { initialTextContent } from "../../constants/initialContent";
 import clsx from "clsx";
 import MenuBar from "./MenuBar";
+import { useEditorController } from "@/hooks/useEditorController";
+import AgeUpdater from "../contents/startPage/ageUpdater";
 
 const tiptapClassName = clsx(
   "prose prose-invert max-w-none min-h-40 p-2 border mt-1",
@@ -28,7 +30,15 @@ const tiptapClassName = clsx(
 const extensions = [
   StarterKit,
   Document,
-  Paragraph,
+  Paragraph.extend({
+    addAttributes() {
+      return {
+        id: {
+          default: null,
+        },
+      };
+    },
+  }),
   Text,
   BulletList,
   ListItem,
@@ -50,15 +60,20 @@ const extensions = [
 const Tiptap = () => {
   const editor = useEditor({
     extensions,
-    content: initialContent,
+    content: initialTextContent,
   });
 
+  useEditorController({ editor });
+
   if (!editor) return null;
+
+  console.log(editor.getJSON());
 
   return (
     <SectionBase title="Editor" icon="📝" id="editor">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} className={tiptapClassName} />
+      <AgeUpdater editor={editor} />
     </SectionBase>
   );
 };

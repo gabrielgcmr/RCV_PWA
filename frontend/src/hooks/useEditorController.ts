@@ -1,90 +1,69 @@
 import { useEffect } from "react";
 import { Editor } from "@tiptap/react";
-import { JSONContent } from "@tiptap/react";
 import { usePatientStore } from "../store";
+import { sectionMappings } from "@/components/editors/SectionMapping";
 
-interface UseEditorControllerProps {
-  editor: Editor | null;
-}
 
-export const useEditorController = ({ editor }: UseEditorControllerProps) => {
-  const { patient, setPatient } = usePatientStore();
+// Função auxiliar para atualizar um parágrafo com prefixo fixo
+export const updateFieldWithPrefix = (
+  editor: Editor,
+  nodeId: string,
+  prefix: string,
+  value: string
+) => {
+  if (!editor) return;
 
-  // Exemplo: atualizar o editor quando o nome muda
-  useEffect(() => {
-    if (!editor) return;
-    // Exemplo de busca: encontre o bullet que contém "Nome:" no conteúdo e substitua
-    // Isso exige que você saiba como identificar o bloco correto.
-    editor.commands.command(({ tr, state }) => {
-      const { doc } = state;
-      let updated = false;
+  editor.commands.command(({ tr, state }) => {
+    const schema = (state as any).schema;
+    let updated = false;
 
-      // Percorre todos os nós do documento
-      doc.descendants((node, pos) => {
-        // Suponha que você tenha um bulletList com um listItem onde o parágrafo inicia com "Nome:" 
-        if (node.type.name === "paragraph" && node.textContent.startsWith("Nome:")) {
-          // Substitua com o valor atual
-          const newText = `Nome: ${patient.identification.fullName || ""}`;
-          tr.insertText(newText, pos, pos + node.nodeSize);
-          updated = true;
-          return false; // parar após encontrar
-        }
-        return true;
-      });
-
-      if (updated) {
-        editor.view.dispatch(tr);
+    state.doc.descendants((node, pos) => {
+      if (node.type.name === "paragraph" && node.attrs && node.attrs.id === nodeId) {
+        const newText = `${prefix} ${value}`;
+        console.log(`Atualizando o nó com id: ${nodeId} para: ${newText}`)
+        const newTextNode = schema.text(newText);
+        // Cria um novo parágrafo com os mesmos atributos e com o novo conteúdo
+        const newParagraph = schema.nodes.paragraph.create(node.attrs, [newTextNode]);
+        tr.replaceWith(pos, pos + node.nodeSize, newParagraph);
+        updated = true;
+        return false; // Para a busca após encontrar o nó
       }
       return true;
     });
-  }, [editor, patient.identification.fullName]);
 
-  // Efeito: atualizar o estado quando o editor mudar
-  useEffect(() => {
-    if (!editor) return;
-
-    const updateStateFromEditor = () => {
-      const json: JSONContent = editor.getJSON();
-      // Exemplo: percorre o JSON para encontrar o nó de identificação e extraia o nome
-      // Você pode criar funções auxiliares para buscar por `sectionId` ou padrões de texto
-      const newName = extractNameFromJson(json);
-      if (newName !== null && newName !== patient.identification.fullName) {
-        setPatient({
-          identification: {
-            ...patient.identification,
-            fullName: newName,
-          },
-        });
-      }
-    };
-
-    editor.on("update", updateStateFromEditor);
-
-    return () => {
-      editor.off("update", updateStateFromEditor);
-    };
-  }, [editor, patient.identification.fullName, setPatient]);
-
-  // Função auxiliar para extrair o nome do documento JSON
-  function extractNameFromJson(doc: JSONContent): string | null {
-    // Percorrer o doc para encontrar o parágrafo cujo texto começa com "Nome:" 
-    if (!doc.content) return null;
-
-    for (const node of doc.content) {
-      if (node.type === "bulletList" && node.content) {
-        for (const item of node.content) {
-          const paragraph = item.content?.find(
-            (child: any) => child.type === "paragraph"
-          );
-          if (paragraph && paragraph.content) {
-            const text = paragraph.content.map((c: any) => c.text).join("");
-            if (text.startsWith("Nome:")) {
-              return text.replace("Nome:", "").trim();
-            }
-          }
-        }
-      }
+    if (updated) {
+      console.log("Transação despachada para atualizar o nó:", nodeId);
+      editor.view.dispatch(tr);
     }
-    return null;
-  }
+    return updated;
+  });
+};
+
+// Exemplo do hook useEditorController
+export const useEditorController = ({ editor }: { editor: Editor | null }) => {
+  const { patient } = usePatientStore();
+
+  // Exemplo: atualizar a seção de identificação (nome, idade, gênero, raça)
+  // Considerando que em sectionMappings definimos o mapeamento para identificação:
+  const identificationMapping = sectionMappings.find(
+    (mapping) => mapping.sectionId === "identificacao"
+  );
+
+  useEffect(() => {
+    if (!editor || !identificationMapping) return;
+
+    // Atualiza cada campo da seção de identificação usando os fieldPaths definidos
+    if (identificationMapping.fieldPaths) {
+      const { fieldPaths } = identificationMapping;
+      Object.entries(fieldPaths).forEach(([fieldKey, prefix]) => {
+        // O valor atual do campo (por exemplo, fullName, age, etc.)
+        const value = (patient.identification as any)[fieldKey] || "";
+        // Supondo que os nós no editor tenham ids iguais aos nomes dos campos: "fullName", "age", etc.
+        updateFieldWithPrefix(editor, fieldKey, prefix, value);
+      });
+    }
+  }, [editor, patient.identification]);
+
+  // Você pode adicionar mais efeitos para outras seções do documento
+  // Exemplo: alergias, problemas, prevenções, etc.
 };
