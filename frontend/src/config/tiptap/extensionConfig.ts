@@ -17,7 +17,7 @@ import History from "@tiptap/extension-history";
 import Blockquote from "@tiptap/extension-blockquote";
 import Underline from "@tiptap/extension-underline";
 
-const TiptapExtensions = [
+const extensionsConfig = [
     Document,
     Paragraph.extend({
       addAttributes() {
@@ -52,4 +52,4 @@ const TiptapExtensions = [
     TextAlign.configure({ types: ["heading", "paragraph"] }),
   ];
 
-  export default TiptapExtensions;
+  export default extensionsConfig;

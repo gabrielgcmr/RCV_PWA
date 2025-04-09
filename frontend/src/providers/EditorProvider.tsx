@@ -1,18 +1,31 @@
-import { EditorProvider as TiptapEditorProvider } from "@tiptap/react";
-import TiptapExtensions from "@/config/tiptap/EditorConfig";
-import initialTextContentHTML from "@/constants/initialTextContentHTML";
+import extensionsConfig from "@/config/tiptap/ExtensionConfig";
+import {
+  useEditor,
+  EditorProvider as TipTapEditorProvider,
+} from "@tiptap/react";
+import { ReactNode } from "react";
 
-interface Props {
-  children: React.ReactNode;
-}
+export const EditorProvider = ({
+  children,
+  extensions = extensionsConfig,
+  content = "",
+}: {
+  children: ReactNode;
+  extensions?: any[];
+  content?: string;
+}) => {
+  const editor = useEditor({
+    extensions,
+    content,
+  });
 
-export default function EditorProvider({ children }: Props) {
+  if (!editor) {
+    return null;
+  }
+
   return (
-    <TiptapEditorProvider
-      extensions={TiptapExtensions}
-      content={initialTextContentHTML}
-    >
+    <TipTapEditorProvider slotBefore={children} editor={editor}>
       {children}
-    </TiptapEditorProvider>
+    </TipTapEditorProvider>
   );
-}
+};

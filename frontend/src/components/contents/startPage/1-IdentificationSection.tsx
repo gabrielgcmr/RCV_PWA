@@ -1,5 +1,5 @@
 //component/startPage/1-IdentificationForm.tsx
-import { Editor } from "@tiptap/react";
+import { useCurrentEditor } from "@tiptap/react";
 import { ClinicalPatientData } from "../../../interfaces";
 import { usePatientStore } from "../../../store";
 import SectionBase from "../../common/form/SectionBase";
@@ -18,8 +18,9 @@ const raceOptions = [
   { label: "Outro", value: "other" },
 ];
 
-function IdentificationForm({ editor }: { editor: Editor | null }) {
+function IdentificationSection() {
   const { patient, setPatient } = usePatientStore();
+  const { editor } = useCurrentEditor();
 
   // Função para atualizar o estado (Zustand) dos dados de identificação
   const handleIdentificationChange = <
@@ -109,4 +110,4 @@ function IdentificationForm({ editor }: { editor: Editor | null }) {
   );
 }
 
-export default IdentificationForm;
+export default IdentificationSection;
