@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { AxiosError } from "axios";
-import { Button } from "../common/Button";
-import useAuth from "../../hooks/useAuth";
+import { Button } from "../../common/Button";
+import useAuth from "../../../hooks/useAuth";
 
 const loginSchema = z.object({
   email: z.string().email("Email inválido").nonempty("Email é obrigatório"),

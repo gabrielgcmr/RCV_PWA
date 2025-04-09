@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Button } from "../common/Button";
-import { register } from "../../services/auth/AuthService";
+import { Button } from "../../common/Button";
+import { register } from "../../../services/auth/AuthService";
 import { AxiosError } from "axios";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 
 function RegisterForm({ onSubmit }: { onSubmit?: () => void }) {
   const [name, setName] = useState("");

@@ -1,6 +1,6 @@
 //component/startPage/1-IdentificationForm.tsx
 import { usePatientStore } from "../../../store";
-import SectionBase from "../../common/form/SectionBase";
+import SectionBase from "../../common/SectionBase";
 import { Editor } from "@tiptap/react";
 import { useIdentificationForm } from "@/hooks/useIdentificationChange";
 

@@ -1,6 +1,6 @@
 // MinimizedSectionBar.tsx
 
-import { useSectionContext } from "../../../hooks/useSection";
+import { useSectionContext } from "../../hooks/useSection";
 
 export default function MinimizedSectionBar() {
   const { minimizedSections, restore } = useSectionContext();

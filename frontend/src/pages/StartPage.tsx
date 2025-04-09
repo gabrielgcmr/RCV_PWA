@@ -5,7 +5,7 @@ import ProblemListForm from "../components/contents/startPage/3-ProblemListForm"
 import ExamsForm from "../components/contents/startPage/4-ExamForm";
 import SummaryBuilder from "../components/contents/startPage/5-summaryBuilder";
 import ClinicalCalculations from "../components/contents/startPage/6-ClinicalCalculationsSection";
-import MinimizedSectionBar from "../components/contents/startPage/MinimizedSectionBar";
+import MinimizedSectionBar from "../components/layout/MinimizedSectionBar";
 import { SectionProvider } from "../context/SectionProvider";
 import initialTextContentHTML from "@/constants/initialTextContentHTML";
 import { useEditor } from "@tiptap/react";

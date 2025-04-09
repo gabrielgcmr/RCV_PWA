@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Modal } from "../../ui/Modal";
-import { LoginForm } from "../../auth/LoginForm";
-import RegisterForm from "../../auth/RegisterForm";
+import { Modal } from "../../common/Modal";
+import { LoginForm } from "../auth/LoginForm";
+import RegisterForm from "../auth/RegisterForm";
 import UserHeader from "./UserHeader";
 import useAuth from "../../../hooks/useAuth";
 import AuthHeader from "./AuthHeader";

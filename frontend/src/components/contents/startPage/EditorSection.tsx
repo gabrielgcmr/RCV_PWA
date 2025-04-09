@@ -1,4 +1,4 @@
-import SectionBase from "@/components/common/form/SectionBase";
+import SectionBase from "@/components/common/SectionBase";
 import MenuBar from "@/components/editors/MenuBar";
 import editorStyleConfig from "@/config/tiptap/styleConfig";
 import { EditorContent } from "@tiptap/react";

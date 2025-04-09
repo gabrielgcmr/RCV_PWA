@@ -1,6 +1,6 @@
 import ExamDate from "../../common/exam/ExamDate";
 import ExamForm from "../../common/exam/ExamForm";
-import SectionBase from "../../common/form/SectionBase";
+import SectionBase from "../../common/SectionBase";
 
 function ExamsForm() {
   return (

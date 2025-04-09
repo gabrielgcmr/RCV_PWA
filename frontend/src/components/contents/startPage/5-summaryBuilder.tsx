@@ -1,5 +1,5 @@
 import { usePatient } from "@/hooks";
-import SectionBase from "../../common/form/SectionBase";
+import SectionBase from "../../common/SectionBase";
 import Allergies from "./SummaryTextTopics/1-Allergies";
 import ProblemList from "./SummaryTextTopics/2-ProblemList";
 import Preventions from "./SummaryTextTopics/3-Preventions";

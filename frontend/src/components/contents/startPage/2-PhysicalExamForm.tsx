@@ -1,6 +1,6 @@
 // src/components/forms/PhysicalExamForm.tsx
 import { usePatientStore } from "../../../store";
-import SectionBase from "../../common/form/SectionBase";
+import SectionBase from "../../common/SectionBase";
 
 function PhysicalExamForm() {
   const patient = usePatientStore((state) => state.patient);

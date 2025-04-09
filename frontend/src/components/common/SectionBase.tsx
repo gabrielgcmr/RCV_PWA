@@ -1,4 +1,4 @@
-import { useSectionContext } from "../../../hooks/useSection";
+import { useSectionContext } from "../../hooks/useSection";
 
 type SectionBaseProps = {
   id: string;

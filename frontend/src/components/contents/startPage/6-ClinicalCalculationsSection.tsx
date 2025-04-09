@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ErrorPopup } from "../../ui/ErrorPopup";
+import { ErrorPopup } from "../../common/ErrorPopup";
 import CKDEPIIndex from "../../../services/clinical/calculator/CKDEPI/CKDEPIIndex";
 import CVRIndex from "../../../services/clinical/calculator/CVR/CVRIndex";
 import FIB4Index from "../../../services/clinical/calculator/FIB4/FIB4Index";
