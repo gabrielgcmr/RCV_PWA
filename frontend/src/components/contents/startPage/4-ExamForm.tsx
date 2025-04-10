@@ -21,20 +21,22 @@ function ExamsSection() {
           <ExamDate />
         </div>
         {/* Container dos exames minimizados */}
-        <div className=" bg-zinc-500 col-span-2 p-3 rounded-lg flex flex-wrap gap-2">
-          {minimizedExamForms.length === 0 ? (
-            <p>Minimize os exames aqui</p>
-          ) : (
-            minimizedExamForms.map((category) => (
-              <button
-                key={category}
-                className="bg-zinc-700 px-2 py-1 rounded hover:bg-zinc-600"
-                onClick={() => restoreExamForm(category)}
-              >
-                {category}
-              </button>
-            ))
-          )}
+        <div className=" max-h-25 overflow-x-auto bg-zinc-500 col-span-2 p-2 rounded-lg">
+          <div className="grid grid-cols-2 gap-1 whitespace-nowrap">
+            {minimizedExamForms.length === 0 ? (
+              <p></p>
+            ) : (
+              minimizedExamForms.map((category) => (
+                <button
+                  key={category}
+                  className="bg-zinc-700 px-2 py-1 rounded hover:bg-zinc-600"
+                  onClick={() => restoreExamForm(category)}
+                >
+                  {category}
+                </button>
+              ))
+            )}
+          </div>
         </div>
         {/* Exames e outros componentes ocupam os 3/4 restantes */}
       </div>
