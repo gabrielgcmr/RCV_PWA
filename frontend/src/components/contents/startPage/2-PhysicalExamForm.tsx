@@ -21,7 +21,12 @@ function PhysicalExamForm() {
   };
 
   return (
-    <SectionBase title="Exame Físico" icon="🩺" id="physicalExam">
+    <SectionBase
+      title="Exame Físico"
+      icon="🩺"
+      id="physicalExam "
+      className="max-h-80 max-w-80 overflow-y-auto"
+    >
       <form>
         <label htmlFor="systolicBP" className="block text-sm font-medium">
           Pressão Arterial Sistólica

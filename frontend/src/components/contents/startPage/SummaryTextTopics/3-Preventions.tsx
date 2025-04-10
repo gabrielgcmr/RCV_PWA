@@ -15,7 +15,7 @@ export default function Preventions() {
         {" "}
         ✅<b>PREVENÇÕES</b>{" "}
       </p>
-      <ul>
+      <ul className="list-disc pl-4">
         {patient.preventions.length === 0 ? (
           <li>Nenhuma prevenção disponível</li>
         ) : (

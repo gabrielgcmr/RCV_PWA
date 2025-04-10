@@ -6,6 +6,7 @@ import CVRIndex from "../../../services/clinical/calculator/CVR/CVRIndex";
 import FIB4Index from "../../../services/clinical/calculator/FIB4/FIB4Index";
 import { ClinicalPatientData, Prevention } from "../../../types";
 import { usePatient } from "@/hooks";
+import SectionBase from "@/components/common/SectionBase";
 
 function ClinicalCalculations() {
   const { patient } = usePatient();
@@ -58,34 +59,41 @@ function ClinicalCalculations() {
   ];
 
   return (
-    <div className="p-2 bg-zinc-700 rounded-lg shadow-md w-12 flex flex-col gap-2 mb-2">
-      {/* Botões de Cálculo */}
-      {buttons.map(({ label, color, action }) => (
-        <div key={label}>
-          <button
-            onClick={action}
-            className={`px-1 py-1 text-xs ${color} text-white rounded hover:brightness-110 transition`}
-          >
-            {label}
-          </button>
+    <SectionBase
+      title="Cálculos Clínicos"
+      icon="🧮"
+      id="clinicalCalculations"
+      className="max-w-40"
+    >
+      <div className="p-2 bg-zinc-700 rounded-lg shadow-md w-12 flex gap-2 mb-2">
+        {/* Botões de Cálculo */}
+        {buttons.map(({ label, color, action }) => (
+          <div key={label}>
+            <button
+              onClick={action}
+              className={`px-1 py-1 text-xs ${color} text-white rounded hover:brightness-110 transition`}
+            >
+              {label}
+            </button>
 
-          {(preventionResults[label]?.errors?.length ?? 0) > 0 && (
-            <p className="text-xs text-red-400 mt-1">
-              ⚠️ Erro em {label} - Ver detalhes
-            </p>
+            {(preventionResults[label]?.errors?.length ?? 0) > 0 && (
+              <p className="text-xs text-red-400 mt-1">
+                ⚠️ Erro em {label} - Ver detalhes
+              </p>
+            )}
+          </div>
+        ))}
+
+        {/* Modal de erro flutuante */}
+        {visibleError &&
+          (preventionResults[visibleError]?.errors?.length ?? 0) > 0 && (
+            <ErrorPopup
+              errors={preventionResults[visibleError]?.errors || []}
+              onClose={() => setVisibleError(null)}
+            />
           )}
-        </div>
-      ))}
-
-      {/* Modal de erro flutuante */}
-      {visibleError &&
-        (preventionResults[visibleError]?.errors?.length ?? 0) > 0 && (
-          <ErrorPopup
-            errors={preventionResults[visibleError]?.errors || []}
-            onClose={() => setVisibleError(null)}
-          />
-        )}
-    </div>
+      </div>
+    </SectionBase>
   );
 }
 

@@ -8,6 +8,7 @@ function ExamsForm() {
       title=" Exames Complementares"
       icon="🧪"
       id="complementaryExams"
+      className="max-h-180 max-w-160 overflow-y-auto"
     >
       <div className="grid grid-cols-4 grid-rows-1 gap-4 mb-1">
         <div className="col-span-2">

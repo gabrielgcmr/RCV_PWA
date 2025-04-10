@@ -3,34 +3,40 @@ import IdentificationSection from "../components/contents/startPage/1-Identifica
 import PhysicalExamForm from "../components/contents/startPage/2-PhysicalExamForm";
 import ProblemListForm from "../components/contents/startPage/3-ProblemListForm";
 import ExamsForm from "../components/contents/startPage/4-ExamForm";
-import SummaryBuilder from "../components/contents/startPage/5-summaryBuilder";
-import ClinicalCalculations from "../components/contents/startPage/6-ClinicalCalculationsSection";
+
 import MinimizedSectionBar from "../components/layout/MinimizedSectionBar";
 import { SectionProvider } from "../context/SectionProvider";
 import initialTextContentHTML from "@/constants/initialTextContentHTML";
 import { useEditor } from "@tiptap/react";
 import extensionsConfig from "@/config/tiptap/extensionConfig";
 import EditorSection from "@/components/contents/startPage/EditorSection";
+import SummaryBuilder from "@/components/contents/startPage/5-summaryBuilder";
+import { useSectionStore } from "@/store/useSectionStore";
 
 function StartPage() {
   const editor = useEditor({
     extensions: extensionsConfig,
     content: initialTextContentHTML,
   });
+  const isVisible = useSectionStore((state) => state.isVisible);
 
   return (
     <SectionProvider>
-      <div className="grid md:grid-cols-[0.2fr_2fr_1.5fr_2.5fr_0.5fr] gap-2 p-2 ">
+      <div className="flex">
         <MinimizedSectionBar />
         <div className="flex flex-col gap-1">
-          <IdentificationSection editor={editor} />
-          <ProblemListForm />
-          <PhysicalExamForm />
+          {isVisible("identification") && (
+            <IdentificationSection editor={editor} />
+          )}
+          {isVisible("problemList") && <ProblemListForm />}
+          {isVisible("physicalExam") && <PhysicalExamForm />}
         </div>
-        <ExamsForm />
-        <SummaryBuilder />
-        <EditorSection editor={editor} />
-        <ClinicalCalculations />
+
+        <div className="grid grid-cols-3 gap-1">
+          <ExamsForm />
+          <SummaryBuilder />
+          <EditorSection editor={editor} />
+        </div>
       </div>
       <DebugPatient />
     </SectionProvider>

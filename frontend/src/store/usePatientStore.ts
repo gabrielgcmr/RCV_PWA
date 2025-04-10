@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
-import initialPatientState from '../../constants/initialPatientState';
-import { ClinicalPatientData } from '../../types';
+import initialPatientState from '../constants/initialPatientState';
+import { ClinicalPatientData } from '../types';
 
 interface PatientStore {
   patient: ClinicalPatientData;

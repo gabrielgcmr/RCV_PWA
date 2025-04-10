@@ -4,10 +4,9 @@ import { summaryTitle } from "./styles";
 
 export default function Exams() {
   const { patient } = usePatient();
-  if (!patient?.exams || patient.exams.length === 0) return null;
 
   const categorizedExams: Record<string, string[]> = {};
-  const validExams = patient.exams.filter(
+  const validExams = patient.exams?.filter(
     (exam) => exam.value !== undefined && exam.value !== ""
   );
 
@@ -20,7 +19,7 @@ export default function Exams() {
     categorizedExams[category].push(formatted);
   });
 
-  const hasExams = Object.keys(categorizedExams).length > 0;
+  const hasExams = validExams.length > 0;
 
   const validDates = validExams
     .map((exam) => exam.date)
@@ -35,11 +34,11 @@ export default function Exams() {
   return (
     <>
       <p className={summaryTitle}>
-        🧪 <b>EXAMES COMPLEMENTARES</b>
+        🧪<b>EXAMES COMPLEMENTARES</b>
       </p>
 
       {hasExams ? (
-        <div className="mt-2">
+        <div>
           <ul className="list-disc pl-4 space-y-2">
             <li>
               <strong>Bioquímica ({examDate}):</strong>

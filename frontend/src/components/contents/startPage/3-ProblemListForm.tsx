@@ -24,7 +24,12 @@ function ProblemListForm() {
   );
 
   return (
-    <SectionBase title="Lista de Problemas" icon="📋" id="problemList">
+    <SectionBase
+      title="Lista de Problemas"
+      icon="📋"
+      id="problemList"
+      className="max-h-80 max-w-80 overflow-y-auto"
+    >
       <div className="max-h-50 overflow-y-auto pr-2 space-y-2">
         {" "}
         {/* 👈 Define altura máxima com rolagem */}

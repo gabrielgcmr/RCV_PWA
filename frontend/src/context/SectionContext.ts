@@ -11,6 +11,7 @@ export type SectionContextType = {
   minimizedSections: SectionState[];
   minimize: (section: SectionState) => void;
   restore: (id: string) => void;
+  isVisible: (id: string) => boolean;
 };
 
 export const SectionContext = createContext<SectionContextType | undefined>(undefined);

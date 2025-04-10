@@ -26,7 +26,12 @@ function IdentificationSection({ editor }: IdentificationSectionProps) {
   const { handleIdentificationChange } = useIdentificationForm(editor);
 
   return (
-    <SectionBase title="Identificação" icon="🏷️" id="identification">
+    <SectionBase
+      title="Identificação"
+      icon="🏷️"
+      id="identification"
+      className="max-h-80 max-w-80 overflow-y-auto"
+    >
       <form>
         <label htmlFor="name" className="block text-sm font-medium">
           Nome
