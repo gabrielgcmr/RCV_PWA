@@ -11,24 +11,14 @@ interface EditorSectionProps {
 export default function EditorSection({ editor }: EditorSectionProps) {
   if (!editor) {
     return (
-      <SectionBase
-        title="Editor"
-        icon="📝"
-        id="editor"
-        className="max-h-180 max-w-150 overflow-y-auto"
-      >
+      <SectionBase title="Editor" icon="📝" id="editor" className="">
         <div>Editor carregando...</div>
       </SectionBase>
     );
   }
 
   return (
-    <SectionBase
-      title="Editor"
-      icon="📝"
-      id="editor"
-      className="max-h-180 max-w-120 overflow-y-auto"
-    >
+    <SectionBase title="Editor" icon="📝" id="editor" className="min-w-160">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} className={editorStyleConfig} />
     </SectionBase>

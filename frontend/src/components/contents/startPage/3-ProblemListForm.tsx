@@ -28,7 +28,7 @@ function ProblemListForm() {
       title="Lista de Problemas"
       icon="📋"
       id="problemList"
-      className="max-h-80 max-w-80 overflow-y-auto"
+      className=" max-w-80 overflow-y-auto"
     >
       <div className="max-h-50 overflow-y-auto pr-2 space-y-2">
         {" "}

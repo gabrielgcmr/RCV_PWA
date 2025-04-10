@@ -1,22 +1,40 @@
+import { useExamSectionStore } from "@/store/useExamSectionStore";
 import ExamDate from "../../common/exam/ExamDate";
 import ExamForm from "../../common/exam/ExamForm";
 import SectionBase from "../../common/SectionBase";
 
-function ExamsForm() {
+function ExamsSection() {
+  const minimizedExamForms = useExamSectionStore(
+    (state) => state.minimizedExamForms
+  );
+  const restoreExamForm = useExamSectionStore((state) => state.restoreExamForm);
+
   return (
     <SectionBase
       title=" Exames Complementares"
       icon="🧪"
       id="complementaryExams"
-      className="max-h-180 max-w-160 overflow-y-auto"
+      className="max-w-160"
     >
-      <div className="grid grid-cols-4 grid-rows-1 gap-4 mb-1">
+      <div className="grid grid-cols-4 gap-4 mb-1">
         <div className="col-span-2">
           <ExamDate />
         </div>
-        <div className=" bg-zinc-500 col-span-2 p-3 rounded-lg">
-          {/* Futura funcionalidade */}
-          <p>Futura funcionalidade</p>
+        {/* Container dos exames minimizados */}
+        <div className=" bg-zinc-500 col-span-2 p-3 rounded-lg flex flex-wrap gap-2">
+          {minimizedExamForms.length === 0 ? (
+            <p>Minimize os exames aqui</p>
+          ) : (
+            minimizedExamForms.map((category) => (
+              <button
+                key={category}
+                className="bg-zinc-700 px-2 py-1 rounded hover:bg-zinc-600"
+                onClick={() => restoreExamForm(category)}
+              >
+                {category}
+              </button>
+            ))
+          )}
         </div>
         {/* Exames e outros componentes ocupam os 3/4 restantes */}
       </div>
@@ -37,4 +55,4 @@ function ExamsForm() {
   );
 }
 
-export default ExamsForm;
+export default ExamsSection;

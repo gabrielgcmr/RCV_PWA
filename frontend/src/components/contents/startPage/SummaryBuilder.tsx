@@ -14,12 +14,7 @@ function SummaryBuilder() {
   }
 
   return (
-    <SectionBase
-      title="Resumo"
-      icon="📄"
-      id="summary"
-      className="max-h-180 max-w-80 overflow-y-auto"
-    >
+    <SectionBase title="Resumo" icon="📄" id="summary" className="">
       <ProblemList />
       <Preventions />
       <Exams />

@@ -30,7 +30,7 @@ function IdentificationSection({ editor }: IdentificationSectionProps) {
       title="Identificação"
       icon="🏷️"
       id="identification"
-      className="max-h-80 max-w-80 overflow-y-auto"
+      className="max-w-80 overflow-y-auto"
     >
       <form>
         <label htmlFor="name" className="block text-sm font-medium">

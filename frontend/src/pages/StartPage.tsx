@@ -2,15 +2,14 @@ import DebugPatient from "@/hooks/debugPatient";
 import IdentificationSection from "../components/contents/startPage/1-IdentificationSection";
 import PhysicalExamForm from "../components/contents/startPage/2-PhysicalExamForm";
 import ProblemListForm from "../components/contents/startPage/3-ProblemListForm";
-import ExamsForm from "../components/contents/startPage/4-ExamForm";
-
+import ExamsSection from "../components/contents/startPage/4-ExamForm";
 import MinimizedSectionBar from "../components/layout/MinimizedSectionBar";
 import { SectionProvider } from "../context/SectionProvider";
 import initialTextContentHTML from "@/constants/initialTextContentHTML";
 import { useEditor } from "@tiptap/react";
 import extensionsConfig from "@/config/tiptap/extensionConfig";
 import EditorSection from "@/components/contents/startPage/EditorSection";
-import SummaryBuilder from "@/components/contents/startPage/5-summaryBuilder";
+import SummaryBuilder from "@/components/contents/startPage/SummaryBuilder";
 import { useSectionStore } from "@/store/useSectionStore";
 
 function StartPage() {
@@ -22,9 +21,9 @@ function StartPage() {
 
   return (
     <SectionProvider>
-      <div className="flex">
+      <div className="flex ">
         <MinimizedSectionBar />
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col ">
           {isVisible("identification") && (
             <IdentificationSection editor={editor} />
           )}
@@ -32,11 +31,9 @@ function StartPage() {
           {isVisible("physicalExam") && <PhysicalExamForm />}
         </div>
 
-        <div className="grid grid-cols-3 gap-1">
-          <ExamsForm />
-          <SummaryBuilder />
-          <EditorSection editor={editor} />
-        </div>
+        <ExamsSection />
+        <SummaryBuilder />
+        <EditorSection editor={editor} />
       </div>
       <DebugPatient />
     </SectionProvider>
