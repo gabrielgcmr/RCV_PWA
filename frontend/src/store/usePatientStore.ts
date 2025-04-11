@@ -1,32 +1,25 @@
-import { create } from 'zustand';
+// src/store/usePatientStore.ts
+import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import initialPatientState from '../constants/initialPatientState';
-import { ClinicalPatientData } from '../types';
+import { createIdentificationSlice, IdentificationSlice } from "./patient/identificationSlice";
+import { createPreventionSlice, PreventionSlice } from "./patient/preventionSlice";
+import { ProblemSlice } from "./patient/problemSlice";
+import { PhysicalExamSlice } from "./patient/physicalExamSlice";
 
-interface PatientStore {
-  patient: ClinicalPatientData;
-  updatePatient: <T extends keyof ClinicalPatientData>(
-    field: T,
-    value: Partial<ClinicalPatientData[T]>
-  ) => void;
-  resetPatient: () => void;
-}
+export interface PatientStore extends
+  IdentificationSlice,
+  PreventionSlice,
+  ProblemSlice,
+  PhysicalExamSlice,
+  ExamSlice  
+{}
 
-
-export const usePatientStore = create<PatientStore>()(
-  immer((set) => ({
-    patient: initialPatientState,
-    updatePatient: (field, value) =>
-      set((state) => {
-        // Com immer, você pode alterar o estado "mutativamente"
-        state.patient[field] = {
-          ...state.patient[field],
-          ...value,
-        };
-      }),
-    resetPatient: () =>
-      set((state) => {
-        state.patient = initialPatientState;
-      }),
+// Cria o store combinando os slices e inicializando com os dados iniciais:
+const usePatientStore = create<PatientStore>()(
+  immer((set, get,api) => ({
+    ...createIdentificationSlice(set, get, api),
+    ...createPreventionSlice(set, get, api),
   }))
 );
+
+export default usePatientStore;
