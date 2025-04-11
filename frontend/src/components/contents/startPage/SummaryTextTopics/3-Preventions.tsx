@@ -16,10 +16,10 @@ export default function Preventions() {
         ✅<b>PREVENÇÕES</b>{" "}
       </p>
       <ul className="list-disc pl-4">
-        {patient.preventions.length === 0 ? (
+        {(patient.preventions ?? []).length === 0 ? (
           <li>Nenhuma prevenção disponível</li>
         ) : (
-          patient.preventions.map((p) => (
+          (patient.preventions ?? []).map((p) => (
             <li key={p.name}>
               <strong>{p.abbreviation}</strong>: {p.description}
             </li>

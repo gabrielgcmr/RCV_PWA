@@ -5,14 +5,16 @@ import { usePatientStore } from "@/store";
 import { calculateAllPreventions } from "@/utils/calculateAllPreventions";
 
 export function usePatient() {
-  const { patient, setPatient } = usePatientStore();
+  const patient = usePatientStore((state) => state.patient);
+  const updatePatient = usePatientStore((state) => state.updatePatient);
 
-  const hasProblem = (name: string): boolean => {
-    return patient.problems?.some((p) => p.name === name) ?? false;
-  };
+  // Função para checar se um problema já existe
+  const hasProblem = (name: string): boolean =>
+    patient.problems?.some((p) => p.name === name) ?? false;
 
+  // Função para adicionar ou remover um problema
   const toggleProblem = (name: string, shouldAdd: boolean) => {
-    const current = patient.problems ?? [];
+    const current = patient.problems || [];
     let updated: Problem[];
 
     if (shouldAdd) {
@@ -25,24 +27,25 @@ export function usePatient() {
       updated = current.filter((p) => p.name !== name);
     }
 
-    setPatient({ problems: updated });
+    updatePatient("problems", updated);
   };
 
+  // Atualiza a data de todos os exames
   const updateExamDates = (date: string | undefined) => {
     const updatedExams = patient.exams.map((exam) => ({
       ...exam,
       date,
     }));
-    setPatient({ exams: updatedExams });
+    updatePatient("exams", updatedExams);
   };
 
+  // Obtém o valor de um exame específico
+  const getExamValue = (name: string): string | number | undefined =>
+    patient.exams.find((e) => e.name === name)?.value;
 
-  const getExamValue = (name: string): string | number | undefined => {
-    return patient.exams.find((e) => e.name === name)?.value;
-  };
-
+  // Trata a mudança do valor de um exame específico
   const handleExamChange = (name: string, value: string | number) => {
-    const exams = [...(patient.exams ?? [])];
+    const exams = [...(patient.exams || [])];
     const index = exams.findIndex((e) => e.name === name);
 
     if (index !== -1) {
@@ -51,12 +54,20 @@ export function usePatient() {
       exams.push({ name, value });
     }
 
-    setPatient({ exams });
+    updatePatient("exams", exams);
   };
 
+  // Recalcula as prevenções usando a função externa
   const refreshPreventions = () => {
     const newPreventions = calculateAllPreventions(patient);
-    setPatient({ preventions: newPreventions });
+    const validPreventions = newPreventions.filter(
+      (p) =>
+        p.value !== undefined &&
+        p.value !== null &&
+        typeof p.value === "number" &&
+        p.value > 0
+    );
+    updatePatient('preventions', validPreventions);
   };
 
   return {
@@ -66,6 +77,6 @@ export function usePatient() {
     updateExamDates,
     getExamValue,
     handleExamChange,
-    refreshPreventions
+    refreshPreventions,
   };
 }
