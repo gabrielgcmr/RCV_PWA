@@ -20,6 +20,7 @@ function FIB4Index(patient: Patient): Prevention {
 
   const result = calculateFIB4(mappedData);
   const classification = classifyFIB4(result, mappedData.age);
+  const today = new Date().toLocaleDateString();
 
   return {
     name: "FIB4",
@@ -27,7 +28,7 @@ function FIB4Index(patient: Patient): Prevention {
     value: result,
     unit: "pontos",
     classification: classification,
-    description: `Estadiamento de Fibrose estimado: ${classification}`,
+    description: ` ${result} Pontos -  ${classification} (${today})`,
     errors: [],
   };
 }

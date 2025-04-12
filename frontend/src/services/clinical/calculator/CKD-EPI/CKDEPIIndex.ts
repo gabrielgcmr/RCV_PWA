@@ -18,6 +18,7 @@ function CKDEPIIndex(patient: Patient): Prevention {
   }
 
   const eGFR = calculateCKDEPI(mappedData);
+  const today = new Date().toLocaleDateString();
 
   return {
     name: "TFG",
@@ -25,7 +26,7 @@ function CKDEPIIndex(patient: Patient): Prevention {
     value: eGFR,
     unit: "mL/min/1.73m²",
     classification: classifyTFG(eGFR), // se desejar classificar, veja abaixo
-    description: `${eGFR} mL/min/1.73m²`,
+    description: `${eGFR} mL/min/1.73m² (${today})`,
     errors: [],
   };
 }

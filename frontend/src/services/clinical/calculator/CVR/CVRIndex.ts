@@ -24,6 +24,7 @@ function CVRIndex(patientData: Patient): Prevention {
   // 3. Calcula os riscos
   const { CVRRealRisk, CVRIdealRisk } = calculateCVR(mappedData);
   const classification = classifyCVR(CVRRealRisk);
+  const today = new Date().toLocaleDateString();
 
   return {
     name: "RCV",
@@ -32,7 +33,7 @@ function CVRIndex(patientData: Patient): Prevention {
     referenceValue: CVRIdealRisk,
     unit: "%",
     classification: classification,
-    description: `Risco atual: ${CVRRealRisk.toFixed(2)}% (${classification}) — Risco Ideal: ${CVRIdealRisk.toFixed(2)}%`,
+    description: `Risco atual: ${CVRRealRisk.toFixed(2)}% (${classification}) — Risco Ideal: ${CVRIdealRisk.toFixed(2)}% (${today})`,
     errors: [],
   };
 }
