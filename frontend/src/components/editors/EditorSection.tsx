@@ -1,6 +1,6 @@
-import SectionBase from "@/components/common/SectionBase";
+import FormBase from "@/components/common/FormBase";
 import MenuBar from "@/components/editors/MenuBar";
-import editorStyleConfig from "@/config/tiptap/styleConfig";
+import editorStyleConfig from "@/components/editors/styleConfig";
 import { EditorContent } from "@tiptap/react";
 import { Editor } from "@tiptap/core";
 
@@ -11,16 +11,16 @@ interface EditorSectionProps {
 export default function EditorSection({ editor }: EditorSectionProps) {
   if (!editor) {
     return (
-      <SectionBase title="Editor" icon="📝" id="editor" className="">
+      <FormBase title="Editor" icon="📝" id="editor" className="">
         <div>Editor carregando...</div>
-      </SectionBase>
+      </FormBase>
     );
   }
 
   return (
-    <SectionBase title="Editor" icon="📝" id="editor" className="min-w-160">
+    <FormBase title="Editor" icon="📝" id="editor" className="min-w-160">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} className={editorStyleConfig} />
-    </SectionBase>
+    </FormBase>
   );
 }

@@ -1,8 +1,8 @@
 //component/startPage/1-IdentificationForm.tsx
-import { usePatientStore } from "../../../store";
-import SectionBase from "../../common/SectionBase";
-import { Editor } from "@tiptap/react";
-import { useIdentificationForm } from "@/hooks/useIdentificationChange";
+
+import FormBase from "../../common/FormBase";
+
+import { usePatientStore } from "@/store/patient";
 
 // Importe a função de atualização do controller
 
@@ -17,16 +17,11 @@ const raceOptions = [
   { label: "Outro", value: "other" },
 ];
 
-interface IdentificationSectionProps {
-  editor: Editor | null;
-}
-
-function IdentificationSection({ editor }: IdentificationSectionProps) {
-  const { patient } = usePatientStore();
-  const { handleIdentificationChange } = useIdentificationForm(editor);
+function IdentificationForm() {
+  const { identification, setIdentificationField } = usePatientStore();
 
   return (
-    <SectionBase
+    <FormBase
       title="Identificação"
       icon="🏷️"
       id="identification"
@@ -40,10 +35,8 @@ function IdentificationSection({ editor }: IdentificationSectionProps) {
           type="text"
           id="name"
           placeholder="Digite o nome do paciente"
-          value={patient.identification.fullName}
-          onChange={(e) =>
-            handleIdentificationChange("fullName", e.target.value)
-          }
+          value={identification.fullName}
+          onChange={(e) => setIdentificationField("fullName", e.target.value)}
           className="w-60 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
         <label htmlFor="age" className="block text-sm font-medium">
@@ -53,8 +46,8 @@ function IdentificationSection({ editor }: IdentificationSectionProps) {
           type="number"
           id="age"
           placeholder="Idade"
-          value={patient.identification.age}
-          onChange={(e) => handleIdentificationChange("age", e.target.value)}
+          value={identification.age}
+          onChange={(e) => setIdentificationField("age", e.target.value)}
           className="w-22 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
         />
         <fieldset className="mb-1">
@@ -66,9 +59,9 @@ function IdentificationSection({ editor }: IdentificationSectionProps) {
                   type="radio"
                   id={`gender-${option.value}`}
                   value={option.value}
-                  checked={patient.identification.gender === option.value}
+                  checked={identification.gender === option.value}
                   onChange={() =>
-                    handleIdentificationChange("gender", option.value)
+                    setIdentificationField("gender", option.value)
                   }
                 />
                 {option.label}
@@ -82,8 +75,8 @@ function IdentificationSection({ editor }: IdentificationSectionProps) {
         <select
           id="race"
           name="race"
-          value={patient.identification.race}
-          onChange={(e) => handleIdentificationChange("race", e.target.value)}
+          value={identification.race}
+          onChange={(e) => setIdentificationField("race", e.target.value)}
           className="w-30 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200"
         >
           <option value="">Selecione</option>
@@ -94,8 +87,8 @@ function IdentificationSection({ editor }: IdentificationSectionProps) {
           ))}
         </select>
       </form>
-    </SectionBase>
+    </FormBase>
   );
 }
 
-export default IdentificationSection;
+export default IdentificationForm;

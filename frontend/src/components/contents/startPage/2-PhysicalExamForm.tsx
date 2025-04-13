@@ -1,27 +1,11 @@
 // src/components/forms/PhysicalExamForm.tsx
-import { usePatientStore } from "../../../store";
-import SectionBase from "../../common/SectionBase";
+import FormBase from "@/components/common/FormBase";
+import { usePatientStore } from "@/store/patient";
 
 function PhysicalExamForm() {
-  const patient = usePatientStore((state) => state.patient);
-  const setPatient = usePatientStore((state) => state.setPatient);
-
-  const handlePhysicalExamChange = <
-    K extends keyof typeof patient.physicalExam,
-  >(
-    field: K,
-    value: (typeof patient.physicalExam)[K]
-  ) => {
-    setPatient({
-      physicalExam: {
-        ...patient.physicalExam,
-        [field]: value,
-      },
-    });
-  };
-
+  const { physicalExam, setPhysicalExamField } = usePatientStore();
   return (
-    <SectionBase
+    <FormBase
       title="Exame Físico"
       icon="🩺"
       id="physicalExam "
@@ -35,10 +19,8 @@ function PhysicalExamForm() {
           type="number"
           id="systolicBP"
           placeholder="PAS"
-          value={patient.physicalExam.systolicBP ?? ""}
-          onChange={(e) =>
-            handlePhysicalExamChange("systolicBP", e.target.value)
-          }
+          value={physicalExam.systolicBP ?? ""}
+          onChange={(e) => setPhysicalExamField("systolicBP", e.target.value)}
           className="w-26 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-2"
         />
 
@@ -49,14 +31,12 @@ function PhysicalExamForm() {
           type="number"
           id="diastolicBP"
           placeholder="PAD"
-          value={patient.physicalExam.diastolicBP ?? ""}
-          onChange={(e) =>
-            handlePhysicalExamChange("diastolicBP", e.target.value)
-          }
+          value={physicalExam.diastolicBP ?? ""}
+          onChange={(e) => setPhysicalExamField("diastolicBP", e.target.value)}
           className="w-26 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200"
         />
       </form>
-    </SectionBase>
+    </FormBase>
   );
 }
 

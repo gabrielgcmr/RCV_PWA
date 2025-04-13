@@ -8,7 +8,6 @@ export interface PreventionSlice {
   addPrevention: (prevention: Prevention) => void;
   removePreventionByIndex: (index: number) => void;
   updatePreventionByIndex: (index: number, data: Partial<Prevention>) => void;
-  // Ação opcional para substituir todo o array, útil para inicialização ou reset
   setPreventions: (preventions: Prevention[]) => void;
 }
 

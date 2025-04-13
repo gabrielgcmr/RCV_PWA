@@ -18,23 +18,28 @@ export interface Prevention {
 }
 
 export interface Problem {
-  name?: string;
+  key?: string;
+  label?: string;
   code?: string;
-  codeSystem?:"CIAP2" | "CID11" | "other";
-  abreviation?: string;
+  codeSystem?:"CIAP2" | "CID10" | "CID11"| "MostCommon" | "Other";
+  abbreviation?: string;
   description?: string;
   dateOfOnset?: string;
   otherDetails?: string;
   errors?: string[];
+  // Campos adicionais baseados nos sistemas de codificação:
+  chapter?: string; // Para CIAP-2
+  inclusionTerms?: string[]; // Para CID
+  exclusionTerms?: string[]; // Para CID
+  codingNotes?: string; // Para CID
+  parentCode?: string; // Para CID (para refletir hierarquia)
 }
-
 
 export interface PhysicalExam{
   systolicBP: string;
   diastolicBP: string;
   // Add other properties as needed
 }
-
 export interface Exam {
   name: string; // Nome completo do exame
   abbreviation?: string; // Abreviação para exibição
@@ -45,13 +50,22 @@ export interface Exam {
   date?: string; // agora cada exame tem sua própria data
   errors?: string[];
 }
-
 export interface ClinicalPatientData {
   identification: Identification
   preventions: Prevention[];
   problems: Problem[];
   physicalExam: PhysicalExam;
   exams: Exam[];
+  clinicalHistory: {
+    identificationSection: string;
+    allergiesSection: string;
+    problemsSection: string;
+    preventionSection: string;
+    medicationSection: string;
+    medicalHistorySection: string;
+    examsSection: string;
+    presentIllnessSection: string;
+  }
 }
 
 type CPF = string; // Poderia ser um tipo branded para validação
@@ -66,7 +80,6 @@ export interface AdministrativeData {
     address?: string;
   };
 }
-
 export interface MetaData{
   id?: string;
   createdAt?: Date;

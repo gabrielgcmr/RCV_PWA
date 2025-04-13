@@ -1,1 +1,1 @@
-export * from "./tiptap/styleConfig";
+export * from "../components/editors/styleConfig";

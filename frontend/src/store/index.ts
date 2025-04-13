@@ -1,1 +1,1 @@
-export * from './usePatientStore'
+export * from './useSectionStore'

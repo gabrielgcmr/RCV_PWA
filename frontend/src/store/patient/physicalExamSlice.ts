@@ -1,12 +1,14 @@
 // src/store/patient/physicalExamSlice.ts
 import { StateCreator } from "zustand";
 import { PhysicalExam } from "@/types";
-import { PatientStore } from ".";
+import { PatientStore } from "./interface";
 
 export interface PhysicalExamSlice {
   physicalExam: PhysicalExam;
-  setSystolicBP: (systolicBP: string) => void;
-  setDiastolicBP: (diastolicBP: string) => void;
+  setPhysicalExamField: <K extends keyof PhysicalExam>(
+    field: K,
+    value: PhysicalExam[K]
+  ) => void;
 }
 
 export const createPhysicalExamSlice: StateCreator<
@@ -19,12 +21,8 @@ export const createPhysicalExamSlice: StateCreator<
     systolicBP: "",
     diastolicBP: "",
   },
-  setSystolicBP: (systolicBP) =>
+  setPhysicalExamField: (field, value) =>
     set((state) => {
-      state.physicalExam.systolicBP = systolicBP;
+      state.physicalExam[field] = value;
     }),
-  setDiastolicBP: (diastolicBP) => 
-    set((state) => {
-      state.physicalExam.diastolicBP = diastolicBP;
-    }), 
 });

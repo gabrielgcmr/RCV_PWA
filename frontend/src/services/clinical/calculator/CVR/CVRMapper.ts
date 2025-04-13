@@ -16,7 +16,7 @@ export default function mapPatientData(patient: ClinicalPatientData) {
    * Verifica se um problema específico está na lista de problemas do paciente.
    */
   const hasProblem = (problemName: string): boolean =>
-    patient.problems.some((p) => p.name === problemName);
+    patient.problems.some((p) => p.key === problemName);
 
   return {
     age: Number(patient.identification.age),

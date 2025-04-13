@@ -1,35 +1,44 @@
 // src/store/patient/problemSlice.ts
 import { StateCreator } from "zustand";
-import { Problem, ClinicalPatientData } from "@/types";
+import { Problem } from "@/types";
+import { PatientStore } from "./interface";
 
 export interface ProblemSlice {
   problems: Problem[];
-  toggleProblem: (name: string, shouldAdd: boolean) => void;
-  hasProblem: (name: string) => boolean;
+  addProblem: (problem: Problem) => void;
+  removeProblembyName: (name: string) => void;
+  updateProblembyName: (name: string, data: Partial<Problem>) => void;
+  setProblems: (problems: Problem[]) => void;
 }
 
 export const createProblemSlice: StateCreator<
-  ClinicalPatientData & ProblemSlice,
-  [],
+  PatientStore,
+  [["zustand/immer", never]],
   [],
   ProblemSlice
-> = (set, get) => ({
+> = (set) => ({
   problems: [],
-  hasProblem: (name) => {
-    return get().problems.some((p) => p.name === name);
-  },
-  toggleProblem: (name, shouldAdd) => {
-    const current = get().problems;
-    let updated: Problem[];
-    if (shouldAdd) {
-      if (!current.some((p) => p.name === name)) {
-        updated = [...current, { name }];
-      } else {
-        updated = current;
+  addProblem: (problem) =>
+    set((state) => {
+      state.problems.push(problem) 
+    }),
+  removeProblembyName: (name) =>
+    set((state) => {
+      const index = state.problems.findIndex((problem) => problem.key === name);
+      if (index !== -1) {
+        state.problems.splice(index, 1);
       }
-    } else {
-      updated = current.filter((p) => p.name !== name);
+    }),
+  updateProblembyName: (name, data) =>
+    set((state) => {
+      const index = state.problems.findIndex((problem) => problem.key === name);
+      if (index !== -1) {
+        state.problems[index] = { ...state.problems[index], ...data };
+      }
     }
-    set({ problems: updated });
-  },
+  ),
+  setProblems: (newProblems) =>
+    set((state) => {
+      state.problems = newProblems;
+    }),
 });

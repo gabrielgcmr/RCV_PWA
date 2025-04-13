@@ -1,3 +1,5 @@
+import { ClinicalHistorySlice } from "./clinicalHistory";
+import { ExamSlice } from "./examSlice";
 import { IdentificationSlice } from "./identificationSlice";
 import { PhysicalExamSlice } from "./physicalExamSlice";
 import { PreventionSlice } from "./preventionSlice";
@@ -8,6 +10,7 @@ export interface PatientStore extends
   PreventionSlice,
   ProblemSlice,
   PhysicalExamSlice,
-  ExamSlice
+  ExamSlice,
+  ClinicalHistorySlice
   // Adicione outros slices aqui (ex: AdministrativeSlice, MetaSlice se criá-los)
 {}

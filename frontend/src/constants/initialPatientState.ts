@@ -16,6 +16,16 @@ const initialPatientState: ClinicalPatientData = {
     diastolicBP: '',
   },
   exams: [],
+  clinicalHistory: {
+    identificationSection: '',
+    allergiesSection: '',
+    problemsSection: '',
+    preventionSection: '',
+    medicationSection: '',
+    medicalHistorySection: '',
+    examsSection: '',
+    presentIllnessSection: '',
+  },
 };
 
 export default initialPatientState;

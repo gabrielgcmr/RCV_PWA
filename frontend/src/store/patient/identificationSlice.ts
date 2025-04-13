@@ -6,10 +6,10 @@ import { PatientStore } from "./interface";
 
 export interface IdentificationSlice {
   identification: Identification;
-  setFullName: (fullName: string) => void;
-  setAge: (age: string) => void;
-  setGender: (gender: string) => void;
-  setRace: (race: string) => void;
+  setIdentificationField: <K extends keyof Identification>(
+    field: K,
+    value: Identification[K]
+  ) => void;
 }
 
 export const createIdentificationSlice: StateCreator<
@@ -24,24 +24,8 @@ export const createIdentificationSlice: StateCreator<
     gender: "",
     race: "",
   },
-
-  setFullName: (fullName) =>
-    set((state) => {   
-      state.identification.fullName = fullName;    
-    }),
-
-  setAge: (age) =>
+  setIdentificationField: (field, value) =>
     set((state) => {
-      state.identification.age = age;
-    }),
-
-  setGender: (gender) =>
-    set((state) => {
-      state.identification.gender = gender;
-    }),
-
-  setRace: (race) =>
-    set((state) => {
-      state.identification.race = race;
+      state.identification[field] = value;
     }),
 });

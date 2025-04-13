@@ -6,7 +6,7 @@ import CVRIndex from "../../../services/clinical/calculator/CVR/CVRIndex";
 import FIB4Index from "../../../services/clinical/calculator/FIB4/FIB4Index";
 import { ClinicalPatientData, Prevention } from "../../../types";
 import { usePatient } from "@/hooks";
-import SectionBase from "@/components/common/SectionBase";
+import FormBase from "@/components/common/FormBase";
 
 function ClinicalCalculations() {
   const { patient } = usePatient();
@@ -59,7 +59,7 @@ function ClinicalCalculations() {
   ];
 
   return (
-    <SectionBase
+    <FormBase
       title="Cálculos Clínicos"
       icon="🧮"
       id="clinicalCalculations"
@@ -93,7 +93,7 @@ function ClinicalCalculations() {
             />
           )}
       </div>
-    </SectionBase>
+    </FormBase>
   );
 }
 
