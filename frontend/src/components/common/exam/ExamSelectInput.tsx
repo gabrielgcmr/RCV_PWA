@@ -1,34 +1,50 @@
-import { ExamSelectInputProps } from "./types";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectTrigger,
+  SelectItem,
+  SelectContent,
+  SelectValue,
+} from "@/components/ui/select";
 
-const baseInputClasses = "block p-1 border rounded mb-1 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200";
+interface ExamSelectInputProps {
+  id: string;
+  value: string;
+  options: { label: string; value: string }[]; // Use a estrutura de options correta
+  abbreviation?: string;
+  onChange: (key: string, value: string, abbreviation?: string) => void; // Adicione onChange
+  disabled?: boolean; // Adicione disabled
+}
 
 export function ExamSelectInput({
-  name,
+  id,
+  value,
+  options,
   abbreviation,
-  value = "",
-  label,
-  disabled = false,
   onChange,
-  options = [],
+  disabled,
 }: ExamSelectInputProps) {
   return (
-    <label className="block text-sm" htmlFor={name}>
-      {label}
-      <select
-        id={name}
-        value={value}
-        aria-label={label}
+    <>
+      <Label htmlFor={id}>{abbreviation}</Label>
+      <Select
+        onValueChange={(newValue) => onChange(id, newValue)}
+        value={value === "" ? undefined : value}
         disabled={disabled}
-        onChange={(e) => onChange?.(name, e.target.value,abbreviation)}
-        className={`${baseInputClasses} ${disabled ? "opacity-10" : ""}`}
       >
-        <option value="">Selecione</option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </label>
+        <SelectTrigger id={id} className="w-full text-sm">
+          <SelectValue placeholder="Selecione" />
+        </SelectTrigger>
+        <SelectContent>
+          {options
+            .filter((option) => option.value !== "")
+            .map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+        </SelectContent>
+      </Select>
+    </>
   );
 }

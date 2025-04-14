@@ -3,19 +3,32 @@ import FormBase from "../../common/FormBase";
 import { useCallback, useState } from "react";
 import { usePatientStore } from "@/store/patient";
 import mostCommonProblems from "@/constants/mostCommonProblems";
+import { Problem } from "@/types";
 
 export default function ProblemListForm() {
-  const {problems, addProblem,removeProblembyName} = usePatientStore()
+  const { getProblem, addProblem, removeProblemByKey } = usePatientStore();
   const [tab, setTab] = useState("common");
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement>, name: string) => {
-      if (e.key === " " || e.key === "Enter") {
-        e.preventDefault();
-        toggleProblem(name, !hasProblem(name));
+  // Função para adicionar ou remover um problema da lista
+  const toggleProblem = useCallback(
+    (problemToAdd: Problem, checked: boolean) => {
+      if (checked) {
+        addProblem(problemToAdd);
+      } else {
+        removeProblemByKey(problemToAdd.key);
       }
     },
-    [hasProblem, toggleProblem]
+    [addProblem, removeProblemByKey]
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>, problem: Problem) => {
+      if (e.key === " " || e.key === "Enter") {
+        e.preventDefault();
+        toggleProblem(problem, !getProblem(problem.key));
+      }
+    },
+    [getProblem, toggleProblem]
   );
 
   return (
@@ -35,21 +48,19 @@ export default function ProblemListForm() {
         <TabsContent value="common">
           <div className="max-h-50 overflow-y-auto pr-2 space-y-2">
             <form>
-              {mostCommonProblems.map(option =>({ 
-                value: option.key,
-                label: option.abbreviation|| option.key   }) => (
-                <div key={name} className="flex items-center">
+              {mostCommonProblems.map((problem) => (
+                <div key={problem.key} className="flex items-center">
                   <input
                     type="checkbox"
-                    id={name}
-                    value={name}
-                    checked={problems(name)}
-                    onChange={(e) => toggleProblem(name, e.target.checked)}
-                    onKeyDown={(e) => handleKeyDown(e, name)}
+                    id={problem.key}
+                    value={problem.key}
+                    checked={!!getProblem(problem.key)}
+                    onChange={(e) => toggleProblem(problem, e.target.checked)}
+                    onKeyDown={(e) => handleKeyDown(e, problem)}
                     className="mr-2 accent-blue-500 focus:ring-blue-200"
                   />
-                  <label htmlFor={name} className="text-sm">
-                    {label}
+                  <label htmlFor={problem.key} className="text-sm">
+                    {problem.abbreviation || problem.label}
                   </label>
                 </div>
               ))}

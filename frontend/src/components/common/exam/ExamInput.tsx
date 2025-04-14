@@ -1,28 +1,36 @@
-import { ExamSelectInput } from "./ExamSelectInput";
-import { ExamInputProps } from "./types";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-export function ExamInput(props: ExamInputProps) {
-  // Se o inputType for "select", renderiza um `ExamSelectInput`
-  if (props.inputType === "select") {
-    return <ExamSelectInput {...props} />;
-  }
+interface ExamInputProps {
+  id: string;
+  value: string | number | undefined; // Permitir undefined
+  abbreviation?: string;
+  onChange: (
+    key: string,
+    value: string | number,
+    abbreviation?: string
+  ) => void; // Adicione onChange
+  placeholder?: string; // Adicione placeholder
+  disabled?: boolean; // Adicione disabled
+}
 
+export function ExamInput({
+  id,
+  value,
+  abbreviation,
+  onChange,
+  placeholder,
+  disabled,
+}: ExamInputProps) {
   return (
-    <div className="mb-2">
-      <label className="block text-sm mb-1" htmlFor={props.name}>
-        {props.label}
-      </label>
-      <input
-        id={props.name}
-        type="number"
-        placeholder={props.placeholder}
-        value={props.value}
-        aria-label={props.label}
-        disabled={props.disabled}
-        onChange={(e) =>
-          props.onChange?.(props.name, e.target.value, props.abbreviation)
-        }
-        className="w-20 p-1 text-sm border rounded bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-200"
+    <div className="space-y-2">
+      <Label htmlFor={id}></Label>
+      <Input
+        id={id}
+        value={value === undefined ? "" : String(value)} // Converter para string
+        placeholder={placeholder || abbreviation} // Usar placeholder ou abbreviation
+        onChange={(e) => onChange(id, e.target.value, abbreviation)}
+        disabled={disabled}
       />
     </div>
   );

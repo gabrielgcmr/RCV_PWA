@@ -5,7 +5,7 @@ import { ClinicalPatientData } from "../../../../types";
 export default function mapCKDEPIData(patient: ClinicalPatientData) {
   //Obtém o valor de um exame pelo nome. Retorna 0 se não for encontrado.
   const getExamValue = (name: string): number =>
-    Number(patient.exams.find(exam => exam.name === name)?.value || 0);
+    Number(patient.exams.find(exam => exam.key === name)?.value || 0);
 
   return {
     age: Number(patient.identification.age),

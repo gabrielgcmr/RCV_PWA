@@ -1,7 +1,7 @@
-import { useSectionContext } from "../../hooks/useSection";
+import { useSectionStore } from "@/store";
 
 export default function MinimizedSectionsBar() {
-  const { minimizedSections, restore } = useSectionContext();
+  const { minimizedSections, restore } = useSectionStore();
 
   if (minimizedSections.length === 0) return null;
 

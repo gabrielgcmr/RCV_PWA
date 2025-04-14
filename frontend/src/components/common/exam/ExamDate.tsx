@@ -1,12 +1,10 @@
-import { usePatient } from "@/hooks";
-import { usePatientStore } from "@/store";
+import { usePatientStore } from "@/store/patient";
 
 function ExamDateForm() {
-  const { updateExamDates } = usePatient();
-  const { patient } = usePatientStore();
+  const { exams, updateAllExamDates } = usePatientStore();
 
   // Usa a data do primeiro exame como referência
-  const currentDate = patient.exams.find((e) => e.date)?.date ?? "";
+  const currentDate = exams.find((e) => e.date)?.date ?? "";
 
   return (
     <div className="p-4 bg-zinc-600 rounded-lg shadow-md text-white">
@@ -20,7 +18,7 @@ function ExamDateForm() {
         value={currentDate}
         onChange={(e) => {
           const value = e.target.value;
-          updateExamDates(value || undefined);
+          updateAllExamDates(value || undefined);
         }}
         className="w-full p-1 border rounded mb-1 bg-zinc-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
       />

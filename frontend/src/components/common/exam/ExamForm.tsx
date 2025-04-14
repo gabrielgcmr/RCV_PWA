@@ -1,27 +1,41 @@
-import { examDictionary } from "../../../constants/examDictionary";
-import { usePatient } from "@/hooks";
+import { usePatientStore } from "@/store/patient";
+import { mostCommonExams } from "@/constants";
 import { ExamInput } from "./ExamInput";
 import { ExamSelectInput } from "./ExamSelectInput";
 import { useExamSectionStore } from "@/store/useExamSectionStore";
+import { useCallback } from "react";
 
-interface ExamFormProps {
-  category: string; // Ex.: "LipidProfile", "LiverProfile", "RenalProfile"
+interface CategoryExamFormProps {
   title: string;
+  category: string;
 }
 
-export default function ExamForm({ category, title }: ExamFormProps) {
-  const { handleExamChange, getExamValue } = usePatient();
-  const minimizedExamForms = useExamSectionStore(
-    (state) => state.minimizedExamForms
-  );
+export default function CategoryExamForm({
+  category,
+  title,
+}: CategoryExamFormProps) {
+  const { getExam, updateExamByKey } = usePatientStore();
+
   const minimizeExamForm = useExamSectionStore(
     (state) => state.minimizeExamForm
   );
+  const minimizedExamForms = useExamSectionStore(
+    (state) => state.minimizedExamForms
+  );
+
+  // Função para atualizar o valor do exame no store
+  const handleExamChange = useCallback(
+    (key: string, value: string | number) => {
+      updateExamByKey(key, { value }); // Atualize apenas o valor
+    },
+    [updateExamByKey]
+  );
 
   if (minimizedExamForms.includes(category)) return null;
-  const exams = Object.entries(examDictionary)
-    .filter(([, exam]) => exam.category === category)
-    .map(([key, exam]) => ({ key, ...exam }));
+
+  const commonExams = mostCommonExams.filter(
+    (exam) => exam.category === category
+  );
 
   return (
     <div className="p-1.5 bg-zinc-600 rounded-lg shadow-md text-white cursor-pointer transition hover:bg-zinc-600">
@@ -32,35 +46,32 @@ export default function ExamForm({ category, title }: ExamFormProps) {
         {title}
       </h2>
 
-      {exams.length > 0 ? (
+      {commonExams.length > 0 ? (
         <div className="grid">
-          {exams.map(
-            ({ key, inputType, options = [], abbreviation, ...examProps }) =>
-              inputType === "select" ? (
-                <ExamSelectInput
-                  key={key}
-                  {...examProps}
-                  inputType="select"
-                  name={key}
-                  abbreviation={abbreviation}
-                  placeholder={abbreviation}
-                  value={getExamValue(key) || ""}
-                  onChange={handleExamChange}
-                  options={options}
-                />
-              ) : (
-                <ExamInput
-                  key={key}
-                  {...examProps}
-                  inputType="input"
-                  name={key}
-                  abbreviation={abbreviation}
-                  placeholder={abbreviation}
-                  value={getExamValue(key) || ""}
-                  onChange={handleExamChange}
-                />
-              )
-          )}
+          {commonExams.map((exam) => {
+            const storedExam = getExam(exam.key);
+            const value = storedExam ? storedExam.value : "";
+            const { key, ...examProps } = exam;
+
+            return exam.inputType === "select" ? (
+              <ExamSelectInput
+                key={exam.key}
+                id={key}
+                {...examProps}
+                options={exam.options || []}
+                value={String(value || "")}
+                onChange={handleExamChange}
+              />
+            ) : (
+              <ExamInput
+                key={exam.key}
+                id={key}
+                {...examProps}
+                value={String(value) || ""}
+                onChange={handleExamChange}
+              />
+            );
+          })}
         </div>
       ) : (
         <p className="text-sm text-gray-300">Nenhum exame encontrado.</p>

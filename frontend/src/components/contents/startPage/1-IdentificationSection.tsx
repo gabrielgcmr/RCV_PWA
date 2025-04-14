@@ -1,10 +1,16 @@
-//component/startPage/1-IdentificationForm.tsx
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 import FormBase from "../../common/FormBase";
-
 import { usePatientStore } from "@/store/patient";
-
-// Importe a função de atualização do controller
 
 const genderOptions = [
   { value: "Male", label: "Masculino" },
@@ -17,7 +23,7 @@ const raceOptions = [
   { label: "Outro", value: "other" },
 ];
 
-function IdentificationForm() {
+export default function IdentificationForm() {
   const { identification, setIdentificationField } = usePatientStore();
 
   return (
@@ -27,68 +33,63 @@ function IdentificationForm() {
       id="identification"
       className="max-w-80 overflow-y-auto"
     >
-      <form>
-        <label htmlFor="name" className="block text-sm font-medium">
-          Nome
-        </label>
-        <input
-          type="text"
-          id="name"
-          placeholder="Digite o nome do paciente"
-          value={identification.fullName}
-          onChange={(e) => setIdentificationField("fullName", e.target.value)}
-          className="w-60 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
-        />
-        <label htmlFor="age" className="block text-sm font-medium">
-          Idade
-        </label>
-        <input
-          type="number"
-          id="age"
-          placeholder="Idade"
-          value={identification.age}
-          onChange={(e) => setIdentificationField("age", e.target.value)}
-          className="w-22 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-1"
-        />
-        <fieldset className="mb-1">
-          <legend className="text-sm font-medium">Gênero</legend>
-          <div className="flex gap-4 mt-1">
+      <form className="space-y-2">
+        <div>
+          <Label htmlFor="name">Nome</Label>
+          <Input
+            id="name"
+            placeholder="Digite o nome do paciente"
+            value={identification.fullName}
+            onChange={(e) => setIdentificationField("fullName", e.target.value)}
+          />
+        </div>
+
+        <div>
+          <Label htmlFor="age">Idade</Label>
+          <Input
+            id="age"
+            type="number"
+            placeholder="Idade"
+            value={identification.age}
+            onChange={(e) => setIdentificationField("age", e.target.value)}
+          />
+        </div>
+
+        <div>
+          <Label>Gênero</Label>
+          <RadioGroup
+            value={identification.gender}
+            onValueChange={(value) => setIdentificationField("gender", value)}
+            className="flex gap-4 mt-1"
+          >
             {genderOptions.map((option) => (
-              <label key={option.value} className="flex items-center gap-1">
-                <input
-                  type="radio"
-                  id={`gender-${option.value}`}
-                  value={option.value}
-                  checked={identification.gender === option.value}
-                  onChange={() =>
-                    setIdentificationField("gender", option.value)
-                  }
-                />
-                {option.label}
-              </label>
+              <div key={option.value} className="flex items-center gap-1">
+                <RadioGroupItem value={option.value} id={option.value} />
+                <Label htmlFor={option.value}>{option.label}</Label>
+              </div>
             ))}
-          </div>
-        </fieldset>
-        <label htmlFor="race" className="block text-sm font-medium">
-          Raça
-        </label>
-        <select
-          id="race"
-          name="race"
-          value={identification.race}
-          onChange={(e) => setIdentificationField("race", e.target.value)}
-          className="w-30 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200"
-        >
-          <option value="">Selecione</option>
-          {raceOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+          </RadioGroup>
+        </div>
+
+        <div>
+          <Label>Raça</Label>
+          <Select
+            value={identification.race}
+            onValueChange={(value) => setIdentificationField("race", value)}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Selecione" />
+            </SelectTrigger>
+            <SelectContent>
+              {raceOptions.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </form>
     </FormBase>
   );
 }
-
-export default IdentificationForm;

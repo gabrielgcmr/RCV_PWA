@@ -18,7 +18,7 @@ export interface Prevention {
 }
 
 export interface Problem {
-  key?: string;
+  key: string;
   label?: string;
   code?: string;
   codeSystem?:"CIAP2" | "CID10" | "CID11"| "MostCommon" | "Other";
@@ -41,7 +41,9 @@ export interface PhysicalExam{
   // Add other properties as needed
 }
 export interface Exam {
-  name: string; // Nome completo do exame
+  key: string; // Nome completo do exame
+  label?: string;
+  category?: string; // Categoria do exame (ex: 'LipidProfile')
   abbreviation?: string; // Abreviação para exibição
   value?: string | number; // Valor do exame
   unit?: string; // Unidade de medida (ex.: mg/dL, %)
@@ -49,6 +51,8 @@ export interface Exam {
   referenceRange?: string; // Intervalo de referência (ex.: "70-110 mg/dL")
   date?: string; // agora cada exame tem sua própria data
   errors?: string[];
+  code?: string; // Código do exame (ex: código LOINC)
+  codeSystem?: "LOINC" | "TUSS" | "SUS" | "MostCommon" | "Other"; // Sistema de codificação do exame
 }
 export interface ClinicalPatientData {
   identification: Identification

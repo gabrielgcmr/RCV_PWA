@@ -9,6 +9,7 @@ export interface PreventionSlice {
   removePreventionByIndex: (index: number) => void;
   updatePreventionByIndex: (index: number, data: Partial<Prevention>) => void;
   setPreventions: (preventions: Prevention[]) => void;
+  getAllPreventions: () => Prevention[];
 }
 
 export const createPreventionSlice: StateCreator<
@@ -16,7 +17,7 @@ export const createPreventionSlice: StateCreator<
   [['zustand/immer', never]],
   [], 
   PreventionSlice
-> = (set) => ({
+> = (set, get) => ({
   preventions: [],
   addPrevention: (prevention) =>
     set((state) => {
@@ -37,4 +38,7 @@ export const createPreventionSlice: StateCreator<
       set((state) => {
         state.preventions = newPreventions;
       }),
+    getAllPreventions: () => {
+      return get().preventions;
+    }
 });

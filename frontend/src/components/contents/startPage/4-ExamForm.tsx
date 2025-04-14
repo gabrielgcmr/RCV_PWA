@@ -1,6 +1,6 @@
 import { useExamSectionStore } from "@/store/useExamSectionStore";
 import ExamDate from "../../common/exam/ExamDate";
-import ExamForm from "../../common/exam/ExamForm";
+import CategoryExamForm from "../../common/exam/ExamForm";
 import FormBase from "../../common/FormBase";
 
 function ExamsSection() {
@@ -41,17 +41,20 @@ function ExamsSection() {
         {/* Exames e outros componentes ocupam os 3/4 restantes */}
       </div>
       <div className="flex flex-wrap gap-1">
-        <ExamForm category="LipidProfile" title="Lipidograma" />
-        <ExamForm category="RenalProfile" title="Perfil Renal" />
-        <ExamForm category="LiverProfile" title="Perfil Hepático" />
-        <ExamForm category="GlucoseProfile" title="Perfil Glicemico" />
-        <ExamForm category="Electrolytes" title="Eletrólitos" />
-        <ExamForm category="Vitamins" title="Vitaminas" />
-        <ExamForm category="CBC" title="Hemograma" />
-        <ExamForm category="Urinalysis" title="EAS" />
-        <ExamForm category="ThyroidProfile" title="Perfil Tireoideano" />
-        <ExamForm category="Inflamatory" title="Inflamatórios" />
-        <ExamForm category="Fecal" title=" Fecal" />
+        <CategoryExamForm category="LipidProfile" title="Lipidograma" />
+        <CategoryExamForm category="RenalProfile" title="Perfil Renal" />
+        <CategoryExamForm category="LiverProfile" title="Perfil Hepático" />
+        <CategoryExamForm category="GlucoseProfile" title="Perfil Glicemico" />
+        <CategoryExamForm category="Electrolytes" title="Eletrólitos" />
+        <CategoryExamForm category="Vitamins" title="Vitaminas" />
+        <CategoryExamForm category="CBC" title="Hemograma" />
+        <CategoryExamForm category="Urinalysis" title="EAS" />
+        <CategoryExamForm
+          category="ThyroidProfile"
+          title="Perfil Tireoideano"
+        />
+        <CategoryExamForm category="Inflamatory" title="Inflamatórios" />
+        <CategoryExamForm category="Fecal" title=" Fecal" />
       </div>
     </FormBase>
   );

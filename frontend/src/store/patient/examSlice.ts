@@ -7,9 +7,10 @@ import { PatientStore } from "./interface";
 export interface ExamSlice {
   exams: Exam[];
   addExam: (exam: Exam) => void;
-  removeExamByName: (name: string) => void;
-  updateExamByName: (name: string, data: Partial<Exam>) => void;
+  removeExamBykey: (key: string) => void;
+  updateExamByKey: (key: string, data: Partial<Exam>) => void;
   setExams: (exams: Exam[]) => void;
+  getExam: (key: string) => Exam | undefined;
 }
 
 export const createExamSlice: StateCreator<
@@ -17,22 +18,22 @@ export const createExamSlice: StateCreator<
   [["zustand/immer", never]],
   [],
   ExamSlice
-> = (set) => ({
+> = (set,get) => ({
   exams: [],
   addExam: (exam) =>
     set((state) => {
       state.exams.push(exam);
     }),
-  removeExamByName: (name) =>
+  removeExamBykey: (key) =>
     set((state) => {
-      const index = state.exams.findIndex((exam) => exam.name === name);
+      const index = state.exams.findIndex((exam) => exam.key === key);
       if (index !== -1) {
         state.exams.splice(index, 1);
       }
     }),
-  updateExamByName: (name, data) =>
+  updateExamByKey: (key, data) =>
     set((state) => {
-      const index = state.exams.findIndex((exam) => exam.name === name);
+      const index = state.exams.findIndex((exam) => exam.key === key);
       if (index !== -1) {
         state.exams[index] = { ...state.exams[index], ...data };
       }
@@ -41,4 +42,7 @@ export const createExamSlice: StateCreator<
     set((state) => {
       state.exams = newExams;
     }),
+  getExam: (key:string): Exam | undefined => {
+    return get().exams.find((exam) => exam.key === key)
+    },
 });

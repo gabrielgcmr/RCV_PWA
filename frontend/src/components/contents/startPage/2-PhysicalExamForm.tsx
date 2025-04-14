@@ -1,40 +1,43 @@
 // src/components/forms/PhysicalExamForm.tsx
 import FormBase from "@/components/common/FormBase";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { usePatientStore } from "@/store/patient";
 
 function PhysicalExamForm() {
   const { physicalExam, setPhysicalExamField } = usePatientStore();
+
   return (
     <FormBase
       title="Exame Físico"
       icon="🩺"
-      id="physicalExam "
-      className=" max-w-80 overflow-y-auto"
+      id="physicalExam"
+      className="max-w-80 overflow-y-auto"
     >
-      <form>
-        <label htmlFor="systolicBP" className="block text-sm font-medium">
-          Pressão Arterial Sistólica
-        </label>
-        <input
-          type="number"
-          id="systolicBP"
-          placeholder="PAS"
-          value={physicalExam.systolicBP ?? ""}
-          onChange={(e) => setPhysicalExamField("systolicBP", e.target.value)}
-          className="w-26 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200 mb-2"
-        />
+      <form className="space-y-2">
+        <div className="space-y-1">
+          <Label htmlFor="systolicBP">Pressão Sistólica</Label>
+          <Input
+            id="systolicBP"
+            type="number"
+            placeholder="PAS"
+            value={physicalExam.systolicBP ?? ""}
+            onChange={(e) => setPhysicalExamField("systolicBP", e.target.value)}
+          />
+        </div>
 
-        <label htmlFor="diastolicBP" className="block text-sm font-medium">
-          Pressão Arterial Diastólica
-        </label>
-        <input
-          type="number"
-          id="diastolicBP"
-          placeholder="PAD"
-          value={physicalExam.diastolicBP ?? ""}
-          onChange={(e) => setPhysicalExamField("diastolicBP", e.target.value)}
-          className="w-26 p-1 border rounded bg-zinc-800 text-white focus:outline-none focus:ring-1 focus:ring-blue-200"
-        />
+        <div className="space-y-1">
+          <Label htmlFor="diastolicBP">Pressão Diastólica</Label>
+          <Input
+            id="diastolicBP"
+            type="number"
+            placeholder="PAD"
+            value={physicalExam.diastolicBP ?? ""}
+            onChange={(e) =>
+              setPhysicalExamField("diastolicBP", e.target.value)
+            }
+          />
+        </div>
       </form>
     </FormBase>
   );

@@ -6,9 +6,11 @@ import { PatientStore } from "./interface";
 export interface ProblemSlice {
   problems: Problem[];
   addProblem: (problem: Problem) => void;
-  removeProblembyName: (name: string) => void;
-  updateProblembyName: (name: string, data: Partial<Problem>) => void;
+  removeProblemByKey: (key: string) => void;
+  updateProblemByKey: (key: string, data: Partial<Problem>) => void;
   setProblems: (problems: Problem[]) => void;
+  getProblem: (key: string) => Problem | undefined;
+  updateAllExamDates: (date: string | undefined) => void;
 }
 
 export const createProblemSlice: StateCreator<
@@ -16,29 +18,37 @@ export const createProblemSlice: StateCreator<
   [["zustand/immer", never]],
   [],
   ProblemSlice
-> = (set) => ({
+> = (set,get) => ({
   problems: [],
   addProblem: (problem) =>
     set((state) => {
-      state.problems.push(problem) 
+      state.problems.push(problem);
     }),
-  removeProblembyName: (name) =>
+  removeProblemByKey: (key) =>
     set((state) => {
-      const index = state.problems.findIndex((problem) => problem.key === name);
+      const index = state.problems.findIndex((problem) => problem.key === key);
       if (index !== -1) {
         state.problems.splice(index, 1);
       }
     }),
-  updateProblembyName: (name, data) =>
+  updateProblemByKey: (key, data) =>
     set((state) => {
-      const index = state.problems.findIndex((problem) => problem.key === name);
+      const index = state.problems.findIndex((problem) => problem.key === key);
       if (index !== -1) {
         state.problems[index] = { ...state.problems[index], ...data };
       }
-    }
-  ),
+    }),
   setProblems: (newProblems) =>
     set((state) => {
       state.problems = newProblems;
+    }),
+  getProblem: (key: string): Problem | undefined => {
+    return get().problems.find((problem) => problem.key === key);
+  },
+  updateAllExamDates: (date) =>
+    set((state) => {
+      state.exams.forEach((exam) => {
+        exam.date = date;
+      });
     }),
 });
