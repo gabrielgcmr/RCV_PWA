@@ -1,2 +1,2 @@
-export * from "./usePatient";
+export * from "./useAuth";
 

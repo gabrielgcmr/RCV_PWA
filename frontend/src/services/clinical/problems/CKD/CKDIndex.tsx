@@ -1,10 +1,14 @@
 import { usePatient } from "@/hooks";
 import CKDEPIIndex from "../../calculator/CKDEPI/CKDEPIIndex";
 import CKDStaging from "./CKDStaging";
+import { usePatientStore } from "@/store/patient";
 
 function CKDIndex() {
   const { patient, hasProblem } = usePatient();
   const hasCKD = hasProblem("CKD");
+  const { getProblem } = usePatientStore();
+
+  CDK = getProblem("CKD") ?? undefined;
 
   if (!hasCKD) return null;
 

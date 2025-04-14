@@ -26,7 +26,8 @@ export default function CategoryExamForm({
   // Função para atualizar o valor do exame no store
   const handleExamChange = useCallback(
     (key: string, value: string | number) => {
-      updateExamByKey(key, { value }); // Atualize apenas o valor
+      console.log("Alterando exame:", key, value);
+      updateExamByKey(key, { value: String(value) }); // Convert value to string
     },
     [updateExamByKey]
   );
@@ -38,16 +39,16 @@ export default function CategoryExamForm({
   );
 
   return (
-    <div className="p-1.5 bg-zinc-600 rounded-lg shadow-md text-white cursor-pointer transition hover:bg-zinc-600">
+    <div className="p-1.5 bg-zinc-600 rounded-lg shadow-md text-white ">
       <h2
-        className="text-base font-medium mb-1 hover:bg-zinc-600"
+        className="text-base font-medium mb-1 hover:bg-zinc-600 cursor-pointer"
         onClick={() => minimizeExamForm(category)}
       >
         {title}
       </h2>
 
       {commonExams.length > 0 ? (
-        <div className="grid">
+        <div className="grid grid-cols-2 gap-0.5">
           {commonExams.map((exam) => {
             const storedExam = getExam(exam.key);
             const value = storedExam ? storedExam.value : "";

@@ -1,5 +1,4 @@
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 interface ExamInputProps {
   id: string;
@@ -23,14 +22,14 @@ export function ExamInput({
   disabled,
 }: ExamInputProps) {
   return (
-    <div className="space-y-2">
-      <Label htmlFor={id}></Label>
+    <div className="space-y-0.5">
       <Input
         id={id}
-        value={value === undefined ? "" : String(value)} // Converter para string
+        value={value === undefined ? "" : String(value)}
         placeholder={placeholder || abbreviation} // Usar placeholder ou abbreviation
         onChange={(e) => onChange(id, e.target.value, abbreviation)}
         disabled={disabled}
+        className="max-w-15"
       />
     </div>
   );

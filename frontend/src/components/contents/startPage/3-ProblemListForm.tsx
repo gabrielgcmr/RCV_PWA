@@ -40,7 +40,7 @@ export default function ProblemListForm() {
     >
       <Tabs value={tab} onValueChange={setTab} className="w-full">
         <TabsList className="grid grid-cols-2">
-          <TabsTrigger value="common">Problemas Comuns</TabsTrigger>
+          <TabsTrigger value="common">Comuns</TabsTrigger>
           <TabsTrigger value="ciap2">CIAP-2</TabsTrigger>
           {/* Pode adicionar outros TabsTrigger futuramente */}
         </TabsList>

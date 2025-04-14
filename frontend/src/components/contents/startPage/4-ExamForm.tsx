@@ -1,7 +1,8 @@
 import { useExamSectionStore } from "@/store/useExamSectionStore";
 import ExamDate from "../../common/exam/ExamDate";
-import CategoryExamForm from "../../common/exam/ExamForm";
+
 import FormBase from "../../common/FormBase";
+import CategoryExamForm from "@/components/common/exam/CategoryExamForm";
 
 function ExamsSection() {
   const minimizedExamForms = useExamSectionStore(
@@ -16,7 +17,7 @@ function ExamsSection() {
       id="complementaryExams"
       className="max-w-160"
     >
-      <div className="grid grid-cols-4 gap-4 mb-1">
+      <div className="sm:grid sm:grid-cols-2 gap-4 mb-1">
         <div className="col-span-2">
           <ExamDate />
         </div>
