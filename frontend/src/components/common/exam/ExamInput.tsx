@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 
 interface ExamInputProps {
   id: string;
-  value: string | number | undefined; // Permitir undefined
+  value: string | undefined; // Permitir undefined
   abbreviation?: string;
   onChange: (
     key: string,
@@ -25,6 +25,7 @@ export function ExamInput({
     <div className="space-y-0.5">
       <Input
         id={id}
+        type="number"
         value={value === undefined ? "" : String(value)}
         placeholder={placeholder || abbreviation} // Usar placeholder ou abbreviation
         onChange={(e) => onChange(id, e.target.value, abbreviation)}

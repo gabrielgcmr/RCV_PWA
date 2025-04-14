@@ -45,7 +45,7 @@ export interface Exam {
   label?: string;
   category?: string; // Categoria do exame (ex: 'LipidProfile')
   abbreviation?: string; // Abreviação para exibição
-  value?: string ; // Valor do exame
+  value?: string | number; // Valor do exame
   unit?: string; // Unidade de medida (ex.: mg/dL, %)
   method?: string; // Método de realização do exame
   referenceRange?: string; // Intervalo de referência (ex.: "70-110 mg/dL")
