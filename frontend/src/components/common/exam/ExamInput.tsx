@@ -4,11 +4,7 @@ interface ExamInputProps {
   id: string;
   value: string | undefined; // Permitir undefined
   abbreviation?: string;
-  onChange: (
-    key: string,
-    value: string | number,
-    abbreviation?: string
-  ) => void; // Adicione onChange
+  onChange: (key: string, value: string) => void; // Adicione onChange
   placeholder?: string; // Adicione placeholder
   disabled?: boolean; // Adicione disabled
 }
@@ -22,16 +18,14 @@ export function ExamInput({
   disabled,
 }: ExamInputProps) {
   return (
-    <div className="space-y-0.5">
-      <Input
-        id={id}
-        type="number"
-        value={value === undefined ? "" : String(value)}
-        placeholder={placeholder || abbreviation} // Usar placeholder ou abbreviation
-        onChange={(e) => onChange(id, e.target.value, abbreviation)}
-        disabled={disabled}
-        className="max-w-15"
-      />
-    </div>
+    <Input
+      id={id}
+      type="number"
+      value={value}
+      placeholder={placeholder ?? abbreviation} // Usar placeholder ou abbreviation
+      onChange={(e) => onChange(id, e.target.value)}
+      disabled={disabled}
+      className="max-w-18"
+    />
   );
 }

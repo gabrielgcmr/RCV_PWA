@@ -15,17 +15,11 @@ export default function CategoryExamForm({
   title,
 }: CategoryExamFormProps) {
   const { getExam, updateExamByKey } = usePatientStore();
-
-  const minimizeExamForm = useExamSectionStore(
-    (state) => state.minimizeExamForm
-  );
-  const minimizedExamForms = useExamSectionStore(
-    (state) => state.minimizedExamForms
-  );
+  const { minimizeExamForm, minimizedExamForms } = useExamSectionStore();
 
   // Função para atualizar o valor do exame no store
   const handleExamChange = useCallback(
-    (key: string, value: string | number) => {
+    (key: string, value: string) => {
       console.log("Alterando exame:", key, value);
       updateExamByKey(key, { value: String(value) }); // Convert value to string
     },
@@ -49,26 +43,20 @@ export default function CategoryExamForm({
 
       {commonExams.length > 0 ? (
         <div className="grid grid-cols-2 gap-0.5">
-          {commonExams.map((exam) => {
-            const storedExam = getExam(exam.key);
-            const value = storedExam ? storedExam.value : "";
-            const { key, ...examProps } = exam;
+          {commonExams.map(({ key, inputType, options = [], ...examProps }) => {
+            // Default options to an empty array
+            const exam = getExam(key);
+            const value = String(exam?.value || "");
+            const Component =
+              inputType === "select" ? ExamSelectInput : ExamInput;
 
-            return exam.inputType === "select" ? (
-              <ExamSelectInput
-                key={exam.key}
+            return (
+              <Component
+                key={key}
                 id={key}
                 {...examProps}
-                options={exam.options || []}
-                value={String(value || "")}
-                onChange={handleExamChange}
-              />
-            ) : (
-              <ExamInput
-                key={exam.key}
-                id={key}
-                {...examProps}
-                value={String(value) || ""}
+                options={options} // Ensure options is always an array
+                value={value}
                 onChange={handleExamChange}
               />
             );

@@ -10,7 +10,7 @@ export interface ProblemSlice {
   updateProblemByKey: (key: string, data: Partial<Problem>) => void;
   setProblems: (problems: Problem[]) => void;
   getProblem: (key: string) => Problem | undefined;
-  updateAllExamDates: (date: string | undefined) => void;
+  
 }
 
 export const createProblemSlice: StateCreator<
@@ -45,10 +45,5 @@ export const createProblemSlice: StateCreator<
   getProblem: (key: string): Problem | undefined => {
     return get().problems.find((problem) => problem.key === key);
   },
-  updateAllExamDates: (date) =>
-    set((state) => {
-      state.exams.forEach((exam) => {
-        exam.date = date;
-      });
-    }),
+  
 });
