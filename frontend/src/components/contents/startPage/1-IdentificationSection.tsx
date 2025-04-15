@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 
 import FormBase from "../../common/FormBase";
-import { usePatientStore } from "@/store/patient";
+import { usePatientStore } from "@/store/patient/usePatientStore";
 
 const genderOptions = [
   { value: "Male", label: "Masculino" },

@@ -1,4 +1,4 @@
-import { usePatientStore } from "@/store/patient";
+import { usePatientStore } from "@/store/patient/usePatientStore";
 import { summaryTitle } from "./styles";
 
 export default function IdentificationSection() {

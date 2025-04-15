@@ -1,7 +1,7 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import FormBase from "../../common/FormBase";
 import { useCallback, useState } from "react";
-import { usePatientStore } from "@/store/patient";
+import { usePatientStore } from "@/store/patient/usePatientStore";
 import mostCommonProblems from "@/constants/mostCommonProblems";
 import { Problem } from "@/types";
 

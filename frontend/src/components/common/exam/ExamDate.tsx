@@ -1,4 +1,4 @@
-import { usePatientStore } from "@/store/patient";
+import { usePatientStore } from "@/store/patient/usePatientStore";
 
 function ExamDateForm() {
   const { examDate, setExamDate } = usePatientStore();

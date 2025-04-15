@@ -13,7 +13,7 @@ export interface PhysicalExamSlice {
 
 export const createPhysicalExamSlice: StateCreator<
   PatientStore,
-  [['zustand/immer', never]],
+  [['zustand/immer', never],['zustand/devtools', never]],
   [],
   PhysicalExamSlice
 > = (set) => ({

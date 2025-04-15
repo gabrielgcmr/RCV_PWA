@@ -1,4 +1,4 @@
-import { usePatientStore } from "@/store/patient";
+import { usePatientStore } from "@/store/patient/usePatientStore";
 import { mostCommonExams } from "@/constants";
 import { ExamInput } from "./ExamInput";
 import { ExamSelectInput } from "./ExamSelectInput";
@@ -14,16 +14,18 @@ export default function CategoryExamForm({
   category,
   title,
 }: CategoryExamFormProps) {
-  const { getExam, updateExamByKey } = usePatientStore();
+  const { upsertExam, examDate, getExam } = usePatientStore();
   const { minimizeExamForm, minimizedExamForms } = useExamSectionStore();
 
-  // Função para atualizar o valor do exame no store
   const handleExamChange = useCallback(
     (key: string, value: string) => {
-      console.log("Alterando exame:", key, value);
-      updateExamByKey(key, { value: String(value) }); // Convert value to string
+      upsertExam({
+        key,
+        value,
+        date: examDate,
+      });
     },
-    [updateExamByKey]
+    [upsertExam, examDate]
   );
 
   if (minimizedExamForms.includes(category)) return null;

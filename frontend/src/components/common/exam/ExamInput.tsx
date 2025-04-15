@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 
 interface ExamInputProps {
   id: string;
-  value: string | undefined; // Permitir undefined
+  value: string; // Permitir undefined
   abbreviation?: string;
   onChange: (key: string, value: string) => void; // Adicione onChange
   placeholder?: string; // Adicione placeholder

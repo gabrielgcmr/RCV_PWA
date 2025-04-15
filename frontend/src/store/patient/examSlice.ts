@@ -13,25 +13,28 @@ export interface ExamSlice {
   updateExamByKey: (key: string, data: Partial<Exam>) => void;
   setExams: (exams: Exam[]) => void;
   getExam: (key: string) => Exam | undefined;
-  updateAllExamDates: (date: string | undefined) => void;
+  upsertExam: (exam: Exam) => void;
 }
 
 export const createExamSlice: StateCreator<
   PatientStore,
-  [["zustand/immer", never]],
+  [["zustand/immer", never],['zustand/devtools', never]],
   [],
   ExamSlice
 > = (set,get) => ({
-  examDate: "",
-  exams: [],
+  examDate:"",
+  exams: [], 
+
   addExam: (exam) =>
     set((state) => {
       state.exams.push(exam);
     }),
+
   setExamDate: (date) =>
     set((state) => {
       state.examDate = date;
     }),
+
   removeExamBykey: (key) =>
     set((state) => {
       const index = state.exams.findIndex((exam) => exam.key === key);
@@ -39,6 +42,7 @@ export const createExamSlice: StateCreator<
         state.exams.splice(index, 1);
       }
     }),
+
   updateExamByKey: (key, data) =>
     set((state) => {
       const index = state.exams.findIndex((exam) => exam.key === key);
@@ -46,17 +50,23 @@ export const createExamSlice: StateCreator<
         state.exams[index] = { ...state.exams[index], ...data }; // Atualiza o exame de forma imutável
       }
     }),
+
   setExams: (newExams) =>
     set((state) => {
       state.exams = newExams;
     }),
+
   getExam: (key:string): Exam | undefined => {
     return get().exams.find((exam) => exam.key === key)
     },
-  updateAllExamDates: (date) =>
+  upsertExam: (exam) =>
     set((state) => {
-      state.exams.forEach((exam) => {
-        exam.date = date;
-      });
+      const existingExam = state.exams.find((e) => e.key === exam.key);
+
+      if (existingExam) {
+        Object.assign(existingExam, exam); // Atualiza se existir
+      } else {
+        state.exams.push(exam); // Cria se não existir
+      }
     }),
 });

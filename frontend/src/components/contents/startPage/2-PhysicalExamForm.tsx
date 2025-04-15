@@ -2,7 +2,7 @@
 import FormBase from "@/components/common/FormBase";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { usePatientStore } from "@/store/patient";
+import { usePatientStore } from "@/store/patient/usePatientStore";
 
 function PhysicalExamForm() {
   const { physicalExam, setPhysicalExamField } = usePatientStore();

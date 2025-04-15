@@ -15,7 +15,7 @@ export interface ProblemSlice {
 
 export const createProblemSlice: StateCreator<
   PatientStore,
-  [["zustand/immer", never]],
+  [["zustand/immer", never],['zustand/devtools', never]],
   [],
   ProblemSlice
 > = (set,get) => ({

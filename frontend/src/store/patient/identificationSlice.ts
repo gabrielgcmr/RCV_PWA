@@ -14,7 +14,7 @@ export interface IdentificationSlice {
 
 export const createIdentificationSlice: StateCreator<
   PatientStore,
-  [['zustand/immer', never]],
+  [['zustand/immer', never],['zustand/devtools', never]],
   [],
   IdentificationSlice
 > = (set) => ({

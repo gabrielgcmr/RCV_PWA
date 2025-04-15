@@ -17,7 +17,7 @@ export interface ClinicalHistorySlice {
 
 export const createClinicalHistorySlice: StateCreator<
   PatientStore,
-  [["zustand/immer", never]],
+  [["zustand/immer", never],['zustand/devtools', never]],
   [],
   ClinicalHistorySlice
 > = (set) => ({

@@ -14,7 +14,7 @@ export interface PreventionSlice {
 
 export const createPreventionSlice: StateCreator<
   PatientStore,
-  [['zustand/immer', never]],
+  [['zustand/immer', never],['zustand/devtools', never]],
   [], 
   PreventionSlice
 > = (set, get) => ({

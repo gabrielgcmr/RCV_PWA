@@ -1,7 +1,7 @@
 import { usePatient } from "@/hooks";
 import CKDEPIIndex from "../../calculator/CKDEPI/CKDEPIIndex";
 import CKDStaging from "./CKDStaging";
-import { usePatientStore } from "@/store/patient";
+import { usePatientStore } from "@/store/patient/usePatientStore";
 
 function CKDIndex() {
   const { patient, hasProblem } = usePatient();
