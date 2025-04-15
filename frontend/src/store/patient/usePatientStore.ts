@@ -8,7 +8,7 @@ import { createPreventionSlice } from "./preventionSlice";
 import { createProblemSlice } from "./problemSlice";
 import { createPhysicalExamSlice } from "./physicalExamSlice";
 import { createExamSlice } from "./examSlice";
-import { createClinicalHistorySlice } from "./clinicalHistory";
+import { createClinicalHistorySlice } from "./clinicalHistorySlice";
 
 export const usePatientStore = create<PatientStore>()(
   devtools(
@@ -25,7 +25,6 @@ export const usePatientStore = create<PatientStore>()(
         name: "patient-storage", // unique name
         storage: createJSONStorage(() => localStorage), // (optional) by default the 'localStorage' is used
       }
-
-    )
+    ),
   )
 );

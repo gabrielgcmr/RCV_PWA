@@ -1,4 +1,4 @@
-import { ClinicalHistorySlice } from "./clinicalHistory";
+import { ClinicalHistorySlice } from "./clinicalHistorySlice";
 import { ExamSlice } from "./examSlice";
 import { IdentificationSlice } from "./identificationSlice";
 import { PhysicalExamSlice } from "./physicalExamSlice";
