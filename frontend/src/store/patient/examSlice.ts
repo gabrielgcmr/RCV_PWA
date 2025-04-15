@@ -26,9 +26,9 @@ export const createExamSlice: StateCreator<
   exams: [], 
 
   addExam: (exam) =>
-    set((state) => {
-      state.exams.push(exam);
-    }),
+    set(
+      (state) => {state.exams.push(exam);},
+    undefined,'patient:exam/addExam'),
 
   setExamDate: (date) =>
     set((state) => {

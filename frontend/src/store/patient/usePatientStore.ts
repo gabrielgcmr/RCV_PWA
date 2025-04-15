@@ -26,5 +26,8 @@ export const usePatientStore = create<PatientStore>()(
         storage: createJSONStorage(() => localStorage), // (optional) by default the 'localStorage' is used
       }
     ),
+    {
+      name: "PatientStore",
+    }
   )
 );
