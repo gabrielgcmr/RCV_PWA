@@ -1,7 +1,7 @@
 // src/services/CKD/CKDProblemView.tsx
 import { useEffect } from "react";
 import { usePatientStore } from "@/store";
-import { buildCKDProblem } from "./buildCDKProblem";
+import { setCKDProblem } from "../services/setCDKProblem";
 
 function CKDProblemView() {
   const patient = usePatientStore((state) => state); // ou state.patient, se for slice
@@ -9,7 +9,7 @@ function CKDProblemView() {
   const getProblemByKey = usePatientStore((state) => state.getProblemByKey);
 
   const existingProblem = getProblemByKey("CKD");
-  const newProblem = buildCKDProblem(patient);
+  const newProblem = setCKDProblem(patient);
 
   // Adiciona a suspeita apenas uma vez
   useEffect(() => {

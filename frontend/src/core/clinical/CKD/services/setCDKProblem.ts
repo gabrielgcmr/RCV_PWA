@@ -1,12 +1,12 @@
 // src/services/clinical/CDK/buildCKDProblem.ts
 
 import { ClinicalPatientData, Problem } from "@/types";
-import generateCKDEPIResult from "./CKDEPICalculator/ckdEpi.resultGenerator";
-import CKDStaging from "./CKDStaging";
+import setCkdEpiPrevention from "./setCkdEpiPrevention";
+import CKDStaging from "../staging/CKDStaging";
 
 
-export function buildCKDProblem(patient: ClinicalPatientData): Problem | null {
-  const result = generateCKDEPIResult(patient);
+export function setCKDProblem(patient: ClinicalPatientData): Problem | null {
+  const result = setCkdEpiPrevention(patient);
   if (!result || typeof result.value !== "number") return null;
 
   const eGFR = result.value;

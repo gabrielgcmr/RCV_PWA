@@ -1,12 +1,12 @@
 import { ClinicalPatientData, Prevention } from "@/types";
-import calculateCKDEPI from "./ckdEpi.calculator";
-import classifyTFG from "./ckdEpi.classify";
-import mapCKDEPIData from "./cdkEpi.mapper";
-import validateCKDEPIData from "./ckdEpi.validator";
+import calculateCKDEPI from "../calculator/ckdEpi.calculator";
+import classifyTFG from "../calculator/ckdEpi.classify";
+import mapCKDEPIData from "../calculator/cdkEpi.mapper";
+import validateCKDEPIData from "../calculator/ckdEpi.validator";
 import { error } from "console";
 
 // Calcula a TFG pela equação CKD-EPI
-function generateCKDEPIResult(patient: ClinicalPatientData): Prevention | null{
+function setCkdEpiPrevention(patient: ClinicalPatientData): Prevention | null{
   const mappedData = mapCKDEPIData(patient);
   const validation = validateCKDEPIData(mappedData);
   if (!validation.isValid) {
@@ -28,4 +28,4 @@ function generateCKDEPIResult(patient: ClinicalPatientData): Prevention | null{
   
 }
 
-export default generateCKDEPIResult;
+export default setCkdEpiPrevention;
