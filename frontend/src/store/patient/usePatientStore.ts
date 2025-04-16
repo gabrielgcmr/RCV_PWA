@@ -9,6 +9,7 @@ import { createProblemSlice } from "./problemSlice";
 import { createPhysicalExamSlice } from "./physicalExamSlice";
 import { createExamSlice } from "./examSlice";
 import { createClinicalHistorySlice } from "./clinicalHistorySlice";
+import { createMetaSlice } from "./metaSlice";
 
 export const usePatientStore = create<PatientStore>()(
   devtools(
@@ -20,6 +21,7 @@ export const usePatientStore = create<PatientStore>()(
         ...createPhysicalExamSlice(...args),
         ...createExamSlice(...args),
         ...createClinicalHistorySlice(...args),
+        ...createMetaSlice(...args),
       })),
       {
         name: "patient-storage", // unique name

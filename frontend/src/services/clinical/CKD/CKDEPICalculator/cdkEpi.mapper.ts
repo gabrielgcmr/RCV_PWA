@@ -1,5 +1,4 @@
-import { ClinicalPatientData } from "../../../../types";
-
+import { ClinicalPatientData } from "@/types";
 
 // Função para mapear os dados do paciente para o cálculo da equação CKD-EPI.
 export default function mapCKDEPIData(patient: ClinicalPatientData) {

@@ -9,7 +9,7 @@ export interface PreventionSlice {
   removePreventionByIndex: (index: number) => void;
   updatePreventionByIndex: (index: number, data: Partial<Prevention>) => void;
   setPreventions: (preventions: Prevention[]) => void;
-  getAllPreventions: () => Prevention[];
+  getPreventionByName: (name: string) => Prevention | undefined
 }
 
 export const createPreventionSlice: StateCreator<
@@ -38,7 +38,8 @@ export const createPreventionSlice: StateCreator<
       set((state) => {
         state.preventions = newPreventions;
       }),
-    getAllPreventions: () => {
-      return get().preventions;
+    getPreventionByName:(name:string): Prevention | undefined =>{
+      return get().preventions.find((prevention) => prevention.name === name)
     }
+
 });

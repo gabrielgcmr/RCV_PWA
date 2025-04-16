@@ -13,8 +13,8 @@ import FormBase from "../../common/FormBase";
 import { usePatientStore } from "@/store/patient/usePatientStore";
 
 const genderOptions = [
-  { value: "Male", label: "Masculino" },
-  { value: "Female", label: "Feminino" },
+  { value: "male", label: "Masculino" },
+  { value: "female", label: "Feminino" },
 ];
 
 const raceOptions = [

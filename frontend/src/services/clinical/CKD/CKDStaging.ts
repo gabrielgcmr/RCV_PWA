@@ -1,3 +1,4 @@
+//src/services/clinical/CDK/CDKStaging.ts
 function CKDStaging (eGFR:number, UACR?:number ): string {
   // Determina a categoria G com base no eGFR
   let gCategory: string;

@@ -6,7 +6,11 @@ import mostCommonProblems from "@/constants/mostCommonProblems";
 import { Problem } from "@/types";
 
 export default function ProblemListForm() {
-  const { getProblem, addProblem, removeProblemByKey } = usePatientStore();
+  const {
+    getProblemByKey: getProblem,
+    addProblem,
+    removeProblemByKey,
+  } = usePatientStore();
   const [tab, setTab] = useState("common");
 
   // Função para adicionar ou remover um problema da lista

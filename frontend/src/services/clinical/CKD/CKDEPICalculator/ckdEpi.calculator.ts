@@ -1,4 +1,4 @@
-import  CKDEPIData  from "./CKDEPIData";
+import CKDEPIData from "./ckdEpi.data";
 
 // Calcula a TFG pela equação CKD-EPI.
  function calculateCKDEPI(data: CKDEPIData): number {

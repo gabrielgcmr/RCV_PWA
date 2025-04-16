@@ -9,8 +9,8 @@ export interface ProblemSlice {
   removeProblemByKey: (key: string) => void;
   updateProblemByKey: (key: string, data: Partial<Problem>) => void;
   setProblems: (problems: Problem[]) => void;
-  getProblem: (key: string) => Problem | undefined;
-  
+  getProblemByKey: (key: string) => Problem | undefined;
+  getProblemByName: (name: string) => Problem | undefined;
 }
 
 export const createProblemSlice: StateCreator<
@@ -42,8 +42,10 @@ export const createProblemSlice: StateCreator<
     set((state) => {
       state.problems = newProblems;
     }),
-  getProblem: (key: string): Problem | undefined => {
+  getProblemByKey: (key: string): Problem | undefined => {
     return get().problems.find((problem) => problem.key === key);
   },
-  
+  getProblemByName: (name: string): Problem | undefined => {
+    return get().problems.find((problem) => problem.key === name);
+  },
 });

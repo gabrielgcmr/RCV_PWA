@@ -1,0 +1,38 @@
+// src/services/clinical/CDK/buildCKDProblem.ts
+
+import { ClinicalPatientData, Problem } from "@/types";
+import generateCKDEPIResult from "./CKDEPICalculator/ckdEpi.resultGenerator";
+import CKDStaging from "./CKDStaging";
+
+
+export function buildCKDProblem(patient: ClinicalPatientData): Problem | null {
+  const result = generateCKDEPIResult(patient);
+  if (!result || typeof result.value !== "number") return null;
+
+  const eGFR = result.value;
+  const UACR = Number(
+    patient.exams.find((exam) => exam.key === "UACR")?.value ?? undefined
+  );
+
+  const eGFRisLow = eGFR < 60;
+  const UACRisElevated = !!UACR && UACR > 30;
+
+  if (!eGFRisLow && !UACRisElevated) return null;
+
+  const stage = CKDStaging(eGFR, UACR);
+
+  const today = new Date().toISOString();
+
+  const problem: Problem = {
+    key: "CKD",
+    name: "Doença Renal Crônica",
+    code: "N18", // CID-10
+    codeSystem: "CID10",
+    abbreviation: "DRC",
+    diagnosisStatus: "suspeita",
+    dateOfOnset: today,
+    description: `Suspeita de DRC (${stage}). Achado isolado. Confirmar persistência por ≥ 3 meses.`,
+  };
+
+  return problem;
+}

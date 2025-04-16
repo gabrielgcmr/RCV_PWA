@@ -13,16 +13,20 @@ export interface Prevention {
   unit?: string;
   classification?: string;
   description?: string;
+  updatedAt?:string;
+
   other?: string;
   errors?: string[];
 }
 
 export interface Problem {
   key: string;
+  name:string;
   label?: string;
   code?: string;
   codeSystem?:"CIAP2" | "CID10" | "CID11"| "MostCommon" | "Other";
   abbreviation?: string;
+  diagnosisStatus?:string;
   description?: string;
   dateOfOnset?: string;
   otherDetails?: string;
