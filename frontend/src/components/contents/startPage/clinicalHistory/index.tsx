@@ -1,11 +1,11 @@
 // src/components/clinicalHistory/ClinicalHistoryDocument.tsx
 
-import IdentificationSection from "./Identification";
+import generateIdentificationHTML from "./Identification";
 
 export default function ClinicalHistoryDocument() {
   return (
     <div id="clinical-history" className="prose">
-      <IdentificationSection />
+      <generateIdentificationHTML />
       {/* outras seções */}
     </div>
   );
