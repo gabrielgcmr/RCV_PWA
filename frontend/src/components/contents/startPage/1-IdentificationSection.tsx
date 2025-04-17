@@ -11,6 +11,8 @@ import {
 
 import FormBase from "../../common/FormBase";
 import { usePatientStore } from "@/store/patient/usePatientStore";
+import { useEditor } from "@tiptap/react";
+import { findNodeWithAttr } from "@/core/clinical/clinicalHistory/utils/findNodeWithAttr";
 
 const genderOptions = [
   { value: "male", label: "Masculino" },
@@ -23,8 +25,32 @@ const raceOptions = [
   { label: "Outro", value: "other" },
 ];
 
-export default function IdentificationForm() {
+export default function IdentificationForm({
+  editor,
+}: {
+  editor: ReturnType<typeof useEditor>;
+}) {
   const { identification, setIdentificationField } = usePatientStore();
+
+  if (!editor) {
+    return <div>Carregando editor...</div>;
+  }
+  const handleFieldChange = (
+    field: keyof typeof identification,
+    value: string
+  ) => {
+    setIdentificationField(field, value);
+
+    // Atualização DIRETA do editor (sem debounce)
+    if (editor) {
+      const node = findNodeWithAttr(editor.state.doc, "id", field);
+      if (node) {
+        editor.commands.updateAttributes(node.node.type, {
+          [field]: value,
+        });
+      }
+    }
+  };
 
   return (
     <FormBase
@@ -40,7 +66,7 @@ export default function IdentificationForm() {
             id="name"
             placeholder="Digite o nome do paciente"
             value={identification.fullName}
-            onChange={(e) => setIdentificationField("fullName", e.target.value)}
+            onChange={(e) => handleFieldChange("fullName", e.target.value)}
           />
         </div>
 
@@ -51,7 +77,7 @@ export default function IdentificationForm() {
             type="number"
             placeholder="Idade"
             value={identification.age}
-            onChange={(e) => setIdentificationField("age", e.target.value)}
+            onChange={(e) => handleFieldChange("age", e.target.value)}
           />
         </div>
 
@@ -59,7 +85,7 @@ export default function IdentificationForm() {
           <Label>Gênero</Label>
           <RadioGroup
             value={identification.gender}
-            onValueChange={(value) => setIdentificationField("gender", value)}
+            onValueChange={(value) => handleFieldChange("gender", value)}
             className="flex gap-4 mt-1"
           >
             {genderOptions.map((option) => (
@@ -75,7 +101,7 @@ export default function IdentificationForm() {
           <Label>Raça</Label>
           <Select
             value={identification.race}
-            onValueChange={(value) => setIdentificationField("race", value)}
+            onValueChange={(value) => handleFieldChange("race", value)}
           >
             <SelectTrigger>
               <SelectValue placeholder="Selecione" />

@@ -1,4 +1,4 @@
-export const initialTextContent = {
+export const initialTextContentJSON = {
   type: "doc",
   content: [
     {
