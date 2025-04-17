@@ -41,7 +41,6 @@ function StartPage() {
           {isVisible("problemList") && <ProblemListForm />}
           {isVisible("physicalExam") && <PhysicalExamForm />}
         </div>
-
         <ExamsSection />
         <Preventions />
         <EditorSection editor={editor} />

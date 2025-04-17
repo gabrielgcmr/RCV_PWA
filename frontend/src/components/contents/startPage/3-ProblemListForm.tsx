@@ -43,9 +43,11 @@ export default function ProblemListForm() {
       className="max-w-80 overflow-y-auto"
     >
       <Tabs value={tab} onValueChange={setTab} className="w-full">
-        <TabsList className="grid grid-cols-2">
+        <TabsList className="grid grid-cols-4">
           <TabsTrigger value="common">Comuns</TabsTrigger>
           <TabsTrigger value="ciap2">CIAP-2</TabsTrigger>
+          <TabsTrigger value="cid10">CID10</TabsTrigger>
+          <TabsTrigger value="cid11">CID11</TabsTrigger>
           {/* Pode adicionar outros TabsTrigger futuramente */}
         </TabsList>
 
@@ -75,6 +77,18 @@ export default function ProblemListForm() {
         <TabsContent value="ciap2">
           <div className="text-sm text-muted-foreground p-2">
             Em breve: Pesquisa por CIAP-2
+          </div>
+        </TabsContent>
+
+        <TabsContent value="cid10">
+          <div className="text-sm text-muted-foreground p-2">
+            Em breve: Pesquisa por CID-10
+          </div>
+        </TabsContent>
+
+        <TabsContent value="cid11">
+          <div className="text-sm text-muted-foreground p-2">
+            Em breve: Pesquisa por CID-11
           </div>
         </TabsContent>
       </Tabs>
