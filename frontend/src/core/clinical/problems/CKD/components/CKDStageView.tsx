@@ -1,4 +1,4 @@
-// src/services/CKD/CKDProblemView.tsx
+// src/core/clinical/CKD/CKDProblemView.tsx
 import { useEffect } from "react";
 import { usePatientStore } from "@/store";
 import { setCKDProblem } from "../services/setCDKProblem";

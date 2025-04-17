@@ -1,8 +1,8 @@
 export interface Identification {
   fullName: string;
   age: string;
-  gender: string;
-  race: string;
+  gender: 'male' | 'female'| '' ;
+  race: 'white' | 'black' | 'other' |'';
 }
 
 export interface Prevention {

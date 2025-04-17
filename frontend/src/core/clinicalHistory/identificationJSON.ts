@@ -1,14 +1,28 @@
+//src/core/clinicalHistory/identificationJSON.ts
 import { Identification } from "@/types";
 import { JSONContent } from "@tiptap/react";
 
-const IdentificationJSON = (
+const genderLabels: Record<Identification["gender"], string> = {
+  "": "",
+  male: "Masculino",
+  female: "Feminino",
+};
+
+const raceLabels: Record<Identification["race"], string> = {
+  "":"",
+  white: "Branco",
+  black: "Preto",
+  other: "Outro",
+};
+
+const identificationJSON = (
   identification: Identification
 ): JSONContent => ({
   type: "doc",
   content: [
     {
       type: "heading",
-      attrs: { level: 2 },
+      attrs: { level: 4 },
       content: [{ type: "text", text: "🏷️ Identificação" }],
     },
     {
@@ -50,7 +64,9 @@ const IdentificationJSON = (
             content: [
               {
                 type: "text",
-                text: `Gênero: ${identification.gender}`,
+                text: `Gênero: ${
+                  genderLabels[identification.gender] ?? identification.gender
+                }`,
               },
             ],
           },
@@ -64,7 +80,9 @@ const IdentificationJSON = (
             content: [
               {
                 type: "text",
-                text: `Raça: ${identification.race}`,
+                text: `Raça: ${
+                  raceLabels[identification.race] ?? identification.race
+                }`,
               },
             ],
           },
@@ -74,4 +92,4 @@ const IdentificationJSON = (
   },
 ]})
 
-export default IdentificationJSON
+export default identificationJSON

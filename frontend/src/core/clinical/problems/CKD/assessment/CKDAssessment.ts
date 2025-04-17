@@ -1,9 +1,9 @@
-// src/core/clinical/CKDAssessmentService.ts
+// src/core/clinical/CDK/CKDAssessment.ts
 import calculateCKDEPI from "../calculator/ckdEpi.calculator";
 import CKDStaging from "../staging/CKDStaging";
 import { ClinicalPatientData } from "@/types";
 
-export function CKDAssesment(patient: ClinicalPatientData) {
+export function CKDAssessment(patient: ClinicalPatientData) {
   const age = Number(patient.identification.age);
   const gender = patient.identification.gender;
   const race = patient.identification.race;
@@ -15,7 +15,9 @@ export function CKDAssesment(patient: ClinicalPatientData) {
   );
 
   const eGFR = calculateCKDEPI(age, gender, race, seric_creatinine);
-  const hasSuspicion = eGFR < 60 || uacr > 30;
+  
+  const hasSuspicion = eGFR < 60 || uacr >= 30;
+
   const stage = hasSuspicion ? CKDStaging(eGFR, uacr) : null;
 
   return {

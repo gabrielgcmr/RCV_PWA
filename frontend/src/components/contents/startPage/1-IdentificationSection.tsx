@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import FormBase from "../../common/FormBase";
+import SectionBase from "../../common/FormBase";
 import { usePatientStore } from "@/store/patient/usePatientStore";
 import { useEditor } from "@tiptap/react";
 
@@ -42,7 +42,7 @@ export default function IdentificationForm({
   };
 
   return (
-    <FormBase
+    <SectionBase
       title="Identificação"
       icon="🏷️"
       id="identification"
@@ -105,6 +105,6 @@ export default function IdentificationForm({
           </Select>
         </div>
       </form>
-    </FormBase>
+    </SectionBase>
   );
 }

@@ -1,5 +1,5 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import FormBase from "../../common/FormBase";
+import SectionBase from "../../common/FormBase";
 import { useCallback, useState } from "react";
 import { usePatientStore } from "@/store/patient/usePatientStore";
 import mostCommonProblems from "@/constants/mostCommonProblems";
@@ -36,7 +36,7 @@ export default function ProblemListForm() {
   );
 
   return (
-    <FormBase
+    <SectionBase
       title="Lista de Problemas"
       icon="📋"
       id="problemList"
@@ -78,6 +78,6 @@ export default function ProblemListForm() {
           </div>
         </TabsContent>
       </Tabs>
-    </FormBase>
+    </SectionBase>
   );
 }

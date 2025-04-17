@@ -1,7 +1,7 @@
 import { useExamSectionStore } from "@/store/useExamSectionStore";
 import ExamDate from "../../common/exam/ExamDate";
 
-import FormBase from "../../common/FormBase";
+import SectionBase from "../../common/FormBase";
 import CategoryExamForm from "@/components/common/exam/CategoryExamForm";
 
 function ExamsSection() {
@@ -11,7 +11,7 @@ function ExamsSection() {
   const restoreExamForm = useExamSectionStore((state) => state.restoreExamForm);
 
   return (
-    <FormBase
+    <SectionBase
       title=" Exames Complementares"
       icon="🧪"
       id="complementaryExams"
@@ -57,7 +57,7 @@ function ExamsSection() {
         <CategoryExamForm category="Inflamatory" title="Inflamatórios" />
         <CategoryExamForm category="Fecal" title=" Fecal" />
       </div>
-    </FormBase>
+    </SectionBase>
   );
 }
 

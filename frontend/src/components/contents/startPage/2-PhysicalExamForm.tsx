@@ -1,5 +1,5 @@
 // src/components/forms/PhysicalExamForm.tsx
-import FormBase from "@/components/common/FormBase";
+import SectionBase from "@/components/common/FormBase";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { usePatientStore } from "@/store/patient/usePatientStore";
@@ -8,7 +8,7 @@ function PhysicalExamForm() {
   const { physicalExam, setPhysicalExamField } = usePatientStore();
 
   return (
-    <FormBase
+    <SectionBase
       title="Exame Físico"
       icon="🩺"
       id="physicalExam"
@@ -39,7 +39,7 @@ function PhysicalExamForm() {
           />
         </div>
       </form>
-    </FormBase>
+    </SectionBase>
   );
 }
 

@@ -11,7 +11,7 @@ type SectionBaseProps = {
   variant?: "default" | "compact" | "full";
 };
 
-export default function FormBase({
+export default function SectionBase({
   id,
   title,
   icon,

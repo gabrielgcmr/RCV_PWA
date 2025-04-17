@@ -1,12 +1,17 @@
-import FormBase from "../../common/FormBase";
-import CKDCard from "@/core/clinical/problems/CKD/components/CDKCard";
+import CKDPreventionCard from "@/core/clinical/problems/CKD/components/CDKPreventionCard";
+import SectionBase from "../../common/FormBase";
 
-function ClinicalHistory() {
+function Preventions() {
   return (
-    <FormBase title="Resumo" icon="📄" id="summary" className="min-w-70">
-      <CKDCard />
-    </FormBase>
+    <SectionBase
+      title="Prevenções"
+      icon="🛡️"
+      id="preventions"
+      className="min-w-70"
+    >
+      <CKDPreventionCard />
+    </SectionBase>
   );
 }
 
-export default ClinicalHistory;
+export default Preventions;

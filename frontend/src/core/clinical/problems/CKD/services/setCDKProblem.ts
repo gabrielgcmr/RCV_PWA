@@ -1,4 +1,4 @@
-// src/services/clinical/CDK/buildCKDProblem.ts
+// src/core/clinical/CDK/setCKDProblem.ts
 
 import { ClinicalPatientData, Problem } from "@/types";
 import setCkdEpiPrevention from "./setCkdEpiPrevention";
