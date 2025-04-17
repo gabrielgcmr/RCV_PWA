@@ -25,7 +25,7 @@ export function ExamInput({
       placeholder={placeholder ?? abbreviation} // Usar placeholder ou abbreviation
       onChange={(e) => onChange(id, e.target.value)}
       disabled={disabled}
-      className="max-w-18"
+      className="max-w-16"
     />
   );
 }

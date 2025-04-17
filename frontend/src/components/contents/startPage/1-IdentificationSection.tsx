@@ -8,11 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import FormBase from "../../common/FormBase";
 import { usePatientStore } from "@/store/patient/usePatientStore";
 import { useEditor } from "@tiptap/react";
-import { findNodeWithAttr } from "@/core/clinical/clinicalHistory/utils/findNodeWithAttr";
 
 const genderOptions = [
   { value: "male", label: "Masculino" },
@@ -35,21 +33,12 @@ export default function IdentificationForm({
   if (!editor) {
     return <div>Carregando editor...</div>;
   }
+
   const handleFieldChange = (
     field: keyof typeof identification,
     value: string
   ) => {
     setIdentificationField(field, value);
-
-    // Atualização DIRETA do editor (sem debounce)
-    if (editor) {
-      const node = findNodeWithAttr(editor.state.doc, "id", field);
-      if (node) {
-        editor.commands.updateAttributes(node.node.type, {
-          [field]: value,
-        });
-      }
-    }
   };
 
   return (
