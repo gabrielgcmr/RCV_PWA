@@ -21,7 +21,6 @@ export interface Prevention {
 export interface Problem {
   key: string;
   name:string;
-  label?: string;
   code?: string;
   codeSystem?:"CIAP2" | "CID10" | "CID11"| "MostCommon" | "Other";
   abbreviation?: string;

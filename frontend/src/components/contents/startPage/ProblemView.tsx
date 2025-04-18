@@ -3,7 +3,7 @@ import SectionBase from "../../common/SectionBase";
 
 function ProblemsView() {
   return (
-    <SectionBase title="Problems" icon="⚠️" id="problems" className="">
+    <SectionBase title="Problemas" icon="⚠️" id="problems" className="">
       <CKDPreventionCard />
     </SectionBase>
   );

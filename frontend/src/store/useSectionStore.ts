@@ -15,7 +15,7 @@ interface SectionStore {
 }
 
 export const useSectionStore = create<SectionStore>((set, get) => ({
-  minimizedSections: [ ],
+  minimizedSections: [  ],
 
   minimize: (section) =>
     set((state) => {

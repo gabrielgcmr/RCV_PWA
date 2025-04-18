@@ -4,6 +4,11 @@ import identificationJSON from "./identificationJSON";
 import allergiesJSON from "./allergiesJSON";
 import { ClinicalPatientData } from "@/types";
 import preventionsJSON from "./preventionsJSON";
+import problemsJSON from "./problemsJSON";
+import MedicationsJSON from "./medicationsJSON";
+import historyJSON from "./histoyJSON";
+import examsJSON from "./examsJSON";
+import presentIllnessJSON from "./presentIllnessJSON";
 
 export default function clinicalHistoryJSON(patient: ClinicalPatientData): JSONContent {
   return {
@@ -11,7 +16,12 @@ export default function clinicalHistoryJSON(patient: ClinicalPatientData): JSONC
     content: [
       ...(identificationJSON(patient).content || []),
       ...(allergiesJSON().content || []),
-      ...(preventionsJSON(patient).content || [] )
+      ...(problemsJSON(patient).content || []),
+      ...(MedicationsJSON().content || []),
+      ...(preventionsJSON(patient).content || [] ),
+      ...(historyJSON().content || []),
+      ...(examsJSON(patient).content || []),
+      ...(presentIllnessJSON().content || [] )
       // Adicione outras seções aqui conforme necessário
 
     ],
