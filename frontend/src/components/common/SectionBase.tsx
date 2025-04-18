@@ -1,4 +1,4 @@
-// src/components/common/form/SectionBase.tsx
+// src/components/common/SectionBase.tsx
 
 import { useSectionStore } from "@/store/useSectionStore";
 

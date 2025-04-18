@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import SectionBase from "../../../common/FormBase";
+import SectionBase from "../../../common/SectionBase";
 import { usePatientStore } from "@/store/patient/usePatientStore";
 import { useEditor } from "@tiptap/react";
 
@@ -46,7 +46,7 @@ export default function IdentificationForm({
       title="Identificação"
       icon="🏷️"
       id="identification"
-      className="max-w-80 overflow-y-auto"
+      className=" overflow-y-auto"
     >
       <form className="space-y-2">
         <div>

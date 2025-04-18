@@ -1,5 +1,5 @@
 // src/components/forms/PhysicalExamForm.tsx
-import SectionBase from "@/components/common/FormBase";
+import SectionBase from "@/components/common/SectionBase";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { usePatientStore } from "@/store/patient/usePatientStore";
@@ -12,7 +12,7 @@ function PhysicalExamForm() {
       title="Exame Físico"
       icon="🩺"
       id="physicalExam"
-      className="max-w-80 overflow-y-auto"
+      className="overflow-y-auto"
     >
       <form className="space-y-2">
         <div className="space-y-1">

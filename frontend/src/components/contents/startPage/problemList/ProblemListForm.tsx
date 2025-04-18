@@ -1,6 +1,6 @@
 //src/components/contents/startPage
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import SectionBase from "../../../common/FormBase";
+import SectionBase from "../../../common/SectionBase";
 import { useCallback, useState } from "react";
 import { usePatientStore } from "@/store/patient/usePatientStore";
 import { Problem } from "@/types";
@@ -41,7 +41,7 @@ export default function ProblemListForm() {
       title="Lista de Problemas"
       icon="📋"
       id="problemList"
-      className="max-w-80 overflow-y-auto"
+      className=" overflow-y-auto"
     >
       <Tabs value={tab} onValueChange={setTab} className="w-full">
         <TabsList className="grid grid-cols-4">

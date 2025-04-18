@@ -1,5 +1,5 @@
 //src/core/clinicalHistory/identificationJSON.ts
-import { Identification } from "@/types";
+import { ClinicalPatientData, Identification } from "@/types";
 import { JSONContent } from "@tiptap/react";
 
 const genderLabels: Record<Identification["gender"], string> = {
@@ -16,7 +16,7 @@ const raceLabels: Record<Identification["race"], string> = {
 };
 
 const identificationJSON = (
-  identification: Identification
+  patient: ClinicalPatientData
 ): JSONContent => ({
   type: "doc",
   content: [
@@ -36,7 +36,7 @@ const identificationJSON = (
             content: [
               {
                 type: "text",
-                text: `Nome: ${identification.fullName}`,
+                text: `Nome: ${patient.identification.fullName}`,
               },
             ],
           },
@@ -50,7 +50,7 @@ const identificationJSON = (
             content: [
               {
                 type: "text",
-                text: `Idade: ${identification.age}`,
+                text: `Idade: ${patient.identification.age}`,
               },
             ],
           },
@@ -65,7 +65,7 @@ const identificationJSON = (
               {
                 type: "text",
                 text: `Gênero: ${
-                  genderLabels[identification.gender] ?? identification.gender
+                  genderLabels[patient.identification.gender] ?? patient.identification.gender
                 }`,
               },
             ],
@@ -81,7 +81,7 @@ const identificationJSON = (
               {
                 type: "text",
                 text: `Raça: ${
-                  raceLabels[identification.race] ?? identification.race
+                  raceLabels[patient.identification.race] ?? patient.identification.race
                 }`,
               },
             ],

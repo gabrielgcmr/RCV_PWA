@@ -1,10 +1,10 @@
 import { useExamSectionStore } from "@/store/useExamSectionStore";
-import ExamDate from "../../common/exam/ExamDate";
+import ExamDate from "../../../common/exam/ExamDate";
 
-import SectionBase from "../../common/FormBase";
+import SectionBase from "../../../common/SectionBase";
 import CategoryExamForm from "@/components/common/exam/CategoryExamForm";
 
-function ExamsSection() {
+function ExamsForm() {
   const minimizedExamForms = useExamSectionStore(
     (state) => state.minimizedExamForms
   );
@@ -15,7 +15,7 @@ function ExamsSection() {
       title=" Exames Complementares"
       icon="🧪"
       id="complementaryExams"
-      className="max-w-160"
+      className=""
     >
       <div className="sm:grid sm:grid-cols-2 gap-4 mb-1">
         <div className="col-span-2">
@@ -61,4 +61,4 @@ function ExamsSection() {
   );
 }
 
-export default ExamsSection;
+export default ExamsForm;

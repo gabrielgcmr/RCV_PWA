@@ -14,7 +14,6 @@ export interface Prevention {
   classification?: string;
   description?: string;
   updatedAt?:string;
-
   other?: string;
   errors?: string[];
 }
