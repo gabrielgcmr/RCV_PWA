@@ -1,7 +1,7 @@
 // src/store/patient/metaSlice.ts
 import { StateCreator } from "zustand";
 import { PatientStore } from "./interface";
-import initialPatientState from "@/constants/initialPatientState";
+import initialPatientState from "@/store/patient/initialPatientState";
 
 export interface MetaSlice {
   resetPatient: () => void;

@@ -1,6 +1,6 @@
 // src/constants/initialPatientState.ts
 
-import { ClinicalPatientData } from "../types";
+import { ClinicalPatientData } from "../../types";
 
 const initialPatientState: ClinicalPatientData = {
   identification: {
