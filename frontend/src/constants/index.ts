@@ -1,3 +1,3 @@
 export * from "./initialPatientState";
 export * from "./mostCommonExams";
-export * from "./mostCommonProblems";
+export * from "../components/contents/startPage/problemList/mostCommonProblems";

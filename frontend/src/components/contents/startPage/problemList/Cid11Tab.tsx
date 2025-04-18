@@ -7,11 +7,7 @@ interface Cid11TabProps {
   toggleProblem: (problem: Problem, checked: boolean) => void;
 }
 
-export default function Cid11Tab({
-  token,
-  getProblem,
-  toggleProblem,
-}: Cid11TabProps) {
+export default function Cid11Tab({ token }: Cid11TabProps) {
   const { query, setQuery, results, isLoading } = useIcdSearch(token);
 
   return (

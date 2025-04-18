@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import SectionBase from "../../common/FormBase";
+import SectionBase from "../../../common/FormBase";
 import { usePatientStore } from "@/store/patient/usePatientStore";
 import { useEditor } from "@tiptap/react";
 

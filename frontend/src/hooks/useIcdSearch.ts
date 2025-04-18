@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import useDebounce from './useDebouce';
 import { IcdEntity } from '@/services/icd/types';
 import { searchIcd11 } from '@/services/icd/search';
