@@ -1,5 +1,5 @@
 import IdentificationForm from "../components/contents/startPage/1-IdentificationSection";
-import ProblemListForm from "../components/contents/startPage/3-ProblemListForm";
+import ProblemListForm from "../components/contents/startPage/problemList/ProblemListSection";
 import ExamsSection from "../components/contents/startPage/4-ExamForm";
 import MinimizedSectionBar from "../components/layout/MinimizedSectionBar";
 import { SectionProvider } from "../context/SectionProvider";
