@@ -1,10 +1,11 @@
+export type Gender = 'male' | 'female'| ''
+export type Race = 'white' | 'black' | 'other' |'';
 export interface Identification {
   fullName: string;
   age: string;
-  gender: 'male' | 'female'| '' ;
-  race: 'white' | 'black' | 'other' |'';
+  gender: Gender
+  race: Race
 }
-
 export interface Prevention {
   name: string;
   abbreviation?: string;
