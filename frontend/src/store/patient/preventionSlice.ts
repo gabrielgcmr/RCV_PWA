@@ -2,6 +2,7 @@
 import { StateCreator } from "zustand";
 import { Prevention } from "@/types";
 import { PatientStore } from "./interface";
+import generatePreventions from "@/core/clinical/preventions/generatePreventions";
 
 export interface PreventionSlice {
   preventions: Prevention[];
@@ -10,6 +11,8 @@ export interface PreventionSlice {
   updatePreventionByIndex: (index: number, data: Partial<Prevention>) => void;
   setPreventions: (preventions: Prevention[]) => void;
   getPreventionByName: (name: string) => Prevention | undefined
+  upsertPrevention: (prevention: Prevention) => void
+  syncPreventions: () =>void
 }
 
 export const createPreventionSlice: StateCreator<
@@ -34,12 +37,26 @@ export const createPreventionSlice: StateCreator<
         state.preventions[index] = { ...prevention, ...data };
       }
     }),
-    setPreventions: (newPreventions) =>
-      set((state) => {
-        state.preventions = newPreventions;
-      }),
-    getPreventionByName:(name:string): Prevention | undefined =>{
-      return get().preventions.find((prevention) => prevention.name === name)
-    }
+  setPreventions: (newPreventions) =>
+    set((state) => {
+      state.preventions = newPreventions;
+    }),
+  getPreventionByName:(name:string): Prevention | undefined =>{
+    return get().preventions.find((prevention) => prevention.name === name)
+  },
+  upsertPrevention: (prevention) =>
+    set((state) => {
+      const idx = state.preventions.findIndex((p) => p.name === prevention.name);
+      if (idx >= 0) Object.assign(state.preventions[idx], prevention);
+      else state.preventions.push(prevention);
+    }),
 
+  syncPreventions: () => {
+    // 1) Pega TODO o paciente
+    const patient = get() as any; // cast para ClinicalPatientData
+    // 2) Gera array de prevenções (auto + futuras manuais, se quiser)
+    const autos = generatePreventions(patient);
+    // 3) Upserta cada uma
+    autos.forEach((p) => get().upsertPrevention(p));
+  },
 });

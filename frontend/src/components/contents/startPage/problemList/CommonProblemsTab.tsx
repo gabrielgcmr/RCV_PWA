@@ -34,7 +34,7 @@ export default function CommonProblemsTab({
                 className="mr-2 accent-blue-500 focus:ring-blue-200"
               />
               <label htmlFor={problem.key} className="text-sm">
-                {problem.abbreviation || problem.label}
+                {problem.abbreviation || problem.key}
               </label>
             </div>
           ))}

@@ -1,13 +1,6 @@
-import { ClinicalPatientData, Gender, Race } from "@/types";
+import { Gender, Race } from "@/types";
 import { z } from "zod";
 
-// 1) Definição dos dados para CKD-EPI
-interface Data {
-    age: number;
-    gender: Gender
-    race: Race 
-    serumCreatinine: number;
-}
 
 interface EGFRResult {
   eGFR?: number;
@@ -32,33 +25,25 @@ const DataSchema = z.object({
     .max(15, { message: "A creatinina sérica deve ser ≤ 15 mg/dL." }),
 });
 
-// 3) Helper para extrair Data do ClinicalPatientData
-function mapPatientToData(patient: ClinicalPatientData): Data {
-  const creat = Number(
-    patient.exams.find((e) => e.key === "creatinine")?.value || 0
-  );
-  return {
-    age: Number(patient.identification.age),
-    gender: patient.identification.gender.toLowerCase() as Gender,
-    race:   patient.identification.race.toLowerCase()     as Race,
-    serumCreatinine: creat,
-  };
-}
   
-//4) calculadora
-export default function calculateCkdEpiForPatient (patient: ClinicalPatientData): EGFRResult{
+//3) calculadora
+export default function calculateCkdEpi (
+  age: number,
+  gender: Gender,
+  race: Race ,
+  serumCreatinine: number): EGFRResult{
   // instanciar o objeto do calculo
-  const data = mapPatientToData(patient);
+
     
   // Validação
-  const validation = DataSchema.safeParse(data);
+  const validation = DataSchema.safeParse({ age, gender, race, serumCreatinine });
   if (!validation.success) {
       const errors = validation.error.errors.map((e) => e.message);
       return { errors };
     }
 
   // calculo
-  const { age, gender, race, serumCreatinine } = data;
+
   const kappa = gender === "female" ? 0.7 : 0.9;
   const alpha = gender === "female" ? -0.329 : -0.411;
   const minFactor = Math.min(serumCreatinine / kappa, 1) ** alpha;

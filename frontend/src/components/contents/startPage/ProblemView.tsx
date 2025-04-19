@@ -1,4 +1,4 @@
-import CKDPreventionCard from "@/core/clinical/problems/CKD/components/CDKPreventionCard";
+import CKDPreventionCard from "@/core/clinical/Renal/problems/CKD/components/CDKPreventionCard";
 import SectionBase from "../../common/SectionBase";
 
 function ProblemsView() {
