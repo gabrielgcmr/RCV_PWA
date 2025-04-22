@@ -1,13 +1,12 @@
 import { Gender, Race } from "@/types";
 import { z } from "zod";
 
-
 interface EGFRResult {
   eGFR?: number;
   errors?: string[];
 }
 
-// 2) Schema Zod para validação automática
+// 1) Schema Zod para validação automática
 const DataSchema = z.object({
   age: z
     .number()
@@ -26,7 +25,7 @@ const DataSchema = z.object({
 });
 
   
-//3) calculadora
+//2) calculadora
 export default function calculateCkdEpi (
   age: number,
   gender: Gender,

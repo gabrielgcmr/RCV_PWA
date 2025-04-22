@@ -7,7 +7,8 @@ export interface Identification {
   race: Race
 }
 export interface Prevention {
-  name: string;
+  id: string;
+  name?: string;
   abbreviation?: string;
   value?: number | string;
   referenceValue?: number | string;

@@ -1,17 +1,16 @@
-import SectionBase from "../../common/SectionBase";
 import { usePatientStore } from "@/store";
-import generatePreventions from "@/core/clinical/preventions/generatePreventions";
+import SectionBase from "../../common/SectionBase";
+import { usePatientPreventions } from "@/hooks/usePatientPreventions";
 
-function PreventionsView() {
+export default function PreventionsView() {
   const patient = usePatientStore((state) => state);
-  //  Gere as prevenções automaticamente
-  const preventions = generatePreventions(patient);
+  usePatientPreventions(patient);
 
   return (
     <SectionBase title="Prevenções" icon="✅" id="preventions" className="">
       <ul className="list-disc pl-4">
-        {preventions.map((p) => (
-          <li key={p.name}>
+        {patient.preventions.map((p) => (
+          <li key={p.updatedAt}>
             <strong>{p.abbreviation}</strong>: {p.description}
           </li>
         ))}
@@ -19,5 +18,3 @@ function PreventionsView() {
     </SectionBase>
   );
 }
-
-export default PreventionsView;

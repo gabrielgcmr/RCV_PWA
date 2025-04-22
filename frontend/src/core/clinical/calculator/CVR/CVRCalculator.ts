@@ -1,6 +1,5 @@
 import CVRData from "./CVRData";
 
-
 /**
  * Função para calcular o risco cardiovascular e suas classificações.
  */
