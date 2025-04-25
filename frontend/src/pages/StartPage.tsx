@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import IdentificationForm from "../components/contents/startPage/identification/IdentificationForm";
+import IdentificationForm from "../components/contents/startPage/forms/IdentificationForm";
 import ProblemListForm from "../components/contents/startPage/problemList/ProblemListForm";
-import ExamsForm from "../components/contents/startPage/exam/ExamForm";
-import PhysicalExamForm from "../components/contents/startPage/physicalExam/PhysicalExamForm";
-import PreventionsView from "@/components/contents/startPage/PreventionsView";
-import ProblemsView from "@/components/contents/startPage/ProblemView";
+import ExamsForm from "../components/contents/startPage/forms/exam/ExamForm";
+import PhysicalExamForm from "../components/contents/startPage/forms/PhysicalExamForm";
+import PreventionsView from "@/components/contents/startPage/views/PreventionsView";
+import ProblemsView from "@/components/contents/startPage/views/ProblemView";
 import EditorView from "@/components/editors/EditorSection";
 import MinimizedSectionBar from "../components/layout/MinimizedSectionBar";
 import { SectionProvider } from "../context/SectionProvider";

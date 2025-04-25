@@ -1,7 +1,7 @@
 import { useExamSectionStore } from "@/store/useExamSectionStore";
-import ExamDate from "../../../common/exam/ExamDate";
+import ExamDate from "../../../../common/exam/ExamDate";
 
-import SectionBase from "../../../common/SectionBase";
+import SectionBase from "../../../../common/SectionBase";
 import CategoryExamForm from "@/components/common/exam/CategoryExamForm";
 
 function ExamsForm() {

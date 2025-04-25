@@ -1,5 +1,5 @@
 import CKDPreventionCard from "@/core/clinical/Renal/problems/CKD/components/CDKPreventionCard";
-import SectionBase from "../../common/SectionBase";
+import SectionBase from "../../../common/SectionBase";
 
 function ProblemsView() {
   return (
