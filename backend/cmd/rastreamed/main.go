@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/gabrielgcmr/medapp/config"
-	"github.com/gabrielgcmr/medapp/model"
+	"github.com/gabrielgcmr/medapp/internal/user"
 	"github.com/gabrielgcmr/medapp/pkg/database"
 	"github.com/gabrielgcmr/medapp/pkg/validation"
 	"github.com/gabrielgcmr/medapp/routes"
@@ -14,7 +14,7 @@ import (
 
 func main() {
 	database.Connect()
-	database.DB.AutoMigrate(&model.User{})
+	database.DB.AutoMigrate(&user.User{})
 
 	r := gin.Default()
 

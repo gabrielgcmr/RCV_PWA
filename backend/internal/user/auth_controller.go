@@ -1,10 +1,9 @@
-package controller
+package user
 
 import (
 	"net/http"
 
-	"github.com/gabrielgcmr/medapp/dto"
-	"github.com/gabrielgcmr/medapp/model"
+	"github.com/gabrielgcmr/medapp/pkg/dto"
 	"github.com/gabrielgcmr/medapp/pkg/errs"
 	"github.com/gabrielgcmr/medapp/pkg/utils"
 	"github.com/gabrielgcmr/medapp/pkg/validation"
@@ -13,15 +12,15 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-type AuthController struct {
-	UserService *service.UserService
+type Handler struct {
+	Repo *service.UserService
 }
 
-func NewAuthController(userService *service.UserService) *AuthController {
-	return &AuthController{UserService: userService}
+func NewAuthController(userService *service.UserService) *Handler {
+	return &Handler{Repo: userService}
 }
 
-func (ac *AuthController) Register(c *gin.Context) {
+func (h *Handler) Register(c *gin.Context) {
 	var input dto.RegisterInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -45,7 +44,7 @@ func (ac *AuthController) Register(c *gin.Context) {
 		Password: input.Password,
 	}
 
-	createdUser, err := ac.UserService.RegisterUser(&user)
+	createdUser, err := h.Repo.RegisterUser(&user)
 	if err != nil {
 		switch err {
 		case errs.ErrDuplicateEmail:
@@ -66,7 +65,7 @@ func (ac *AuthController) Register(c *gin.Context) {
 	c.JSON(http.StatusCreated, response)
 }
 
-func (ac *AuthController) Login(c *gin.Context) {
+func (ac *Handler) Login(c *gin.Context) {
 	var input dto.LoginInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
@@ -74,7 +73,7 @@ func (ac *AuthController) Login(c *gin.Context) {
 		return
 	}
 
-	user, err := ac.UserService.LoginUser(input.Email, input.Password)
+	user, err := ac.Repo.LoginUser(input.Email, input.Password)
 	if err != nil {
 		switch err {
 		case errs.ErrInvalidLogin:

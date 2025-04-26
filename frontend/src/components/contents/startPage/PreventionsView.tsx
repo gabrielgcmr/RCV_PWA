@@ -10,7 +10,7 @@ export default function PreventionsView() {
     <SectionBase title="Prevenções" icon="✅" id="preventions" className="">
       <ul className="list-disc pl-4">
         {patient.preventions.map((p) => (
-          <li key={p.updatedAt}>
+          <li key={p.id}>
             <strong>{p.abbreviation}</strong>: {p.description}
           </li>
         ))}
