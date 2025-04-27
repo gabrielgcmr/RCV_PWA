@@ -8,14 +8,14 @@ export interface Identification {
 }
 export interface Prevention {
   id: string;
-  name?: string;
-  abbreviation?: string;
+  name: string;
+  abbreviation: string;
   value?: number | string;
   referenceValue?: number | string;
   unit?: string;
   classification?: string;
   description?: string;
-  updatedAt?:string;
+  date:string;
   other?: string;
   errors?: string[];
 }

@@ -2,39 +2,60 @@ import { ClinicalPatientData, Prevention } from "@/types";
 import classifyeGFR from "../eGFR/classifier";
 import calculateCkdEpi from "../../calculator/ckdEpi";
 
-export function buildEgfrPrevention(patient: ClinicalPatientData): Prevention {
-  const age = Number(patient.identification.age)
-  const gender= patient.identification.gender
-  const race= patient.identification.race
-  const creat = Number(patient.exams.find((e) => e.key === "creatinine")?.value || 0);
-
-  const { eGFR, errors } = calculateCkdEpi(age,gender,race,creat);   
-  const classification = classifyeGFR(eGFR!);
-
+export function buildEgfrPrevention(
+  patient: ClinicalPatientData
+): Prevention {
   const abbreviation = "eGFR";
 
+  // 1) Encontrar o exame de creatinina e extrair a data
+  const creatExam = patient.exams.find(e => e.key === "creatinine");
+  const examDate = creatExam?.date 
+    ? new Date(creatExam.date).toISOString()
+    : new Date().toISOString();
+
+  // 2) Calcular o índice de ocorrência desta prevenção
+  const samePrevCount = patient.preventions
+    .filter(p => p.abbreviation === abbreviation)
+    .length;
+  const occurrenceIndex = samePrevCount + 1;
+  
+  // 3) Montar o ID: "eGFR-1", "eGFR-2" etc.
+  const id = `${abbreviation}-${occurrenceIndex}`;
+
+  // 4) Extrair dados clínicos e calcular eGFR
+  const age    = Number(patient.identification.age);
+  const gender = patient.identification.gender;
+  const race   = patient.identification.race;
+  const creat  = Number(creatExam?.value || 0);
+
+  const { eGFR, errors } = calculateCkdEpi(age, gender, race, creat);
+  const unit           = "mL/min/1.73m²";
+
+  // 5) Se houve erro, retorna só com errors
   if (errors) {
     return {
+      id,
       name:         "Taxa de Filtração Glomerular Estimada",
-      abbreviation: "eGFR",
-      id: `${abbreviation}-${Date.now()}`,
+      abbreviation,
       errors,
-      updatedAt:    new Date().toISOString(),
+      date:       examDate,
+
     };
   }
 
-   // Defina abbreviation aqui
-  const unit = "mL/min/1.73m²"; // Defina unit aqui
-  const value = parseFloat(eGFR!.toFixed(2)); // Defina value aqui
+  // 6) Se deu certo, formata valor e classifica
+  const value = parseFloat(eGFR!.toFixed(2));
+  const classification = classifyeGFR(eGFR!);
+  const description    = `${value} ${unit} — ${classification}`;
 
-    return {
-      id: `${abbreviation}-${Date.now()}`,
-      name: "Taxa de Filtração Glomerular Estimada",
-      abbreviation: abbreviation,
-      value: value,
-      unit: unit,
-      classification,
-      description: ` ${value} ${unit}- ${classification}`,
-      updatedAt: new Date().toISOString(),
-    };
-  }
+  return {
+    id,
+    name:           "Taxa de Filtração Glomerular Estimada",
+    abbreviation,
+    value,
+    unit,
+    classification,
+    description,
+    date:       examDate,
+  };
+}
