@@ -1,5 +1,5 @@
-// backend/config/cors.go
-package config
+// internal/middleware/cors.go
+package middleware
 
 import (
 	"time"

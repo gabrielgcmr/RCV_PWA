@@ -11,21 +11,24 @@ export function buildEgfrPrevention(patient: ClinicalPatientData): Prevention {
   const { eGFR, errors } = calculateCkdEpi(age,gender,race,creat);   
   const classification = classifyeGFR(eGFR!);
 
+  const abbreviation = "eGFR";
+
   if (errors) {
     return {
-      
       name:         "Taxa de Filtração Glomerular Estimada",
       abbreviation: "eGFR",
+      id: `${abbreviation}-${Date.now()}`,
       errors,
       updatedAt:    new Date().toISOString(),
     };
   }
 
-  const abbreviation = "TFG"; // Defina abbreviation aqui
+   // Defina abbreviation aqui
   const unit = "mL/min/1.73m²"; // Defina unit aqui
   const value = parseFloat(eGFR!.toFixed(2)); // Defina value aqui
 
     return {
+      id: `${abbreviation}-${Date.now()}`,
       name: "Taxa de Filtração Glomerular Estimada",
       abbreviation: abbreviation,
       value: value,

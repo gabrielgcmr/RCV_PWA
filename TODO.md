@@ -1,8 +1,14 @@
 # 📝 To-do RastreaMed
 
 ## Backend (Golang)
-- [ ] Instalar mongodb
-- [ ] Criar Models com dados estruturados
+- [ ] Criar o repositório para users
+- [ ] Criar handlers (http)
+- [ ] Criar rotas
+- [ ] Criar validação de dados
+- [ ] Criar testes unitários
+- [ ] Criar documentação (swagger)
+
+
 
 ## Frontend (React)
 - [ ] Instalar TipTap
