@@ -60,7 +60,7 @@ func (r *Repository) FindByEmail(email string) (*User, error) {
 // Update: Atualiza um usuário existente
 func (r *Repository) Update(user *User) error {
 	if err := r.db.Save(user).Error; err != nil {
-		return errors.New("erro ao atualizar usuário: " + err.Error())
+		return fmt.Errorf("erro ao atualizar usuário: %w", err)
 	}
 	return nil
 }
@@ -68,7 +68,7 @@ func (r *Repository) Update(user *User) error {
 // Delete: Remove um usuário (soft delete se você usar gorm.DeletedAt)
 func (r *Repository) Delete(id int) error {
 	if err := r.db.Delete(&User{}, id).Error; err != nil {
-		return errors.New("erro ao deletar usuário: " + err.Error())
+		return fmt.Errorf("erro ao deletar usuário: %w", err)
 	}
 	return nil
 }

@@ -3,28 +3,31 @@ package main
 import (
 	"log"
 
-	"github.com/gin-gonic/gin"
-
-	"github.com/gabrielgcmr/medapp/config"
+	"github.com/gabrielgcmr/medapp/internal/database"
+	"github.com/gabrielgcmr/medapp/internal/middleware"
 	"github.com/gabrielgcmr/medapp/internal/user"
-	"github.com/gabrielgcmr/medapp/pkg/database"
 	"github.com/gabrielgcmr/medapp/pkg/validation"
 	"github.com/gabrielgcmr/medapp/routes"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
+	//conectar db
 	database.Connect()
 	database.DB.AutoMigrate(&user.User{})
 
+	//montar o gin e rotas
 	r := gin.Default()
 
 	// 🌐 Aplica o middleware de CORS
-	r.Use(config.SetupCors())
+	r.Use(middleware.SetupCors())
 
 	// Registra as rotas
-	routes.RegisterAuthRoutes(r)
+	routes.AuthRoutes(r)
 
-	if err := validation.InitValidator(); err != nil {
+	_ = validation.Init()
+
+	if err := validation.Init(); err != nil {
 		log.Fatalf("Erro ao iniciar validador: %v", err)
 	}
 
