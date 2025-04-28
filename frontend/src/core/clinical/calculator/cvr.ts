@@ -1,3 +1,4 @@
+import { ClinicalPatientData } from "@/types";
 import { z } from "zod";
 
 // Interface de resultado para risco cardiovascular
@@ -45,18 +46,33 @@ const CVRSchema = z.object({
     .max(100, { message: "O HDL deve ser ≤ 100 mg/dL." }),
 });
 
-// 2) Função calculateCVR seguindo o padrão de validação e cálculo
+// 2) Função calculateCVR seguindo o padrão de cálculo com validação
 export default function calculateCVR(
-  age: number,
-  gender: "male" | "female",
-  race: "white" | "black" | "other",
-  systolicBloodPressure: number,
-  onHypertensionMed: number,
-  smoking: number,
-  diabetes: number,
-  totalCholesterol: number,
-  hdl: number
+  patient: ClinicalPatientData
 ): CVRResult {
+  // Mapper inline: extrai dados do patient
+  const age = Number(patient.identification.age);
+  const gender = patient.identification.gender;
+  const race = patient.identification.race;
+  const systolicBloodPressure = Number(
+    patient.exams.find((e) => e.key === "systolicBloodPressure")?.value ?? 0
+  );
+  const onHypertensionMed = Number(
+    patient.exams.find((e) => e.key === "onHypertensionMed")?.value ?? 0
+  );
+  const smoking = Number(
+    patient.exams.find((e) => e.key === "smoking")?.value ?? 0
+  );
+  const diabetes = Number(
+    patient.exams.find((e) => e.key === "diabetes")?.value ?? 0
+  );
+  const totalCholesterol = Number(
+    patient.exams.find((e) => e.key === "totalCholesterol")?.value ?? 0
+  );
+  const hdl = Number(
+    patient.exams.find((e) => e.key === "hdl")?.value ?? 0
+  );
+
   // Validação de entradas
   const validation = CVRSchema.safeParse({
     age,
@@ -72,6 +88,7 @@ export default function calculateCVR(
   if (!validation.success) {
     return { errors: validation.error.errors.map((e) => e.message) };
   }
+
   const data = validation.data;
 
   // Mapeamento do valor da raça
@@ -79,7 +96,7 @@ export default function calculateCVR(
 
   // Função interna para cálculo do logit
   function equationForGetLogit(ideal: boolean): number {
-    const age = data.age;
+    const ageVal = data.age;
     const med = ideal ? 0 : data.onHypertensionMed;
     const smoke = ideal ? 0 : data.smoking;
     const diab = ideal ? 0 : data.diabetes;
@@ -89,12 +106,12 @@ export default function calculateCVR(
 
     const sbp2 = sbp * sbp;
     const ratio = tc / hd;
-
     let logit: number;
+
     if (data.gender === "female") {
       logit =
         -12.823110 +
-        0.106501 * age +
+        0.106501 * ageVal +
         0.432440 * raceValue +
         0.000056 * sbp2 +
         0.017666 * sbp +
@@ -102,20 +119,20 @@ export default function calculateCVR(
         0.943970 * diab +
         1.009790 * smoke +
         0.151318 * ratio +
-        -0.008580 * age * raceValue +
+        -0.008580 * ageVal * raceValue +
         -0.003647 * sbp * med +
         0.006208 * sbp * raceValue +
         0.152968 * raceValue * med +
-        -0.000153 * age * sbp +
+        -0.000153 * ageVal * sbp +
         0.115232 * raceValue * diab +
         -0.092231 * raceValue * smoke +
         0.070498 * raceValue * ratio +
         -0.000173 * raceValue * sbp * med +
-        -0.000094 * age * sbp * raceValue;
+        -0.000094 * ageVal * sbp * raceValue;
     } else {
       logit =
         -11.679980 +
-        0.064200 * age +
+        0.064200 * ageVal +
         0.482835 * raceValue +
         -0.000061 * sbp2 +
         0.038950 * sbp +
@@ -126,15 +143,16 @@ export default function calculateCVR(
         -0.014207 * sbp * med +
         0.011609 * sbp * raceValue +
         -0.119460 * med * raceValue +
-        0.000025 * age * sbp +
+        0.000025 * ageVal * sbp +
         -0.077214 * raceValue * diab +
         -0.226771 * raceValue * smoke +
         -0.117749 * raceValue * ratio +
         0.004190 * raceValue * med * sbp +
-        -0.000199 * raceValue * age * sbp;
+        -0.000199 * raceValue * ageVal * sbp;
     }
 
-    return 100 / (1 + Math.exp(-logit));
+    // Converte risco para percentual e formata
+    return parseFloat((100 / (1 + Math.exp(-logit))).toFixed(2));
   }
 
   const CVRRealRisk = equationForGetLogit(false);

@@ -22,16 +22,10 @@ export function buildEgfrPrevention(
   // 3) Montar o ID: "eGFR-1", "eGFR-2" etc.
   const id = `${abbreviation}-${occurrenceIndex}`;
 
-  // 4) Extrair dados clínicos e calcular eGFR
-  const age    = Number(patient.identification.age);
-  const gender = patient.identification.gender;
-  const race   = patient.identification.race;
-  const creat  = Number(creatExam?.value || 0);
-
-  const { eGFR, errors } = calculateCkdEpi(age, gender, race, creat);
+  const { eGFR, errors } = calculateCkdEpi(patient);
   const unit           = "mL/min/1.73m²";
 
-  // 5) Se houve erro, retorna só com errors
+  // 4) Se houve erro, retorna só com errors
   if (errors) {
     return {
       id,
@@ -39,11 +33,10 @@ export function buildEgfrPrevention(
       abbreviation,
       errors,
       date:       examDate,
-
     };
   }
 
-  // 6) Se deu certo, formata valor e classifica
+  // 5) Se deu certo, formata valor e classifica
   const value = parseFloat(eGFR!.toFixed(2));
   const classification = classifyeGFR(eGFR!);
   const description    = `${value} ${unit} — ${classification}`;

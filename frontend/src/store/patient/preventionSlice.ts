@@ -1,7 +1,8 @@
 // src/store/patientSlices/preventionSlice.ts
 import { StateCreator } from "zustand";
-import { Prevention } from "@/types";
+import { ClinicalPatientData, Prevention } from "@/types";
 import { PatientStore } from "./interface";
+import { buildEgfrPrevention } from "@/core/clinical/Renal/preventions/buildEgfrPrevention";
 
 export interface PreventionSlice {
   preventions: Prevention[];
@@ -11,7 +12,6 @@ export interface PreventionSlice {
   setPreventions: (preventions: Prevention[]) => void;
   getPreventionByName: (name: string) => Prevention | undefined
   upsertPrevention: (prevention: Prevention) => void
-
 }
 
 export const createPreventionSlice: StateCreator<
@@ -21,14 +21,17 @@ export const createPreventionSlice: StateCreator<
   PreventionSlice
 > = (set, get) => ({
   preventions: [],
+
   addPrevention: (prevention) =>
     set((state) => {
       state.preventions.push(prevention)
     }),
+
   removePreventionByIndex: (index) =>
     set((state) => {
       state.preventions.splice(index, 1);
     }),
+
   updatePreventionByIndex: (index, data) =>
     set((state) => {
       const prevention = state.preventions[index];
@@ -36,13 +39,16 @@ export const createPreventionSlice: StateCreator<
         state.preventions[index] = { ...prevention, ...data };
       }
     }),
+
   setPreventions: (newPreventions) =>
     set((state) => {
       state.preventions = newPreventions;
     }),
+
   getPreventionByName:(name:string): Prevention | undefined =>{
     return get().preventions.find((prevention) => prevention.name === name)
   },
+
   upsertPrevention: (prevention) =>
     set((state) => {
       const idx = state.preventions.findIndex((p) => p.name === prevention.name);
@@ -50,5 +56,10 @@ export const createPreventionSlice: StateCreator<
       else state.preventions.push(prevention);
     }),
 
-    
+  refreshPreventions() {
+    const patient: ClinicalPatientData = get();
+    set(state => {
+      state.preventions = [buildEgfrPrevention(patient)];
+    });
+  }
 });

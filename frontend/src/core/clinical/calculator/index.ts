@@ -1,2 +1,3 @@
-export * from "./CVR/CVRIndex";
-export * from "./FIB4/FIB4Index";
+export * from "./ckdEpi"
+export * from "./fib4";
+export * from "./cvr"
