@@ -8,7 +8,7 @@ interface EGFRResult {
 }
 
 // 1) Schema Zod para validação automática
-const DataSchema = z.object({
+const ckdEpiSchema = z.object({
   age: z
     .number()
     .min(18, { message: "A idade deve ser ≥ 18 anos." })
@@ -36,7 +36,7 @@ export default function calculateCkdEpi (
 
     
   // Validação
-  const validation = DataSchema.safeParse({ age, gender, race, serumCreatinine });
+  const validation = ckdEpiSchema.safeParse({ age, gender, race, serumCreatinine });
   if (!validation.success) {
       const errors = validation.error.errors.map((e) => e.message);
       return { errors };
