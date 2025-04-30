@@ -1,9 +1,8 @@
 // src/core/clinical/preventions/useEgfrPrevention.ts
 import { usePatientStore } from "@/store";
-import { shallow } from "zustand/shallow";
-
+import { useShallow } from 'zustand/react/shallow'
 import { Exam } from "@/types";
-import { buildEgfrPrevention } from "../Renal/preventions/buildEgfrPrevention";
+import { buildEgfrPrevention } from "./buildEgfrPrevention";
 
 interface PatientState {
   identification: {
@@ -22,13 +21,15 @@ export function useEgfrPrevention() {
     race,
     creatinineExam,
     preventions
-  } = usePatientStore((state: PatientState) => ({
-    age: state.identification.age,
-    gender: state.identification.gender,
-    race: state.identification.race,
-    creatinineExam: state.getExam("creatinine"),
-    preventions: state.preventions
-  }));
+  } = usePatientStore(
+    useShallow((state: PatientState) => ({
+      age: state.identification.age,
+      gender: state.identification.gender,
+      race: state.identification.race,
+      creatinineExam: state.getExam("creatinine"),
+      preventions: state.preventions
+    }))
+  );
 
   // Converter idade para número (tratando valores inválidos)
   const numericAge = Number(age) || 0;
