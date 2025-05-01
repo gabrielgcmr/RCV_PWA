@@ -1,12 +1,12 @@
 import { JSONContent } from "@tiptap/react";
-import { ClinicalPatientData } from "@/types";
+import { ClinicalPatient } from "@/types";
 import { mostCommonExams } from "@/constants";
 
 /**
  * Gera a seção de Exames Complementares como JSONContent para o TipTap.
  */
 export function examsJSON(
-  patient: ClinicalPatientData
+  patient: ClinicalPatient
 ): JSONContent {
   // Filtra exames válidos
   const validExams =

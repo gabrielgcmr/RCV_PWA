@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "../components/layout/Layout";
-import StartPage from "../pages/StartPage";
+import MFCView from "../pages/MFCView";
 import PatientDetailsPage from "../pages/PatientDetailsPage";
 import PrivateRoute from "./PrivateRoute";
 
@@ -9,7 +9,7 @@ function AppRoutes() {
     <Routes>
       <Route element={<Layout />}>
         {/* Rota pública */}
-        <Route path="/" element={<StartPage />} />
+        <Route path="/medico/mfc" element={<MFCView />} />
 
         {/* Rotas protegidas */}
         <Route element={<PrivateRoute />}>

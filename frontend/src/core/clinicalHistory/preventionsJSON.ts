@@ -1,8 +1,8 @@
 // src/core/clinicalHistory/preventionsJSON.ts
-import { ClinicalPatientData } from "@/types";
+import { ClinicalPatient } from "@/types";
 import { JSONContent } from "@tiptap/react";
 
-export function preventionsJSON(patient: ClinicalPatientData): JSONContent {
+export function preventionsJSON(patient: ClinicalPatient): JSONContent {
   // Se não houver nenhuma prevenção cadastrada, exibimos um único item “Sem prevenções”
   const listItems =
     patient.preventions.length > 0

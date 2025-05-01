@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import IdentificationForm from "../components/contents/startPage/forms/IdentificationForm";
-import ProblemListForm from "../components/contents/startPage/problemList/ProblemListForm";
 import ExamsForm from "../components/contents/startPage/forms/exam/ExamForm";
 import PhysicalExamForm from "../components/contents/startPage/forms/PhysicalExamForm";
 import PreventionsView from "@/components/contents/startPage/views/PreventionsView";
@@ -14,8 +13,9 @@ import clinicalHistoryJSON from "@/core/clinicalHistory/fullClinicalHistoryJSON"
 import { useSectionStore } from "@/store/useSectionStore";
 import { usePatientStore } from "@/store";
 import PatientDebugPanel from "@/components/devtools/PatientDebugPanel";
+import ProblemListForm from "@/components/contents/startPage/forms/problemList/ProblemListForm";
 
-export default function StartPage() {
+export default function MFCView() {
   const patient = usePatientStore();
   const isVisible = useSectionStore((state) => state.isVisible);
 

@@ -1,11 +1,11 @@
 // src/core/clinical/CDK/setCKDProblem.ts
 
-import { ClinicalPatientData, Problem } from "@/types";
+import { ClinicalPatient, Problem } from "@/types";
 import setCkdEpiPrevention from "./setCkdEpiPrevention";
 import CKDStaging from "../staging/CKDStaging";
 
 
-export function setCKDProblem(patient: ClinicalPatientData): Problem | null {
+export function setCKDProblem(patient: ClinicalPatient): Problem | null {
   const result = setCkdEpiPrevention(patient);
   if (!result || typeof result.value !== "number") return null;
 

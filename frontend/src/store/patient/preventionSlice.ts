@@ -1,8 +1,7 @@
 // src/store/patientSlices/preventionSlice.ts
 import { StateCreator } from "zustand";
-import { ClinicalPatientData, Prevention } from "@/types";
+import { Prevention } from "@/types";
 import { PatientStore } from "./interface";
-import { buildEgfrPrevention } from "@/core/clinical/Renal/preventions/buildEgfrPrevention";
 
 export interface PreventionSlice {
   preventions: Prevention[];
@@ -51,15 +50,8 @@ export const createPreventionSlice: StateCreator<
 
   upsertPrevention: (prevention) =>
     set((state) => {
-      const idx = state.preventions.findIndex((p) => p.name === prevention.name);
+      const idx = state.preventions.findIndex((p) => p.id === prevention.id);
       if (idx >= 0) Object.assign(state.preventions[idx], prevention);
       else state.preventions.push(prevention);
-    }),
-
-  refreshPreventions() {
-    const patient: ClinicalPatientData = get();
-    set(state => {
-      state.preventions = [buildEgfrPrevention(patient)];
-    });
-  }
+    })
 });

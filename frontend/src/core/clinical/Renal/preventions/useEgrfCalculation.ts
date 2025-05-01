@@ -3,6 +3,7 @@ import { usePatientStore } from "@/store";
 import { useShallow } from 'zustand/react/shallow'
 import { Exam } from "@/types";
 import { buildEgfrPrevention } from "./buildEgfrPrevention";
+import { useMemo } from "react";
 
 interface PatientState {
   identification: {
@@ -11,7 +12,6 @@ interface PatientState {
     race: string;
   };
   getExam: (key: string) => Exam | undefined;
-  preventions: { abbreviation: string }[];
 }
 
 export function useEgfrPrevention() {
@@ -20,32 +20,28 @@ export function useEgfrPrevention() {
     gender,
     race,
     creatinineExam,
-    preventions
+
   } = usePatientStore(
     useShallow((state: PatientState) => ({
       age: state.identification.age,
       gender: state.identification.gender,
       race: state.identification.race,
       creatinineExam: state.getExam("creatinine"),
-      preventions: state.preventions
+
     }))
   );
 
-  // Converter idade para número (tratando valores inválidos)
-  const numericAge = Number(age) || 0;
-  
-  // Extrair valores do exame de creatinina
-  const creatValue = Number(creatinineExam?.value) || 0;
-  const creatDate = creatinineExam?.date || new Date().toISOString();
-
-  const existingCount = preventions.filter(p => p.abbreviation === "eGFR").length;
-
-  return buildEgfrPrevention(
-    numericAge,
-    gender,
-    race,
-    creatValue,
-    existingCount,
-    creatDate
-  );
+  return useMemo(() => {
+    const creatValue = Number(creatinineExam?.value);
+    const numericAge = Number(age);
+    if (!creatinineExam?.date || isNaN(creatValue)) return null;
+    
+    return buildEgfrPrevention(
+      numericAge,
+      gender,
+      race,
+      creatValue,
+      creatinineExam.date,
+    );
+  }, [age, gender, race, creatinineExam]);
 }

@@ -2,7 +2,7 @@
 import { JSONContent } from "@tiptap/react";
 import identificationJSON from "./identificationJSON";
 import allergiesJSON from "./allergiesJSON";
-import { ClinicalPatientData } from "@/types";
+import { ClinicalPatient } from "@/types";
 import preventionsJSON from "./preventionsJSON";
 import problemsJSON from "./problemsJSON";
 import MedicationsJSON from "./medicationsJSON";
@@ -10,7 +10,7 @@ import historyJSON from "./histoyJSON";
 import examsJSON from "./examsJSON";
 import presentIllnessJSON from "./presentIllnessJSON";
 
-export default function clinicalHistoryJSON(patient: ClinicalPatientData): JSONContent {
+export default function clinicalHistoryJSON(patient: ClinicalPatient): JSONContent {
   return {
     type: "doc",
     content: [

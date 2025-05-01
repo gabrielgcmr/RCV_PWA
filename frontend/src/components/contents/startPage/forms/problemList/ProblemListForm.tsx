@@ -1,10 +1,11 @@
 //src/components/contents/startPage
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import SectionBase from "../../../common/SectionBase";
+
 import { useCallback, useState } from "react";
 import { usePatientStore } from "@/store/patient/usePatientStore";
 import { Problem } from "@/types";
 import CommonProblemsTab from "./CommonProblemsTab";
+import SectionBase from "@/components/common/SectionBase";
 
 export default function ProblemListForm() {
   const {

@@ -50,16 +50,6 @@ export default function IdentificationForm({
     >
       <form className="space-y-2">
         <div>
-          <Label htmlFor="name">Nome</Label>
-          <Input
-            id="name"
-            placeholder="Digite o nome do paciente"
-            value={identification.fullName}
-            onChange={(e) => handleFieldChange("fullName", e.target.value)}
-          />
-        </div>
-
-        <div>
           <Label htmlFor="age">Idade</Label>
           <Input
             id="age"

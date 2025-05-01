@@ -1,8 +1,8 @@
 // src/core/clinical/CDK/CKDAssessment.ts
 import CKDStaging from "../staging/CKDStaging";
-import { ClinicalPatientData } from "@/types";
+import { ClinicalPatient } from "@/types";
 
-export function CKDAssessment(patient: ClinicalPatientData) {
+export function CKDAssessment(patient: ClinicalPatient) {
 
   const uacr = Number(
     patient.exams.find((e) => e.key === "UACR")?.value

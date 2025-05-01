@@ -1,5 +1,5 @@
 //src/core/clinicalHistory/identificationJSON.ts
-import { ClinicalPatientData, Identification } from "@/types";
+import { ClinicalPatient, Identification } from "@/types";
 import { JSONContent } from "@tiptap/react";
 
 const genderLabels: Record<Identification["gender"], string> = {
@@ -16,7 +16,7 @@ const raceLabels: Record<Identification["race"], string> = {
 };
 
 const identificationJSON = (
-  patient: ClinicalPatientData
+  patient: ClinicalPatient
 ): JSONContent => ({
   type: "doc",
   content: [

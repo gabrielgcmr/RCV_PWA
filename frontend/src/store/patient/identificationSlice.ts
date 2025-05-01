@@ -2,7 +2,7 @@
 
 import { StateCreator } from "zustand";
 import { Identification } from "@/types";
-import { PatientStore } from "./interface";
+import { PatientStore } from "./interface"
 
 export interface IdentificationSlice {
   identification: Identification;

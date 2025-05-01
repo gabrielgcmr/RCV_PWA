@@ -1,9 +1,9 @@
 
-import { ClinicalPatientData } from "../../../../types";
+import { ClinicalPatient } from "../../../../types";
 import { FIB4Data } from "./FIB4Data";
 
 // Mapeia os dados do paciente para o cálculo do FIB-4.
-export default function mapFIB4Data(patient: ClinicalPatientData): FIB4Data {
+export default function mapFIB4Data(patient: ClinicalPatient): FIB4Data {
   const getExamValue = (name: string): number =>
     Number(patient.exams.find(exam => exam.key === name)?.value || 0);
 

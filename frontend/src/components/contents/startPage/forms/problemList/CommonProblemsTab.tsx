@@ -1,8 +1,9 @@
 import React from "react";
 import { TabsContent } from "@/components/ui/tabs";
 import { usePatientStore } from "@/store/patient/usePatientStore";
-import mostCommonProblems from "@/components/contents/startPage/problemList/mostCommonProblems";
+
 import { Problem } from "@/types";
+import mostCommonProblems from "./mostCommonProblems";
 
 interface CommonProblemsTabProps {
   toggleProblem: (problem: Problem, checked: boolean) => void;

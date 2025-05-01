@@ -1,17 +1,17 @@
 // src/store/patient/clinicalHistorySlice.ts
 
 import { StateCreator } from "zustand";
-import { ClinicalPatientData } from "@/types";
+import { ClinicalPatient } from "@/types";
 import { PatientStore } from "./interface";
 
 export interface ClinicalHistorySlice {
-  clinicalHistory: ClinicalPatientData["clinicalHistory"];
+  clinicalHistory: ClinicalPatient["clinicalHistory"];
   setClinicalHistorySection: (
-    section: keyof ClinicalPatientData["clinicalHistory"],
+    section: keyof ClinicalPatient["clinicalHistory"],
     value: string
   ) => void;
   setFullClinicalHistory: (
-    data: ClinicalPatientData["clinicalHistory"]
+    data: ClinicalPatient["clinicalHistory"]
   ) => void;
 }
 

@@ -1,39 +1,39 @@
-import SectionBase from "../../../common/SectionBase";
 import { usePatientStore } from "@/store";
-import { summaryTitle } from "../clinicalHistory/styles";
 import { useEffect } from "react";
-import { buildEgfrPrevention } from "@/core/clinical/Renal/preventions/buildEgfrPrevention";
+import SectionBase from "@/components/common/SectionBase";
+import { useEgfrPrevention } from "@/core/clinical/Renal/preventions/useEgrfCalculation";
+import { useShallow } from "zustand/react/shallow";
 
 export default function PreventionsView() {
-  const patient = usePatientStore((s) => s);
-  const addPrevention = usePatientStore((s) => s.addPrevention);
-  const hasAnyPrevention = patient.preventions.length > 0;
-
-  // toda vez que mudar o array de exames, recalcula e adiciona a prevenção
+  const preventions = usePatientStore(useShallow((state) => state.preventions));
+  const egfrPrevention = useEgfrPrevention();
+  // Efeito para upsert da prevenção de eGFR
   useEffect(() => {
-    // só roda se já existir creatinina no array
-    if (patient.exams.some((e) => e.key === "creatinine")) {
-      const prev = buildEgfrPrevention(patient);
-      addPrevention(prev);
+    if (egfrPrevention) {
+      // Verifica se já existe uma prevenção com o mesmo valor/descrição
+      const existing = usePatientStore
+        .getState()
+        .preventions.find(
+          (p) =>
+            p.abbreviation === "TFG" &&
+            p.description === egfrPrevention.description
+        );
+
+      if (!existing) {
+        usePatientStore.getState().upsertPrevention(egfrPrevention);
+      }
     }
-  }, [patient.exams, addPrevention, patient]);
+  }, [egfrPrevention]);
 
   return (
-    <SectionBase title="Prevenções" icon="✅" id="preventions" className="">
-      <p className={summaryTitle}>
-        ✅ <b>PREVENÇÕES</b>{" "}
-      </p>
-      {hasAnyPrevention ? (
-        <ul className="list-disc pl-4">
-          {patient.preventions.map((p) => (
-            <li key={p.id}>
-              <strong>{p.abbreviation}</strong>: {p.description}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <li>Sem prevenções</li>
-      )}
+    <SectionBase title="Prevenções" icon="✅" id="preventions">
+      <ul className="list-disc pl-4">
+        {preventions.map((p) => (
+          <li key={p.id}>
+            <strong>{p.abbreviation}</strong>: {p.description}
+          </li>
+        ))}
+      </ul>
     </SectionBase>
   );
 }

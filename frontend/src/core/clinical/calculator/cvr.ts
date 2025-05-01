@@ -1,4 +1,4 @@
-import { ClinicalPatientData } from "@/types";
+import { ClinicalPatient } from "@/types";
 import { z } from "zod";
 
 // Interface de resultado para risco cardiovascular
@@ -48,7 +48,7 @@ const CVRSchema = z.object({
 
 // 2) Função calculateCVR seguindo o padrão de cálculo com validação
 export default function calculateCVR(
-  patient: ClinicalPatientData
+  patient: ClinicalPatient
 ): CVRResult {
   // Mapper inline: extrai dados do patient
   const age = Number(patient.identification.age);

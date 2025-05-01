@@ -1,4 +1,4 @@
-import { ClinicalPatientData, Prevention } from "@/types";
+import { ClinicalPatient, Prevention } from "@/types";
 import calculateCKDEPI from "../calculator/ckdEpi.calculator";
 import classifyTFG from "../calculator/ckdEpi.classify";
 import mapCKDEPIData from "../calculator/cdkEpi.mapper";
@@ -6,7 +6,7 @@ import validateCKDEPIData from "../calculator/ckdEpi.validator";
 import { error } from "console";
 
 // Calcula a TFG pela equação CKD-EPI
-function setCkdEpiPrevention(patient: ClinicalPatientData): Prevention | null{
+function setCkdEpiPrevention(patient: ClinicalPatient): Prevention | null{
   const mappedData = mapCKDEPIData(patient);
   const validation = validateCKDEPIData(mappedData);
   if (!validation.isValid) {

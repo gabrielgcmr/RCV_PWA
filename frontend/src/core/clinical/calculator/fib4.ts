@@ -1,4 +1,4 @@
-import { ClinicalPatientData } from "@/types";
+import { ClinicalPatient } from "@/types";
 import { z } from "zod";
 
 // Interface de resultado para FIB-4
@@ -28,7 +28,7 @@ const FIB4Schema = z.object({
 });
 
 // 2) Função calculateFIB4 seguindo padrão de cálculo com validação
-export default function calculateFIB4(patient: ClinicalPatientData): FIB4Result {
+export default function calculateFIB4(patient: ClinicalPatient): FIB4Result {
   //Mapper
   const age       = Number(patient.identification.age);
   const ast       = Number(patient.exams.find(e => e.key === "ast")?.value ?? 0);

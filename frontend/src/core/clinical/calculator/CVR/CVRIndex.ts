@@ -1,5 +1,5 @@
 import { Prevention } from "../../../../types";
-import { ClinicalPatientData } from "../../../../types";
+import { ClinicalPatient } from "../../../../types";
 import calculateCVR from "./CVRCalculator";
 import classifyCVR from "./CVRClassifier";
 import mapPatientData from "./CVRMapper";
@@ -8,7 +8,7 @@ import validateCVRData from "./CVRValidator";
 /**
  * Função principal para calcular o risco cardiovascular.
  */
-function CVRIndex(patientData: ClinicalPatientData): Prevention {
+function CVRIndex(patientData: ClinicalPatient): Prevention {
   const mappedData = mapPatientData(patientData);
   const validation = validateCVRData(mappedData);
 

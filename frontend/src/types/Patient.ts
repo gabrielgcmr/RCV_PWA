@@ -58,7 +58,7 @@ export interface Exam {
   code?: string; // Código do exame (ex: código LOINC)
   codeSystem?: "LOINC" | "TUSS" | "SUS" | "MostCommon" | "Other"; // Sistema de codificação do exame
 }
-export interface ClinicalPatientData {
+export interface ClinicalPatient {
   identification: Identification
   preventions: Prevention[];
   problems: Problem[];
@@ -78,7 +78,7 @@ export interface ClinicalPatientData {
 
 type CPF = string; // Poderia ser um tipo branded para validação
 type CNS = string; // Idem
-export interface AdministrativeData {
+export interface AdministrativePatient {
   fullName: string;
   cns: CNS
   cpf: CPF
@@ -94,4 +94,4 @@ export interface MetaData{
   updatedAt?: Date;
 }
 
-export interface PatientData extends ClinicalPatientData, AdministrativeData, MetaData {}
+export interface PatientData extends ClinicalPatient, AdministrativePatient, MetaData {}

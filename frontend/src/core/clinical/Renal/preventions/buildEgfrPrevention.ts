@@ -8,13 +8,27 @@ export function buildEgfrPrevention(
   gender: string,
   race: string,
   serumCreatinine: number,
-  existingCount: number,
-  examDate: string
-): Prevention {
+  examDate: string,
+): Prevention{
+
   const abbreviation   = "TFG";
-  const id             = `${abbreviation}-${existingCount + 1}`;
   const unit           = "mL/min/1.73m²";
+    // Gera ID baseado na data (timestamp)
+  const id = `${abbreviation}-${new Date(examDate).getTime()}`;
+
   const { eGFR, errors } = calculateCkdEpi(age, gender as Gender, race as Race, serumCreatinine);
+  if (errors || eGFR === undefined) {
+    return {
+      id,
+      name: "Taxa de Filtração Glomerular Estimada",
+      abbreviation,
+      errors: errors || ["Não foi possível calcular o eGFR"],
+      date: examDate,
+    };
+  }
+
+
+  const formattedEGFR = parseFloat(eGFR!.toFixed(2));
 
   if (errors) {
     return {
@@ -26,14 +40,14 @@ export function buildEgfrPrevention(
     };
   }
 
-  const classification = classifyeGFR(eGFR!);
-  const description    = `${eGFR} ${unit} — ${classification}`;
+  const classification = classifyeGFR(formattedEGFR);
+  const description    = `${formattedEGFR} ${unit} — ${classification}`;
 
   return {
     id,
     name:           "Taxa de Filtração Glomerular Estimada",
     abbreviation,
-    value:          eGFR,
+    value:          formattedEGFR,
     unit,
     classification,
     description,

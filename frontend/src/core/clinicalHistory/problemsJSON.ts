@@ -1,11 +1,11 @@
-import { ClinicalPatientData, Problem } from "@/types";
+import { ClinicalPatient, Problem } from "@/types";
 import { JSONContent } from "@tiptap/react";
 
 /**
  * Gera a seção de Problemas (Problem List) como JSONContent para o editor TipTap.
  */
 export function problemsJSON(
-  patient: ClinicalPatientData
+  patient: ClinicalPatient
 ): JSONContent {
   // Monta os itens da lista de problemas ou exibe mensagem padrão
   const listItems =
