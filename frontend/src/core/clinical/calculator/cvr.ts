@@ -1,4 +1,4 @@
-import { ClinicalPatient } from "@/types";
+import { Gender, Race } from "@/types";
 import { z } from "zod";
 
 // Interface de resultado para risco cardiovascular
@@ -48,30 +48,16 @@ const CVRSchema = z.object({
 
 // 2) Função calculateCVR seguindo o padrão de cálculo com validação
 export default function calculateCVR(
-  patient: ClinicalPatient
+  age: number,
+  gender: Gender,
+  race: Race,
+  systolicBloodPressure: number,
+  onHypertensionMed: number,
+  smoking: number,
+  diabetes: number,
+  totalCholesterol: number,
+  hdl: number
 ): CVRResult {
-  // Mapper inline: extrai dados do patient
-  const age = Number(patient.identification.age);
-  const gender = patient.identification.gender;
-  const race = patient.identification.race;
-  const systolicBloodPressure = Number(
-    patient.exams.find((e) => e.key === "systolicBloodPressure")?.value ?? 0
-  );
-  const onHypertensionMed = Number(
-    patient.exams.find((e) => e.key === "onHypertensionMed")?.value ?? 0
-  );
-  const smoking = Number(
-    patient.exams.find((e) => e.key === "smoking")?.value ?? 0
-  );
-  const diabetes = Number(
-    patient.exams.find((e) => e.key === "diabetes")?.value ?? 0
-  );
-  const totalCholesterol = Number(
-    patient.exams.find((e) => e.key === "totalCholesterol")?.value ?? 0
-  );
-  const hdl = Number(
-    patient.exams.find((e) => e.key === "hdl")?.value ?? 0
-  );
 
   // Validação de entradas
   const validation = CVRSchema.safeParse({

@@ -1,4 +1,4 @@
-package user
+package professional
 
 import (
 	"time"
@@ -14,7 +14,7 @@ const (
 	ProfessionTecEnf     Profession = "tecnico_enfermagem"
 )
 
-type User struct {
+type Professional struct {
 	ID           int        `gorm:"primaryKey;autoIncrement" json:"id"`
 	CPF          string     `gorm:"size:14;not null;uniqueIndex" json:"cpf"` // ex: “123.456.789-00”
 	CNS          *string    `gorm:"size:15" json:"cns,omitempty"`

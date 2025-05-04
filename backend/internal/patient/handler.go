@@ -1,11 +1,11 @@
 // internal/user/handler.go
-package user
+package patient
 
 import (
 	"net/http"
 
-	"github.com/gabrielgcmr/medapp/internal/user/dto"
-	"github.com/gabrielgcmr/medapp/internal/user/utils"
+	"github.com/gabrielgcmr/medapp/internal/patient/dto"
+	"github.com/gabrielgcmr/medapp/internal/patient/utils"
 	"github.com/gabrielgcmr/medapp/pkg/validation"
 	"github.com/gin-gonic/gin"
 )
@@ -45,17 +45,16 @@ func (h *Handler) Register(c *gin.Context) {
 		return
 	}
 
-	resp := dto.UserResponse{
-		ID:         u.ID,
-		FullName:   u.FullName,
-		CPF:        u.CPF,
-		CNS:        u.CNS,
-		Email:      *u.Email,
-		Phone:      u.Phone,
-		Profession: string(u.Profession),
-		CreatedAt:  *u.CreatedAt,
-		UpdatedAt:  *u.UpdatedAt,
-		Token:      &token,
+	resp := dto.Response{
+		ID:        u.ID,
+		FullName:  u.FullName,
+		CPF:       u.CPF,
+		CNS:       u.CNS,
+		Email:     *u.Email,
+		Phone:     u.Phone,
+		CreatedAt: *u.CreatedAt,
+		UpdatedAt: *u.UpdatedAt,
+		Token:     &token,
 	}
 	c.JSON(http.StatusCreated, resp)
 }
@@ -85,17 +84,16 @@ func (h *Handler) Login(c *gin.Context) {
 		return
 	}
 
-	resp := dto.UserResponse{
-		ID:         u.ID,
-		FullName:   u.FullName,
-		CPF:        u.CPF,
-		CNS:        u.CNS,
-		Email:      *u.Email,
-		Phone:      u.Phone,
-		Profession: string(u.Profession),
-		CreatedAt:  *u.CreatedAt,
-		UpdatedAt:  *u.UpdatedAt,
-		Token:      &token,
+	resp := dto.Response{
+		ID:        u.ID,
+		FullName:  u.FullName,
+		CPF:       u.CPF,
+		CNS:       u.CNS,
+		Email:     *u.Email,
+		Phone:     u.Phone,
+		CreatedAt: *u.CreatedAt,
+		UpdatedAt: *u.UpdatedAt,
+		Token:     &token,
 	}
 	c.JSON(http.StatusOK, resp)
 }
@@ -121,16 +119,15 @@ func (h *Handler) Me(c *gin.Context) {
 	}
 
 	// 3) Monta o DTO de resposta (sem token, sem senha)
-	resp := dto.UserResponse{
-		ID:         u.ID,
-		FullName:   u.FullName,
-		CPF:        u.CPF,
-		CNS:        u.CNS,
-		Email:      *u.Email,
-		Phone:      u.Phone,
-		Profession: string(u.Profession),
-		CreatedAt:  *u.CreatedAt,
-		UpdatedAt:  *u.UpdatedAt,
+	resp := dto.Response{
+		ID:        u.ID,
+		FullName:  u.FullName,
+		CPF:       u.CPF,
+		CNS:       u.CNS,
+		Email:     *u.Email,
+		Phone:     u.Phone,
+		CreatedAt: *u.CreatedAt,
+		UpdatedAt: *u.UpdatedAt,
 	}
 	c.JSON(http.StatusOK, resp)
 }

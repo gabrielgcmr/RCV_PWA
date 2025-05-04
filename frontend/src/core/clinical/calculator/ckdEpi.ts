@@ -32,8 +32,6 @@ export default function calculateCkdEpi (
   gender: Gender,
   race: Race ,
   serumCreatinine: number): EGFRResult{
-  // instanciar o objeto do calculo
-
     
   // Validação
   const validation = ckdEpiSchema.safeParse({ age, gender, race, serumCreatinine });
@@ -43,7 +41,6 @@ export default function calculateCkdEpi (
     }
 
   // calculo
-
   const kappa = gender === "female" ? 0.7 : 0.9;
   const alpha = gender === "female" ? -0.329 : -0.411;
   const minFactor = Math.min(serumCreatinine / kappa, 1) ** alpha;

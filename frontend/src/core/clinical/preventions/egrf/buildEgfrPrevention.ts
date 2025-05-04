@@ -1,6 +1,6 @@
 // src/core/clinical/preventions/buildEgfrPrevention.ts
 import { Gender, Prevention, Race } from "@/types";
-import classifyeGFR from "../eGFR/classifier";
+import classifyeGFR from "./classifier";
 import calculateCkdEpi from "../../calculator/ckdEpi";
 
 export function buildEgfrPrevention(

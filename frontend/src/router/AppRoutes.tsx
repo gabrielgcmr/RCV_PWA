@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "../components/layout/Layout";
-import MFCView from "../pages/MFCView";
+import MFCView from "../pages/interfaces/MFCView";
 import PatientDetailsPage from "../pages/PatientDetailsPage";
 import PrivateRoute from "./PrivateRoute";
 

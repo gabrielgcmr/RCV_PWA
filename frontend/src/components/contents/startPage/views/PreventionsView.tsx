@@ -1,8 +1,8 @@
 import { usePatientStore } from "@/store";
 import { useEffect } from "react";
 import SectionBase from "@/components/common/SectionBase";
-import { useEgfrPrevention } from "@/core/clinical/Renal/preventions/useEgrfCalculation";
 import { useShallow } from "zustand/react/shallow";
+import { useEgfrPrevention } from "@/core/clinical/preventions/egrf/useEgrfCalculation";
 
 export default function PreventionsView() {
   const preventions = usePatientStore(useShallow((state) => state.preventions));

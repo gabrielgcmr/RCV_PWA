@@ -5,16 +5,15 @@ import (
 
 	"github.com/gabrielgcmr/medapp/internal/database"
 	"github.com/gabrielgcmr/medapp/internal/middleware"
-	"github.com/gabrielgcmr/medapp/internal/user"
+	"github.com/gabrielgcmr/medapp/internal/patient"
 	"github.com/gabrielgcmr/medapp/pkg/validation"
-	"github.com/gabrielgcmr/medapp/routes"
+
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	//conectar db
 	database.Connect()
-	database.DB.AutoMigrate(&user.User{})
 
 	//montar o gin e rotas
 	r := gin.Default()
@@ -23,7 +22,7 @@ func main() {
 	r.Use(middleware.SetupCors())
 
 	// Registra as rotas
-	routes.AuthRoutes(r)
+	patient.Routes(r)
 
 	_ = validation.Init()
 

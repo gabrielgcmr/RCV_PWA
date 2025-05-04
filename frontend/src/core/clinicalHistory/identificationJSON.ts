@@ -36,20 +36,6 @@ const identificationJSON = (
             content: [
               {
                 type: "text",
-                text: `Nome: ${patient.identification.fullName}`,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        type: "listItem",
-        content: [
-          {
-            type: "paragraph",
-            content: [
-              {
-                type: "text",
                 text: `Idade: ${patient.identification.age}`,
               },
             ],

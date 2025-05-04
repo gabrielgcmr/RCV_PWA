@@ -1,4 +1,4 @@
-package user
+package patient
 
 import (
 	"errors"
@@ -20,7 +20,7 @@ func NewRepository(db *gorm.DB) *Repository {
 // ----------------------
 
 // Create: Cadastra um novo usuário
-func (r *Repository) Create(user *User) error {
+func (r *Repository) Create(user *Patient) error {
 	if err := r.db.Create(user).Error; err != nil {
 		return fmt.Errorf("erro ao criar usuário: %w", err)
 	}
@@ -28,8 +28,8 @@ func (r *Repository) Create(user *User) error {
 }
 
 // FindByID: Busca usuário por ID
-func (r *Repository) FindByID(id int) (*User, error) {
-	var user User
+func (r *Repository) FindByID(id int) (*Patient, error) {
+	var user Patient
 	if err := r.db.First(&user, id).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, errors.New("usuário não encontrado")
@@ -40,8 +40,8 @@ func (r *Repository) FindByID(id int) (*User, error) {
 }
 
 // FindByCPF: Busca usuário por CPF (útil para login)
-func (r *Repository) FindByCPF(cpf string) (*User, error) {
-	var user User
+func (r *Repository) FindByCPF(cpf string) (*Patient, error) {
+	var user Patient
 	if err := r.db.Where("cpf = ?", cpf).First(&user).Error; err != nil {
 		return nil, err
 	}
@@ -49,8 +49,8 @@ func (r *Repository) FindByCPF(cpf string) (*User, error) {
 }
 
 // Busca usuário pelo email
-func (r *Repository) FindByEmail(email string) (*User, error) {
-	var user User
+func (r *Repository) FindByEmail(email string) (*Patient, error) {
+	var user Patient
 	if err := r.db.Where("email = ?", email).First(&user).Error; err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (r *Repository) FindByEmail(email string) (*User, error) {
 }
 
 // Update: Atualiza um usuário existente
-func (r *Repository) Update(user *User) error {
+func (r *Repository) Update(user *Patient) error {
 	if err := r.db.Save(user).Error; err != nil {
 		return fmt.Errorf("erro ao atualizar usuário: %w", err)
 	}
@@ -67,7 +67,7 @@ func (r *Repository) Update(user *User) error {
 
 // Delete: Remove um usuário (soft delete se você usar gorm.DeletedAt)
 func (r *Repository) Delete(id int) error {
-	if err := r.db.Delete(&User{}, id).Error; err != nil {
+	if err := r.db.Delete(&Patient{}, id).Error; err != nil {
 		return fmt.Errorf("erro ao deletar usuário: %w", err)
 	}
 	return nil
@@ -78,8 +78,8 @@ func (r *Repository) Delete(id int) error {
 // ----------------------
 
 // Exemplo: Listar todos os usuários com paginação
-func (r *Repository) List(limit, offset int) ([]User, error) {
-	var users []User
+func (r *Repository) List(limit, offset int) ([]Patient, error) {
+	var users []Patient
 	if err := r.db.Limit(limit).Offset(offset).Find(&users).Error; err != nil {
 		return nil, err
 	}

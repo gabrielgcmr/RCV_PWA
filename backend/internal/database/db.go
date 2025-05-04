@@ -43,4 +43,5 @@ func Connect() {
 
 	DB = db
 	log.Println("✅ Banco de dados conectado com sucesso!")
+
 }

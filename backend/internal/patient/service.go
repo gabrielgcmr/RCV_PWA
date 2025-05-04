@@ -1,11 +1,11 @@
-package user
+package patient
 
 import (
 	"errors"
 	"fmt"
 
-	"github.com/gabrielgcmr/medapp/internal/user/dto"
-	"github.com/gabrielgcmr/medapp/internal/user/utils"
+	"github.com/gabrielgcmr/medapp/internal/patient/dto"
+	"github.com/gabrielgcmr/medapp/internal/patient/utils"
 
 	"gorm.io/gorm"
 )
@@ -19,7 +19,7 @@ func NewService(repo *Repository) *Service {
 }
 
 // Register cria um novo usuário a partir do DTO de registro
-func (s *Service) Register(input dto.RegisterInput) (*User, error) {
+func (s *Service) Register(input dto.RegisterInput) (*Patient, error) {
 	// 1) Checa se já existe por email
 	if _, err := s.repo.FindByEmail(input.Email); err == nil {
 		return nil, errors.New("este e-mail já está em uso")
@@ -34,10 +34,9 @@ func (s *Service) Register(input dto.RegisterInput) (*User, error) {
 	}
 
 	// 3) Monta o User para persistir
-	u := &User{
+	u := &Patient{
 		CPF:          input.CPF,
 		CNS:          ptrString(input.CNS),
-		Profession:   Profession(input.Profession),
 		FullName:     input.FullName,
 		Email:        ptrString(input.Email),
 		PasswordHash: hash,
@@ -53,7 +52,7 @@ func (s *Service) Register(input dto.RegisterInput) (*User, error) {
 }
 
 // Login autentica o usuário e retorna o modelo (você pode também retornar um token)
-func (s *Service) Login(email, password string) (*User, error) {
+func (s *Service) Login(email, password string) (*Patient, error) {
 	u, err := s.repo.FindByEmail(email)
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
@@ -69,7 +68,7 @@ func (s *Service) Login(email, password string) (*User, error) {
 	return u, nil
 }
 
-func (s *Service) GetByID(id int) (*User, error) {
+func (s *Service) GetByID(id int) (*Patient, error) {
 	return s.repo.FindByID(id)
 }
 
