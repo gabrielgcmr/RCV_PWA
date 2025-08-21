@@ -36,7 +36,7 @@ export const examDictionary : Record<string, ExamDefinition> = {
     //totalT4: { label: "T4 Total", abbreviation: "T4T", category: "ThyroidProfile", inputType: "input" },
     //freeT3: { label: "T3 Livre", abbreviation: "T3L", category: "ThyroidProfile", inputType: "input" },
     //totalT3: { label: "T3 Total", abbreviation: "T3T", category: "ThyroidProfile", inputType: "input" },
-    //antiTPO: { label: "Anti-TPO", abbreviation: "Anti-TPO", category: "ThyroidProfile", inputType: "input" },
+    antiTPO: { label: "Anti-TPO", abbreviation: "Anti-TPO", category: "ThyroidProfile", inputType: "input" },
     //antiTG: { label: "Anti-TG", abbreviation: "Anti-TG", category: "ThyroidProfile", inputType: "input" },
 
     // Vitaminas
@@ -70,6 +70,9 @@ export const examDictionary : Record<string, ExamDefinition> = {
     vhs:{ label: "VHS", abbreviation: "VHS", category:"Inflamatory", inputType:"input"},
     
     //Cinética do Ferro
+    ferritin: { label: "Ferritina", abbreviation: "Ferritina", category: "IronKinetics", inputType: "input" },
+    transferrin: { label: "Transferrina", abbreviation: "Transferrina", category: "IronKinetics", inputType: "input" },
+    iron: { label: "Ferro", abbreviation: "Ferro", category: "IronKinetics", inputType: "input" },
     
     //Fecal
     psof:{ label: "PSOF", abbreviation: "PSOF", category:"Fecal",inputType:"select",

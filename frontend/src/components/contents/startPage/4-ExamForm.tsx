@@ -31,6 +31,7 @@ function ExamsForm() {
         <ExamForm category="ThyroidProfile" title="Perfil Tireoideano" />
         <ExamForm category="Inflamatory" title="Inflamatórios" />
         <ExamForm category="Fecal" title=" Fecal" />
+        <ExamForm category="IronKinetics" title="Cinética do Ferro" />
       </div>
     </SectionBase>
   );
